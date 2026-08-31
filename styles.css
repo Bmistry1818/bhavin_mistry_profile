@@ -416,6 +416,12 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 20px;
   background: rgba(10, 18, 31, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(94, 234, 212, 0.15);
 }
 
 .article-tag {
@@ -442,12 +448,37 @@ h1 {
 .article-card p {
   margin: 0;
   color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .article-card a {
   margin-top: auto;
   color: var(--secondary);
   font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.article-card a:hover {
+  color: var(--primary);
+}
+
+.blog-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .credentials-wrap {
