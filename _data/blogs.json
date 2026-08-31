@@ -1,5 +1,66 @@
 {
-  "lastUpdated": "2026-08-31T00:00:00.000Z",
-  "totalCount": 0,
-  "blogs": []
+  "lastUpdated": "2026-08-31T12:00:00.000Z",
+  "totalCount": 6,
+  "blogs": [
+    {
+      "id": "linkedin-1",
+      "title": "Gen AI - Practical adoption vs real value gap",
+      "description": "Exploring why many organisations deploy AI without building the operating model needed for real value. The gap between AI pilots and production systems reveals a critical need for governance and execution discipline.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-28T10:30:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-2",
+      "title": "Your Engineering Teams Do Not Need Another Expensive AI Platform",
+      "description": "Challenging the idea that more tooling automatically creates better AI outcomes. Organizations are over-investing in platforms while underinvesting in foundational practices, strategy, and talent.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-25T14:15:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-3",
+      "title": "When AI Can Spend Money: Agentic Payments Have Arrived in Australia",
+      "description": "Discussing the regulatory and operating implications of autonomous systems in finance. The rise of agentic AI in payments brings both opportunity and significant governance challenges for financial institutions.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-20T09:45:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-1",
+      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AI",
+      "description": "Breaking down practical deployment patterns for secure, scalable enterprise AI adoption. RAG architecture offers a pragmatic path for financial services to move beyond experimentation to production systems.",
+      "url": "https://medium.com/@bhavin_mistry",
+      "source": "Medium",
+      "date": "2026-08-15T11:20:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-4",
+      "title": "AI Code Review Agent",
+      "description": "Examining how AI can improve engineering quality, review loops, and delivery velocity. Automated code review accelerates development cycles while maintaining quality standards and security practices.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-10T16:00:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-2",
+      "title": "Accelerating Engineering Excellence: A Strategic Framework",
+      "description": "Introducing a strategic framework for building stronger software delivery capabilities. Learn how to establish engineering practices that support AI adoption, quality, and sustainable growth.",
+      "url": "https://medium.com/@bhavin_mistry",
+      "source": "Medium",
+      "date": "2026-08-05T13:30:00Z",
+      "image": null,
+      "type": "article"
+    }
+  ]
 }
