@@ -43,3 +43,8 @@ test('partial outage retains articles from failed source', async () => {
   await fetchAllBlogs({ cacheFile: file, feeds: [{ source: 'Medium', url: 'medium' }, { source: 'LinkedIn', url: 'linkedin' }], request: async url => { if (url === 'linkedin') throw Error('offline'); return response(rss); } });
   assert.equal(JSON.parse(fs.readFileSync(file)).blogs.length, 2);
 });
+
+test('Medium content:encoded provides an article summary', () => {
+  const xml = rss.replace('<description>', '<content:encoded>').replace('</description>', '</content:encoded>');
+  assert.equal(parseFeed(xml, 'Medium')[0].description, 'Useful insight');
+});

@@ -1,11 +1,11 @@
 {
   "lastUpdated": "2026-09-04T07:20:34.556Z",
-  "totalCount": 6,
+  "totalCount": 10,
   "blogs": [
     {
-      "id": "medium-0-1788506434525",
-      "title": "<![CDATA[The Enterprise Rollout Playbook to Claude Code & Codex CLI]]>",
-      "description": "",
+      "id": "medium-4147115796ecbe41",
+      "title": "The Enterprise Rollout Playbook to Claude Code & Codex CLI",
+      "description": "The Enterprise Rollout PlaybookA practical, verified guide for engineering teams shipping AI coding agents at scale — including routing through Amazon Bedrock, Portkey, or your own in-house LLM.Why…",
       "url": "https://medium.com/@bhavin_mistry/the-enterprise-rollout-playbook-to-claude-code-codex-cli-b832cfd5c070?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-08-30T08:34:55.000Z",
@@ -13,9 +13,49 @@
       "type": "article"
     },
     {
-      "id": "medium-1-1788506434525",
-      "title": "<![CDATA[The Enterprise Generative AI Paradox: Bridging the Divide Between Adoption Saturation and P&L Value…]]>",
-      "description": "",
+      "id": "linkedin-1",
+      "title": "Gen AI - Practical adoption vs real value gap",
+      "description": "Exploring why many organisations deploy AI without building the operating model needed for real value. The gap between AI pilots and production systems reveals a critical need for governance and execution discipline.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-28T10:30:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-2",
+      "title": "Your Engineering Teams Do Not Need Another Expensive AI Platform",
+      "description": "Challenging the idea that more tooling automatically creates better AI outcomes. Organizations are over-investing in platforms while underinvesting in foundational practices, strategy, and talent.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-25T14:15:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-3",
+      "title": "When AI Can Spend Money: Agentic Payments Have Arrived in Australia",
+      "description": "Discussing the regulatory and operating implications of autonomous systems in finance. The rise of agentic AI in payments brings both opportunity and significant governance challenges for financial institutions.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-20T09:45:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-4",
+      "title": "AI Code Review Agent",
+      "description": "Examining how AI can improve engineering quality, review loops, and delivery velocity. Automated code review accelerates development cycles while maintaining quality standards and security practices.",
+      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
+      "source": "LinkedIn",
+      "date": "2026-08-10T16:00:00Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-4cb86bfac54e8f8c",
+      "title": "The Enterprise Generative AI Paradox: Bridging the Divide Between Adoption Saturation and P&L Value…",
+      "description": "The Enterprise Generative AI Paradox: Bridging the Divide Between Adoption Saturation and P&amp;L Value RealisationMacro-Economic Context and the Enterprise Productivity DisconnectThe global enterp…",
       "url": "https://medium.com/@bhavin_mistry/the-enterprise-generative-ai-paradox-bridging-the-divide-between-adoption-saturation-and-p-l-value-b52fc2e2abb8?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-08-07T06:58:40.000Z",
@@ -23,9 +63,9 @@
       "type": "article"
     },
     {
-      "id": "medium-2-1788506434525",
-      "title": "<![CDATA[Gen AI — Practical adoption vs real value gap]]>",
-      "description": "",
+      "id": "medium-efcef2e6ea2a281f",
+      "title": "Gen AI — Practical adoption vs real value gap",
+      "description": "Why 88% of Companies Are Using AI, Yet Only 39% See Real Profits88% of companies have deployed AI in some part of their business.Yet only 39% can point to a measurable impact on profitability.I’ve …",
       "url": "https://medium.com/@bhavin_mistry/gen-ai-practical-adoption-vs-real-value-gap-6acc4640e87b?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-08-07T06:41:25.000Z",
@@ -33,9 +73,9 @@
       "type": "article"
     },
     {
-      "id": "medium-3-1788506434525",
-      "title": "<![CDATA[Why 2026 marks the shift from bigger models to smarter systems]]>",
-      "description": "",
+      "id": "medium-03134c0fc3531a98",
+      "title": "Why 2026 marks the shift from bigger models to smarter systems",
+      "description": "The AI Race Just Changed — And Most People Haven’t NoticedI’ve been watching the AI space closely for years now, and something fundamental shifted in early 2026. It’s subtle enough that you might m…",
       "url": "https://medium.com/@bhavin_mistry/why-2026-marks-the-shift-from-bigger-models-to-smarter-systems-82698dceae61?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-02-03T04:05:42.000Z",
@@ -43,9 +83,9 @@
       "type": "article"
     },
     {
-      "id": "medium-4-1788506434525",
-      "title": "<![CDATA[Accelerating Engineering Excellence: A Strategic Framework for Enhanced Software Development…]]>",
-      "description": "",
+      "id": "medium-895fd02e1ca6f033",
+      "title": "Accelerating Engineering Excellence: A Strategic Framework for Enhanced Software Development…",
+      "description": "Accelerating Engineering Excellence: A Strategic Framework for Enhanced Software Development CapabilitiesProblem statement SummaryOrganisations face mounting pressure to deliver software solutions …",
       "url": "https://medium.com/@bhavin_mistry/accelerating-engineering-excellence-a-strategic-framework-for-enhanced-software-development-fc3f5cbfd591?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-02-03T03:44:19.000Z",
@@ -53,9 +93,9 @@
       "type": "article"
     },
     {
-      "id": "medium-5-1788506434525",
-      "title": "<![CDATA[Building a Local AI-Powered Code Review Agent: Integrate with DevOps & VS Code]]>",
-      "description": "",
+      "id": "medium-3248d5c034b10bf7",
+      "title": "Building a Local AI-Powered Code Review Agent: Integrate with DevOps & VS Code",
+      "description": "While developing code is critical in today’s fast-paced software development environment, automated code review can save hours of manual effort while ensuring code quality and consistency. Imagine …",
       "url": "https://medium.com/@bhavin_mistry/building-a-local-ai-powered-code-review-agent-integrate-with-devops-vs-code-f3c4430bd6ba?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-01-23T01:33:50.000Z",

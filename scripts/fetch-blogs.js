@@ -31,7 +31,7 @@ function parseFeed(xml, source) {
     const parsedDate = new Date(rawDate);
     if (!title || !url || seen.has(url) || Number.isNaN(parsedDate.getTime())) return [];
     seen.add(url);
-    const summary = text(item.description || item.summary || item.content).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    const summary = text(item.description || item.summary || item.content || item['content:encoded']).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
     return [{
       id: `${source.toLowerCase()}-${createHash('sha256').update(url).digest('hex').slice(0, 16)}`,
       title, description: summary.length > 200 ? `${summary.slice(0, 197)}…` : summary,
