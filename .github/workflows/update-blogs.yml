@@ -4,29 +4,47 @@ on:
   schedule:
     # Run every 6 hours
     - cron: '0 */6 * * *'
-  
-  # Allow manual trigger from Actions tab
   workflow_dispatch:
+
+# Allow the job to create PRs instead of pushing directly
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   update-blogs:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+        with:
+          # ensure the checked out repository has credentials so `create-pull-request` can push
+          persist-credentials: true
+          # fetch full history so branch operations work reliably
+          fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-      
+
       - name: Fetch blog feeds
         run: node scripts/fetch-blogs.js
-      
-      - name: Commit and push updates
+
+      - name: Debug git state
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add _data/blogs.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Update blog feeds" && git push)
+          echo "Branch: $(git rev-parse --abbrev-ref HEAD || echo 'detached')"
+          git remote -v
+          git status --porcelain
+          git config --list
+
+      - name: Create Pull Request if there are changes
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "🔄 Update blog feeds"
+          title: "🔄 Update blog feeds"
+          body: "Automated update of blog feeds by workflow."
+          branch: "update/blogs-${{ github.run_id }}"
+          labels: automated
