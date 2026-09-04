@@ -11,9 +11,14 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: update-blog-feed
+  cancel-in-progress: false
+
 jobs:
   update-blogs:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -27,24 +32,68 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.19.0'
+
+      - run: pnpm install --frozen-lockfile
 
       - name: Fetch blog feeds
-        run: node scripts/fetch-blogs.js
-
-      - name: Debug git state
+        id: feeds
+        shell: bash
+        env:
+          BLOG_DIAGNOSTICS_FILE: ${{ runner.temp }}/blog-diagnostics/sources.json
         run: |
-          echo "Branch: $(git rev-parse --abbrev-ref HEAD || echo 'detached')"
-          git remote -v
-          git status --porcelain
-          git config --list
+          mkdir -p "$RUNNER_TEMP/blog-diagnostics"
+          set -o pipefail
+          node scripts/fetch-blogs.js 2>&1 | tee "$RUNNER_TEMP/blog-diagnostics/feed.log"
 
       - name: Create Pull Request if there are changes
+        id: pull_request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "🔄 Update blog feeds"
           title: "🔄 Update blog feeds"
           body: "Automated update of blog feeds by workflow."
-          branch: "update/blogs-${{ github.run_id }}"
+          branch: "automation/update-blogs"
+          delete-branch: true
+          add-paths: data/blogs.json
           labels: automated
+
+      - name: Write run summary
+        if: always()
+        env:
+          FEED_OUTCOME: ${{ steps.feeds.outcome }}
+          PR_OUTCOME: ${{ steps.pull_request.outcome }}
+        shell: bash
+        run: |
+          {
+            echo '## Blog update diagnostics'
+            echo "Feed update: $FEED_OUTCOME"
+            echo "Pull request creation: $PR_OUTCOME"
+            echo ''
+            if [ -f "$RUNNER_TEMP/blog-diagnostics/sources.json" ]; then
+              echo '### Per-source results'
+              echo '```json'
+              cat "$RUNNER_TEMP/blog-diagnostics/sources.json"
+              echo '```'
+            fi
+            if [ "$PR_OUTCOME" = 'failure' ]; then
+              echo 'Inspect the Create Pull Request step. If GitHub reports that Actions cannot create pull requests, check Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests. Organisation policy may control this setting.'
+            fi
+            if [ "$FEED_OUTCOME" = 'skipped' ]; then
+              echo 'The feed step never started. Inspect checkout, Node setup, package manager setup and dependency installation above.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload feed diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-diagnostics-${{ github.run_id }}
+          path: ${{ runner.temp }}/blog-diagnostics/
+          if-no-files-found: ignore
+          retention-days: 14
