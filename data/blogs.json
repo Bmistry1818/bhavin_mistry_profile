@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-09-04T07:20:34.556Z",
-  "totalCount": 10,
+  "lastUpdated": "2026-09-06T20:17:34.762Z",
+  "totalCount": 11,
   "blogs": [
     {
       "id": "medium-4147115796ecbe41",
@@ -9,36 +9,6 @@
       "url": "https://medium.com/@bhavin_mistry/the-enterprise-rollout-playbook-to-claude-code-codex-cli-b832cfd5c070?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-08-30T08:34:55.000Z",
-      "image": null,
-      "type": "article"
-    },
-    {
-      "id": "linkedin-1",
-      "title": "Gen AI - Practical adoption vs real value gap",
-      "description": "Exploring why many organisations deploy AI without building the operating model needed for real value. The gap between AI pilots and production systems reveals a critical need for governance and execution discipline.",
-      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
-      "source": "LinkedIn",
-      "date": "2026-08-28T10:30:00Z",
-      "image": null,
-      "type": "article"
-    },
-    {
-      "id": "linkedin-2",
-      "title": "Your Engineering Teams Do Not Need Another Expensive AI Platform",
-      "description": "Challenging the idea that more tooling automatically creates better AI outcomes. Organizations are over-investing in platforms while underinvesting in foundational practices, strategy, and talent.",
-      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
-      "source": "LinkedIn",
-      "date": "2026-08-25T14:15:00Z",
-      "image": null,
-      "type": "article"
-    },
-    {
-      "id": "linkedin-3",
-      "title": "When AI Can Spend Money: Agentic Payments Have Arrived in Australia",
-      "description": "Discussing the regulatory and operating implications of autonomous systems in finance. The rise of agentic AI in payments brings both opportunity and significant governance challenges for financial institutions.",
-      "url": "https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/",
-      "source": "LinkedIn",
-      "date": "2026-08-20T09:45:00Z",
       "image": null,
       "type": "article"
     },
@@ -99,6 +69,46 @@
       "url": "https://medium.com/@bhavin_mistry/building-a-local-ai-powered-code-review-agent-integrate-with-devops-vs-code-f3c4430bd6ba?source=rss-bb6aa4cda8a9------2",
       "source": "Medium",
       "date": "2026-01-23T01:33:50.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-36c861ff004a8946",
+      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt…",
+      "description": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AIImagine this: You&#39;re a Leader who is asked to perform a risk analysis on deploying Genera…",
+      "url": "https://medium.com/@bhavin_mistry/how-rag-becomes-the-fastest-safest-and-most-cost-efficient-way-for-finance-enterprises-to-adopt-7e156277e8c8?source=rss-bb6aa4cda8a9------2",
+      "source": "Medium",
+      "date": "2026-01-23T01:31:21.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-f385c11d35d779c8",
+      "title": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save…",
+      "description": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save Millions Compared to OpenAI, Google, Microsoft, and Anthropic1. The 2025 Reality: AI Bills Are Out…",
+      "url": "https://medium.com/@bhavin_mistry/enterprise-ai-the-open-source-case-782fe2896b4d?source=rss-bb6aa4cda8a9------2",
+      "source": "Medium",
+      "date": "2025-11-23T10:41:14.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-a3081f61935a5851",
+      "title": "Unlock Your Organisation’s AI Potential with the Model Context Protocol(MCP)",
+      "description": "As an engineering enthusiast with an Integrations and enterprise architecture background, I’m seeing firsthand the challenges organisations face when trying to weave AI capabilities into their infr…",
+      "url": "https://medium.com/@bhavin_mistry/unlock-your-organisations-ai-potential-with-the-model-context-protocol-mcp-c45752d86351?source=rss-bb6aa4cda8a9------2",
+      "source": "Medium",
+      "date": "2025-07-12T04:29:15.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-72c7af5167fc1f72",
+      "title": "Building a Python-Based AI Coding Agent for VS Code",
+      "description": "Create a Python agent that uses large language models (LLMs) to provide smart coding assistance directly in Visual Studio Code. This agent will run both locally (as a VS Code extension communicatin…",
+      "url": "https://medium.com/@bhavin_mistry/building-a-python-based-ai-coding-agent-for-vs-code-cd007ce56156?source=rss-bb6aa4cda8a9------2",
+      "source": "Medium",
+      "date": "2025-05-17T08:11:41.000Z",
       "image": null,
       "type": "article"
     }
