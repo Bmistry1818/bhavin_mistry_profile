@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise AI Production Readiness Framework | Bhavin Mistry</title>
+    <meta name="description" content="A 5-stage, 12-dimension enterprise maturity framework by Bhavin Mistry for taking generative AI and agentic systems from exploration to production." />
+    <link rel="canonical" href="https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/" />
+    
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:title" content="Enterprise AI Production Readiness Framework | Bhavin Mistry" />
+    <meta property="og:description" content="A 5-stage, 12-dimension enterprise maturity framework by Bhavin Mistry for taking generative AI and agentic systems from exploration to production." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/" />
+    <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Enterprise AI Production Readiness Framework | Bhavin Mistry" />
+    <meta name="twitter:description" content="A 5-stage, 12-dimension enterprise maturity framework by Bhavin Mistry for taking generative AI and agentic systems from exploration to production." />
+    <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="theme-color" content="#f5f2eb" />
+
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/script.js"></script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bhavin Mistry",
+      "url": "https://bhavinmistry.com/",
+      "sameAs": [
+        "https://www.linkedin.com/in/bhavin-mistry/",
+        "https://medium.com/@bhavin_mistry"
+      ],
+      "jobTitle": "AI Strategy and Engineering Leader",
+      "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "Victoria", "addressCountry": "AU" }
+    }
+    </script>
+  
+  </head>
+  <body id="top" class="">
+    
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Bhavin Mistry Home">
+          Bhavin Mistry<span class="brand-period">.</span>
+          <span class="brand-sub">Enterprise AI</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="sr-only">Open navigation</span>
+          <span aria-hidden="true">Menu</span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+          <a href="/insights/" class="">Insights</a>
+          <a href="/enterprise-ai-engineering/" class="">Handbook</a>
+          <a href="/architectures/" class="">Architectures</a>
+          <a href="/frameworks/enterprise-ai-production-readiness/" class="active">Framework</a>
+          <a href="/ai-radar/" class="">AI Radar</a>
+          <a href="/tools/" class="">Tools</a>
+          <a href="/about/" class="">About</a>
+          <button class="search-trigger" type="button" aria-label="Search site">
+            <span>Search</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <a href="/newsletter/" class="nav-cta">Subscribe</a>
+        </nav>
+      </div>
+    </header>
+  
+    <main id="main-content">
+      
+    <div class="container" style="padding-top: 64px; padding-bottom: 88px;">
+      <span class="eyebrow">Signature Methodology</span>
+      <h1>Enterprise AI Production Readiness Framework</h1>
+      <p class="hero-lead" style="max-width: 840px; margin-top: 16px; margin-bottom: 40px;">
+        A comprehensive 5-stage, 12-dimension maturity framework designed by Bhavin Mistry to guide enterprise technology leaders from exploratory AI pilots to resilient, governed, scalable production systems.
+      </p>
+
+      <div style="display: flex; gap: 16px; margin-bottom: 48px;">
+        <a href="/tools/enterprise-ai-readiness/" class="btn btn-primary">Take 18-Question Readiness Assessment →</a>
+        <a href="#matrix" class="btn btn-secondary">Jump to Maturity Matrix ↓</a>
+      </div>
+
+      <!-- 5 Stages Detail -->
+      <h2 style="margin-bottom: 24px;">The 5 Stages of Production AI</h2>
+      <div class="card-grid-4" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 48px;">
+        
+          <div class="card" style="padding: 24px;">
+            <span class="badge badge-accent" style="margin-bottom: 12px;">Stage 01</span>
+            <h3 style="font-size: 20px; margin-bottom: 8px;">EXPLORE</h3>
+            <div style="font-size: 11px; font-family: var(--mono); color: var(--muted); margin-bottom: 12px;">Unstructured Prototyping & Discovery</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Identifying high-potential use cases, validating user intent, running rapid technical spikes, and evaluating API capabilities.</p>
+            <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line-subtle); font-size: 12px; color: var(--accent);">
+              <strong>Exit Milestone:</strong><br>Working prototype demonstrating technical feasibility with mock data.
+            </div>
+          </div>
+        
+          <div class="card" style="padding: 24px;">
+            <span class="badge badge-accent" style="margin-bottom: 12px;">Stage 02</span>
+            <h3 style="font-size: 20px; margin-bottom: 8px;">VALIDATE</h3>
+            <div style="font-size: 11px; font-family: var(--mono); color: var(--muted); margin-bottom: 12px;">Grounded Value & Feasibility Verification</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Testing on real enterprise datasets, building evaluation ground truth benchmarks, measuring baseline accuracy, and analyzing unit economics.</p>
+            <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line-subtle); font-size: 12px; color: var(--accent);">
+              <strong>Exit Milestone:</strong><br>Empirical evaluation dataset proving accuracy exceeds the business threshold.
+            </div>
+          </div>
+        
+          <div class="card" style="padding: 24px;">
+            <span class="badge badge-accent" style="margin-bottom: 12px;">Stage 03</span>
+            <h3 style="font-size: 20px; margin-bottom: 8px;">GOVERN</h3>
+            <div style="font-size: 11px; font-family: var(--mono); color: var(--muted); margin-bottom: 12px;">Risk, Security & Compliance Hardening</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Implementing RBAC access controls, PII redaction, prompt injection defense, audit logging, and legal/regulatory compliance sign-offs.</p>
+            <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line-subtle); font-size: 12px; color: var(--accent);">
+              <strong>Exit Milestone:</strong><br>Full InfoSec, privacy, and architectural review board approval.
+            </div>
+          </div>
+        
+          <div class="card" style="padding: 24px;">
+            <span class="badge badge-accent" style="margin-bottom: 12px;">Stage 04</span>
+            <h3 style="font-size: 20px; margin-bottom: 8px;">PRODUCTIONISE</h3>
+            <div style="font-size: 11px; font-family: var(--mono); color: var(--muted); margin-bottom: 12px;">Deployment & Observability Integration</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Containerized CI/CD deployment, LLM gateway integration, automated fallback routing, OpenTelemetry tracing, and canary rollout.</p>
+            <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line-subtle); font-size: 12px; color: var(--accent);">
+              <strong>Exit Milestone:</strong><br>Live in production with active monitoring, SLAs, and incident runbooks.
+            </div>
+          </div>
+        
+          <div class="card" style="padding: 24px;">
+            <span class="badge badge-accent" style="margin-bottom: 12px;">Stage 05</span>
+            <h3 style="font-size: 20px; margin-bottom: 8px;">SCALE</h3>
+            <div style="font-size: 11px; font-family: var(--mono); color: var(--muted); margin-bottom: 12px;">Systematic Enterprise Expansion & Optimization</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">Model distillation, fine-tuning for cost reduction, reusable agent components, cross-departmental platform adoption, and FinOps governance.</p>
+            <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line-subtle); font-size: 12px; color: var(--accent);">
+              <strong>Exit Milestone:</strong><br>Positive P&L ROI, sub-second latencies, and standardized enterprise AI platform.
+            </div>
+          </div>
+        
+      </div>
+
+      <!-- 12 Dimension Matrix -->
+      <h2 id="matrix" style="margin-bottom: 16px;">The 12-Dimension Enterprise Maturity Matrix</h2>
+      <p style="font-size: 14px; color: var(--muted); margin-bottom: 24px;">
+        Benchmark your systems across all 12 operational disciplines before advancing between stages.
+      </p>
+
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th style="width: 15%;">Dimension</th>
+              <th style="width: 17%;">01. Explore</th>
+              <th style="width: 17%;">02. Validate</th>
+              <th style="width: 17%;">03. Govern</th>
+              <th style="width: 17%;">04. Productionise</th>
+              <th style="width: 17%;">05. Scale</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Strategy</td>
+                <td>Informal interest</td>
+                <td>Business case defined</td>
+                <td>Exec sponsor aligned</td>
+                <td>P&L targets tied</td>
+                <td>Strategic differentiator</td>
+              </tr>
+            
+              <tr>
+                <td>Business Value</td>
+                <td>Vague efficiency hopes</td>
+                <td>Measurable KPI defined</td>
+                <td>ROI model vetted</td>
+                <td>Value measured live</td>
+                <td>Compounding returns</td>
+              </tr>
+            
+              <tr>
+                <td>Data Readiness</td>
+                <td>Ad-hoc PDFs/docs</td>
+                <td>Curated clean datasets</td>
+                <td>Access controls mapped</td>
+                <td>Automated pipelines</td>
+                <td>Enterprise semantic layer</td>
+              </tr>
+            
+              <tr>
+                <td>Architecture</td>
+                <td>Direct OpenAI SDK calls</td>
+                <td>Basic RAG script</td>
+                <td>Gateway + RBAC design</td>
+                <td>High-availability stack</td>
+                <td>Unified AI platform</td>
+              </tr>
+            
+              <tr>
+                <td>Engineering</td>
+                <td>Notebook scripts</td>
+                <td>Modular repository</td>
+                <td>CI lint & secret scans</td>
+                <td>Automated CD & tests</td>
+                <td>Platform self-service</td>
+              </tr>
+            
+              <tr>
+                <td>Security</td>
+                <td>Ignored / Sandbox</td>
+                <td>Basic key management</td>
+                <td>PII strip & injection defense</td>
+                <td>Continuous red-teaming</td>
+                <td>Zero-trust AI perimeter</td>
+              </tr>
+            
+              <tr>
+                <td>Governance</td>
+                <td>None</td>
+                <td>Risk classification</td>
+                <td>Legal & APRA/CPS review</td>
+                <td>Trace audit retention</td>
+                <td>Automated compliance</td>
+              </tr>
+            
+              <tr>
+                <td>Evaluation</td>
+                <td>Vibe checks</td>
+                <td>Golden dataset (100 Q&A)</td>
+                <td>CI eval gates (<2% hall.)</td>
+                <td>Production sampling</td>
+                <td>Continuous shadow evals</td>
+              </tr>
+            
+              <tr>
+                <td>Operations</td>
+                <td>Manual restarts</td>
+                <td>Basic error logs</td>
+                <td>Alert thresholds set</td>
+                <td>24/7 on-call runbooks</td>
+                <td>Auto-scaling & self-healing</td>
+              </tr>
+            
+              <tr>
+                <td>People & Skills</td>
+                <td>Individual hobbyist</td>
+                <td>Core squad trained</td>
+                <td>Policy training for staff</td>
+                <td>Cross-functional squad</td>
+                <td>Enterprise AI Center of Excellence</td>
+              </tr>
+            
+              <tr>
+                <td>Operating Model</td>
+                <td>Ad-hoc experimentation</td>
+                <td>Project-based squad</td>
+                <td>Standard review cadence</td>
+                <td>Product-aligned squads</td>
+                <td>Federated hub-and-spoke</td>
+              </tr>
+            
+              <tr>
+                <td>Cost & FinOps</td>
+                <td>Unmonitored credits</td>
+                <td>Token cost estimate</td>
+                <td>Budget caps configured</td>
+                <td>Cost-per-query tracking</td>
+                <td>Distillation & caching optimization</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 48px; background: var(--wash); padding: 32px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+        <div>
+          <h3 style="margin-bottom: 6px;">Benchmark Your Enterprise Score</h3>
+          <p style="font-size: 14px; color: var(--muted); margin-bottom: 0;">Calculate your dimension scores across Strategy, Data, Engineering, Governance, and Operations.</p>
+        </div>
+        <a href="/tools/enterprise-ai-readiness/" class="btn btn-primary">Start Interactive Assessment →</a>
+      </div>
+    </div>
+  
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
+            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Knowledge Hub</h4>
+            <ul>
+              <li><a href="/insights/">Enterprise Insights</a></li>
+              <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
+              <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
+              <li><a href="/research/">Research & Benchmarks</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Interactive Tools</h4>
+            <ul>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
+              <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
+              <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
+              <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
+              <li><a href="/feed.xml">RSS Feed</a></li>
+              <li><a href="/llms.txt">llms.txt</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
+            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="/about/">About Bhavin</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Command Palette Modal -->
+    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+      <div class="palette-window">
+        <div class="palette-input-wrap">
+          <span style="color: var(--muted); font-size: 14px;">🔍</span>
+          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
+        </div>
+        <div class="palette-results"></div>
+        <div class="palette-footer">
+          <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+          <span>Press <kbd>ESC</kbd> to close</span>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>

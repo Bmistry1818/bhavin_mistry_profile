@@ -2,7 +2,11 @@
   "name": "bhavin-mistry-profile",
   "private": true,
   "version": "1.0.0",
-  "scripts": { "test": "node --test", "update:blogs": "node scripts/fetch-blogs.js" },
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build-pages.js",
+    "update:blogs": "node scripts/fetch-blogs.js"
+  },
   "engines": { "node": ">=22" },
   "dependencies": { "xml-js": "1.6.11" }
 }

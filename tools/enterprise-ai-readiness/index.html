@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise AI Readiness Assessment Tool | Bhavin Mistry</title>
+    <meta name="description" content="Benchmark your enterprise AI maturity across Strategy, Data, Engineering, Governance, and Operations with an interactive diagnostic." />
+    <link rel="canonical" href="https://bhavinmistry.com/tools/enterprise-ai-readiness/" />
+    
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:title" content="Enterprise AI Readiness Assessment Tool | Bhavin Mistry" />
+    <meta property="og:description" content="Benchmark your enterprise AI maturity across Strategy, Data, Engineering, Governance, and Operations with an interactive diagnostic." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bhavinmistry.com/tools/enterprise-ai-readiness/" />
+    <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Enterprise AI Readiness Assessment Tool | Bhavin Mistry" />
+    <meta name="twitter:description" content="Benchmark your enterprise AI maturity across Strategy, Data, Engineering, Governance, and Operations with an interactive diagnostic." />
+    <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="theme-color" content="#f5f2eb" />
+
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/script.js"></script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bhavin Mistry",
+      "url": "https://bhavinmistry.com/",
+      "sameAs": [
+        "https://www.linkedin.com/in/bhavin-mistry/",
+        "https://medium.com/@bhavin_mistry"
+      ],
+      "jobTitle": "AI Strategy and Engineering Leader",
+      "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "Victoria", "addressCountry": "AU" }
+    }
+    </script>
+  
+  </head>
+  <body id="top" class="">
+    
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Bhavin Mistry Home">
+          Bhavin Mistry<span class="brand-period">.</span>
+          <span class="brand-sub">Enterprise AI</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="sr-only">Open navigation</span>
+          <span aria-hidden="true">Menu</span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+          <a href="/insights/" class="">Insights</a>
+          <a href="/enterprise-ai-engineering/" class="">Handbook</a>
+          <a href="/architectures/" class="">Architectures</a>
+          <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
+          <a href="/ai-radar/" class="">AI Radar</a>
+          <a href="/tools/" class="active">Tools</a>
+          <a href="/about/" class="">About</a>
+          <button class="search-trigger" type="button" aria-label="Search site">
+            <span>Search</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <a href="/newsletter/" class="nav-cta">Subscribe</a>
+        </nav>
+      </div>
+    </header>
+  
+    <main id="main-content">
+      
+    <div class="container" style="max-width: 840px; padding-top: 64px; padding-bottom: 88px;">
+      <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+        <a href="/">Home</a> / <a href="/tools/">Tools</a> / <span style="color: var(--ink);">AI Readiness Assessment</span>
+      </nav>
+
+      <span class="eyebrow">Interactive Diagnostic</span>
+      <h1>Enterprise AI Readiness Assessment</h1>
+      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
+        Evaluate your organization's readiness for production AI across Strategy, Data, Engineering, Governance, and Operations.
+      </p>
+
+      <form id="readiness-assessment-form" style="background: var(--paper-elevated); padding: 36px; border: 1px solid var(--line);">
+        <!-- Strategy -->
+        <div class="quiz-step">
+          <span class="eyebrow">01. Strategy & ROI</span>
+          <h4>How are GenAI investments tied to business outcomes?</h4>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q1" value="1" data-dim="strategy" required> Informal interest; exploratory hobbyist demos.</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="3" data-dim="strategy"> Business case drafted with defined efficiency KPI targets.</label>
+            <label class="quiz-option"><input type="radio" name="q1" value="5" data-dim="strategy"> Executive sponsor assigned, tied to quarterly P&L margin outcomes.</label>
+          </div>
+        </div>
+
+        <div class="quiz-step">
+          <span class="eyebrow">02. Data Readiness</span>
+          <h4>How are enterprise knowledge sources curated and accessed?</h4>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q2" value="1" data-dim="data" required> Raw unorganized PDFs and wiki pages scattered across SharePoint.</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="3" data-dim="data"> Curated knowledge stores with basic metadata and chunking pipelines.</label>
+            <label class="quiz-option"><input type="radio" name="q2" value="5" data-dim="data"> Automated ETL pipelines with document-level RBAC sync and freshness triggers.</label>
+          </div>
+        </div>
+
+        <div class="quiz-step">
+          <span class="eyebrow">03. Engineering Maturity</span>
+          <h4>How is AI software delivered and deployed?</h4>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q3" value="1" data-dim="engineering" required> Python notebooks or ad-hoc scripts with hardcoded API keys.</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="3" data-dim="engineering"> Version-controlled repositories with CI linting and containerization.</label>
+            <label class="quiz-option"><input type="radio" name="q3" value="5" data-dim="engineering"> Automated CI/CD pipelines with canary rollouts and automated rollback triggers.</label>
+          </div>
+        </div>
+
+        <div class="quiz-step">
+          <span class="eyebrow">04. AI Governance & Security</span>
+          <h4>What security and risk controls are enforced?</h4>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q4" value="1" data-dim="governance" required> No formal review; relying solely on vendor terms of service.</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="3" data-dim="governance"> Risk triage completed; basic PII redaction and secret scanning in place.</label>
+            <label class="quiz-option"><input type="radio" name="q4" value="5" data-dim="governance"> Formal InfoSec & APRA CPS 234 review, zero data retention, and trace logging.</label>
+          </div>
+        </div>
+
+        <div class="quiz-step">
+          <span class="eyebrow">05. Production Operations</span>
+          <h4>How are live systems monitored and evaluated?</h4>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q5" value="1" data-dim="operations" required> Vibe checks and manual user bug reports in Slack.</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="3" data-dim="operations"> Golden evaluation test set (>100 Q&As) run in CI before merges.</label>
+            <label class="quiz-option"><input type="radio" name="q5" value="5" data-dim="operations"> Full OpenTelemetry tracing, LLM-as-a-judge sampling, and on-call runbooks.</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 15px;">Calculate Readiness Score →</button>
+      </form>
+
+      <!-- RESULTS CONTAINER -->
+      <div id="assessment-results" style="display: none; margin-top: 40px; background: var(--wash); border: 1px solid var(--line); padding: 36px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 24px;">
+          <div>
+            <span class="eyebrow">Assessment Outcome</span>
+            <h3 style="font-size: 28px;">Overall Readiness: <span id="res-overall-score" style="color: var(--accent);">-- / 100</span></h3>
+          </div>
+          <span id="res-stage" class="badge badge-accent" style="font-size: 13px; padding: 6px 12px;">STAGE</span>
+        </div>
+        <p id="res-summary" style="font-size: 15px; color: var(--ink-soft); margin-bottom: 24px; line-height: 1.6;"></p>
+
+        <h4 style="margin-bottom: 12px;">Dimension Breakdown</h4>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px;">
+          <div style="background: var(--paper); padding: 12px; text-align: center; border: 1px solid var(--line);">
+            <div style="font-size: 10px; font-family: var(--mono); color: var(--muted);">STRATEGY</div>
+            <div id="res-strategy" style="font-size: 18px; font-weight: 600; margin-top: 4px;">--</div>
+          </div>
+          <div style="background: var(--paper); padding: 12px; text-align: center; border: 1px solid var(--line);">
+            <div style="font-size: 10px; font-family: var(--mono); color: var(--muted);">DATA</div>
+            <div id="res-data" style="font-size: 18px; font-weight: 600; margin-top: 4px;">--</div>
+          </div>
+          <div style="background: var(--paper); padding: 12px; text-align: center; border: 1px solid var(--line);">
+            <div style="font-size: 10px; font-family: var(--mono); color: var(--muted);">ENGINEERING</div>
+            <div id="res-engineering" style="font-size: 18px; font-weight: 600; margin-top: 4px;">--</div>
+          </div>
+          <div style="background: var(--paper); padding: 12px; text-align: center; border: 1px solid var(--line);">
+            <div style="font-size: 10px; font-family: var(--mono); color: var(--muted);">GOVERNANCE</div>
+            <div id="res-governance" style="font-size: 18px; font-weight: 600; margin-top: 4px;">--</div>
+          </div>
+          <div style="background: var(--paper); padding: 12px; text-align: center; border: 1px solid var(--line);">
+            <div style="font-size: 10px; font-family: var(--mono); color: var(--muted);">OPERATIONS</div>
+            <div id="res-operations" style="font-size: 18px; font-weight: 600; margin-top: 4px;">--</div>
+          </div>
+        </div>
+
+        <button id="print-assessment-btn" type="button" class="btn btn-secondary" style="width: 100%;">Print Assessment Report 🖨</button>
+      </div>
+    </div>
+  
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
+            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Knowledge Hub</h4>
+            <ul>
+              <li><a href="/insights/">Enterprise Insights</a></li>
+              <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
+              <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
+              <li><a href="/research/">Research & Benchmarks</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Interactive Tools</h4>
+            <ul>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
+              <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
+              <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
+              <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
+              <li><a href="/feed.xml">RSS Feed</a></li>
+              <li><a href="/llms.txt">llms.txt</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
+            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="/about/">About Bhavin</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Command Palette Modal -->
+    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+      <div class="palette-window">
+        <div class="palette-input-wrap">
+          <span style="color: var(--muted); font-size: 14px;">🔍</span>
+          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
+        </div>
+        <div class="palette-results"></div>
+        <div class="palette-footer">
+          <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+          <span>Press <kbd>ESC</kbd> to close</span>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>

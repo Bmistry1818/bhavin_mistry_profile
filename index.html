@@ -1,89 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Bhavin Mistry is an AI and engineering leader focused on generative AI, enterprise transformation, and measurable digital value."
-    />
-    <meta
-      property="og:title"
-      content="Bhavin Mistry | AI Strategy & Engineering Leadership"
-    />
-    <meta
-      property="og:description"
-      content="Turning AI ambition into measurable enterprise value."
-    />
+    <title>Bhavin Mistry | Building Enterprise AI That Actually Reaches Production</title>
+    <meta name="description" content="Enterprise AI, AI Engineering, and Architecture knowledge platform by Bhavin Mistry. Practical frameworks, hybrid RAG blueprints, agentic systems, and decision tools." />
+    <link rel="canonical" href="https://bhavinmistry.com/" />
+    
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:title" content="Bhavin Mistry | Building Enterprise AI That Actually Reaches Production" />
+    <meta property="og:description" content="Enterprise AI, AI Engineering, and Architecture knowledge platform by Bhavin Mistry. Practical frameworks, hybrid RAG blueprints, agentic systems, and decision tools." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bhavinmistry.com/" />
     <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Bhavin Mistry | AI Strategy & Engineering Leadership" />
-    <meta name="twitter:description" content="Turning AI ambition into measurable enterprise value." />
+    <meta name="twitter:title" content="Bhavin Mistry | Building Enterprise AI That Actually Reaches Production" />
+    <meta name="twitter:description" content="Enterprise AI, AI Engineering, and Architecture knowledge platform by Bhavin Mistry. Practical frameworks, hybrid RAG blueprints, agentic systems, and decision tools." />
     <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
     <meta name="theme-color" content="#f5f2eb" />
-    <link rel="canonical" href="https://bhavinmistry.com/" />
-    <title>Bhavin Mistry | AI Strategy & Engineering Leadership</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Bhavin Mistry",
-        "url": "https://bhavinmistry.com/",
-        "sameAs": ["https://www.linkedin.com/in/bhavin-mistry/"],
-        "jobTitle": "AI Strategy and Engineering Leader",
-        "address": { "@type": "PostalAddress", "addressRegion": "Victoria", "addressCountry": "AU" }
-      }
-    </script>
+
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/script.js"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Bhavin Mistry","url":"https://bhavinmistry.com/","author":{"@type":"Person","name":"Bhavin Mistry","jobTitle":"AI Strategy and Engineering Leader","url":"https://bhavinmistry.com/about/","sameAs":["https://www.linkedin.com/in/bhavin-mistry/","https://medium.com/@bhavin_mistry"]},"description":"Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, research, and perspectives from Bhavin Mistry."}</script>
   </head>
-  <body id="top">
+  <body id="top" class="">
+    
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a href="#top" class="brand" aria-label="Bhavin Mistry home">Bhavin Mistry<span class="brand-period">.</span></a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span class="sr-only">Open navigation</span><span aria-hidden="true">Menu</span></button>
-        <nav id="main-nav" class="main-nav" aria-label="Main navigation"><a href="#insights">Writing</a><a href="#focus">Approach</a><a href="#about">About</a><a href="#contact">Get in touch <span aria-hidden="true">↗</span></a></nav>
+        <a href="/" class="brand" aria-label="Bhavin Mistry Home">
+          Bhavin Mistry<span class="brand-period">.</span>
+          <span class="brand-sub">Enterprise AI</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="sr-only">Open navigation</span>
+          <span aria-hidden="true">Menu</span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+          <a href="/insights/" class="">Insights</a>
+          <a href="/enterprise-ai-engineering/" class="">Handbook</a>
+          <a href="/architectures/" class="">Architectures</a>
+          <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
+          <a href="/ai-radar/" class="">AI Radar</a>
+          <a href="/tools/" class="">Tools</a>
+          <a href="/about/" class="">About</a>
+          <button class="search-trigger" type="button" aria-label="Search site">
+            <span>Search</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <a href="/newsletter/" class="nav-cta">Subscribe</a>
+        </nav>
       </div>
     </header>
+  
     <main id="main-content">
-      <section class="hero container" aria-labelledby="hero-title">
-        <p class="eyebrow">AI strategy & engineering leadership <span>Melbourne, Australia</span></p>
-        <h1 id="hero-title">AI strategy,<br> grounded in <em>engineering.</em></h1>
-        <div class="hero-bottom">
-          <p class="intro">I'm Bhavin. I help organisations turn AI ideas into practical products, with a focus on financial services and the teams building them.</p>
-          <div class="hero-aside"><p>From the first use case to the work of delivery.</p><a class="text-link" href="#insights">Explore my writing <span aria-hidden="true">↓</span></a></div>
+      
+    <!-- HERO SECTION -->
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-meta">
+        <span>Enterprise AI • AI Engineering • Architecture</span>
+        <span>Melbourne, Australia</span>
+      </div>
+      <h1 id="hero-title">Building Enterprise AI That Actually Reaches <em>Production.</em></h1>
+      <div class="hero-grid">
+        <p class="hero-lead">
+          Practical frameworks, architectures, research, and perspectives for taking Generative AI and Agentic systems from exploratory experimentation to resilient, governed, scalable enterprise production.
+        </p>
+        <div class="hero-actions">
+          <div class="btn-group">
+            <a href="/insights/" class="btn btn-primary">Explore Insights</a>
+            <a href="/enterprise-ai-engineering/" class="btn btn-secondary">AI Engineering Handbook</a>
+          </div>
+          <span class="hero-note">By Bhavin Mistry • Enterprise AI & Engineering Leader</span>
         </div>
-      </section>
-      <section id="insights" class="section container" aria-labelledby="writing-title">
-        <div class="section-heading"><div><p class="eyebrow">Notes & perspectives</p><h2 id="writing-title">Thinking out loud.</h2></div><p>On AI adoption, engineering teams,<br> and what it takes to make progress.</p></div>
-        <div id="blog-container" class="article-grid" style="display:none"></div>
-        <div id="fallback-blogs"><div class="article-grid"><article class="article-card"><span class="article-tag">LinkedIn · August 2026</span><h3>Gen AI - Practical adoption vs real value gap</h3><p>Exploring why many organisations deploy AI without building the operating model needed for real value. The gap between AI pilots and production systems reveals a critical need for governance and execution discipline.</p><a href="https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/" target="_blank" rel="noreferrer noopener">Browse LinkedIn writing <span aria-hidden="true">↗</span></a></article>
-<article class="article-card"><span class="article-tag">LinkedIn · August 2026</span><h3>Your Engineering Teams Do Not Need Another Expensive AI Platform</h3><p>Challenging the idea that more tooling automatically creates better AI outcomes. Organizations are over-investing in platforms while underinvesting in foundational practices, strategy, and talent.</p><a href="https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/" target="_blank" rel="noreferrer noopener">Browse LinkedIn writing <span aria-hidden="true">↗</span></a></article>
-<article class="article-card"><span class="article-tag">LinkedIn · August 2026</span><h3>When AI Can Spend Money: Agentic Payments Have Arrived in Australia</h3><p>Discussing the regulatory and operating implications of autonomous systems in finance. The rise of agentic AI in payments brings both opportunity and significant governance challenges for financial institutions.</p><a href="https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/" target="_blank" rel="noreferrer noopener">Browse LinkedIn writing <span aria-hidden="true">↗</span></a></article>
-<article class="article-card"><span class="article-tag">Medium · August 2026</span><h3>How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AI</h3><p>Breaking down practical deployment patterns for secure, scalable enterprise AI adoption. RAG architecture offers a pragmatic path for financial services to move beyond experimentation to production systems.</p><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noreferrer noopener">Browse Medium writing <span aria-hidden="true">↗</span></a></article></div></div>
-        <a class="text-link writing-more" href="https://www.linkedin.com/in/bhavin-mistry/recent-activity/articles/" target="_blank" rel="noreferrer noopener">More writing on LinkedIn <span aria-hidden="true">↗</span></a>
-      </section>
-      <section id="focus" class="approach-band" aria-labelledby="approach-title"><div class="container approach-layout">
-        <div><p class="eyebrow">How I think about the work</p><h2 id="approach-title">A useful idea<br> is only the start.</h2></div>
-        <div class="approach-list">
-          <article><span class="index">01</span><div><h3>Start with the problem.</h3><p>Choose a use case with a clear business purpose. Define what a better outcome would look like before choosing the technology.</p></div></article>
-          <article><span class="index">02</span><div><h3>Build for the real world.</h3><p>Bring engineering, product and architecture together. Think about adoption, reliability and the people who will use the system.</p></div></article>
-          <article><span class="index">03</span><div><h3>Make trust part of delivery.</h3><p>In financial services, governance and risk belong in the design from the beginning. Keep the path from experiment to production practical.</p></div></article>
+      </div>
+
+      <!-- AUTHORITY STATS / PILLARS -->
+      <div class="authority-bar">
+        <div class="authority-item">
+          <div class="authority-label">Production Focus</div>
+          <div class="authority-value">Zero Fluff</div>
+          <div class="authority-desc">Architectures designed for APRA, SOC2, and enterprise latency SLAs.</div>
         </div>
-      </div></section>
-      <section id="about" class="section container about-layout" aria-labelledby="about-title">
-        <div><p class="eyebrow">A little background</p><h2 id="about-title">Engineering.<br> AI. And the<br> space between.</h2></div>
-        <div class="about-copy"><p class="intro">My work sits at the intersection of AI strategy, engineering leadership and enterprise transformation.</p><p>I'm based in Melbourne, with a focus on generative AI, financial services and helping organisations move from experimentation into delivery.</p><div class="education"><p class="eyebrow">Education</p><h3>The University of Texas at Austin</h3><p>Post Graduate Program in Artificial Intelligence and Machine Learning: Business Applications</p></div><a class="text-link" href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noreferrer noopener">Full background on LinkedIn <span aria-hidden="true">↗</span></a></div>
-      </section>
-      <section id="contact" class="container contact" aria-labelledby="contact-title"><div><p class="eyebrow">Let's compare notes</p><h2 id="contact-title">Working through<br> an AI question?</h2><p>I'd be glad to hear what you're thinking about.</p></div><a class="contact-link" href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noreferrer noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a></section>
+        <div class="authority-item">
+          <div class="authority-label">Flagship Framework</div>
+          <div class="authority-value">5-Stage Maturity</div>
+          <div class="authority-desc">Explore → Validate → Govern → Productionise → Scale.</div>
+        </div>
+        <div class="authority-item">
+          <div class="authority-label">Architecture Library</div>
+          <div class="authority-value">6 Reference Blueprints</div>
+          <div class="authority-desc">Hybrid RAG, Agentic Workflows, AI Gateways, & LLMOps.</div>
+        </div>
+        <div class="authority-item">
+          <div class="authority-label">Interactive Calculators</div>
+          <div class="authority-value">5 Working Tools</div>
+          <div class="authority-desc">Transparent financial and architectural decision models.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED THINKING (INSIGHTS) -->
+    <section class="section container" aria-labelledby="insights-title">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">Original Research & Perspectives</span>
+          <h2 id="insights-title">Featured Thinking.</h2>
+        </div>
+        <p class="section-header-desc">
+          Rigorous perspectives on enterprise LLM adoption, agent reliability, and the engineering disciplines required for measurable P&L return.
+        </p>
+      </div>
+
+      <div class="card-grid-3">
+        
+          <article class="card">
+            <div class="card-meta">
+              <span>Enterprise AI</span>
+              <span>11 min read</span>
+            </div>
+            <h3><a href="/insights/enterprise-ai-engineering-production-playbook/">Enterprise AI Engineering: From Experimentation to Production</a></h3>
+            <p>Why 88% of enterprise AI initiatives get stuck in pilot purgatory, and the engineering disciplines required to bridge the gap between proof-of-concept demos and P&L value realization.</p>
+            <div class="card-footer">
+              <span class="badge badge-accent">Flagship Perspective</span>
+              <a href="/insights/enterprise-ai-engineering-production-playbook/" class="text-link">Read Blueprint <span>→</span></a>
+            </div>
+          </article>
+        
+          <article class="card">
+            <div class="card-meta">
+              <span>Agentic AI</span>
+              <span>9 min read</span>
+            </div>
+            <h3><a href="/insights/why-enterprise-ai-agents-fail-after-the-demo/">Why Enterprise AI Agents Fail After the Demo</a></h3>
+            <p>Deconstructing the failure modes of autonomous agents in enterprise environments: error compounding, state drift, permission blindness, and non-deterministic execution.</p>
+            <div class="card-footer">
+              <span class="badge badge-accent">Architectural Analysis</span>
+              <a href="/insights/why-enterprise-ai-agents-fail-after-the-demo/" class="text-link">Read Blueprint <span>→</span></a>
+            </div>
+          </article>
+        
+          <article class="card">
+            <div class="card-meta">
+              <span>Enterprise AI</span>
+              <span>12 min read</span>
+            </div>
+            <h3><a href="/insights/enterprise-rag-production-blueprint/">Enterprise RAG Architecture: A Production Blueprint</a></h3>
+            <p>Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems.</p>
+            <div class="card-footer">
+              <span class="badge badge-accent">Technical Blueprint</span>
+              <a href="/insights/enterprise-rag-production-blueprint/" class="text-link">Read Blueprint <span>→</span></a>
+            </div>
+          </article>
+        
+      </div>
+      <div style="margin-top: 36px; text-align: center;">
+        <a href="/insights/" class="btn btn-secondary">Explore All Insights & Perspectives →</a>
+      </div>
+    </section>
+
+    <!-- SIGNATURE FRAMEWORK: ENTERPRISE AI PRODUCTION READINESS -->
+    <section class="section section-wash" aria-labelledby="framework-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Signature Methodology</span>
+            <h2 id="framework-title">Enterprise AI Production Readiness Framework.</h2>
+          </div>
+          <p class="section-header-desc">
+            A structured model to diagnose AI maturity across Strategy, Data, Engineering, Governance, and Operations before committing capital.
+          </p>
+        </div>
+
+        <div class="card-grid-4" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 32px;">
+          
+            <div class="card" style="padding: 24px;">
+              <span class="eyebrow" style="margin-bottom: 8px;">Stage 01</span>
+              <h4 style="font-size: 18px; margin-bottom: 8px;">EXPLORE</h4>
+              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Identifying high-potential use cases, validating user intent, running rapid technical spikes, and evaluating API capabilities.</p>
+              <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: auto;">
+                ✓ Working prototype demonstrating technical feasibility with mock data.
+              </div>
+            </div>
+          
+            <div class="card" style="padding: 24px;">
+              <span class="eyebrow" style="margin-bottom: 8px;">Stage 02</span>
+              <h4 style="font-size: 18px; margin-bottom: 8px;">VALIDATE</h4>
+              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Testing on real enterprise datasets, building evaluation ground truth benchmarks, measuring baseline accuracy, and analyzing unit economics.</p>
+              <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: auto;">
+                ✓ Empirical evaluation dataset proving accuracy exceeds the business threshold.
+              </div>
+            </div>
+          
+            <div class="card" style="padding: 24px;">
+              <span class="eyebrow" style="margin-bottom: 8px;">Stage 03</span>
+              <h4 style="font-size: 18px; margin-bottom: 8px;">GOVERN</h4>
+              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Implementing RBAC access controls, PII redaction, prompt injection defense, audit logging, and legal/regulatory compliance sign-offs.</p>
+              <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: auto;">
+                ✓ Full InfoSec, privacy, and architectural review board approval.
+              </div>
+            </div>
+          
+            <div class="card" style="padding: 24px;">
+              <span class="eyebrow" style="margin-bottom: 8px;">Stage 04</span>
+              <h4 style="font-size: 18px; margin-bottom: 8px;">PRODUCTIONISE</h4>
+              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Containerized CI/CD deployment, LLM gateway integration, automated fallback routing, OpenTelemetry tracing, and canary rollout.</p>
+              <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: auto;">
+                ✓ Live in production with active monitoring, SLAs, and incident runbooks.
+              </div>
+            </div>
+          
+            <div class="card" style="padding: 24px;">
+              <span class="eyebrow" style="margin-bottom: 8px;">Stage 05</span>
+              <h4 style="font-size: 18px; margin-bottom: 8px;">SCALE</h4>
+              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Model distillation, fine-tuning for cost reduction, reusable agent components, cross-departmental platform adoption, and FinOps governance.</p>
+              <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: auto;">
+                ✓ Positive P&L ROI, sub-second latencies, and standardized enterprise AI platform.
+              </div>
+            </div>
+          
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; background: var(--paper); padding: 24px 32px; border: 1px solid var(--line);">
+          <div>
+            <h4 style="margin-bottom: 4px;">Evaluate your organization's readiness score</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">Complete the 18-question diagnostic to receive a custom dimension breakdown.</p>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <a href="/tools/enterprise-ai-readiness/" class="btn btn-primary">Take Readiness Assessment →</a>
+            <a href="/frameworks/enterprise-ai-production-readiness/" class="btn btn-secondary">View 12-Dimension Matrix</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE LIBRARY PREVIEW -->
+    <section class="section container" aria-labelledby="arch-title">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">Technical Blueprints</span>
+          <h2 id="arch-title">AI Architecture Library.</h2>
+        </div>
+        <p class="section-header-desc">
+          Web-native, production-grade reference architectures with component breakdowns, data flows, security perimeters, and failure modes.
+        </p>
+      </div>
+
+      <div class="card-grid-2">
+        
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Enterprise RAG</span>
+              <span style="font-family: var(--mono); font-size: 11px;">Production Blueprint</span>
+            </div>
+            <h3><a href="/architectures/enterprise-rag/">Enterprise Hybrid RAG Architecture</a></h3>
+            <p>A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking.</p>
+            <div style="margin-bottom: 20px; font-size: 13px; color: var(--ink-soft); background: var(--wash); padding: 12px 16px; border-left: 2px solid var(--ink);">
+              <strong>Core Problem:</strong> Pure vector search frequently misses exact keyword IDs, acronyms, and product codes, while suffering from vector drift and permission blindness across corporate data silos.
+            </div>
+            <div class="card-footer">
+              <a href="/architectures/enterprise-rag/" class="text-link">Inspect Architecture & Data Flow <span>→</span></a>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Agentic AI</span>
+              <span style="font-family: var(--mono); font-size: 11px;">Production Blueprint</span>
+            </div>
+            <h3><a href="/architectures/agentic-rag/">Agentic RAG Architecture</a></h3>
+            <p>Multi-hop query decomposition, dynamic query reformulation, and autonomous citation critique for high-complexity enterprise research.</p>
+            <div style="margin-bottom: 20px; font-size: 13px; color: var(--ink-soft); background: var(--wash); padding: 12px 16px; border-left: 2px solid var(--ink);">
+              <strong>Core Problem:</strong> Traditional one-shot RAG fails when a user question requires aggregating information across disparate systems, comparing temporal periods, or reconciling conflicting data.
+            </div>
+            <div class="card-footer">
+              <a href="/architectures/agentic-rag/" class="text-link">Inspect Architecture & Data Flow <span>→</span></a>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">AI Platform</span>
+              <span style="font-family: var(--mono); font-size: 11px;">Production Blueprint</span>
+            </div>
+            <h3><a href="/architectures/enterprise-ai-gateway/">Enterprise AI Gateway Architecture</a></h3>
+            <p>A unified reverse-proxy platform layer enforcing security, multi-provider model routing, semantic caching, token quotas, and audit logging across all enterprise apps.</p>
+            <div style="margin-bottom: 20px; font-size: 13px; color: var(--ink-soft); background: var(--wash); padding: 12px 16px; border-left: 2px solid var(--ink);">
+              <strong>Core Problem:</strong> Uncontrolled proliferation of direct provider SDK keys, lack of central usage visibility, sudden cloud quota exhaustion, and unmonitored data egress.
+            </div>
+            <div class="card-footer">
+              <a href="/architectures/enterprise-ai-gateway/" class="text-link">Inspect Architecture & Data Flow <span>→</span></a>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">AI Security</span>
+              <span style="font-family: var(--mono); font-size: 11px;">Production Blueprint</span>
+            </div>
+            <h3><a href="/architectures/secure-enterprise-ai/">Secure Enterprise AI Architecture</a></h3>
+            <p>Defense-in-depth security framework protecting production AI systems from indirect prompt injection, data exfiltration, jailbreaks, and adversarial poisoning.</p>
+            <div style="margin-bottom: 20px; font-size: 13px; color: var(--ink-soft); background: var(--wash); padding: 12px 16px; border-left: 2px solid var(--ink);">
+              <strong>Core Problem:</strong> LLMs inherently blur the line between control logic (system instructions) and untrusted user input, opening severe vulnerabilities to indirect injection via external data.
+            </div>
+            <div class="card-footer">
+              <a href="/architectures/secure-enterprise-ai/" class="text-link">Inspect Architecture & Data Flow <span>→</span></a>
+            </div>
+          </div>
+        
+      </div>
+
+      <div style="margin-top: 36px; text-align: center;">
+        <a href="/architectures/" class="btn btn-secondary">Explore Complete Architecture Library (6 Blueprints) →</a>
+      </div>
+    </section>
+
+    <!-- ENTERPRISE AI RADAR PREVIEW -->
+    <section class="section section-wash" aria-labelledby="radar-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Technology Landscape</span>
+            <h2 id="radar-title">Enterprise AI Radar.</h2>
+          </div>
+          <p class="section-header-desc">
+            Bhavin's curated technology tracking across Adopt, Trial, Assess, and Watch categories based on real-world enterprise viability.
+          </p>
+        </div>
+
+        <div class="radar-grid">
+          <div class="radar-column">
+            <div class="radar-column-header">
+              <h4 style="color: #166534;">ADOPT</h4>
+              <span class="badge badge-adopt">Proven</span>
+            </div>
+            
+              <div class="radar-item-card">
+                <h4>Enterprise Hybrid RAG</h4>
+                <p>Hybrid sparse-dense retrieval with lexical BM25, semantic vector search, and cross-encoder reranking.</p>
+              </div>
+            
+              <div class="radar-item-card">
+                <h4>Centralised LLM Gateways</h4>
+                <p>Reverse-proxy routing layer providing unified multi-provider fallback, rate-limiting, semantic caching, and token budgeting.</p>
+              </div>
+            
+          </div>
+          <div class="radar-column">
+            <div class="radar-column-header">
+              <h4 style="color: #0369a1;">TRIAL</h4>
+              <span class="badge badge-trial">Validated</span>
+            </div>
+            
+              <div class="radar-item-card">
+                <h4>Agentic Multi-Step RAG</h4>
+                <p>Dynamic retrieval loops where agents decompose ambiguous questions, plan multi-hop searches, and critique intermediate outputs.</p>
+              </div>
+            
+              <div class="radar-item-card">
+                <h4>Automated LLM Evaluation Harnesses</h4>
+                <p>Continuous CI/CD eval pipelines (Ragas, DeepEval, Promptfoo) benchmarking ground truth, faithfulness, and latency before deployment.</p>
+              </div>
+            
+          </div>
+          <div class="radar-column">
+            <div class="radar-column-header">
+              <h4 style="color: #92400e;">ASSESS</h4>
+              <span class="badge badge-assess">Spike</span>
+            </div>
+            
+              <div class="radar-item-card">
+                <h4>Computer-Use & GUI Agents</h4>
+                <p>Vision-guided autonomous agents interacting directly with legacy desktop and web applications via keyboard/mouse emulation.</p>
+              </div>
+            
+              <div class="radar-item-card">
+                <h4>Hierarchical Multi-Agent Swarms</h4>
+                <p>Multi-agent orchestration architectures (e.g. LangGraph supervisor-worker networks) coordinating specialised agent roles.</p>
+              </div>
+            
+          </div>
+          <div class="radar-column">
+            <div class="radar-column-header">
+              <h4 style="color: #6b21a8;">WATCH</h4>
+              <span class="badge badge-watch">Early</span>
+            </div>
+            
+              <div class="radar-item-card">
+                <h4>Autonomous Agentic Payments</h4>
+                <p>Autonomous software agents authorized to execute programmatic financial transfers, invoices, or settlements.</p>
+              </div>
+            
+              <div class="radar-item-card">
+                <h4>Autonomous Production Deployments</h4>
+                <p>End-to-end agents writing code, merging PRs, and deploying directly to customer-facing production infrastructure without human sign-off.</p>
+              </div>
+            
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="/ai-radar/" class="btn btn-secondary">Explore Interactive Enterprise AI Radar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TOOLS HUB -->
+    <section class="section container" aria-labelledby="tools-title">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">Decision Calculators</span>
+          <h2 id="tools-title">Interactive Enterprise AI Tools.</h2>
+        </div>
+        <p class="section-header-desc">
+          Transparent, client-side engineering and financial calculators with zero black-box assumptions.
+        </p>
+      </div>
+
+      <div class="card-grid-3">
+        <div class="card">
+          <span class="eyebrow">Financial Modeling</span>
+          <h3><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></h3>
+          <p>Model monthly vector storage, embedding tokens, inference volume, and caching return across enterprise document pools.</p>
+          <div class="card-footer">
+            <a href="/tools/rag-cost-calculator/" class="text-link">Run Calculations <span>→</span></a>
+          </div>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Unit Economics</span>
+          <h3><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></h3>
+          <p>Compute daily, monthly, and annualized inference budgets based on prompt/completion ratios and prompt cache hits.</p>
+          <div class="card-footer">
+            <a href="/tools/llm-cost-calculator/" class="text-link">Estimate Spend <span>→</span></a>
+          </div>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Portfolio Governance</span>
+          <h3><a href="/tools/ai-use-case-prioritiser/">AI Use Case Prioritiser</a></h3>
+          <p>Map candidate AI initiatives into Quick Wins, Strategic Bets, Experiments, or Defer based on business value and risk.</p>
+          <div class="card-footer">
+            <a href="/tools/ai-use-case-prioritiser/" class="text-link">Map Use Cases <span>→</span></a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 36px; display: flex; justify-content: center; gap: 16px;">
+        <a href="/tools/build-vs-buy-ai-platform/" class="btn btn-secondary">Build vs Buy Calculator →</a>
+        <a href="/tools/" class="btn btn-primary">View All Decision Tools →</a>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section section-wash" aria-labelledby="about-title">
+      <div class="container" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
+        <div>
+          <span class="eyebrow">Personal Entity</span>
+          <h2 id="about-title">Bhavin Mistry.</h2>
+          <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-top: 16px;">
+            AI Strategy and Engineering Leader based in Melbourne, Australia.
+          </p>
+          <div style="margin-top: 24px;">
+            <a href="/about/" class="btn btn-primary">Read Verified Profile →</a>
+          </div>
+        </div>
+        <div style="background: var(--paper); padding: 36px; border: 1px solid var(--line);">
+          <h4 style="margin-bottom: 12px;">Core Focus & Operating Philosophy</h4>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.7;">
+            My work sits at the intersection of enterprise AI strategy, technical architecture, and engineering leadership. I focus on taking generative AI, agentic systems, and retrieval architectures from exploratory prototypes to reliable, observable production systems in regulated industries like financial services.
+          </p>
+          <div style="border-top: 1px solid var(--line-subtle); padding-top: 20px; margin-top: 20px;">
+            <span class="eyebrow" style="margin-bottom: 6px;">Verified Education</span>
+            <div style="font-size: 14px; font-weight: 600;">The University of Texas at Austin</div>
+            <div style="font-size: 13px; color: var(--muted);">Post Graduate Program in Artificial Intelligence and Machine Learning: Business Applications</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
     </main>
-    <footer class="container site-footer"><p>© <span id="year">2026</span> Bhavin Mistry</p><p>Melbourne, Australia</p><a href="#top">Back to top ↑</a></footer>
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
+            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Knowledge Hub</h4>
+            <ul>
+              <li><a href="/insights/">Enterprise Insights</a></li>
+              <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
+              <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
+              <li><a href="/research/">Research & Benchmarks</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Interactive Tools</h4>
+            <ul>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
+              <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
+              <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
+              <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
+              <li><a href="/feed.xml">RSS Feed</a></li>
+              <li><a href="/llms.txt">llms.txt</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
+            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="/about/">About Bhavin</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Command Palette Modal -->
+    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+      <div class="palette-window">
+        <div class="palette-input-wrap">
+          <span style="color: var(--muted); font-size: 14px;">🔍</span>
+          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
+        </div>
+        <div class="palette-results"></div>
+        <div class="palette-footer">
+          <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+          <span>Press <kbd>ESC</kbd> to close</span>
+        </div>
+      </div>
+    </div>
+  
   </body>
 </html>
