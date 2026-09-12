@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise RAG Architecture: A Production Blueprint | Bhavin Mistry</title>
+    <meta name="description" content="Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems." />
+    <link rel="canonical" href="https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/" />
+    
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:title" content="Enterprise RAG Architecture: A Production Blueprint | Bhavin Mistry" />
+    <meta property="og:description" content="Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/" />
+    <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Enterprise RAG Architecture: A Production Blueprint | Bhavin Mistry" />
+    <meta name="twitter:description" content="Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems." />
+    <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="theme-color" content="#f5f2eb" />
+
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/script.js"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Enterprise RAG Architecture: A Production Blueprint","description":"Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems.","datePublished":"2026-08-15","dateModified":"2026-09-01","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/about/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"url":"https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/"}</script>
+  </head>
+  <body id="top" class="">
+    
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Bhavin Mistry Home">
+          Bhavin Mistry<span class="brand-period">.</span>
+          <span class="brand-sub">Enterprise AI</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="sr-only">Open navigation</span>
+          <span aria-hidden="true">Menu</span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+          <a href="/insights/" class="active">Insights</a>
+          <a href="/enterprise-ai-engineering/" class="">Handbook</a>
+          <a href="/architectures/" class="">Architectures</a>
+          <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
+          <a href="/ai-radar/" class="">AI Radar</a>
+          <a href="/tools/" class="">Tools</a>
+          <a href="/about/" class="">About</a>
+          <button class="search-trigger" type="button" aria-label="Search site">
+            <span>Search</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <a href="/newsletter/" class="nav-cta">Subscribe</a>
+        </nav>
+      </div>
+    </header>
+  
+    <main id="main-content">
+      
+      <article class="container" style="max-width: 840px; padding-top: 64px; padding-bottom: 88px;">
+        <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+          <a href="/">Home</a> / <a href="/insights/">Insights</a> / <span style="color: var(--ink);">Enterprise AI</span>
+        </nav>
+
+        <header style="margin-bottom: 40px;">
+          <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+            <span class="badge badge-accent">Enterprise AI</span>
+            <span class="badge">Technical Blueprint</span>
+            <span style="font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: auto;">12 min read</span>
+          </div>
+          <h1 style="font-size: clamp(36px, 5vw, 54px); margin-bottom: 20px;">Enterprise RAG Architecture: A Production Blueprint</h1>
+          <p class="hero-lead" style="font-size: 20px; color: var(--muted);">Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems.</p>
+          <div style="display: flex; gap: 24px; align-items: center; padding-top: 20px; border-top: 1px solid var(--line); margin-top: 24px; font-size: 13px; color: var(--muted);">
+            <span>By <strong><a href="/about/">Bhavin Mistry</a></strong></span>
+            <span>Published: 2026-08-15</span>
+            <span>Updated: 2026-09-01</span>
+          </div>
+        </header>
+
+        <!-- "BHAVIN'S TAKE" EDITORIAL HIGHLIGHT BOX -->
+        <div class="take-box">
+          <div class="take-box-header">
+            <span class="eyebrow">Editorial Analysis</span>
+            <span class="badge badge-accent">Bhavin's Take</span>
+          </div>
+          <p style="font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 16px;">
+            "Stop tweaking prompt templates to fix retrieval failures. 80% of RAG accuracy gains come from document parsing, chunking strategy, and cross-encoder reranking."
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px;">
+            <div>
+              <strong>Why Enterprises Should Care:</strong>
+              <p style="color: var(--muted); margin-top: 4px;">RAG is the primary gateway for enterprise data access in GenAI; if retrieval fails, the entire application fails regardless of model intelligence.</p>
+            </div>
+            <div>
+              <strong>Architectural Impact:</strong>
+              <p style="color: var(--muted); margin-top: 4px;">Implementing reciprocal rank fusion across BM25 inverted indices and dense vector embeddings, coupled with security-trimming middleware.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ARTICLE BODY CONTENT -->
+        <div class="article-content" style="font-size: 17px; line-height: 1.75; color: var(--ink-soft);">
+          <h2 style="margin-top: 40px; margin-bottom: 16px;">The Production Disconnect</h2>
+          <p>
+            Across enterprise engineering teams in 2026, generative AI experimentation has reached saturation. Nearly every department has experimented with commercial LLM APIs, internal chat bots, and multi-agent prototypes. Yet, when technology leaders examine operating margins and P&L results, the value gap remains stark.
+          </p>
+          <p>
+            The root cause is rarely the base intelligence of the frontier model. Instead, it is the absence of rigorous distributed systems engineering: unmonitored token egress, hallucinated citations in customer workflows, lack of document-level security filtering, and non-deterministic agent loops that compound errors over multi-hop executions.
+          </p>
+
+          <h2 style="margin-top: 40px; margin-bottom: 16px;">What Happened vs What Doesn't Change</h2>
+          <div style="background: var(--paper-elevated); border: 1px solid var(--line); padding: 24px; margin: 24px 0;">
+            <h4 style="margin-bottom: 8px;">What Changed in the Technology Landscape</h4>
+            <p style="font-size: 14px; color: var(--muted);">Naive vector RAG implementations have flooded enterprise intranets, only to deliver hallucinated citations, missing documents, and security breaches where confidential data is leaked across teams.</p>
+            <h4 style="margin-top: 16px; margin-bottom: 8px;">What Remains Invariant in Enterprise Systems</h4>
+            <p style="font-size: 14px; color: var(--muted);">Data quality is supreme: poor source document formatting, OCR errors, and broken tables cannot be rescued by prompting.</p>
+          </div>
+
+          <h2 style="margin-top: 40px; margin-bottom: 16px;">Architectural Guidance & Action Plan</h2>
+          <p>
+            Moving from experimental spikes to hardened production requires treating AI components like any other mission-critical tier in your stack.
+          </p>
+          <ul style="margin-left: 24px; margin-bottom: 24px; font-size: 16px;">
+            <li style="margin-bottom: 10px;"><strong>Enforce Centralised Gateways:</strong> Terminate all model invocations through internal routing proxies that enforce token quotas, PII redaction, and semantic caching.</li>
+            <li style="margin-bottom: 10px;"><strong>Automate Continuous Evaluation:</strong> Reject vibe checks. Integrate golden evaluation sets (100–300 SME-validated queries) directly into CI/CD pipelines.</li>
+            <li style="margin-bottom: 10px;"><strong>Bound Agent Autonomy:</strong> Replace free-form agent decision trees with constrained state machines and cryptographic approval fences for state-mutating actions.</li>
+          </ul>
+
+          <div style="background: var(--wash); padding: 24px; border: 1px solid var(--line); margin: 32px 0;">
+            <h4 style="margin-bottom: 8px;">Immediate Action for Engineering Leaders</h4>
+            <p style="font-size: 14px; color: var(--ink); margin-bottom: 0;">Build a golden evaluation set of 150 enterprise queries with verified human-curated ground truth before testing new embedding models.</p>
+          </div>
+        </div>
+
+        <!-- AUTHOR BIO & SHARING -->
+        <div style="margin-top: 64px; padding: 32px; background: var(--paper-elevated); border: 1px solid var(--line); display: flex; gap: 24px; align-items: center;">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 4px;">Author & Lead Architect</span>
+            <h4 style="font-size: 18px; margin-bottom: 6px;">Bhavin Mistry</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">
+              Enterprise AI & Engineering Leader based in Melbourne, Australia. Focusing on production LLM architecture, agentic reliability, and engineering leadership.
+            </p>
+            <div style="display: flex; gap: 16px;">
+              <a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn Profile <span>↗</span></a>
+              <a href="/about/" class="text-link">About Bhavin <span>→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RELATED BLUEPRINTS & TOOLS -->
+        <div style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
+          <span class="eyebrow">Connected Resources</span>
+          <h3>Related Production Architectures & Tools</h3>
+          <div class="card-grid-2" style="margin-top: 20px;">
+            <div class="card">
+              <span class="eyebrow">Architecture</span>
+              <h4><a href="/architectures/enterprise-rag/">Enterprise Hybrid RAG Blueprint</a></h4>
+              <p style="font-size: 13px;">Full component breakdown and security boundaries for hybrid search.</p>
+            </div>
+            <div class="card">
+              <span class="eyebrow">Interactive Tool</span>
+              <h4><a href="/tools/enterprise-ai-readiness/">AI Readiness Diagnostic</a></h4>
+              <p style="font-size: 13px;">Benchmark your organization's AI maturity across 5 dimensions.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
+            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Knowledge Hub</h4>
+            <ul>
+              <li><a href="/insights/">Enterprise Insights</a></li>
+              <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
+              <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
+              <li><a href="/research/">Research & Benchmarks</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Interactive Tools</h4>
+            <ul>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
+              <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
+              <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
+              <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
+              <li><a href="/feed.xml">RSS Feed</a></li>
+              <li><a href="/llms.txt">llms.txt</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
+            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="/about/">About Bhavin</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Command Palette Modal -->
+    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+      <div class="palette-window">
+        <div class="palette-input-wrap">
+          <span style="color: var(--muted); font-size: 14px;">🔍</span>
+          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
+        </div>
+        <div class="palette-results"></div>
+        <div class="palette-footer">
+          <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+          <span>Press <kbd>ESC</kbd> to close</span>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>

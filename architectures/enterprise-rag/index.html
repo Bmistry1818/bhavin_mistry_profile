@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise Hybrid RAG Architecture | Bhavin Mistry</title>
+    <meta name="description" content="A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking." />
+    <link rel="canonical" href="https://bhavinmistry.com/architectures/enterprise-rag/" />
+    
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:title" content="Enterprise Hybrid RAG Architecture | Bhavin Mistry" />
+    <meta property="og:description" content="A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bhavinmistry.com/architectures/enterprise-rag/" />
+    <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Enterprise Hybrid RAG Architecture | Bhavin Mistry" />
+    <meta name="twitter:description" content="A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking." />
+    <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="theme-color" content="#f5f2eb" />
+
+    <link rel="stylesheet" href="/styles.css" />
+    <script defer src="/script.js"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Enterprise Hybrid RAG Architecture","description":"A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking.","author":{"@type":"Person","name":"Bhavin Mistry"}}</script>
+  </head>
+  <body id="top" class="">
+    
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Bhavin Mistry Home">
+          Bhavin Mistry<span class="brand-period">.</span>
+          <span class="brand-sub">Enterprise AI</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span class="sr-only">Open navigation</span>
+          <span aria-hidden="true">Menu</span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+          <a href="/insights/" class="">Insights</a>
+          <a href="/enterprise-ai-engineering/" class="">Handbook</a>
+          <a href="/architectures/" class="active">Architectures</a>
+          <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
+          <a href="/ai-radar/" class="">AI Radar</a>
+          <a href="/tools/" class="">Tools</a>
+          <a href="/about/" class="">About</a>
+          <button class="search-trigger" type="button" aria-label="Search site">
+            <span>Search</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <a href="/newsletter/" class="nav-cta">Subscribe</a>
+        </nav>
+      </div>
+    </header>
+  
+    <main id="main-content">
+      
+      <article class="container" style="max-width: 920px; padding-top: 64px; padding-bottom: 88px;">
+        <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+          <a href="/">Home</a> / <a href="/architectures/">Architectures</a> / <span style="color: var(--ink);">Enterprise Hybrid RAG Architecture</span>
+        </nav>
+
+        <header style="margin-bottom: 36px;">
+          <span class="badge badge-accent" style="margin-bottom: 12px;">Enterprise RAG</span>
+          <h1 style="font-size: clamp(34px, 5vw, 50px); margin-bottom: 16px;">Enterprise Hybrid RAG Architecture</h1>
+          <p class="hero-lead" style="font-size: 20px; color: var(--muted);">A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking.</p>
+        </header>
+
+        <!-- SVG ARCHITECTURE DIAGRAM -->
+        <div class="arch-diagram-wrap">
+          <div style="display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; margin-bottom: 16px; color: var(--muted-light);">
+            <span>SYSTEM TOPOLOGY & DATA FLOW</span>
+            <span>ENTERPRISE SPECIFICATION</span>
+          </div>
+          <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+            <!-- Client Layer -->
+            <rect x="20" y="80" width="130" height="80" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
+            <text x="85" y="115" fill="#e8ece9" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">Client Application</text>
+            <text x="85" y="135" fill="#8d9991" font-family="monospace" font-size="10" text-anchor="middle">RBAC Context</text>
+
+            <!-- Arrow 1 -->
+            <path d="M150 120 L220 120" stroke="#9d402b" stroke-width="2" marker-end="url(#arrow)" />
+
+            <!-- Gateway / Security Layer -->
+            <rect x="220" y="60" width="170" height="120" rx="4" fill="#2a332e" stroke="#9d402b" stroke-width="1.5" />
+            <text x="305" y="95" fill="#f5f2eb" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle">Security & Gateway</text>
+            <text x="305" y="118" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">PII Sanitization</text>
+            <text x="305" y="136" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Semantic Cache Check</text>
+            <text x="305" y="154" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Rate & Token Budget</text>
+
+            <!-- Arrow 2 -->
+            <path d="M390 120 L460 120" stroke="#9d402b" stroke-width="2" />
+
+            <!-- Core Logic / Retrieval Engine -->
+            <rect x="460" y="60" width="160" height="120" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
+            <text x="540" y="95" fill="#e8ece9" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle">Inference & Rerank</text>
+            <text x="540" y="118" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">BM25 + Vector Fusion</text>
+            <text x="540" y="136" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Cross-Encoder Top-5</text>
+            <text x="540" y="154" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Grounded Synthesis</text>
+
+            <!-- Arrow 3 -->
+            <path d="M620 120 L680 120" stroke="#9d402b" stroke-width="2" />
+
+            <!-- Telemetry & Storage -->
+            <rect x="680" y="80" width="100" height="80" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
+            <text x="730" y="115" fill="#e8ece9" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">Telemetry</text>
+            <text x="730" y="135" fill="#8d9991" font-family="monospace" font-size="10" text-anchor="middle">OpenTelemetry</text>
+
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#9d402b"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- SPECIFICATION GRID -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px;">
+          <div style="background: var(--paper-elevated); padding: 24px; border: 1px solid var(--line);">
+            <h4 style="color: var(--accent); margin-bottom: 8px;">The Core Problem Solved</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 0;">Pure vector search frequently misses exact keyword IDs, acronyms, and product codes, while suffering from vector drift and permission blindness across corporate data silos.</p>
+          </div>
+          <div style="background: var(--paper-elevated); padding: 24px; border: 1px solid var(--line);">
+            <h4 style="color: var(--success); margin-bottom: 8px;">When To Deploy This Architecture</h4>
+            <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 0;">Internal search across complex technical documentation, policy repositories, customer support wikis, and regulatory knowledge bases where retrieval precision is non-negotiable.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+          <h2>Architectural Components</h2>
+          <ul style="margin-left: 20px; margin-top: 16px; font-size: 15px; color: var(--ink-soft);">
+            <li style="margin-bottom: 10px;">Ingestion Pipeline (Document parsing, chunking, metadata extraction)</li><li style="margin-bottom: 10px;">Dual Index (Sparse BM25 Inverted Index + Dense HNSW Vector Store)</li><li style="margin-bottom: 10px;">Hybrid Fusion Layer (Reciprocal Rank Fusion - RRF)</li><li style="margin-bottom: 10px;">Cross-Encoder Reranker (e.g. BGE-Reranker-Large)</li><li style="margin-bottom: 10px;">Security Trimming Filter (Active Directory / RBAC permission alignment)</li><li style="margin-bottom: 10px;">Context Window Synthesizer (Citation & provenance tracking)</li>
+          </ul>
+        </div>
+
+        <div style="margin-top: 40px;">
+          <h2>Data Flow Narrative</h2>
+          <div style="background: var(--wash); padding: 24px; border-left: 3px solid var(--ink); font-size: 15px; line-height: 1.7;">
+            User query -> Ingestion sanitizer -> Parallel BM25 + Dense vector search -> RRF fusion score calculation -> RBAC permission verification -> Cross-encoder top-5 rerank -> LLM grounded synthesis with inline citations.
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px;">
+          <div>
+            <h3>Security & Perimeter Control</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-top: 8px;">Enforce document-level ACLs at query time before LLM context synthesis; zero vector search across records the user is unauthorized to read.</p>
+          </div>
+          <div>
+            <h3>Governance & Telemetry</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-top: 8px;">Maintain strict audit logging of queries, retrieved chunk hashes, and synthesized outputs for compliance reviews.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; background: #fff1f2; border: 1px solid #fecdd3; padding: 24px;">
+          <h4 style="color: #9f1239; margin-bottom: 8px;">Identified Failure Modes & Mitigations</h4>
+          <p style="font-size: 14px; color: #881337; margin-bottom: 0;">Chunk truncation splitting critical clauses; stale vector indices following source edits; rate-limiting on reranker inference endpoints.</p>
+        </div>
+
+        <div style="margin-top: 48px; text-align: center;">
+          <a href="/architectures/" class="btn btn-secondary">← Back to Architecture Library</a>
+        </div>
+      </article>
+    
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
+            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Knowledge Hub</h4>
+            <ul>
+              <li><a href="/insights/">Enterprise Insights</a></li>
+              <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
+              <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
+              <li><a href="/research/">Research & Benchmarks</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Interactive Tools</h4>
+            <ul>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
+              <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
+              <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
+              <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
+              <li><a href="/feed.xml">RSS Feed</a></li>
+              <li><a href="/llms.txt">llms.txt</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
+            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="/about/">About Bhavin</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Command Palette Modal -->
+    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+      <div class="palette-window">
+        <div class="palette-input-wrap">
+          <span style="color: var(--muted); font-size: 14px;">🔍</span>
+          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
+        </div>
+        <div class="palette-results"></div>
+        <div class="palette-footer">
+          <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+          <span>Press <kbd>ESC</kbd> to close</span>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>

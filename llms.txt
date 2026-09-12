@@ -1,0 +1,31 @@
+# Bhavin Mistry - Enterprise AI Engineering Authority Platform
+> Building Enterprise AI That Actually Reaches Production
+
+## Author & Entity
+- Name: Bhavin Mistry
+- Focus: Enterprise AI, AI Engineering, Agentic AI, Enterprise RAG, AI Architecture, AI Governance, Financial Services AI
+- Location: Melbourne, Australia
+- Website: https://bhavinmistry.com
+- LinkedIn: https://www.linkedin.com/in/bhavin-mistry/
+
+## Core Canonical Publications
+- Enterprise AI Engineering Production Playbook: https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/
+- Why Enterprise AI Agents Fail After the Demo: https://bhavinmistry.com/insights/why-enterprise-ai-agents-fail-after-the-demo/
+- Enterprise RAG Architecture Production Blueprint: https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/
+- RAG vs Agentic RAG Decision Guide: https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/
+- Enterprise AI Governance Without Killing Innovation: https://bhavinmistry.com/insights/enterprise-ai-governance-without-killing-innovation/
+
+## Architecture Blueprints
+- Enterprise Hybrid RAG: https://bhavinmistry.com/architectures/enterprise-rag/
+- Agentic RAG Architecture: https://bhavinmistry.com/architectures/agentic-rag/
+- Enterprise AI Gateway: https://bhavinmistry.com/architectures/enterprise-ai-gateway/
+- Secure Enterprise AI Perimeter: https://bhavinmistry.com/architectures/secure-enterprise-ai/
+- Production LLM Observability: https://bhavinmistry.com/architectures/llm-observability/
+- AI-Powered Enterprise SDLC: https://bhavinmistry.com/architectures/ai-powered-sdlc/
+
+## Frameworks & Tools
+- Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
+- Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
+- AI Readiness Assessment Diagnostic: https://bhavinmistry.com/tools/enterprise-ai-readiness/
+- RAG Cost Calculator: https://bhavinmistry.com/tools/rag-cost-calculator/
+- LLM Token Cost Estimator: https://bhavinmistry.com/tools/llm-cost-calculator/

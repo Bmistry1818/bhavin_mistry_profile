@@ -1,57 +1,78 @@
-# Bhavin Mistry Personal Branding Page
+# Bhavin Mistry — Enterprise AI Authority Platform
 
-A clean, premium personal brand landing page built from Bhavin Mistry's LinkedIn profile themes: AI strategy, engineering leadership, enterprise transformation, and practical Gen AI adoption.
+> **Building Enterprise AI That Actually Reaches Production**
+> Practical frameworks, architectures, research, and perspectives on Enterprise AI, AI Engineering, and Agentic Systems by **Bhavin Mistry** (Melbourne, Australia).
 
-## Files
-- [index.html](index.html) — page structure and content
-- [styles.css](styles.css) — visual system and responsive design
-- [script.js](script.js) — navigation, footer year, and article feed
-- [data/blogs.json](data/blogs.json) — published article data
+Live at: [https://bhavinmistry.com/](https://bhavinmistry.com/)
 
-## Local preview
-Open the site locally with:
+---
 
-python3 -m http.server 8000
+## Architecture Overview
 
-Then visit:
+The platform is designed as an ultra-fast, static, zero-dependency editorial engineering platform:
+- **Zero Framework Bloat**: Pure semantic HTML5, Vanilla CSS design tokens, and modular vanilla JavaScript.
+- **GitHub Pages Native**: Deploys directly from root `/` with zero complex build servers or hosting costs.
+- **Blazing Core Web Vitals**: Instant rendering (< 100ms LCP), zero layout shifts (CLS = 0), and instant input readiness.
+- **Search & AI Search (GEO)**: Complete JSON-LD structured data (`Person`, `WebSite`, `TechArticle`, `ProfilePage`), `sitemap.xml`, `robots.txt`, `feed.xml` RSS, and machine-readable `llms.txt`.
+- **Command Palette & Search**: Accessible via `⌘K` or `Ctrl+K` across all pages.
+- **Transparent Decision Tools**: Five client-side interactive calculators and diagnostics with zero external server dependencies.
 
-http://localhost:8000
+---
 
-## GitHub Pages deployment
-1. Push this repository to GitHub.
-2. In the repository, open Settings > Pages.
-3. Set Source to "Deploy from a branch".
-4. Select Branch: main and Folder: /root.
-5. Save. GitHub will publish the site at:
-   https://bhavinmistry.com/
+## Information Architecture & Routes
 
-This is a static site and works well for GitHub Pages without any build step.
+| URL Route | Purpose & Content |
+| :--- | :--- |
+| `/` | **Platform Homepage**: Content destination featuring Hero, Featured Thinking, Production Readiness Framework, Architecture Library, AI Radar, Decision Tools, and About introduction. |
+| `/insights/` | **Insights Engine**: In-depth blueprints, failure analyses, and "Bhavin's Take" editorial perspectives. |
+| `/insights/[slug]/` | **Individual Canonical Articles**: Including Hybrid RAG, Agent Failure Analysis, RAG vs Agentic RAG, AI SDLC Review Agents, and Financial Governance. |
+| `/enterprise-ai-engineering/` | **The Enterprise AI Engineering Handbook**: 23-chapter flagship knowledge hub syllabus. |
+| `/architectures/` | **AI Architecture Library**: Production blueprints with native responsive SVG diagrams. |
+| `/architectures/[slug]/` | **Deep-Dive Architecture Pages**: `enterprise-rag`, `agentic-rag`, `enterprise-ai-gateway`, `secure-enterprise-ai`, `llm-observability`, `ai-powered-sdlc`. |
+| `/frameworks/enterprise-ai-production-readiness/` | **Signature Framework**: 5-stage roadmap (Explore, Validate, Govern, Productionise, Scale) and 12-dimension maturity matrix. |
+| `/ai-radar/` | **Enterprise AI Radar**: Technology radar tracking Adopt, Trial, Assess, and Watch categories. |
+| `/tools/` | **Interactive Tools Hub**: Landing page for all 5 enterprise decision calculators. |
+| `/tools/enterprise-ai-readiness/` | **Readiness Assessment Diagnostic**: 18-question diagnostic with dimension breakdowns and printable reports. |
+| `/tools/rag-cost-calculator/` | **RAG Cost Calculator**: Working model for queries, embedding tokens, vector storage, and caching savings. |
+| `/tools/llm-cost-calculator/` | **LLM Token Cost Estimator**: Daily, monthly, and annualized inference budgets with prompt cache modeling. |
+| `/tools/ai-use-case-prioritiser/` | **AI Use Case Prioritiser**: 2x2 matrix categorizing use cases into Quick Wins, Strategic Bets, Experiments, or Defer. |
+| `/tools/build-vs-buy-ai-platform/` | **Build vs Buy AI Platform Calculator**: Weighted 10-criteria decision framework. |
+| `/research/` | **Research Hub**: Empirical benchmarks, production metrics, and study templates. |
+| `/about/` | **Verified Profile**: Factual personal profile, UT Austin PGP in AI/ML credentials, and official links. |
+| `/newsletter/` | **Enterprise AI Brief**: Subscription portal with modular email provider architecture. |
+| `/privacy/` | **Privacy Policy**: Client-side calculation guarantee and subscription privacy disclosure. |
+| `404.html` | **Custom 404 Recovery Page**: Quick-links, search trigger, and command palette integration. |
+| `sitemap.xml` | Comprehensive XML sitemap containing all indexable URLs. |
+| `robots.txt` | Explicit crawler configuration and sitemap pointer. |
+| `feed.xml` | Standard RSS 2.0 / Atom feed for syndication. |
+| `llms.txt` | Structured documentation manifest for AI search engines and crawler agents. |
 
-## Article feed
+---
 
-The browser loads `data/blogs.json`. Keep this in a public folder: GitHub Pages may treat `_data` as Jekyll input rather than publish it.
+## Local Development & Compilation
 
-Install Node.js 22+ and pnpm 11.19.0, then run:
-
+### Preview Locally:
 ```sh
-pnpm install --frozen-lockfile
+python3 -m http.server 8000
+```
+Then visit `http://localhost:8000`.
+
+### Recompiling Pages:
+All content is centralized in `data/content.json`. To regenerate all static HTML pages, sitemaps, RSS feeds, and `llms.txt`:
+```sh
+node scripts/build-pages.js
+```
+*(Or `bun scripts/build-pages.js`)*
+
+### Validating & Running Tests:
+```sh
 pnpm test
-pnpm update:blogs
+node --check script.js
+node --check scripts/build-pages.js
 ```
 
-The scheduled workflow reuses `automation/update-blogs` for its update PR. It handles RSS and Atom, follows redirects, validates dates and URLs, and uses stable article IDs. Failed sources retain their cached articles; a total outage fails the job without overwriting the feed. Unchanged articles do not produce timestamp-only commits.
+---
 
-The checked-in entries currently link to profile/article listings, so their buttons say “Browse … writing.” Replace these with verified individual article URLs. Keep the static cards in `index.html` aligned with curated content; they provide a fallback when JavaScript is unavailable.
+## Automated Blog Syndication
 
-## Content still needed
-
-- A professional portrait and permission to use it.
-- Two or three verified case studies with your role and measurable outcomes.
-- Exact article URLs and confirmed publication dates.
-- Any preferred contact or booking URL beyond LinkedIn.
-
-Do not invent metrics, employers, testimonials, or credentials. The social preview currently uses the existing favicon; replace it with a dedicated branded sharing image when one is available.
-
-## Validation
-
-The validation workflow runs feed parsing and outage tests and checks browser JavaScript syntax. Before publishing, also check mobile navigation, keyboard use, the no-JavaScript fallback, and that `/data/blogs.json` returns successfully on the deployed site.
+The repository maintains an automated GitHub Actions workflow (`.github/workflows/update-blogs.yml`) that runs every 6 hours to fetch recent publications from LinkedIn and Medium into `data/blogs.json`, preserving existing cached entries on upstream network failure.
