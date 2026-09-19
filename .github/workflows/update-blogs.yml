@@ -1,9 +1,9 @@
 name: Update Blog Feed
 
-on:
-  schedule:
+#on:
+#  schedule:
     # Run every 6 hours
-    - cron: '0 */6 * * *'
+ #   - cron: '0 */6 * * *'
   workflow_dispatch:
 
 # Allow the job to create PRs instead of pushing directly
