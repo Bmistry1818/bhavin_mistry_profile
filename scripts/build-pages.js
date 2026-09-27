@@ -40,7 +40,7 @@ function renderHeader(currentPath = '/') {
             <span>Search</span>
             <kbd>⌘K</kbd>
           </button>
-          <a href="/newsletter/" class="nav-cta">Subscribe</a>
+          <a href="/about/#contact" class="nav-cta">Connect</a>
         </nav>
       </div>
     </header>
@@ -143,7 +143,7 @@ function renderHtmlPage({
         "https://www.linkedin.com/in/bhavin-mistry/",
         "https://medium.com/@bhavin_mistry"
       ],
-      "jobTitle": "AI Strategy and Engineering Leader",
+      "jobTitle": "Senior Engineering Manager",
       "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "Victoria", "addressCountry": "AU" }
     }
     </script>
@@ -200,44 +200,44 @@ function buildHomepage() {
     <!-- HERO SECTION -->
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-meta">
-        <span>Enterprise AI • AI Engineering • Architecture</span>
+        <span>Bhavin Mistry • Senior Engineering Manager</span>
         <span>Melbourne, Australia</span>
       </div>
-      <h1 id="hero-title">Building Enterprise AI That Actually Reaches <em>Production.</em></h1>
+      <h1 id="hero-title">Building the teams and platforms that take enterprise AI to <em>production.</em></h1>
       <div class="hero-grid">
         <p class="hero-lead">
-          Practical frameworks, architectures, research, and perspectives for taking Generative AI and Agentic systems from exploratory experimentation to resilient, governed, scalable enterprise production.
+          I connect business priorities with engineering strategy, architecture, and delivery. My work spans globally distributed teams, platform transformation, and the governance needed to make AI dependable at enterprise scale.
         </p>
         <div class="hero-actions">
           <div class="btn-group">
-            <a href="/insights/" class="btn btn-primary">Explore Insights</a>
-            <a href="/enterprise-ai-engineering/" class="btn btn-secondary">AI Engineering Handbook</a>
+            <a href="/about/" class="btn btn-primary">Explore My Leadership</a>
+            <a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Start a Conversation ↗</a>
           </div>
-          <span class="hero-note">By Bhavin Mistry • Enterprise AI & Engineering Leader</span>
+          <span class="hero-note">Senior Engineering Manager at Commonwealth Bank • Melbourne, Australia</span>
         </div>
       </div>
 
       <!-- AUTHORITY STATS / PILLARS -->
       <div class="authority-bar">
         <div class="authority-item">
-          <div class="authority-label">Production Focus</div>
-          <div class="authority-value">Zero Fluff</div>
-          <div class="authority-desc">Architectures designed for APRA, SOC2, and enterprise latency SLAs.</div>
+          <div class="authority-label">Current Role</div>
+          <div class="authority-value">Engineering Leadership</div>
+          <div class="authority-desc">Senior Engineering Manager at Commonwealth Bank.</div>
         </div>
         <div class="authority-item">
-          <div class="authority-label">Flagship Framework</div>
-          <div class="authority-value">5-Stage Maturity</div>
-          <div class="authority-desc">Explore → Validate → Govern → Productionise → Scale.</div>
+          <div class="authority-label">Career</div>
+          <div class="authority-value">Strategy to Delivery</div>
+          <div class="authority-desc">Previous roles at Acenda, Accenture, and Deloitte.</div>
         </div>
         <div class="authority-item">
-          <div class="authority-label">Architecture Library</div>
-          <div class="authority-value">6 Reference Blueprints</div>
-          <div class="authority-desc">Hybrid RAG, Agentic Workflows, AI Gateways, & LLMOps.</div>
+          <div class="authority-label">Leadership Scope</div>
+          <div class="authority-value">Global Teams</div>
+          <div class="authority-desc">Engineering, architecture, and operating models across distributed teams.</div>
         </div>
         <div class="authority-item">
-          <div class="authority-label">Interactive Calculators</div>
-          <div class="authority-value">5 Working Tools</div>
-          <div class="authority-desc">Transparent financial and architectural decision models.</div>
+          <div class="authority-label">AI Focus</div>
+          <div class="authority-value">Production AI</div>
+          <div class="authority-desc">Secure delivery, governance, and measurable business value.</div>
         </div>
       </div>
     </section>
@@ -288,7 +288,7 @@ function buildHomepage() {
           </p>
         </div>
 
-        <div class="card-grid-4" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 32px;">
+        <div class="card-grid-5" style="margin-bottom: 32px;">
           ${content.frameworks.readiness.stages.map((st, i) => `
             <div class="card" style="padding: 24px;">
               <span class="eyebrow" style="margin-bottom: 8px;">Stage 0${i + 1}</span>
@@ -468,19 +468,19 @@ function buildHomepage() {
     <section class="section section-wash" aria-labelledby="about-title">
       <div class="container" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
         <div>
-          <span class="eyebrow">Personal Entity</span>
+          <span class="eyebrow">Engineering Leadership</span>
           <h2 id="about-title">Bhavin Mistry.</h2>
           <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-top: 16px;">
-            AI Strategy and Engineering Leader based in Melbourne, Australia.
+            Senior Engineering Manager at Commonwealth Bank, with a career spanning AI strategy, platform engineering, architecture, and globally distributed delivery.
           </p>
           <div style="margin-top: 24px;">
-            <a href="/about/" class="btn btn-primary">Read Verified Profile →</a>
+            <a href="/about/" class="btn btn-primary">View Leadership Profile →</a>
           </div>
         </div>
         <div style="background: var(--paper); padding: 36px; border: 1px solid var(--line);">
-          <h4 style="margin-bottom: 12px;">Core Focus & Operating Philosophy</h4>
+          <h4 style="margin-bottom: 12px;">How I Lead</h4>
           <p style="font-size: 14px; color: var(--muted); line-height: 1.7;">
-            My work sits at the intersection of enterprise AI strategy, technical architecture, and engineering leadership. I focus on taking generative AI, agentic systems, and retrieval architectures from exploratory prototypes to reliable, observable production systems in regulated industries like financial services.
+            I work with senior leaders, product teams, and engineers to turn business priorities into delivery roadmaps and dependable services. My approach brings engineering, architecture, and domain expertise together early, with quality and governance built into the operating model.
           </p>
           <div style="border-top: 1px solid var(--line-subtle); padding-top: 20px; margin-top: 20px;">
             <span class="eyebrow" style="margin-bottom: 6px;">Verified Education</span>
@@ -493,8 +493,8 @@ function buildHomepage() {
   `;
 
   const html = renderHtmlPage({
-    title: "Bhavin Mistry | Building Enterprise AI That Actually Reaches Production",
-    description: "Enterprise AI, AI Engineering, and Architecture knowledge platform by Bhavin Mistry. Practical frameworks, hybrid RAG blueprints, agentic systems, and decision tools.",
+    title: "Bhavin Mistry | Enterprise AI Engineering Leader",
+    description: "Bhavin Mistry is a Senior Engineering Manager at Commonwealth Bank. Explore his leadership background, enterprise AI thinking, architecture, and engineering frameworks.",
     canonicalUrl: "https://bhavinmistry.com/",
     currentPath: "/",
     mainContent: main,
@@ -506,7 +506,7 @@ function buildHomepage() {
       "author": {
         "@type": "Person",
         "name": "Bhavin Mistry",
-        "jobTitle": "AI Strategy and Engineering Leader",
+        "jobTitle": "Senior Engineering Manager",
         "url": "https://bhavinmistry.com/about/",
         "sameAs": [
           "https://www.linkedin.com/in/bhavin-mistry/",
@@ -938,7 +938,7 @@ function buildFrameworks() {
 
       <!-- 5 Stages Detail -->
       <h2 style="margin-bottom: 24px;">The 5 Stages of Production AI</h2>
-      <div class="card-grid-4" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 48px;">
+      <div class="card-grid-5" style="margin-bottom: 48px;">
         ${fw.stages.map((st, idx) => `
           <div class="card" style="padding: 24px;">
             <span class="badge badge-accent" style="margin-bottom: 12px;">Stage 0${idx + 1}</span>
@@ -1706,23 +1706,33 @@ function buildAbout() {
 
   const abMain = `
     <div class="container" style="max-width: 880px; padding-top: 64px; padding-bottom: 88px;">
-      <span class="eyebrow">Personal Entity</span>
+      <span class="eyebrow">Leadership Profile</span>
       <h1>About Bhavin Mistry</h1>
       <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
-        AI Strategy and Engineering Leader based in Melbourne, Australia.
+        Senior Engineering Manager at Commonwealth Bank. I lead at the intersection of enterprise AI, platform engineering, and technology strategy.
       </p>
 
       <div style="font-size: 17px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 48px;">
         <p>
-          I help technology leaders turn artificial intelligence ambition into resilient, measurable enterprise software. My background bridges the space between high-level executive AI strategy, complex systems architecture, and the hands-on realities of engineering delivery.
+          I work with senior leaders, product teams, and engineers to connect business priorities with architecture, delivery roadmaps, and operating models. My experience spans cloud platforms, APIs, enterprise integration, governance, and globally distributed engineering teams.
         </p>
         <p>
-          Much of my focus centers on financial services, where governance, regulatory compliance (such as APRA CPS 234), data sovereignty, and non-negotiable security controls belong in the design from the very first architectural spike.
+          I have led complex technology programs from strategy and architecture through implementation, adoption, and operations. I am especially interested in forward-deployed AI teams that work closely with business domains to validate opportunities and move successful solutions into secure production services.
         </p>
       </div>
 
+      <h2>Leadership Experience</h2>
+      <p style="font-size: 15px; color: var(--muted); margin-top: 12px; margin-bottom: 24px;">A progression from software delivery and integration architecture to enterprise technology strategy and engineering leadership.</p>
+      <ol class="career-list">
+        <li><span class="career-dates">2025–present</span><div><strong>Commonwealth Bank</strong><span>Senior Engineering Manager · Technology Strategy, AI & Platform Engineering</span></div></li>
+        <li><span class="career-dates">2023–2025</span><div><strong>Acenda</strong><span>Technology Strategist · AI Engineering</span></div></li>
+        <li><span class="career-dates">2022–2023</span><div><strong>Accenture</strong><span>Manager · Integration Architecture & Generative AI</span></div></li>
+        <li><span class="career-dates">2019–2022</span><div><strong>Deloitte</strong><span>Senior Consultant, then Manager · Architecture & Platform Engineering</span></div></li>
+        <li><span class="career-dates">2012–2018</span><div><strong>Earlier engineering roles</strong><span>Delivery Centric, CIGNEX Datamatics, and Accordion Systems</span></div></li>
+      </ol>
+
       <!-- Core Disciplines -->
-      <h2>Areas of Focus & Research</h2>
+      <h2>Areas of Focus</h2>
       <div class="card-grid-2" style="margin-top: 24px; margin-bottom: 48px;">
         <div class="card" style="padding: 24px;">
           <h4 style="margin-bottom: 8px;">Enterprise AI & Hybrid RAG</h4>
@@ -1750,19 +1760,21 @@ function buildAbout() {
         </div>
       </div>
 
-      <!-- Verified Education -->
-      <h2>Verified Education</h2>
+      <!-- Education -->
+      <h2>Education</h2>
       <div style="background: var(--paper-elevated); padding: 32px; border: 1px solid var(--line); margin-top: 20px; margin-bottom: 48px;">
         <span class="eyebrow" style="margin-bottom: 6px;">Executive Education</span>
         <h3 style="font-size: 22px; margin-bottom: 6px;">The University of Texas at Austin</h3>
         <p style="font-size: 15px; color: var(--ink-soft); margin-bottom: 4px;">Post Graduate Program in Artificial Intelligence and Machine Learning: Business Applications</p>
         <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">Focused on business applications, deep learning architectures, and strategic enterprise AI deployment.</p>
       </div>
+      <p style="font-size: 14px; color: var(--muted); margin-top: -24px; margin-bottom: 48px;">Master of Computer Applications, Gujarat Technological University · Bachelor of Commerce, Gujarat University</p>
 
-      <!-- Verified Profiles & Links -->
-      <h2>Official Profiles & Contact</h2>
+      <!-- Profiles & Contact -->
+      <h2 id="contact">Discuss AI Engineering Leadership</h2>
+      <p style="font-size: 15px; color: var(--ink-soft); margin-top: 12px;">I welcome conversations about enterprise AI strategy, engineering leadership, and building production-ready platforms.</p>
       <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px;">
-        <a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Connect on LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start a Conversation on LinkedIn ↗</a>
         <a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Read on Medium ↗</a>
         <a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Learn AI Engineering ↗</a>
       </div>
@@ -1770,8 +1782,8 @@ function buildAbout() {
   `;
 
   fs.writeFileSync(path.join(abDir, 'index.html'), renderHtmlPage({
-    title: "About Bhavin Mistry | Enterprise AI Leader & Architect",
-    description: "Verified profile of Bhavin Mistry, AI Strategy and Engineering Leader based in Melbourne, Australia. Background, education from UT Austin, and core focus areas.",
+    title: "About Bhavin Mistry | AI Engineering Leadership",
+    description: "Leadership profile of Bhavin Mistry, Senior Engineering Manager at Commonwealth Bank. Experience across enterprise AI, platform engineering, architecture, and global teams.",
     canonicalUrl: "https://bhavinmistry.com/about/",
     currentPath: "/about/",
     mainContent: abMain,
@@ -1781,7 +1793,7 @@ function buildAbout() {
       "mainEntity": {
         "@type": "Person",
         "name": "Bhavin Mistry",
-        "jobTitle": "AI Strategy and Engineering Leader",
+        "jobTitle": "Senior Engineering Manager",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Melbourne",
