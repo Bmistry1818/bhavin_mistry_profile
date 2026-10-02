@@ -391,6 +391,11 @@ em { font-style: italic; color: var(--accent); }
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 24px;
 }
+.publication-card .card-meta { flex-wrap: wrap; }
+.publication-card time { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.publication-card h3 { margin-bottom: 16px; overflow-wrap: anywhere; }
+.publication-links { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: auto; padding-top: 16px; }
+#latest-publications { scroll-margin-top: 100px; }
 
 /* Card Component */
 .card {

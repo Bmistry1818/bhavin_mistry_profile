@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require('node:fs');
 const path = require('node:path');
+const { normalizeArticle } = require('./fetch-blogs');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const CONTENT_FILE = path.join(ROOT_DIR, 'data/content.json');
@@ -8,6 +9,36 @@ const BLOGS_FILE = path.join(ROOT_DIR, 'data/blogs.json');
 
 const content = JSON.parse(fs.readFileSync(CONTENT_FILE, 'utf8'));
 const blogsData = fs.existsSync(BLOGS_FILE) ? JSON.parse(fs.readFileSync(BLOGS_FILE, 'utf8')) : { blogs: [] };
+
+function escapeHtml(value = '') {
+  return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+}
+
+function publicationGroups(blogs = []) {
+  const groups = new Map();
+  blogs.map(normalizeArticle).filter(Boolean).sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(article => {
+    const key = article.title.toLowerCase().replace(/[\s\u2013\u2014]+/g, ' ').trim();
+    if (!groups.has(key)) groups.set(key, { ...article, links: [] });
+    const group = groups.get(key);
+    if (!group.links.some(link => link.url === article.url)) group.links.push({ source: article.source, url: article.url });
+  });
+  return [...groups.values()];
+}
+
+function renderPublicationCards(blogs, limit) {
+  return publicationGroups(blogs).slice(0, limit).map(article => `
+    <article class="card publication-card">
+      <div class="card-meta">
+        <span class="badge">${article.links.map(link => escapeHtml(link.source)).join(' · ')}</span>
+        <time datetime="${article.date.slice(0, 10)}">${new Date(article.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time>
+      </div>
+      <h3><a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></h3>
+      <p>${escapeHtml(article.description)}</p>
+      <div class="publication-links">
+        ${article.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="text-link">Read on ${escapeHtml(link.source)} ↗</a>`).join('')}
+      </div>
+    </article>`).join('');
+}
 
 function ensureDir(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -240,6 +271,18 @@ function buildHomepage() {
           <div class="authority-desc">Secure delivery, governance, and measurable business value.</div>
         </div>
       </div>
+    </section>
+
+    <section class="section container" aria-labelledby="publications-title" id="latest-publications">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">Latest Writing</span>
+          <h2 id="publications-title">Latest Publications.</h2>
+        </div>
+        <p class="section-header-desc">Recent articles on enterprise AI, engineering leadership, and technology economics, published on Medium and LinkedIn.</p>
+      </div>
+      <div class="card-grid-3">${renderPublicationCards(blogsData.blogs, 6)}</div>
+      <div style="margin-top: 32px;"><a href="/insights/#latest-publications" class="text-link">View All Publications →</a></div>
     </section>
 
     <!-- FEATURED THINKING (INSIGHTS) -->
@@ -534,6 +577,13 @@ function buildInsights() {
         Architectural blueprints, failure analysis, and strategic perspectives on deploying Generative AI and Agentic Systems in production environments.
       </p>
 
+      <section id="latest-publications" aria-labelledby="publications-title" style="margin-bottom: 64px;">
+        <span class="eyebrow">Latest Writing</span>
+        <h2 id="publications-title" style="margin-bottom: 24px;">Latest Publications</h2>
+        <div class="card-grid-3">${renderPublicationCards(blogsData.blogs, 24)}</div>
+      </section>
+
+      <h2 style="margin-bottom: 24px;">Engineering Guides & Perspectives</h2>
       <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--line);">
         <span class="badge badge-accent">All Categories</span>
         <span class="badge">Enterprise AI</span>
@@ -560,24 +610,6 @@ function buildInsights() {
         `).join('')}
       </div>
 
-      <!-- Published LinkedIn / Medium Archive Section -->
-      <div style="margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--line);">
-        <span class="eyebrow">External & Syndicate Writing Archive</span>
-        <h3>Published Columns & Field Notes</h3>
-        <p style="font-size: 14px; color: var(--muted); margin-bottom: 24px;">
-          Previously published articles syndicated across LinkedIn and Medium, now maintained with local canonical schemas.
-        </p>
-        <div class="card-grid-3">
-          ${blogsData.blogs.slice(0, 6).map(b => `
-            <div class="card" style="padding: 24px;">
-              <span class="badge" style="margin-bottom: 12px;">${b.source} Archive</span>
-              <h4 style="margin-bottom: 8px;">${b.title}</h4>
-              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">${b.description || ''}</p>
-              <a href="${b.url}" target="_blank" rel="noopener noreferrer" class="text-link">Read on ${b.source} <span>↗</span></a>
-            </div>
-          `).join('')}
-        </div>
-      </div>
     </div>
   `;
 
@@ -2067,4 +2099,5 @@ function run() {
   console.log('Build completed successfully!');
 }
 
-run();
+if (require.main === module) run();
+module.exports = { escapeHtml, publicationGroups, renderPublicationCards };
