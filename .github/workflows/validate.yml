@@ -31,3 +31,11 @@ jobs:
           node --check scripts/fetch-blogs.js
           node --check scripts/publish-pages.js
           node scripts/build-pages.js
+      - name: Validate typed graph-engineering toolkit
+        run: |
+          python3 -m venv "$RUNNER_TEMP/graph-engineering-venv"
+          GRAPH_PYTHON="$RUNNER_TEMP/graph-engineering-venv/bin/python"
+          "$GRAPH_PYTHON" -m pip install -r graph-engineering/requirements.lock
+          "$GRAPH_PYTHON" -m pip install -e './graph-engineering[dev]'
+          "$GRAPH_PYTHON" -m pytest graph-engineering/tests -q
+          "$GRAPH_PYTHON" -m mypy graph-engineering/src

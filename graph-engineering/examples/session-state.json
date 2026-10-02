@@ -1,0 +1,11 @@
+{
+  "session_id": "platform-sprint-01",
+  "objective": "Ship a bounded context retrieval pipeline",
+  "summary": "Vault access and parsers are implemented. Validate retrieval quality before rollout.",
+  "decisions": ["No runtime code execution during graph extraction"],
+  "tasks": [
+    {"id": "retrieval", "title": "Validate graph retrieval", "status": "in_progress", "parent_id": null},
+    {"id": "quality", "title": "Measure source recall on known decisions", "status": "open", "parent_id": "retrieval"}
+  ],
+  "next_actions": ["Run regression fixtures", "Review omitted context with a human architect"]
+}

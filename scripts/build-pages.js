@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { normalizeArticle } = require('./fetch-blogs');
+const { buildPlatform } = require('./build-graph-platform');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const CONTENT_FILE = path.join(ROOT_DIR, 'data/content.json');
@@ -283,6 +284,11 @@ function buildHomepage() {
       </div>
       <div class="card-grid-3">${renderPublicationCards(blogsData.blogs, 6)}</div>
       <div style="margin-top: 32px;"><a href="/insights/#latest-publications" class="text-link">View All Publications →</a></div>
+    </section>
+
+    <section class="container platform-feature" aria-labelledby="platform-title">
+      <div><span class="eyebrow">Engineering in Practice</span><h2 id="platform-title">Graph Engineering Platform.</h2><p>Five working AI agent skills connecting source-code graphs, architectural decisions and durable Obsidian memory across Codex, Claude and MCP.</p></div>
+      <div><span class="badge">Typed source · Native integrations · Inspectable tools</span><a href="/tools/graph-engineering/" class="btn btn-primary">Explore the Platform →</a></div>
     </section>
 
     <!-- FEATURED THINKING (INSIGHTS) -->
@@ -1199,10 +1205,16 @@ function buildTools() {
       <span class="eyebrow">Decision Calculators</span>
       <h1>Enterprise AI Engineering & Financial Tools</h1>
       <p class="hero-lead" style="max-width: 800px; margin-top: 16px; margin-bottom: 40px;">
-        Interactive decision models, financial calculators, and maturity assessments running client-side with transparent formulas.
+        Inspectable agent tooling, interactive decision models, financial calculators, and maturity assessments with transparent operating boundaries.
       </p>
 
       <div class="card-grid-3">
+        <div class="card">
+          <span class="badge badge-accent" style="margin-bottom: 12px;">Agent Skills & MCP</span>
+          <h2><a href="/tools/graph-engineering/">Graph Engineering Platform</a></h2>
+          <p>Five local-first agent skills: architectural memory, code graphs, bounded context, governance and cross-sprint handoffs.</p>
+          <div class="card-footer"><a href="/tools/graph-engineering/" class="text-link">Explore & Install <span>→</span></a></div>
+        </div>
         <div class="card">
           <span class="badge badge-accent" style="margin-bottom: 12px;">Maturity Assessment</span>
           <h2><a href="/tools/enterprise-ai-readiness/">AI Readiness Diagnostic</a></h2>
@@ -1983,6 +1995,7 @@ function buildSeoAssets() {
     'frameworks/enterprise-ai-production-readiness/',
     'ai-radar/',
     'tools/',
+    'tools/graph-engineering/',
     'tools/enterprise-ai-readiness/',
     'tools/rag-cost-calculator/',
     'tools/llm-cost-calculator/',
@@ -2070,6 +2083,7 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 - AI-Powered Enterprise SDLC: https://bhavinmistry.com/architectures/ai-powered-sdlc/
 
 ## Frameworks & Tools
+- Graph Engineering Platform (AI skills and MCP servers): https://bhavinmistry.com/tools/graph-engineering/
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
 - AI Readiness Assessment Diagnostic: https://bhavinmistry.com/tools/enterprise-ai-readiness/
@@ -2090,6 +2104,7 @@ function run() {
   buildRadar();
   buildHandbook();
   buildTools();
+  buildPlatform(renderHtmlPage, ROOT_DIR);
   buildResearch();
   buildAbout();
   buildNewsletter();

@@ -59,6 +59,7 @@ function initCommandPalette() {
   const closeBtn = modal.querySelector('[data-close-palette]');
 
   const searchIndex = [
+    { title: "Graph Engineering Platform: Obsidian Agent Skills & MCP Servers", url: "/tools/graph-engineering/", category: "Platform" },
     { title: "Enterprise AI Production Readiness Framework", url: "/frameworks/enterprise-ai-production-readiness/", category: "Framework" },
     { title: "Enterprise RAG Architecture Blueprint", url: "/architectures/enterprise-rag/", category: "Architecture" },
     { title: "Agentic RAG Architecture", url: "/architectures/agentic-rag/", category: "Architecture" },

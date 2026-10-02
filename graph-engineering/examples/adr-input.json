@@ -1,0 +1,8 @@
+{
+  "title": "Keep architectural memory local",
+  "context": "Agent sessions need decisions without publishing internal source or notes.",
+  "decision": "Store durable decisions in a local Obsidian vault; expose bounded reference tools over stdio.",
+  "consequences": "Teams own vault backups and access controls; hosted clients may still receive selected context.",
+  "status": "proposed",
+  "entities": ["Entities/AI Platform"]
+}

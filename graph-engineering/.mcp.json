@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "graph_memory": {"command": "graph-memory-mcp", "args": ["--profile", "memory"]},
+    "code_graph": {"command": "graph-memory-mcp", "args": ["--profile", "graph"]},
+    "graph_retrieval": {"command": "graph-memory-mcp", "args": ["--profile", "retrieval"]},
+    "adr_governance": {"command": "graph-memory-mcp", "args": ["--profile", "governance"]},
+    "sprint_handoff": {"command": "graph-memory-mcp", "args": ["--profile", "handoff"]}
+  }
+}

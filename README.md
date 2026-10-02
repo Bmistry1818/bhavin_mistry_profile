@@ -73,6 +73,12 @@ node --check scripts/build-pages.js
 
 ---
 
+## Graph Engineering Platform
+
+The agent tooling showcase is generated at `/tools/graph-engineering/` and linked from the homepage, Tools hub, search and sitemap. The complete local-first Python toolkit is in `graph-engineering/`, with five native skills for Codex and Claude Code, five stdio MCP profiles, typed dispatcher schemas, tests and operating documentation.
+
+Read `graph-engineering/PORTFOLIO_README.md` for setup and boundaries. `node scripts/build-pages.js` also regenerates the full untruncated `SOURCE_FILES.md` and deterministic downloadable ZIP; neither contains a user's vault or host credentials. Installation is opt-in and does not edit host settings. Public deployment already allowlists the `tools/` tree.
+
 ## Publication Sync & Deployment
 
 `.github/workflows/update-blogs.yml` runs every six hours, on changes to `main`, and on manual dispatch. It refreshes publications, runs tests, rebuilds the static pages, and publishes public assets to the `gh-pages` branch. GitHub Pages must use **gh-pages / (root)** as its publishing source. The script explicitly requests a Pages build and waits for success because pushes using `GITHUB_TOKEN` do not automatically trigger Pages builds.
