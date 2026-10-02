@@ -2156,7 +2156,7 @@ class PrunedContext(BaseModel):
     token_metric: str = "Not measured; byte ratio is not a token ratio"
 
 
-def load_graph(vault: Vault, prefix: str = "") -> tuple[nx.Graph, dict[str, Note]]:
+def load_graph(vault: Vault, prefix: str = "") -> tuple[nx.Graph[str], dict[str, Note]]:
     notes = {note.path: note for note in vault.notes(prefix)}
     index_path = vault.root / "Code/graph-index.md"
     active: set[str] | None = None

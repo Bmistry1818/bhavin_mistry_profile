@@ -38,4 +38,4 @@ jobs:
           "$GRAPH_PYTHON" -m pip install -r graph-engineering/requirements.lock
           "$GRAPH_PYTHON" -m pip install -e './graph-engineering[dev]'
           "$GRAPH_PYTHON" -m pytest graph-engineering/tests -q
-          "$GRAPH_PYTHON" -m mypy graph-engineering/src
+          "$GRAPH_PYTHON" -m mypy --config-file graph-engineering/pyproject.toml graph-engineering/src graph-engineering/scripts
