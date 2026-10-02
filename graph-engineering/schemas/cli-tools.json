@@ -1,0 +1,514 @@
+{
+  "format": "application dispatcher function payloads; not a Codex config registry",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "search_vault",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "query": {
+              "maxLength": 1000,
+              "minLength": 1,
+              "title": "Query",
+              "type": "string"
+            },
+            "limit": {
+              "default": 10,
+              "maximum": 50,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            },
+            "prefix": {
+              "default": "",
+              "title": "Prefix",
+              "type": "string"
+            }
+          },
+          "required": [
+            "vault",
+            "query"
+          ],
+          "title": "SearchPayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "create_adr",
+        "parameters": {
+          "$defs": {
+            "ADRInput": {
+              "additionalProperties": false,
+              "properties": {
+                "title": {
+                  "maxLength": 200,
+                  "minLength": 1,
+                  "title": "Title",
+                  "type": "string"
+                },
+                "context": {
+                  "maxLength": 20000,
+                  "minLength": 1,
+                  "title": "Context",
+                  "type": "string"
+                },
+                "decision": {
+                  "maxLength": 20000,
+                  "minLength": 1,
+                  "title": "Decision",
+                  "type": "string"
+                },
+                "consequences": {
+                  "maxLength": 20000,
+                  "minLength": 1,
+                  "title": "Consequences",
+                  "type": "string"
+                },
+                "status": {
+                  "default": "proposed",
+                  "enum": [
+                    "proposed",
+                    "accepted",
+                    "superseded",
+                    "rejected"
+                  ],
+                  "title": "Status",
+                  "type": "string"
+                },
+                "entities": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 50,
+                  "title": "Entities",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "title",
+                "context",
+                "decision",
+                "consequences"
+              ],
+              "title": "ADRInput",
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "record": {
+              "$ref": "#/$defs/ADRInput"
+            },
+            "allow_write": {
+              "default": false,
+              "title": "Allow Write",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "vault",
+            "record"
+          ],
+          "title": "ADRPayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "query_backlinks",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "target": {
+              "minLength": 1,
+              "title": "Target",
+              "type": "string"
+            }
+          },
+          "required": [
+            "vault",
+            "target"
+          ],
+          "title": "BacklinkPayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "update_entity_node",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "name": {
+              "maxLength": 200,
+              "minLength": 1,
+              "title": "Name",
+              "type": "string"
+            },
+            "facts": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Facts",
+              "type": "array"
+            },
+            "related": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 50,
+              "title": "Related",
+              "type": "array"
+            },
+            "allow_write": {
+              "default": false,
+              "title": "Allow Write",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "vault",
+            "name"
+          ],
+          "title": "EntityPayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "generate_code_graph",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "repo": {
+              "minLength": 1,
+              "title": "Repo",
+              "type": "string"
+            },
+            "allow_write": {
+              "default": false,
+              "title": "Allow Write",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "vault",
+            "repo"
+          ],
+          "title": "GraphPayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "prune_subgraph",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "seeds": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "title": "Seeds",
+              "type": "array"
+            },
+            "prefix": {
+              "default": "",
+              "title": "Prefix",
+              "type": "string"
+            },
+            "max_bytes": {
+              "default": 12000,
+              "maximum": 100000,
+              "minimum": 512,
+              "title": "Max Bytes",
+              "type": "integer"
+            },
+            "max_nodes": {
+              "default": 30,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Max Nodes",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "vault",
+            "seeds"
+          ],
+          "title": "PrunePayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "check_adr_governance",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "repo": {
+              "minLength": 1,
+              "title": "Repo",
+              "type": "string"
+            },
+            "allow_write": {
+              "default": false,
+              "title": "Allow Write",
+              "type": "boolean"
+            },
+            "mode": {
+              "default": "staged",
+              "enum": [
+                "staged",
+                "worktree",
+                "base"
+              ],
+              "title": "Mode",
+              "type": "string"
+            },
+            "base": {
+              "default": "HEAD",
+              "title": "Base",
+              "type": "string"
+            },
+            "draft_rfc": {
+              "default": false,
+              "title": "Draft Rfc",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "vault",
+            "repo"
+          ],
+          "title": "GovernancePayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "serialize_context",
+        "parameters": {
+          "$defs": {
+            "SessionState": {
+              "additionalProperties": false,
+              "properties": {
+                "session_id": {
+                  "maxLength": 200,
+                  "minLength": 1,
+                  "title": "Session Id",
+                  "type": "string"
+                },
+                "objective": {
+                  "maxLength": 20000,
+                  "minLength": 1,
+                  "title": "Objective",
+                  "type": "string"
+                },
+                "summary": {
+                  "maxLength": 100000,
+                  "title": "Summary",
+                  "type": "string"
+                },
+                "decisions": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 200,
+                  "title": "Decisions",
+                  "type": "array"
+                },
+                "tasks": {
+                  "items": {
+                    "$ref": "#/$defs/TaskState"
+                  },
+                  "maxItems": 200,
+                  "title": "Tasks",
+                  "type": "array"
+                },
+                "next_actions": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 200,
+                  "title": "Next Actions",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "session_id",
+                "objective",
+                "summary"
+              ],
+              "title": "SessionState",
+              "type": "object"
+            },
+            "TaskState": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "maxLength": 200,
+                  "minLength": 1,
+                  "title": "Id",
+                  "type": "string"
+                },
+                "title": {
+                  "maxLength": 1000,
+                  "minLength": 1,
+                  "title": "Title",
+                  "type": "string"
+                },
+                "status": {
+                  "pattern": "^(open|in_progress|blocked|done)$",
+                  "title": "Status",
+                  "type": "string"
+                },
+                "parent_id": {
+                  "anyOf": [
+                    {
+                      "maxLength": 200,
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "title": "Parent Id"
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "status"
+              ],
+              "title": "TaskState",
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "repo": {
+              "minLength": 1,
+              "title": "Repo",
+              "type": "string"
+            },
+            "allow_write": {
+              "default": false,
+              "title": "Allow Write",
+              "type": "boolean"
+            },
+            "state": {
+              "$ref": "#/$defs/SessionState"
+            }
+          },
+          "required": [
+            "vault",
+            "repo",
+            "state"
+          ],
+          "title": "HandoffPayload",
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "restore_context",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "vault": {
+              "minLength": 1,
+              "title": "Vault",
+              "type": "string"
+            },
+            "note": {
+              "title": "Note",
+              "type": "string"
+            },
+            "session_key": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Session Key"
+            }
+          },
+          "required": [
+            "vault",
+            "note"
+          ],
+          "title": "RestorePayload",
+          "type": "object"
+        }
+      }
+    }
+  ]
+}

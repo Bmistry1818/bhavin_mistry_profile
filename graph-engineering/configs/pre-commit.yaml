@@ -1,0 +1,11 @@
+# Merge this local hook into your existing .pre-commit-config.yaml; installation is opt-in.
+# graph-engineering must be installed in the hook's inherited environment.
+repos:
+  - repo: local
+    hooks:
+      - id: graph-adr-governance
+        name: Accepted ADR governance (staged snapshot)
+        language: system
+        entry: python graph-engineering/scripts/pre_commit_hook.py
+        pass_filenames: false
+        always_run: true

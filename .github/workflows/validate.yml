@@ -6,15 +6,36 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: '11.19.0'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
-      - run: node --check script.js
-      - run: node --check scripts/build-pages.js
-      - run: node scripts/build-pages.js
+      - name: Checkout source
+        shell: bash
+        run: |
+          git init
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
+          git fetch --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
+      - name: Select Node.js
+        shell: bash
+        run: |
+          NODE_RUNTIME_DIR=$(find "$RUNNER_TOOL_CACHE/node" -mindepth 2 -maxdepth 2 -type d -path '*/22.*/x64' | sort -V | tail -1)
+          if [ -n "$NODE_RUNTIME_DIR" ]; then
+            echo "$NODE_RUNTIME_DIR/bin" >> "$GITHUB_PATH"
+          fi
+      - name: Install locked dependencies
+        run: |
+          node -e 'if (Number(process.versions.node.split(".")[0]) < 22) throw Error("Node.js 22+ is required")'
+          npx --yes pnpm@11.19.0 install --frozen-lockfile --ignore-scripts
+      - name: Validate pages and sync
+        run: |
+          node --test
+          node --check script.js
+          node --check scripts/fetch-blogs.js
+          node --check scripts/publish-pages.js
+          node scripts/build-pages.js
+      - name: Validate typed graph-engineering toolkit
+        run: |
+          python3 -m venv "$RUNNER_TEMP/graph-engineering-venv"
+          GRAPH_PYTHON="$RUNNER_TEMP/graph-engineering-venv/bin/python"
+          "$GRAPH_PYTHON" -m pip install -r graph-engineering/requirements.lock
+          "$GRAPH_PYTHON" -m pip install -e './graph-engineering[dev]'
+          "$GRAPH_PYTHON" -m pytest graph-engineering/tests -q
+          "$GRAPH_PYTHON" -m mypy --config-file graph-engineering/pyproject.toml graph-engineering/src graph-engineering/scripts

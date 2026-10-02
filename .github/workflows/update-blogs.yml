@@ -1,99 +1,74 @@
-name: Update Blog Feed
+name: Sync publications and publish site
 
-#on:
-#  schedule:
-    # Run every 6 hours
- #   - cron: '0 */6 * * *'
+on:
+  schedule:
+    - cron: '17 */6 * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
 
-# Allow the job to create PRs instead of pushing directly
 permissions:
   contents: write
-  pull-requests: write
+  pages: write
+  deployments: read
 
 concurrency:
-  group: update-blog-feed
+  group: publish-profile-site
   cancel-in-progress: false
 
 jobs:
-  update-blogs:
+  publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
+    timeout-minutes: 15
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          # ensure the checked out repository has credentials so `create-pull-request` can push
-          persist-credentials: true
-          # fetch full history so branch operations work reliably
-          fetch-depth: 0
+      # Shell steps respect the repository's owner-only Actions policy.
+      - name: Checkout source
+        shell: bash
+        run: |
+          git init
+          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git"
+          git fetch --depth=1 origin "$GITHUB_SHA"
+          git checkout --detach FETCH_HEAD
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
+      - name: Select Node.js
+        shell: bash
+        run: |
+          NODE_RUNTIME_DIR=$(find "$RUNNER_TOOL_CACHE/node" -mindepth 2 -maxdepth 2 -type d -path '*/22.*/x64' | sort -V | tail -1)
+          if [ -n "$NODE_RUNTIME_DIR" ]; then
+            echo "$NODE_RUNTIME_DIR/bin" >> "$GITHUB_PATH"
+          fi
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: '11.19.0'
+      - name: Install locked dependencies
+        run: |
+          node -e 'if (Number(process.versions.node.split(".")[0]) < 22) throw Error("Node.js 22+ is required")'
+          npx --yes pnpm@11.19.0 install --frozen-lockfile --ignore-scripts
 
-      - run: pnpm install --frozen-lockfile
-
-      - name: Fetch blog feeds
+      - name: Refresh publications
         id: feeds
-        shell: bash
         env:
-          BLOG_DIAGNOSTICS_FILE: ${{ runner.temp }}/blog-diagnostics/sources.json
+          LINKEDIN_RSS_URL: ${{ secrets.LINKEDIN_RSS_URL || vars.LINKEDIN_RSS_URL }}
+          BLOG_DIAGNOSTICS_FILE: ${{ runner.temp }}/blog-sources.json
+        run: node scripts/fetch-blogs.js --restore-published
+
+      - name: Validate and build pages
         run: |
-          mkdir -p "$RUNNER_TEMP/blog-diagnostics"
-          set -o pipefail
-          node scripts/fetch-blogs.js 2>&1 | tee "$RUNNER_TEMP/blog-diagnostics/feed.log"
+          node --test
+          node --check script.js
+          node scripts/build-pages.js
 
-      - name: Create Pull Request if there are changes
-        id: pull_request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "🔄 Update blog feeds"
-          title: "🔄 Update blog feeds"
-          body: "Automated update of blog feeds by workflow."
-          branch: "automation/update-blogs"
-          delete-branch: true
-          add-paths: data/blogs.json
-          labels: automated
-
-      - name: Write run summary
-        if: always()
+      - name: Publish generated site
         env:
-          FEED_OUTCOME: ${{ steps.feeds.outcome }}
-          PR_OUTCOME: ${{ steps.pull_request.outcome }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/publish-pages.js
+
+      - name: Summarize source status
+        if: always()
         shell: bash
         run: |
-          {
-            echo '## Blog update diagnostics'
-            echo "Feed update: $FEED_OUTCOME"
-            echo "Pull request creation: $PR_OUTCOME"
-            echo ''
-            if [ -f "$RUNNER_TEMP/blog-diagnostics/sources.json" ]; then
-              echo '### Per-source results'
-              echo '```json'
-              cat "$RUNNER_TEMP/blog-diagnostics/sources.json"
-              echo '```'
-            fi
-            if [ "$PR_OUTCOME" = 'failure' ]; then
-              echo 'Inspect the Create Pull Request step. If GitHub reports that Actions cannot create pull requests, check Settings → Actions → General → Workflow permissions → Allow GitHub Actions to create and approve pull requests. Organisation policy may control this setting.'
-            fi
-            if [ "$FEED_OUTCOME" = 'skipped' ]; then
-              echo 'The feed step never started. Inspect checkout, Node setup, package manager setup and dependency installation above.'
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Upload feed diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: blog-diagnostics-${{ github.run_id }}
-          path: ${{ runner.temp }}/blog-diagnostics/
-          if-no-files-found: ignore
-          retention-days: 14
+          printf '## Publication sync\n\n' >> "$GITHUB_STEP_SUMMARY"
+          if [ -f "$RUNNER_TEMP/blog-sources.json" ]; then
+            printf '```json\n' >> "$GITHUB_STEP_SUMMARY"
+            cat "$RUNNER_TEMP/blog-sources.json" >> "$GITHUB_STEP_SUMMARY"
+            printf '\n```\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          printf '\nMedium uses its RSS feed. LinkedIn uses LINKEDIN_RSS_URL when configured; otherwise verified links are retained. Generated pages publish to gh-pages without a pending content pull request.\n' >> "$GITHUB_STEP_SUMMARY"

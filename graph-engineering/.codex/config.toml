@@ -1,0 +1,32 @@
+# Registration snippet; launch Codex from an activated toolkit environment.
+# Set OBSIDIAN_VAULT_PATH and GRAPH_REPO_ROOT. Writes are disabled by default.
+[mcp_servers.graph_memory]
+command = "graph-memory-mcp"
+args = ["--profile", "memory"]
+env_vars = ["OBSIDIAN_VAULT_PATH", "GRAPH_REPO_ROOT", "GRAPH_ALLOW_WRITE"]
+default_tools_approval_mode = "writes"
+
+[mcp_servers.code_graph]
+command = "graph-memory-mcp"
+args = ["--profile", "graph"]
+env_vars = ["OBSIDIAN_VAULT_PATH", "GRAPH_REPO_ROOT", "GRAPH_ALLOW_WRITE"]
+default_tools_approval_mode = "writes"
+tool_timeout_sec = 120
+
+[mcp_servers.graph_retrieval]
+command = "graph-memory-mcp"
+args = ["--profile", "retrieval"]
+env_vars = ["OBSIDIAN_VAULT_PATH"]
+tool_timeout_sec = 120
+
+[mcp_servers.adr_governance]
+command = "graph-memory-mcp"
+args = ["--profile", "governance"]
+env_vars = ["OBSIDIAN_VAULT_PATH", "GRAPH_REPO_ROOT", "GRAPH_ALLOW_WRITE"]
+default_tools_approval_mode = "writes"
+
+[mcp_servers.sprint_handoff]
+command = "graph-memory-mcp"
+args = ["--profile", "handoff"]
+env_vars = ["OBSIDIAN_VAULT_PATH", "GRAPH_REPO_ROOT", "GRAPH_ALLOW_WRITE"]
+default_tools_approval_mode = "writes"

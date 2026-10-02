@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 const fs = require('node:fs');
 const path = require('node:path');
+const { normalizeArticle } = require('./fetch-blogs');
+const { buildPlatform } = require('./build-graph-platform');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const CONTENT_FILE = path.join(ROOT_DIR, 'data/content.json');
@@ -8,6 +10,36 @@ const BLOGS_FILE = path.join(ROOT_DIR, 'data/blogs.json');
 
 const content = JSON.parse(fs.readFileSync(CONTENT_FILE, 'utf8'));
 const blogsData = fs.existsSync(BLOGS_FILE) ? JSON.parse(fs.readFileSync(BLOGS_FILE, 'utf8')) : { blogs: [] };
+
+function escapeHtml(value = '') {
+  return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+}
+
+function publicationGroups(blogs = []) {
+  const groups = new Map();
+  blogs.map(normalizeArticle).filter(Boolean).sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(article => {
+    const key = article.title.toLowerCase().replace(/[\s\u2013\u2014]+/g, ' ').trim();
+    if (!groups.has(key)) groups.set(key, { ...article, links: [] });
+    const group = groups.get(key);
+    if (!group.links.some(link => link.url === article.url)) group.links.push({ source: article.source, url: article.url });
+  });
+  return [...groups.values()];
+}
+
+function renderPublicationCards(blogs, limit) {
+  return publicationGroups(blogs).slice(0, limit).map(article => `
+    <article class="card publication-card">
+      <div class="card-meta">
+        <span class="badge">${article.links.map(link => escapeHtml(link.source)).join(' · ')}</span>
+        <time datetime="${article.date.slice(0, 10)}">${new Date(article.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time>
+      </div>
+      <h3><a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></h3>
+      <p>${escapeHtml(article.description)}</p>
+      <div class="publication-links">
+        ${article.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="text-link">Read on ${escapeHtml(link.source)} ↗</a>`).join('')}
+      </div>
+    </article>`).join('');
+}
 
 function ensureDir(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -240,6 +272,23 @@ function buildHomepage() {
           <div class="authority-desc">Secure delivery, governance, and measurable business value.</div>
         </div>
       </div>
+    </section>
+
+    <section class="section container" aria-labelledby="publications-title" id="latest-publications">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">Latest Writing</span>
+          <h2 id="publications-title">Latest Publications.</h2>
+        </div>
+        <p class="section-header-desc">Recent articles on enterprise AI, engineering leadership, and technology economics, published on Medium and LinkedIn.</p>
+      </div>
+      <div class="card-grid-3">${renderPublicationCards(blogsData.blogs, 6)}</div>
+      <div style="margin-top: 32px;"><a href="/insights/#latest-publications" class="text-link">View All Publications →</a></div>
+    </section>
+
+    <section class="container platform-feature" aria-labelledby="platform-title">
+      <div><span class="eyebrow">Engineering in Practice</span><h2 id="platform-title">Graph Engineering Platform.</h2><p>Five working AI agent skills connecting source-code graphs, architectural decisions and durable Obsidian memory across Codex, Claude and MCP.</p></div>
+      <div><span class="badge">Typed source · Native integrations · Inspectable tools</span><a href="/tools/graph-engineering/" class="btn btn-primary">Explore the Platform →</a></div>
     </section>
 
     <!-- FEATURED THINKING (INSIGHTS) -->
@@ -534,6 +583,13 @@ function buildInsights() {
         Architectural blueprints, failure analysis, and strategic perspectives on deploying Generative AI and Agentic Systems in production environments.
       </p>
 
+      <section id="latest-publications" aria-labelledby="publications-title" style="margin-bottom: 64px;">
+        <span class="eyebrow">Latest Writing</span>
+        <h2 id="publications-title" style="margin-bottom: 24px;">Latest Publications</h2>
+        <div class="card-grid-3">${renderPublicationCards(blogsData.blogs, 24)}</div>
+      </section>
+
+      <h2 style="margin-bottom: 24px;">Engineering Guides & Perspectives</h2>
       <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--line);">
         <span class="badge badge-accent">All Categories</span>
         <span class="badge">Enterprise AI</span>
@@ -560,24 +616,6 @@ function buildInsights() {
         `).join('')}
       </div>
 
-      <!-- Published LinkedIn / Medium Archive Section -->
-      <div style="margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--line);">
-        <span class="eyebrow">External & Syndicate Writing Archive</span>
-        <h3>Published Columns & Field Notes</h3>
-        <p style="font-size: 14px; color: var(--muted); margin-bottom: 24px;">
-          Previously published articles syndicated across LinkedIn and Medium, now maintained with local canonical schemas.
-        </p>
-        <div class="card-grid-3">
-          ${blogsData.blogs.slice(0, 6).map(b => `
-            <div class="card" style="padding: 24px;">
-              <span class="badge" style="margin-bottom: 12px;">${b.source} Archive</span>
-              <h4 style="margin-bottom: 8px;">${b.title}</h4>
-              <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">${b.description || ''}</p>
-              <a href="${b.url}" target="_blank" rel="noopener noreferrer" class="text-link">Read on ${b.source} <span>↗</span></a>
-            </div>
-          `).join('')}
-        </div>
-      </div>
     </div>
   `;
 
@@ -1167,10 +1205,16 @@ function buildTools() {
       <span class="eyebrow">Decision Calculators</span>
       <h1>Enterprise AI Engineering & Financial Tools</h1>
       <p class="hero-lead" style="max-width: 800px; margin-top: 16px; margin-bottom: 40px;">
-        Interactive decision models, financial calculators, and maturity assessments running client-side with transparent formulas.
+        Inspectable agent tooling, interactive decision models, financial calculators, and maturity assessments with transparent operating boundaries.
       </p>
 
       <div class="card-grid-3">
+        <div class="card">
+          <span class="badge badge-accent" style="margin-bottom: 12px;">Agent Skills & MCP</span>
+          <h2><a href="/tools/graph-engineering/">Graph Engineering Platform</a></h2>
+          <p>Five local-first agent skills: architectural memory, code graphs, bounded context, governance and cross-sprint handoffs.</p>
+          <div class="card-footer"><a href="/tools/graph-engineering/" class="text-link">Explore & Install <span>→</span></a></div>
+        </div>
         <div class="card">
           <span class="badge badge-accent" style="margin-bottom: 12px;">Maturity Assessment</span>
           <h2><a href="/tools/enterprise-ai-readiness/">AI Readiness Diagnostic</a></h2>
@@ -1951,6 +1995,7 @@ function buildSeoAssets() {
     'frameworks/enterprise-ai-production-readiness/',
     'ai-radar/',
     'tools/',
+    'tools/graph-engineering/',
     'tools/enterprise-ai-readiness/',
     'tools/rag-cost-calculator/',
     'tools/llm-cost-calculator/',
@@ -2038,6 +2083,7 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 - AI-Powered Enterprise SDLC: https://bhavinmistry.com/architectures/ai-powered-sdlc/
 
 ## Frameworks & Tools
+- Graph Engineering Platform (AI skills and MCP servers): https://bhavinmistry.com/tools/graph-engineering/
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
 - AI Readiness Assessment Diagnostic: https://bhavinmistry.com/tools/enterprise-ai-readiness/
@@ -2058,6 +2104,7 @@ function run() {
   buildRadar();
   buildHandbook();
   buildTools();
+  buildPlatform(renderHtmlPage, ROOT_DIR);
   buildResearch();
   buildAbout();
   buildNewsletter();
@@ -2067,4 +2114,5 @@ function run() {
   console.log('Build completed successfully!');
 }
 
-run();
+if (require.main === module) run();
+module.exports = { escapeHtml, publicationGroups, renderPublicationCards };

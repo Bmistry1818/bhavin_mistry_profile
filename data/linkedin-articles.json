@@ -1,0 +1,16 @@
+{
+  "articles": [
+    {
+      "title": "The AI Unit Economics Problem: Why Cost per Token Is the Wrong Executive Metric",
+      "description": "Why enterprise AI leaders need to connect technical consumption with the cost and value of successful business outcomes.",
+      "url": "https://www.linkedin.com/pulse/ai-unit-economics-problem-why-cost-per-token-wrong-executive-mistry-obkwe",
+      "date": "2026-09-22"
+    },
+    {
+      "title": "AI FinOps Is Moving From Token Tracking to Business Value",
+      "description": "A perspective on AI observability, financial controls, and the connection between AI spending and business value.",
+      "url": "https://www.linkedin.com/pulse/ai-finops-moving-from-token-tracking-business-value-bhavin-mistry-fzlrc",
+      "date": "2026-09-15"
+    }
+  ]
+}
