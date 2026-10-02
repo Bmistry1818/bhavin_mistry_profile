@@ -1,0 +1,146 @@
+{
+  "lastUpdated": "2026-10-02T01:49:10.445Z",
+  "totalCount": 14,
+  "blogs": [
+    {
+      "id": "medium-0b555241022ad6b0",
+      "title": "Your AI Agent Has a Budget. But Who Is Accountable When It Overspends?",
+      "description": "Your AI Agent Has a Budget. But Who Is Accountable When It Overspends? Imagine giving an AI agent a task. It calls a model. Then a tool. The result isn’t right, so it retries. It retrieves more dat…",
+      "url": "https://medium.com/@bhavin_mistry/your-ai-agent-has-a-budget-but-who-is-accountable-when-it-overspends-c841ad75ca59",
+      "source": "Medium",
+      "date": "2026-09-29T05:15:30.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-20b069ddd5683831",
+      "title": "AI Is Moving From Chatbots to Everyday Work",
+      "description": "AI Is Moving From Chatbots to Everyday Work Artificial intelligence is no longer limited to answering questions or generating images. The latest developments show a clear shift towards AI that can …",
+      "url": "https://medium.com/@bhavin_mistry/ai-is-moving-from-chatbots-to-everyday-work-66e774145dd1",
+      "source": "Medium",
+      "date": "2026-09-25T08:16:46.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-d5eed5d24cb37a9c",
+      "title": "The AI Unit Economics Problem: Why Cost per Token Is the Wrong Executive Metric",
+      "description": "The AI Unit Economics Problem: Why Cost per Token Is the Wrong Executive Metric Enterprise AI has a measurement problem. We are becoming increasingly sophisticated at measuring tokens, API calls, m…",
+      "url": "https://medium.com/@bhavin_mistry/the-ai-unit-economics-problem-why-cost-per-token-is-the-wrong-executive-metric-51f97eeca333",
+      "source": "Medium",
+      "date": "2026-09-25T07:58:20.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-a41e84e1135685dc",
+      "title": "AI FinOps Is Moving From Token Tracking to Business Value",
+      "description": "For a while, most conversations about AI cost started with tokens. How many did we use? Which model was expensive? Why did the bill move this month? Those questions still matter. But they are quick…",
+      "url": "https://medium.com/@bhavin_mistry/ai-finops-is-moving-from-token-tracking-to-business-value-fcb1fd2c285a",
+      "source": "Medium",
+      "date": "2026-09-25T07:53:34.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-3465e88ca7c3bce9",
+      "title": "The AI Unit Economics Problem: Why Cost per Token Is the Wrong Executive Metric",
+      "description": "Why enterprise AI leaders need to connect technical consumption with the cost and value of successful business outcomes.",
+      "url": "https://www.linkedin.com/pulse/ai-unit-economics-problem-why-cost-per-token-wrong-executive-mistry-obkwe",
+      "source": "LinkedIn",
+      "date": "2026-09-22T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-3aee20a1bfcff0a7",
+      "title": "AI FinOps Is Moving From Token Tracking to Business Value",
+      "description": "A perspective on AI observability, financial controls, and the connection between AI spending and business value.",
+      "url": "https://www.linkedin.com/pulse/ai-finops-moving-from-token-tracking-business-value-bhavin-mistry-fzlrc",
+      "source": "LinkedIn",
+      "date": "2026-09-15T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-c556932e76aba5c2",
+      "title": "The Enterprise Rollout Playbook to Claude Code & Codex CLI",
+      "description": "The Enterprise Rollout Playbook A practical, verified guide for engineering teams shipping AI coding agents at scale — including routing through Amazon Bedrock, Portkey, or your own in-house LLM. W…",
+      "url": "https://medium.com/@bhavin_mistry/the-enterprise-rollout-playbook-to-claude-code-codex-cli-b832cfd5c070",
+      "source": "Medium",
+      "date": "2026-08-30T08:34:55.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-5f6b8a4735b98a37",
+      "title": "The Enterprise Generative AI Paradox: Bridging the Divide Between Adoption Saturation and P&L Value…",
+      "description": "The Enterprise Generative AI Paradox: Bridging the Divide Between Adoption Saturation and P&L Value Realisation Macro-Economic Context and the Enterprise Productivity Disconnect The global enterpri…",
+      "url": "https://medium.com/@bhavin_mistry/the-enterprise-generative-ai-paradox-bridging-the-divide-between-adoption-saturation-and-p-l-value-b52fc2e2abb8",
+      "source": "Medium",
+      "date": "2026-08-07T06:58:40.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-0d5256bf3d3ff2a8",
+      "title": "Gen AI — Practical adoption vs real value gap",
+      "description": "Why 88% of Companies Are Using AI, Yet Only 39% See Real Profits 88% of companies have deployed AI in some part of their business.Yet only 39% can point to a measurable impact on profitability. I’v…",
+      "url": "https://medium.com/@bhavin_mistry/gen-ai-practical-adoption-vs-real-value-gap-6acc4640e87b",
+      "source": "Medium",
+      "date": "2026-08-07T06:41:25.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-d3421ba73d958aec",
+      "title": "Why 2026 marks the shift from bigger models to smarter systems",
+      "description": "The AI Race Just Changed — And Most People Haven’t Noticed I’ve been watching the AI space closely for years now, and something fundamental shifted in early 2026. It’s subtle enough that you might …",
+      "url": "https://medium.com/@bhavin_mistry/why-2026-marks-the-shift-from-bigger-models-to-smarter-systems-82698dceae61",
+      "source": "Medium",
+      "date": "2026-02-03T04:05:42.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-27c6184a7fa5575d",
+      "title": "Accelerating Engineering Excellence: A Strategic Framework for Enhanced Software Development…",
+      "description": "Accelerating Engineering Excellence: A Strategic Framework for Enhanced Software Development Capabilities Problem statement Summary Organisations face mounting pressure to deliver software solution…",
+      "url": "https://medium.com/@bhavin_mistry/accelerating-engineering-excellence-a-strategic-framework-for-enhanced-software-development-fc3f5cbfd591",
+      "source": "Medium",
+      "date": "2026-02-03T03:44:19.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-efe1e857b1502773",
+      "title": "Building a Local AI-Powered Code Review Agent: Integrate with DevOps & VS Code",
+      "description": "While developing code is critical in today’s fast-paced software development environment, automated code review can save hours of manual effort while ensuring code quality and consistency. Imagine …",
+      "url": "https://medium.com/@bhavin_mistry/building-a-local-ai-powered-code-review-agent-integrate-with-devops-vs-code-f3c4430bd6ba",
+      "source": "Medium",
+      "date": "2026-01-23T01:33:50.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-07b4264a86d4ccdd",
+      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt…",
+      "description": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AIImagine this: You're a Leader who is asked to perform a risk analysis on deploying Genera…",
+      "url": "https://medium.com/@bhavin_mistry/how-rag-becomes-the-fastest-safest-and-most-cost-efficient-way-for-finance-enterprises-to-adopt-7e156277e8c8",
+      "source": "Medium",
+      "date": "2026-01-23T01:31:21.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-888f288fec3843be",
+      "title": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save…",
+      "description": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save Millions Compared to OpenAI, Google, Microsoft, and Anthropic1. The 2025 Reality: AI Bills Are Out…",
+      "url": "https://medium.com/@bhavin_mistry/enterprise-ai-the-open-source-case-782fe2896b4d",
+      "source": "Medium",
+      "date": "2025-11-23T10:41:14.000Z",
+      "image": null,
+      "type": "article"
+    }
+  ]
+}

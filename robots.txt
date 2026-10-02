@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /scratch/
+Disallow: /data/
+
+Sitemap: https://bhavinmistry.com/sitemap.xml
