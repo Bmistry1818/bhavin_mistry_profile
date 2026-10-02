@@ -79,7 +79,7 @@ node --check scripts/build-pages.js
 
 Both workflows use shell steps to respect this repository's policy that disallows Actions owned by other accounts. Source changes follow the `main` pull request process; generated site updates do not require a separate content PR.
 
-- **Medium:** Automatically reads `https://medium.com/feed/@bhavin_mistry`. RSS history is merged with the cache, so older publications survive the feed's ten-entry window.
+- **Medium:** Automatically reads `https://medium.com/feed/@bhavin_mistry`. Each scheduled run restores the previous deployment's cache before merging RSS updates, so article history persists across runs beyond the feed's ten-entry window (up to twelve entries per source).
 - **LinkedIn:** The former RSS Bridge endpoint is unavailable. Set the `LINKEDIN_RSS_URL` repository secret (or variable for a public URL) to a working RSS/Atom feed from an integration you control. Without it, `data/linkedin-articles.json` supplies verified titles, individual article links, descriptions, and publication dates. This is a curated index, not automatic LinkedIn discovery. LinkedIn's official personal-post API requires approved read permissions.
 - **Display:** Recent articles appear on the homepage and at the top of `/insights/`, newest first. Matching article titles on both platforms share a card with both links. External feed text is escaped before rendering.
 - **Failures:** A failed source retains its cached articles; failure of all configured feeds stops publication. Source results and the LinkedIn connection status appear in the Actions run summary. Private feed URLs are never logged.

@@ -3,7 +3,15 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const os = require('node:os');
-const { copyPublicSite, PUBLIC_FILES, PUBLIC_DIRS } = require('./publish-pages');
+const { copyPublicSite, PUBLIC_FILES, PUBLIC_DIRS, hasSuccessfulDeployment } = require('./publish-pages');
+
+test('Pages verification accepts a successful deployment for the exact commit', async () => {
+  const api = async endpoint => endpoint.includes('/statuses') ? [{ state: 'success' }] : [{ id: 10, sha: 'current' }];
+  assert.equal(await hasSuccessfulDeployment(api, 'current'), true);
+  assert.equal(await hasSuccessfulDeployment(api, 'different'), false);
+  const pending = async endpoint => endpoint.includes('/statuses') ? [{ state: 'pending' }, { state: 'success' }] : [{ id: 10, sha: 'current' }];
+  assert.equal(await hasSuccessfulDeployment(pending, 'current'), false);
+});
 
 test('deployment copies public assets and excludes repository and private configuration', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'public-site-test-'));

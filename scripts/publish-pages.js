@@ -19,6 +19,16 @@ function copyPublicSite(destination, root = ROOT_DIR) {
   fs.copyFileSync(path.join(root, 'data/blogs.json'), path.join(destination, 'data/blogs.json'));
 }
 
+async function hasSuccessfulDeployment(api, commit) {
+  const deployments = await api(`/deployments?sha=${commit}&environment=github-pages&per_page=5`);
+  for (const deployment of deployments) {
+    if (deployment.sha !== commit) continue;
+    const statuses = await api(`/deployments/${deployment.id}/statuses`);
+    if (statuses[0]?.state === 'success') return true;
+  }
+  return false;
+}
+
 async function publishPages({ env = process.env, request = fetch } = {}) {
   const token = env.GITHUB_TOKEN;
   const repository = env.GITHUB_REPOSITORY;
@@ -26,11 +36,12 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
   const apiBase = `https://api.github.com/repos/${repository}`;
   const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json' };
-  async function api(endpoint, method = 'GET', body) {
+  async function api(endpoint, method = 'GET', body, allowMissing = false) {
     const response = await request(`${apiBase}${endpoint}`, { method, headers,
       ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(30000) });
     const bodyText = await response.text();
     const data = bodyText ? JSON.parse(bodyText) : {};
+    if (allowMissing && response.status === 404) return {};
     if (!response.ok) throw new Error(`GitHub Pages ${method} ${endpoint}: HTTP ${response.status}: ${data.message || 'request failed'}`);
     return data;
   }
@@ -70,8 +81,8 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
     await api('/pages', 'PUT', { build_type: 'legacy', source: { branch: 'gh-pages', path: '/' } });
   }
   if (!changed && !needsConfiguration) {
-    const latest = await api('/pages/builds/latest');
-    if (latest.commit === commit && latest.status === 'built') {
+    const latest = await api('/pages/builds/latest', 'GET', undefined, true);
+    if ((latest.commit === commit && latest.status === 'built') || await hasSuccessfulDeployment(api, commit)) {
       console.log('Published site is already current; no deployment needed.');
       return { changed: false, commit };
     }
@@ -79,8 +90,9 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
   await api('/pages/builds', 'POST');
   console.log(`Requested GitHub Pages publication for ${commit.slice(0, 7)}.`);
   for (let attempt = 0; attempt < 30; attempt++) {
-    const build = await api('/pages/builds/latest');
-    if (build.commit === commit && build.status === 'built') {
+    const build = await api('/pages/builds/latest', 'GET', undefined, true);
+    // The static Pages service can report a deployment without a legacy build record.
+    if ((build.commit === commit && build.status === 'built') || await hasSuccessfulDeployment(api, commit)) {
       console.log(`Verified published site: https://bhavinmistry.com/ (${commit.slice(0, 7)}).`);
       return { changed, commit };
     }
@@ -91,4 +103,4 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
 }
 
 if (require.main === module) publishPages().catch(error => { console.error(error.message); process.exitCode = 1; });
-module.exports = { copyPublicSite, PUBLIC_FILES, PUBLIC_DIRS, publishPages };
+module.exports = { copyPublicSite, PUBLIC_FILES, PUBLIC_DIRS, publishPages, hasSuccessfulDeployment };
