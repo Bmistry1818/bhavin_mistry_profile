@@ -29,7 +29,8 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
   async function api(endpoint, method = 'GET', body) {
     const response = await request(`${apiBase}${endpoint}`, { method, headers,
       ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(30000) });
-    const data = await response.json();
+    const bodyText = await response.text();
+    const data = bodyText ? JSON.parse(bodyText) : {};
     if (!response.ok) throw new Error(`GitHub Pages ${method} ${endpoint}: HTTP ${response.status}: ${data.message || 'request failed'}`);
     return data;
   }
