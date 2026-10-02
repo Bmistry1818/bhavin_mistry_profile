@@ -24,6 +24,7 @@
 - AI-Powered Enterprise SDLC: https://bhavinmistry.com/architectures/ai-powered-sdlc/
 
 ## Frameworks & Tools
+- Graph Engineering Platform (AI skills and MCP servers): https://bhavinmistry.com/tools/graph-engineering/
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
 - AI Readiness Assessment Diagnostic: https://bhavinmistry.com/tools/enterprise-ai-readiness/
