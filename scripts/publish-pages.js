@@ -6,9 +6,10 @@ const { execFileSync } = require('node:child_process');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const PUBLIC_FILES = ['index.html', '404.html', 'styles.css', 'script.js', 'favicon.ico', 'favicon.png',
-  'favicon.svg', 'apple-touch-icon.png', 'CNAME', '.nojekyll', 'feed.xml', 'sitemap.xml', 'robots.txt', 'llms.txt'];
+  'favicon.svg', 'apple-touch-icon.png', 'CNAME', '.nojekyll', 'feed.xml', 'sitemap.xml', 'robots.txt', 'llms.txt',
+  'BingSiteAuth.xml', 'googled5898bc9d7540753.html'];
 const PUBLIC_DIRS = ['about', 'ai-radar', 'architectures', 'enterprise-ai-engineering', 'frameworks',
-  'insights', 'newsletter', 'privacy', 'research', 'tools'];
+  'insights', 'newsletter', 'privacy', 'research', 'tools', 'speaking', 'brief', 'compare', 'assets'];
 
 function copyPublicSite(destination, root = ROOT_DIR) {
   fs.mkdirSync(destination, { recursive: true });
