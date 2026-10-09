@@ -6,18 +6,34 @@
     <title>RAG vs Agentic RAG: Enterprise Architecture Decision Guide | Bhavin Mistry</title>
     <meta name="description" content="A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead." />
     <link rel="canonical" href="https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/" />
-    
-    <!-- OpenGraph & Twitter -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Search Engine Verifications -->
+    <meta name="google-site-verification" content="d5898bc9d7540753" />
+    <meta name="msvalidate.01" content="158B882A77D6BCB689F6AC86873187E7" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/" />
     <meta property="og:title" content="RAG vs Agentic RAG: Enterprise Architecture Decision Guide | Bhavin Mistry" />
     <meta property="og:description" content="A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/" />
-    <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://bhavinmistry.com/assets/og/rag-vs-agentic-rag-enterprise-decision-guide.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Bhavin Mistry" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="article:published_time" content="2026-08-05" />
+    <meta property="article:modified_time" content="2026-08-28" />
+    <meta property="article:author" content="https://bhavinmistry.com/about/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BhaveenMistrry" />
+    <meta name="twitter:creator" content="@BhaveenMistrry" />
     <meta name="twitter:title" content="RAG vs Agentic RAG: Enterprise Architecture Decision Guide | Bhavin Mistry" />
     <meta name="twitter:description" content="A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead." />
-    <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
-    
+    <meta name="twitter:image" content="https://bhavinmistry.com/assets/og/rag-vs-agentic-rag-enterprise-decision-guide.png" />
+
     <!-- Favicon & Icons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -28,7 +44,7 @@
 
     <link rel="stylesheet" href="/styles.css" />
     <script defer src="/script.js"></script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"RAG vs Agentic RAG: Enterprise Architecture Decision Guide","description":"A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead.","datePublished":"2026-08-05","dateModified":"2026-08-28","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/about/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"url":"https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"RAG vs Agentic RAG: Enterprise Architecture Decision Guide","description":"A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead.","datePublished":"2026-08-05","dateModified":"2026-08-28","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/"},"image":"https://bhavinmistry.com/assets/og/rag-vs-agentic-rag-enterprise-decision-guide.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bhavinmistry.com/"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://bhavinmistry.com/insights/"},{"@type":"ListItem","position":3,"name":"RAG vs Agentic RAG: Enterprise Architecture Decision Guide","item":"https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/"}]}]}</script>
   </head>
   <body id="top" class="">
     
@@ -48,8 +64,10 @@
           <a href="/enterprise-ai-engineering/" class="">Handbook</a>
           <a href="/architectures/" class="">Architectures</a>
           <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
+          <a href="/compare/" class="">Compare</a>
           <a href="/ai-radar/" class="">AI Radar</a>
           <a href="/tools/" class="">Tools</a>
+          <a href="/speaking/" class="">Speaking</a>
           <a href="/about/" class="">About</a>
           <button class="search-trigger" type="button" aria-label="Search site">
             <span>Search</span>
@@ -62,112 +80,187 @@
   
     <main id="main-content">
       
-      <article class="container" style="max-width: 840px; padding-top: 64px; padding-bottom: 88px;">
-        <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
-          <a href="/">Home</a> / <a href="/insights/">Insights</a> / <span style="color: var(--ink);">AI Architecture</span>
-        </nav>
+      <article class="container" style="max-width: 1140px; padding-top: 64px; padding-bottom: 88px;">
+        
+    <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+      <a href="/">Home</a> / <a href="/insights/">Insights</a> / <span style="color: var(--ink);">RAG vs Agentic RAG: Enterprise Architecture Decision Guide</span>
+    </nav>
+  
 
-        <header style="margin-bottom: 40px;">
+        <header style="margin-bottom: 40px; max-width: 860px;">
           <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
             <span class="badge badge-accent">AI Architecture</span>
             <span class="badge">Decision Matrix</span>
             <span style="font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: auto;">8 min read</span>
           </div>
-          <h1 style="font-size: clamp(36px, 5vw, 54px); margin-bottom: 20px;">RAG vs Agentic RAG: Enterprise Architecture Decision Guide</h1>
+          <h1 style="font-size: clamp(34px, 5vw, 52px); margin-bottom: 20px;">RAG vs Agentic RAG: Enterprise Architecture Decision Guide</h1>
           <p class="hero-lead" style="font-size: 20px; color: var(--muted);">A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead.</p>
-          <div style="display: flex; gap: 24px; align-items: center; padding-top: 20px; border-top: 1px solid var(--line); margin-top: 24px; font-size: 13px; color: var(--muted);">
-            <span>By <strong><a href="/about/">Bhavin Mistry</a></strong></span>
+          <div style="display: flex; gap: 24px; align-items: center; padding-top: 20px; border-top: 1px solid var(--line); margin-top: 24px; font-size: 13px; color: var(--muted); flex-wrap: wrap;">
+            <span>By <strong><a href="/about/">Bhavin Mistry</a></strong>, Senior Engineering Manager at Commonwealth Bank</span>
             <span>Published: 2026-08-05</span>
-            <span>Updated: 2026-08-28</span>
+            <span>Last updated: 2026-08-28</span>
           </div>
         </header>
 
-        <!-- "BHAVIN'S TAKE" EDITORIAL HIGHLIGHT BOX -->
-        <div class="take-box">
-          <div class="take-box-header">
-            <span class="eyebrow">Editorial Analysis</span>
-            <span class="badge badge-accent">Bhavin's Take</span>
-          </div>
-          <p style="font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 16px;">
-            "Start with deterministic hybrid RAG. Only introduce agentic query decomposition when empirical evaluation proves standard retrieval cannot synthesize the answer."
+        
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbhavinmistry.com%2Finsights%2Frag-vs-agentic-rag-enterprise-decision-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on LinkedIn">
+        <span>LinkedIn ↗</span>
+      </a>
+      <a href="https://x.com/intent/tweet?text=RAG%20vs%20Agentic%20RAG%3A%20Enterprise%20Architecture%20Decision%20Guide&url=https%3A%2F%2Fbhavinmistry.com%2Finsights%2Frag-vs-agentic-rag-enterprise-decision-guide%2F&via=BhaveenMistrry" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on X / Twitter">
+        <span>X / Twitter ↗</span>
+      </a>
+      <button type="button" class="share-btn" data-copy-url="https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/" aria-label="Copy page URL">
+        <span>Copy Link 📋</span>
+      </button>
+    </div>
+  
+        
+      <details class="toc-mobile">
+        <summary>Table of Contents (5 sections)</summary>
+        <ul class="toc-list">
+          <li><a href="#editorial-analysis">Editorial Analysis &amp; Bhavin&#39;s Take</a></li><li><a href="#production-disconnect">The Production Reality</a></li><li><a href="#landscape-shift">What Changed vs What Stays Invariant</a></li><li><a href="#architectural-action">Architectural Guidance &amp; Action Plan</a></li><li><a href="#connected-resources">Connected Resources</a></li>
+        </ul>
+      </details>
+    
+
+        <div class="article-grid">
+          <div class="article-main">
+            <!-- "BHAVIN'S TAKE" EDITORIAL HIGHLIGHT BOX -->
+            <div id="editorial-analysis" class="take-box">
+              <div class="take-box-header">
+                <span class="eyebrow">Editorial Analysis</span>
+                <span class="badge badge-accent">Bhavin's Take</span>
+              </div>
+              <p style="font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 16px; line-height: 1.6;">
+                "Start with deterministic hybrid RAG. Only introduce agentic query decomposition when empirical evaluation proves standard retrieval cannot synthesize the answer."
+              </p>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px;">
+                <div>
+                  <strong>Why Enterprises Should Care:</strong>
+                  <p style="color: var(--muted); margin-top: 4px;">Unnecessary architectural complexity directly inflates cloud bills and degrades user experience.</p>
+                </div>
+                <div>
+                  <strong>Architectural Impact:</strong>
+                  <p style="color: var(--muted); margin-top: 4px;">Tiered architecture: routing 85% of standard questions to optimized one-shot RAG, reserving agentic multi-hop retrieval for complex research queries.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ARTICLE BODY CONTENT -->
+            <div class="article-content" style="font-size: 17px; line-height: 1.75; color: var(--ink-soft);">
+              <h2 id="production-disconnect" style="margin-top: 40px; margin-bottom: 16px;">The Production Disconnect</h2>
+              <p>
+                Across enterprise engineering teams in 2026, generative AI experimentation has reached saturation. Nearly every department has experimented with commercial LLM APIs, internal chat bots, and multi-agent prototypes. Yet, when technology leaders examine operating margins and P&L results, the value gap remains stark.
+              </p>
+              <p>
+                The root cause is rarely the base intelligence of the frontier model. Instead, it is the absence of rigorous distributed systems engineering: unmonitored token egress, hallucinated citations in customer workflows, lack of document-level security filtering, and non-deterministic agent loops that compound errors over multi-hop executions.
+              </p>
+
+              <h2 id="landscape-shift" style="margin-top: 40px; margin-bottom: 16px;">What Changed in the Landscape vs Invariants</h2>
+              <div style="background: var(--paper-elevated); border: 1px solid var(--line); padding: 24px; margin: 24px 0;">
+                <h4 style="margin-bottom: 8px;">What Changed in the Technology Landscape</h4>
+                <p style="font-size: 14px; color: var(--muted);">Engineering teams are reflexively adopting agentic retrieval frameworks without analyzing whether their use case warrants 5x higher latency and 10x higher token expenditure.</p>
+                <h4 style="margin-top: 16px; margin-bottom: 8px;">What Remains Invariant in Enterprise Systems</h4>
+                <p style="font-size: 14px; color: var(--muted);">Users prize instant, accurate answers over watching an agent cogitate through reasoning loops.</p>
+              </div>
+
+              <h2 id="architectural-action" style="margin-top: 40px; margin-bottom: 16px;">Architectural Guidance & Action Plan</h2>
+              <p>
+                Moving from experimental spikes to hardened production requires treating AI components like any other mission-critical tier in your stack.
+              </p>
+              <ul style="margin-left: 24px; margin-bottom: 24px; font-size: 16px;">
+                <li style="margin-bottom: 10px;"><strong>Enforce Centralised Gateways:</strong> Terminate all model invocations through internal routing proxies that enforce token quotas, PII redaction, and semantic caching.</li>
+                <li style="margin-bottom: 10px;"><strong>Automate Continuous Evaluation:</strong> Reject vibe checks. Integrate golden evaluation sets (100–300 SME-validated queries) directly into CI/CD pipelines.</li>
+                <li style="margin-bottom: 10px;"><strong>Bound Agent Autonomy:</strong> Replace free-form agent decision trees with constrained state machines and cryptographic approval fences for state-mutating actions.</li>
+              </ul>
+
+              <div style="background: var(--wash); padding: 24px; border: 1px solid var(--line); margin: 32px 0;">
+                <h4 style="margin-bottom: 8px;">Immediate Action for Engineering Leaders</h4>
+                <p style="font-size: 14px; color: var(--ink); margin-bottom: 0;">Benchmark query latency percentiles (p50, p95, p99) across both architectures on identical document sets.</p>
+              </div>
+            </div>
+
+            
+    <div class="share-bar">
+      <span class="share-label">Share:</span>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbhavinmistry.com%2Finsights%2Frag-vs-agentic-rag-enterprise-decision-guide%2F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on LinkedIn">
+        <span>LinkedIn ↗</span>
+      </a>
+      <a href="https://x.com/intent/tweet?text=RAG%20vs%20Agentic%20RAG%3A%20Enterprise%20Architecture%20Decision%20Guide&url=https%3A%2F%2Fbhavinmistry.com%2Finsights%2Frag-vs-agentic-rag-enterprise-decision-guide%2F&via=BhaveenMistrry" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on X / Twitter">
+        <span>X / Twitter ↗</span>
+      </a>
+      <button type="button" class="share-btn" data-copy-url="https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/" aria-label="Copy page URL">
+        <span>Copy Link 📋</span>
+      </button>
+    </div>
+  
+            
+    <section class="lead-magnet-card" aria-labelledby="lead-magnet-title">
+      <div class="lead-magnet-grid">
+        <div>
+          <span class="eyebrow" style="color: var(--accent);">Engineering Resource</span>
+          <h3 id="lead-magnet-title" style="font-size: 22px; margin-bottom: 8px;">The Enterprise AI Production Checklist</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 0;">
+            A rigorous 50-point engineering, security, and FinOps verification gate before promoting Generative AI and Agentic systems to live enterprise traffic.
           </p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px;">
-            <div>
-              <strong>Why Enterprises Should Care:</strong>
-              <p style="color: var(--muted); margin-top: 4px;">Unnecessary architectural complexity directly inflates cloud bills and degrades user experience.</p>
-            </div>
-            <div>
-              <strong>Architectural Impact:</strong>
-              <p style="color: var(--muted); margin-top: 4px;">Tiered architecture: routing 85% of standard questions to optimized one-shot RAG, reserving agentic multi-hop retrieval for complex research queries.</p>
-            </div>
-          </div>
         </div>
-
-        <!-- ARTICLE BODY CONTENT -->
-        <div class="article-content" style="font-size: 17px; line-height: 1.75; color: var(--ink-soft);">
-          <h2 style="margin-top: 40px; margin-bottom: 16px;">The Production Disconnect</h2>
-          <p>
-            Across enterprise engineering teams in 2026, generative AI experimentation has reached saturation. Nearly every department has experimented with commercial LLM APIs, internal chat bots, and multi-agent prototypes. Yet, when technology leaders examine operating margins and P&L results, the value gap remains stark.
-          </p>
-          <p>
-            The root cause is rarely the base intelligence of the frontier model. Instead, it is the absence of rigorous distributed systems engineering: unmonitored token egress, hallucinated citations in customer workflows, lack of document-level security filtering, and non-deterministic agent loops that compound errors over multi-hop executions.
-          </p>
-
-          <h2 style="margin-top: 40px; margin-bottom: 16px;">What Happened vs What Doesn't Change</h2>
-          <div style="background: var(--paper-elevated); border: 1px solid var(--line); padding: 24px; margin: 24px 0;">
-            <h4 style="margin-bottom: 8px;">What Changed in the Technology Landscape</h4>
-            <p style="font-size: 14px; color: var(--muted);">Engineering teams are reflexively adopting agentic retrieval frameworks without analyzing whether their use case warrants 5x higher latency and 10x higher token expenditure.</p>
-            <h4 style="margin-top: 16px; margin-bottom: 8px;">What Remains Invariant in Enterprise Systems</h4>
-            <p style="font-size: 14px; color: var(--muted);">Users prize instant, accurate answers over watching an agent cogitate through reasoning loops.</p>
-          </div>
-
-          <h2 style="margin-top: 40px; margin-bottom: 16px;">Architectural Guidance & Action Plan</h2>
-          <p>
-            Moving from experimental spikes to hardened production requires treating AI components like any other mission-critical tier in your stack.
-          </p>
-          <ul style="margin-left: 24px; margin-bottom: 24px; font-size: 16px;">
-            <li style="margin-bottom: 10px;"><strong>Enforce Centralised Gateways:</strong> Terminate all model invocations through internal routing proxies that enforce token quotas, PII redaction, and semantic caching.</li>
-            <li style="margin-bottom: 10px;"><strong>Automate Continuous Evaluation:</strong> Reject vibe checks. Integrate golden evaluation sets (100–300 SME-validated queries) directly into CI/CD pipelines.</li>
-            <li style="margin-bottom: 10px;"><strong>Bound Agent Autonomy:</strong> Replace free-form agent decision trees with constrained state machines and cryptographic approval fences for state-mutating actions.</li>
-          </ul>
-
-          <div style="background: var(--wash); padding: 24px; border: 1px solid var(--line); margin: 32px 0;">
-            <h4 style="margin-bottom: 8px;">Immediate Action for Engineering Leaders</h4>
-            <p style="font-size: 14px; color: var(--ink); margin-bottom: 0;">Benchmark query latency percentiles (p50, p95, p99) across both architectures on identical document sets.</p>
-          </div>
+        <div>
+          <form action="/newsletter/" method="get" onsubmit="event.preventDefault(); alert('Checklist access queued! A confirmation email has been dispatched to your inbox.');" style="display: flex; flex-direction: column; gap: 10px;">
+            <input type="email" placeholder="name@enterprise.com" required style="padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px; font-size: 13px; background: var(--paper);" aria-label="Work email address" />
+            <button type="submit" class="btn btn-primary" style="padding: 12px; font-size: 13px;">Get Free Production Checklist →</button>
+          </form>
+          <span style="font-size: 11px; color: var(--muted); display: block; margin-top: 8px; text-align: center;">Zero spam. Fortnightly dispatches. Unsubscribe anytime.</span>
         </div>
-
-        <!-- AUTHOR BIO & SHARING -->
-        <div style="margin-top: 64px; padding: 32px; background: var(--paper-elevated); border: 1px solid var(--line); display: flex; gap: 24px; align-items: center;">
-          <div>
-            <span class="eyebrow" style="margin-bottom: 4px;">Author & Lead Architect</span>
-            <h4 style="font-size: 18px; margin-bottom: 6px;">Bhavin Mistry</h4>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">
-              Enterprise AI & Engineering Leader based in Melbourne, Australia. Focusing on production LLM architecture, agentic reliability, and engineering leadership.
-            </p>
-            <div style="display: flex; gap: 16px;">
-              <a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn Profile <span>↗</span></a>
-              <a href="/about/" class="text-link">About Bhavin <span>→</span></a>
-            </div>
-          </div>
+      </div>
+    </section>
+  
+            
+    <div style="margin-top: 48px; padding: 28px; background: var(--paper-elevated); border: 1px solid var(--line); border-radius: 4px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 240px;">
+        <span class="eyebrow" style="margin-bottom: 4px;">Author & Engineering Leader</span>
+        <h4 style="font-size: 18px; margin-bottom: 6px;">Bhavin Mistry</h4>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.6;">
+          Senior Engineering Manager at Commonwealth Bank based in Melbourne, Australia. Focusing on enterprise AI architecture, hybrid RAG, agentic reliability, and technology economics.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;">
+          <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn Profile <span>↗</span></a>
+          <a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer" class="text-link">Medium <span>↗</span></a>
+          <a href="/about/" class="text-link">Full Leadership Bio <span>→</span></a>
+          <a href="/speaking/" class="text-link">Speaking & Keynotes <span>→</span></a>
         </div>
+      </div>
+    </div>
+  
 
-        <!-- RELATED BLUEPRINTS & TOOLS -->
-        <div style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
-          <span class="eyebrow">Connected Resources</span>
-          <h3>Related Production Architectures & Tools</h3>
-          <div class="card-grid-2" style="margin-top: 20px;">
-            <div class="card">
-              <span class="eyebrow">Architecture</span>
-              <h4><a href="/architectures/enterprise-rag/">Enterprise Hybrid RAG Blueprint</a></h4>
-              <p style="font-size: 13px;">Full component breakdown and security boundaries for hybrid search.</p>
-            </div>
-            <div class="card">
-              <span class="eyebrow">Interactive Tool</span>
-              <h4><a href="/tools/enterprise-ai-readiness/">AI Readiness Diagnostic</a></h4>
-              <p style="font-size: 13px;">Benchmark your organization's AI maturity across 5 dimensions.</p>
+            <!-- CONNECTED RESOURCES & BLUEPRINTS -->
+            <div id="connected-resources" style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line);">
+              <span class="eyebrow">Connected Resources</span>
+              <h3>Related Production Architectures & Tools</h3>
+              <div class="card-grid-2" style="margin-top: 20px;">
+                <div class="card">
+                  <span class="eyebrow">Architecture Blueprint</span>
+                  <h4><a href="/architectures/enterprise-rag/">Enterprise Hybrid RAG Architecture</a></h4>
+                  <p style="font-size: 13px;">Full component breakdown, BM25 + dense fusion, and security trimming boundaries.</p>
+                </div>
+                <div class="card">
+                  <span class="eyebrow">Maturity Methodology</span>
+                  <h4><a href="/frameworks/enterprise-ai-production-readiness/">5-Stage Production Readiness Framework</a></h4>
+                  <p style="font-size: 13px;">Benchmark your organization across 12 operational dimensions from Explore to Scale.</p>
+                </div>
+              </div>
             </div>
           </div>
+
+          
+      <aside class="toc-sidebar" aria-label="Table of Contents">
+        <div class="toc-title">Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#editorial-analysis">Editorial Analysis &amp; Bhavin&#39;s Take</a></li><li><a href="#production-disconnect">The Production Reality</a></li><li><a href="#landscape-shift">What Changed vs What Stays Invariant</a></li><li><a href="#architectural-action">Architectural Guidance &amp; Action Plan</a></li><li><a href="#connected-resources">Connected Resources</a></li>
+        </ul>
+      </aside>
+    
         </div>
       </article>
     
@@ -186,6 +279,7 @@
               <li><a href="/insights/">Enterprise Insights</a></li>
               <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
               <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/compare/">Architectural Comparisons</a></li>
               <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
               <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
               <li><a href="/research/">Research & Benchmarks</a></li>
@@ -204,8 +298,12 @@
           <div class="footer-col">
             <h4>Ecosystem</h4>
             <ul>
+              <li><a href="/speaking/">Speaking & Keynotes</a></li>
+              <li><a href="/brief/">Newsletter Archive</a></li>
               <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
-              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://github.com/Bmistry1818" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a></li>
+              <li><a href="https://x.com/BhaveenMistrry" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></li>
               <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
               <li><a href="/feed.xml">RSS Feed</a></li>
               <li><a href="/llms.txt">llms.txt</a></li>

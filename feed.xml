@@ -8,6 +8,30 @@
     <atom:link href="https://bhavinmistry.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The Hidden Costs of LLM Inference: A Cost Modeling Guide</title>
+      <link>https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/</link>
+      <guid>https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Deconstructing prompt token bloat, cache miss penalties, reranker latency, and egress costs: an engineering guide to modeling enterprise LLM unit economics.]]></description>
+      <category>AI FinOps</category>
+    </item>
+    <item>
+      <title>Why Hybrid RAG Beats Pure Vector Search in Enterprise Settings</title>
+      <link>https://bhavinmistry.com/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/</link>
+      <guid>https://bhavinmistry.com/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Why pure semantic vector search fails on product SKUs, financial tickers, and regulatory acronyms, and how reciprocal rank fusion (BM25 + Dense + Reranking) fixes it.]]></description>
+      <category>Enterprise RAG</category>
+    </item>
+    <item>
+      <title>The 5-Stage Framework for Taking Enterprise AI to Production</title>
+      <link>https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/</link>
+      <guid>https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[A disciplined engineering roadmap from exploration to scale: how to advance enterprise AI initiatives past pilot purgatory into governed, reliable production.]]></description>
+      <category>Enterprise AI</category>
+    </item>
+    <item>
       <title>Enterprise AI Engineering: From Experimentation to Production</title>
       <link>https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/</link>
       <guid>https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/</guid>

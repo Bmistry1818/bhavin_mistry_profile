@@ -4,20 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Enterprise AI Engineering Handbook | Bhavin Mistry</title>
-    <meta name="description" content="A 23-chapter practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems." />
+    <meta name="description" content="A comprehensive, practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems." />
     <link rel="canonical" href="https://bhavinmistry.com/enterprise-ai-engineering/" />
-    
-    <!-- OpenGraph & Twitter -->
-    <meta property="og:title" content="The Enterprise AI Engineering Handbook | Bhavin Mistry" />
-    <meta property="og:description" content="A 23-chapter practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems." />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Search Engine Verifications -->
+    <meta name="google-site-verification" content="d5898bc9d7540753" />
+    <meta name="msvalidate.01" content="158B882A77D6BCB689F6AC86873187E7" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bhavinmistry.com/enterprise-ai-engineering/" />
-    <meta property="og:image" content="https://bhavinmistry.com/favicon.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="The Enterprise AI Engineering Handbook | Bhavin Mistry" />
-    <meta name="twitter:description" content="A 23-chapter practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems." />
-    <meta name="twitter:image" content="https://bhavinmistry.com/favicon.png" />
+    <meta property="og:title" content="The Enterprise AI Engineering Handbook | Bhavin Mistry" />
+    <meta property="og:description" content="A comprehensive, practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems." />
+    <meta property="og:image" content="https://bhavinmistry.com/assets/og/default.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Bhavin Mistry" />
+    <meta property="og:locale" content="en_AU" />
     
+    
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@BhaveenMistrry" />
+    <meta name="twitter:creator" content="@BhaveenMistrry" />
+    <meta name="twitter:title" content="The Enterprise AI Engineering Handbook | Bhavin Mistry" />
+    <meta name="twitter:description" content="A comprehensive, practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems." />
+    <meta name="twitter:image" content="https://bhavinmistry.com/assets/og/default.png" />
+
     <!-- Favicon & Icons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -29,21 +45,27 @@
     <link rel="stylesheet" href="/styles.css" />
     <script defer src="/script.js"></script>
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Bhavin Mistry",
-      "url": "https://bhavinmistry.com/",
-      "sameAs": [
-        "https://www.linkedin.com/in/bhavin-mistry/",
-        "https://medium.com/@bhavin_mistry"
-      ],
-      "jobTitle": "Senior Engineering Manager",
-      "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "Victoria", "addressCountry": "AU" }
-    }
-    </script>
-  
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Bhavin Mistry",
+        "url": "https://bhavinmistry.com/",
+        "sameAs": [
+          "https://www.linkedin.com/in/bhavin-mistry",
+          "https://github.com/Bmistry1818",
+          "https://x.com/BhaveenMistrry",
+          "https://medium.com/@bhavin_mistry"
+        ],
+        "jobTitle": "Senior Engineering Manager",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Commonwealth Bank"
+        },
+        "address": { "@type": "PostalAddress", "addressLocality": "Melbourne", "addressRegion": "Victoria", "addressCountry": "AU" }
+      }
+      </script>
+    
   </head>
   <body id="top" class="">
     
@@ -63,8 +85,10 @@
           <a href="/enterprise-ai-engineering/" class="active">Handbook</a>
           <a href="/architectures/" class="">Architectures</a>
           <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
+          <a href="/compare/" class="">Compare</a>
           <a href="/ai-radar/" class="">AI Radar</a>
           <a href="/tools/" class="">Tools</a>
+          <a href="/speaking/" class="">Speaking</a>
           <a href="/about/" class="">About</a>
           <button class="search-trigger" type="button" aria-label="Search site">
             <span>Search</span>
@@ -78,229 +102,220 @@
     <main id="main-content">
       
     <div class="container" style="padding-top: 64px; padding-bottom: 88px;">
-      <span class="eyebrow">Flagship Knowledge Hub</span>
+      <span class="eyebrow">Comprehensive Field Guide</span>
       <h1>The Enterprise AI Engineering Handbook</h1>
-      <p class="hero-lead" style="max-width: 840px; margin-top: 16px; margin-bottom: 40px;">
+      <p class="hero-lead" style="max-width: 820px; margin-top: 16px; margin-bottom: 40px;">
         A comprehensive, practical field guide for CTOs, architects, and engineering leaders building, governing, and scaling production AI systems.
       </p>
 
-      <div style="background: var(--wash); border-left: 3px solid var(--accent); padding: 24px 32px; margin-bottom: 48px;">
-        <h4 style="margin-bottom: 6px;">Handbook Scope & Architecture</h4>
-        <p style="font-size: 14px; color: var(--muted); margin-bottom: 0;">
-          The Handbook is an evolving body of knowledge covering foundational distributed systems design, LLM gateway engineering, evaluation harnesses, security perimeters, and regulatory compliance.
-        </p>
-      </div>
-
       <div class="card-grid-3">
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 01</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Enterprise AI Foundations</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Core primitives: LLMs, transformers, context windows, tokenization, and enterprise constraints.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 01</span>
             </div>
+            <h3>Enterprise AI Foundations</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Core primitives: LLMs, transformers, context windows, tokenization, and enterprise constraints.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 02</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI Strategy & Portfolio Prioritisation</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Framing AI investments, defining ROI metrics, and avoiding the technology-first trap.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 02</span>
             </div>
+            <h3>AI Strategy & Portfolio Prioritisation</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Framing AI investments, defining ROI metrics, and avoiding the technology-first trap.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 03</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI Operating Model & Team Topology</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Centralized vs federated AI teams, Centers of Excellence, and skill matrix design.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 03</span>
             </div>
+            <h3>AI Operating Model & Team Topology</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Centralized vs federated AI teams, Centers of Excellence, and skill matrix design.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 04</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Enterprise AI Architecture</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">System design patterns, reference architectures, and separation of concerns.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 04</span>
             </div>
+            <h3>Enterprise AI Architecture</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">System design patterns, reference architectures, and separation of concerns.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 05</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Enterprise RAG in Practice</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Chunking, vector indices, hybrid retrieval, reranking, and citation generation.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 05</span>
             </div>
+            <h3>Enterprise RAG in Practice</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Chunking, vector indices, hybrid retrieval, reranking, and citation generation.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 06</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Agentic AI & Workflow Orchestration</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">State machines, tool-use protocols, multi-agent coordination, and failure handling.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 06</span>
             </div>
+            <h3>Agentic AI & Workflow Orchestration</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">State machines, tool-use protocols, multi-agent coordination, and failure handling.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 07</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI Platform Engineering</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Building self-service internal developer platforms for GenAI capabilities.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 07</span>
             </div>
+            <h3>AI Platform Engineering</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Building self-service internal developer platforms for GenAI capabilities.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 08</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Model Selection & Evaluation</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Frontier models vs open-weight models, benchmarking latency, cost, and reasoning.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 08</span>
             </div>
+            <h3>Model Selection & Evaluation</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Frontier models vs open-weight models, benchmarking latency, cost, and reasoning.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 09</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">LLM Gateways & Routing Layers</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Reverse-proxies, semantic caching, failover policies, and PII sanitization.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 09</span>
             </div>
+            <h3>LLM Gateways & Routing Layers</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Reverse-proxies, semantic caching, failover policies, and PII sanitization.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 10</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Evaluation & Ground Truth Engineering</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Curating golden datasets, LLM-as-a-judge methodologies, and continuous CI evals.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 10</span>
             </div>
+            <h3>Evaluation & Ground Truth Engineering</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Curating golden datasets, LLM-as-a-judge methodologies, and continuous CI evals.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 11</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">LLMOps & Lifecycle Management</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Prompt versioning, dataset lineage, continuous integration, and canary releases.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 11</span>
             </div>
+            <h3>LLMOps & Lifecycle Management</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Prompt versioning, dataset lineage, continuous integration, and canary releases.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 12</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI Observability & Telemetry</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Distributed tracing, token accounting, latency metrics, and drift monitoring.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 12</span>
             </div>
+            <h3>AI Observability & Telemetry</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Distributed tracing, token accounting, latency metrics, and drift monitoring.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 13</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI Security & Adversarial Defense</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">OWASP Top 10 for LLMs, prompt injection, data poisoning, and sandboxing.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 13</span>
             </div>
+            <h3>AI Security & Adversarial Defense</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">OWASP Top 10 for LLMs, prompt injection, data poisoning, and sandboxing.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 14</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI Governance & Compliance</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Operationalizing regulatory standards, model inventory, and audit reporting.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 14</span>
             </div>
+            <h3>AI Governance & Compliance</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Operationalizing regulatory standards, model inventory, and audit reporting.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 15</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Responsible AI & Ethics</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Bias detection, transparency, explainability, and algorithmic fairness.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 15</span>
             </div>
+            <h3>Responsible AI & Ethics</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Bias detection, transparency, explainability, and algorithmic fairness.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 16</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI FinOps & Unit Economics</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Token budgeting, cost modeling, semantic cache ROI, and model distillation.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 16</span>
             </div>
+            <h3>AI FinOps & Unit Economics</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Token budgeting, cost modeling, semantic cache ROI, and model distillation.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 17</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI-Enabled SDLC</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">CLI coding agents, automated PR reviews, unit test synthesis, and developer onboarding.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 17</span>
             </div>
+            <h3>AI-Enabled SDLC</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">CLI coding agents, automated PR reviews, unit test synthesis, and developer onboarding.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 18</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Measuring Developer Productivity with AI</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Beyond lines of code: DORA metrics, cycle time, cognitive load, and review velocity.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 18</span>
             </div>
+            <h3>Measuring Developer Productivity with AI</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Beyond lines of code: DORA metrics, cycle time, cognitive load, and review velocity.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 19</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Human-in-the-Loop Architecture</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Approval workflows, exception queues, active learning, and escalation design.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 19</span>
             </div>
+            <h3>Human-in-the-Loop Architecture</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Approval workflows, exception queues, active learning, and escalation design.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 20</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Production Readiness Checklist</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">The 50-point engineering and security verification gate before public launch.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 20</span>
             </div>
+            <h3>Production Readiness Checklist</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">The 50-point engineering and security verification gate before public launch.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 21</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Build vs Buy for Enterprise AI</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Evaluating SaaS platforms, vendor lock-in, open source stacks, and total cost of ownership.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 21</span>
             </div>
+            <h3>Build vs Buy for Enterprise AI</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Evaluating SaaS platforms, vendor lock-in, open source stacks, and total cost of ownership.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 22</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">Enterprise Adoption & Change Management</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Overcoming organizational resistance, executive storytelling, and skill development.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 22</span>
             </div>
+            <h3>Enterprise Adoption & Change Management</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Overcoming organizational resistance, executive storytelling, and skill development.</p>
           </div>
         
-          <div class="card" style="padding: 24px;">
-            <span class="eyebrow" style="color: var(--accent); margin-bottom: 8px;">Chapter 23</span>
-            <h3 style="font-size: 19px; margin-bottom: 8px;">AI in Financial Services</h3>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Banking use cases, APRA CPS 234 compliance, payments, and risk management.</p>
-            <div class="card-footer">
-              <span class="badge">Reference Chapter</span>
+          <div class="card">
+            <div class="card-meta">
+              <span class="badge badge-accent">Chapter 23</span>
             </div>
+            <h3>AI in Financial Services</h3>
+            <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">Banking use cases, APRA CPS 234 compliance, payments, and risk management.</p>
           </div>
         
       </div>
+
+      
+    <section class="lead-magnet-card" aria-labelledby="lead-magnet-title">
+      <div class="lead-magnet-grid">
+        <div>
+          <span class="eyebrow" style="color: var(--accent);">Engineering Resource</span>
+          <h3 id="lead-magnet-title" style="font-size: 22px; margin-bottom: 8px;">The Enterprise AI Production Checklist</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 0;">
+            A rigorous 50-point engineering, security, and FinOps verification gate before promoting Generative AI and Agentic systems to live enterprise traffic.
+          </p>
+        </div>
+        <div>
+          <form action="/newsletter/" method="get" onsubmit="event.preventDefault(); alert('Checklist access queued! A confirmation email has been dispatched to your inbox.');" style="display: flex; flex-direction: column; gap: 10px;">
+            <input type="email" placeholder="name@enterprise.com" required style="padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px; font-size: 13px; background: var(--paper);" aria-label="Work email address" />
+            <button type="submit" class="btn btn-primary" style="padding: 12px; font-size: 13px;">Get Free Production Checklist →</button>
+          </form>
+          <span style="font-size: 11px; color: var(--muted); display: block; margin-top: 8px; text-align: center;">Zero spam. Fortnightly dispatches. Unsubscribe anytime.</span>
+        </div>
+      </div>
+    </section>
+  
     </div>
   
     </main>
@@ -318,6 +333,7 @@
               <li><a href="/insights/">Enterprise Insights</a></li>
               <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
               <li><a href="/architectures/">Architecture Library</a></li>
+              <li><a href="/compare/">Architectural Comparisons</a></li>
               <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
               <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
               <li><a href="/research/">Research & Benchmarks</a></li>
@@ -336,8 +352,12 @@
           <div class="footer-col">
             <h4>Ecosystem</h4>
             <ul>
+              <li><a href="/speaking/">Speaking & Keynotes</a></li>
+              <li><a href="/brief/">Newsletter Archive</a></li>
               <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
-              <li><a href="https://www.linkedin.com/in/bhavin-mistry/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="https://github.com/Bmistry1818" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a></li>
+              <li><a href="https://x.com/BhaveenMistrry" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></li>
               <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
               <li><a href="/feed.xml">RSS Feed</a></li>
               <li><a href="/llms.txt">llms.txt</a></li>

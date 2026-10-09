@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Assessment diagnostic (if on readiness tool page)
   initAssessment();
+
+  // Social share copy and code copy buttons
+  initCopyButtons();
+
+  // Table of Contents active spy
+  initTocSpy();
 });
 
 /* Mobile Nav */
@@ -74,12 +80,21 @@ function initCommandPalette() {
     { title: "LLM Token Cost Calculator", url: "/tools/llm-cost-calculator/", category: "Tool" },
     { title: "AI Use Case Prioritiser Matrix", url: "/tools/ai-use-case-prioritiser/", category: "Tool" },
     { title: "Build vs Buy AI Platform Calculator", url: "/tools/build-vs-buy-ai-platform/", category: "Tool" },
+    { title: "The 5-Stage Framework for Taking Enterprise AI to Production", url: "/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/", category: "Insight" },
+    { title: "Why Hybrid RAG Beats Pure Vector Search in Enterprise Settings", url: "/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/", category: "Insight" },
+    { title: "The Hidden Costs of LLM Inference: A Cost Modeling Guide", url: "/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/", category: "Insight" },
     { title: "Enterprise AI Engineering: From Experimentation to Production", url: "/insights/enterprise-ai-engineering-production-playbook/", category: "Insight" },
     { title: "Why Enterprise AI Agents Fail After the Demo", url: "/insights/why-enterprise-ai-agents-fail-after-the-demo/", category: "Insight" },
     { title: "Enterprise RAG Architecture: A Production Blueprint", url: "/insights/enterprise-rag-production-blueprint/", category: "Insight" },
     { title: "RAG vs Agentic RAG: Enterprise Decision Guide", url: "/insights/rag-vs-agentic-rag-enterprise-decision-guide/", category: "Insight" },
     { title: "AI Code Review Agents in the Enterprise SDLC", url: "/insights/ai-code-review-agent-engineering-sdlc/", category: "Insight" },
     { title: "Enterprise AI Governance Without Killing Innovation", url: "/insights/enterprise-ai-governance-without-killing-innovation/", category: "Insight" },
+    { title: "Best RAG Frameworks for Enterprise 2026", url: "/compare/rag-frameworks/", category: "Comparison" },
+    { title: "Vector Databases Compared: Pinecone vs Weaviate vs pgvector", url: "/compare/vector-databases/", category: "Comparison" },
+    { title: "LangChain vs LlamaIndex vs Haystack for Enterprise AI", url: "/compare/llm-orchestration/", category: "Comparison" },
+    { title: "Architectural Comparisons Hub", url: "/compare/", category: "Comparison" },
+    { title: "Speaking & Keynotes", url: "/speaking/", category: "Speaking" },
+    { title: "The Enterprise AI Brief Archive", url: "/brief/", category: "Newsletter" },
     { title: "Enterprise AI Research Hub", url: "/research/", category: "Research" },
     { title: "About Bhavin Mistry", url: "/about/", category: "About" },
     { title: "Enterprise AI Brief (Newsletter)", url: "/newsletter/", category: "Newsletter" }
@@ -361,4 +376,94 @@ function initAssessment() {
   if (printBtn) {
     printBtn.addEventListener('click', () => window.print());
   }
+}
+
+/* Copy Buttons (Link & Code) and Toast */
+function showToast(message = 'Copied to clipboard!') {
+  let toast = document.querySelector('.toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  setTimeout(() => {
+    toast.classList.remove('is-visible');
+  }, 2500);
+}
+
+function initCopyButtons() {
+  // Share copy link buttons
+  document.querySelectorAll('[data-copy-url]').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const url = btn.getAttribute('data-copy-url') || window.location.href;
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('Page URL copied to clipboard! 📋');
+      } catch (err) {
+        showToast('Link copied!');
+      }
+    });
+  });
+
+  // Code snippet copy buttons
+  document.querySelectorAll('.code-copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const codeBlock = btn.closest('.code-block');
+      const codeEl = codeBlock ? codeBlock.querySelector('code, pre') : null;
+      if (!codeEl) return;
+      const text = codeEl.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied! ✓';
+        showToast('Code snippet copied to clipboard! 📋');
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      } catch (err) {
+        showToast('Code copied!');
+      }
+    });
+  });
+}
+
+/* Table of Contents Scroll Spy */
+function initTocSpy() {
+  const tocLinks = document.querySelectorAll('.toc-list a[href^="#"]');
+  if (tocLinks.length === 0) return;
+
+  const headings = Array.from(tocLinks).map(link => {
+    const id = link.getAttribute('href').slice(1);
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  if (headings.length === 0) return;
+
+  function onScroll() {
+    const scrollPos = window.scrollY + 140;
+    let currentId = '';
+
+    for (const h of headings) {
+      if (h.offsetTop <= scrollPos) {
+        currentId = h.id;
+      } else {
+        break;
+      }
+    }
+
+    tocLinks.forEach(link => {
+      const targetId = link.getAttribute('href').slice(1);
+      if (targetId === currentId) {
+        link.classList.add('is-active');
+      } else {
+        link.classList.remove('is-active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
