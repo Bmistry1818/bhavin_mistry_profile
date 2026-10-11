@@ -1,7 +1,17 @@
 {
-  "lastUpdated": "2026-10-02T01:49:10.445Z",
+  "lastUpdated": "2026-10-11T05:50:10.674Z",
   "totalCount": 14,
   "blogs": [
+    {
+      "id": "medium-e53da498894c3a83",
+      "title": "Build Your Own 24/7 AI Personal Agent",
+      "description": "A Practical Guide to Automating Everyday Life Learn how to build, deploy and run your own AI agent for personal tasks, family routines, reminders and daily planning. Start with free local AI models…",
+      "url": "https://medium.com/@bhavin_mistry/build-your-own-24-7-ai-personal-agent-a910e1b8e9e7",
+      "source": "Medium",
+      "date": "2026-10-11T04:33:15.000Z",
+      "image": null,
+      "type": "article"
+    },
     {
       "id": "medium-0b555241022ad6b0",
       "title": "Your AI Agent Has a Budget. But Who Is Accountable When It Overspends?",
@@ -129,16 +139,6 @@
       "url": "https://medium.com/@bhavin_mistry/how-rag-becomes-the-fastest-safest-and-most-cost-efficient-way-for-finance-enterprises-to-adopt-7e156277e8c8",
       "source": "Medium",
       "date": "2026-01-23T01:31:21.000Z",
-      "image": null,
-      "type": "article"
-    },
-    {
-      "id": "medium-888f288fec3843be",
-      "title": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save…",
-      "description": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save Millions Compared to OpenAI, Google, Microsoft, and Anthropic1. The 2025 Reality: AI Bills Are Out…",
-      "url": "https://medium.com/@bhavin_mistry/enterprise-ai-the-open-source-case-782fe2896b4d",
-      "source": "Medium",
-      "date": "2025-11-23T10:41:14.000Z",
       "image": null,
       "type": "article"
     }
