@@ -1,7 +1,17 @@
 {
-  "lastUpdated": "2026-10-11T05:50:10.674Z",
+  "lastUpdated": "2026-10-21T11:52:39.238Z",
   "totalCount": 14,
   "blogs": [
+    {
+      "id": "medium-5473d77b0b08da86",
+      "title": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand…",
+      "description": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand Them AI is changing how software is built, how businesses operate, and how decisions are made. Yet …",
+      "url": "https://medium.com/@bhavin_mistry/beyond-llms-the-anatomy-of-ai-powered-systems-and-why-every-engineering-team-needs-to-understand-d07514d24efc",
+      "source": "Medium",
+      "date": "2026-10-21T10:25:15.000Z",
+      "image": null,
+      "type": "article"
+    },
     {
       "id": "medium-e53da498894c3a83",
       "title": "Build Your Own 24/7 AI Personal Agent",
@@ -129,16 +139,6 @@
       "url": "https://medium.com/@bhavin_mistry/building-a-local-ai-powered-code-review-agent-integrate-with-devops-vs-code-f3c4430bd6ba",
       "source": "Medium",
       "date": "2026-01-23T01:33:50.000Z",
-      "image": null,
-      "type": "article"
-    },
-    {
-      "id": "medium-07b4264a86d4ccdd",
-      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt…",
-      "description": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AIImagine this: You're a Leader who is asked to perform a risk analysis on deploying Genera…",
-      "url": "https://medium.com/@bhavin_mistry/how-rag-becomes-the-fastest-safest-and-most-cost-efficient-way-for-finance-enterprises-to-adopt-7e156277e8c8",
-      "source": "Medium",
-      "date": "2026-01-23T01:31:21.000Z",
       "image": null,
       "type": "article"
     }
