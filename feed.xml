@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bhavin Mistry | Enterprise AI Insights</title>
+    <link>https://bhavinmistry.com/insights/</link>
+    <description>Practical frameworks, architectures, and perspectives on Enterprise AI, AI Engineering, and Agentic Systems by Bhavin Mistry.</description>
+    <language>en</language>
+    <atom:link href="https://bhavinmistry.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The Multi-Model Router: Slashing Enterprise Inference Spend by 78% with SLM Distillation</title>
+      <link>https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/</link>
+      <guid>https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Why routing every query to frontier models is architectural negligence: implementing intent-aware routing between on-prem small models and frontier LLMs with automatic circuit-breakers.]]></description>
+      <category>AI FinOps &amp; Optimization</category>
+    </item>
+    <item>
+      <title>Why 95% of Enterprise AI Pilots Fail at the Perimeter (And How to Fix It)</title>
+      <link>https://bhavinmistry.com/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/</link>
+      <guid>https://bhavinmistry.com/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Deconstructing the 5 perimeter failure modes—PII leakage, semantic cache drift, unbudgeted token egress, and permission desync—that kill enterprise GenAI pilots before production.]]></description>
+      <category>AI Systems Engineering</category>
+    </item>
+    <item>
+      <title>The Hidden Costs of LLM Inference: A Cost Modeling Guide</title>
+      <link>https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/</link>
+      <guid>https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Deconstructing prompt token bloat, cache miss penalties, reranker latency, and egress costs: an engineering guide to modeling enterprise LLM unit economics.]]></description>
+      <category>AI FinOps</category>
+    </item>
+    <item>
+      <title>Why Hybrid RAG Beats Pure Vector Search in Enterprise Settings</title>
+      <link>https://bhavinmistry.com/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/</link>
+      <guid>https://bhavinmistry.com/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/</guid>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Why pure semantic vector search fails on product SKUs, financial tickers, and regulatory acronyms, and how reciprocal rank fusion (BM25 + Dense + Reranking) fixes it.]]></description>
+      <category>Enterprise RAG</category>
+    </item>
+    <item>
+      <title>The 5-Stage Framework for Taking Enterprise AI to Production</title>
+      <link>https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/</link>
+      <guid>https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[A disciplined engineering roadmap from exploration to scale: how to advance enterprise AI initiatives past pilot purgatory into governed, reliable production.]]></description>
+      <category>Enterprise AI</category>
+    </item>
+    <item>
+      <title>Enterprise AI Engineering: From Experimentation to Production</title>
+      <link>https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/</link>
+      <guid>https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Why 88% of enterprise AI initiatives get stuck in pilot purgatory, and the engineering disciplines required to bridge the gap between proof-of-concept demos and P&L value realization.]]></description>
+      <category>Enterprise AI</category>
+    </item>
+    <item>
+      <title>Why Enterprise AI Agents Fail After the Demo</title>
+      <link>https://bhavinmistry.com/insights/why-enterprise-ai-agents-fail-after-the-demo/</link>
+      <guid>https://bhavinmistry.com/insights/why-enterprise-ai-agents-fail-after-the-demo/</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Deconstructing the failure modes of autonomous agents in enterprise environments: error compounding, state drift, permission blindness, and non-deterministic execution.]]></description>
+      <category>Agentic AI</category>
+    </item>
+    <item>
+      <title>Enterprise RAG Architecture: A Production Blueprint</title>
+      <link>https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/</link>
+      <guid>https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Moving beyond naive vector search: how hybrid sparse-dense retrieval, document-level ACLs, and cross-encoder reranking deliver reliable enterprise retrieval systems.]]></description>
+      <category>Enterprise AI</category>
+    </item>
+    <item>
+      <title>RAG vs Agentic RAG: Enterprise Architecture Decision Guide</title>
+      <link>https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/</link>
+      <guid>https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[A structured architectural framework to evaluate when deterministic one-shot RAG suffices versus when multi-hop agentic retrieval justifies its cost and latency overhead.]]></description>
+      <category>AI Architecture</category>
+    </item>
+    <item>
+      <title>AI Code Review Agents in the Enterprise SDLC</title>
+      <link>https://bhavinmistry.com/insights/ai-code-review-agent-engineering-sdlc/</link>
+      <guid>https://bhavinmistry.com/insights/ai-code-review-agent-engineering-sdlc/</guid>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[How to deploy automated code review agents that enforce architectural conventions and security postures without drowning developers in noise.]]></description>
+      <category>AI Engineering</category>
+    </item>
+    <item>
+      <title>Enterprise AI Governance Without Killing Innovation</title>
+      <link>https://bhavinmistry.com/insights/enterprise-ai-governance-without-killing-innovation/</link>
+      <guid>https://bhavinmistry.com/insights/enterprise-ai-governance-without-killing-innovation/</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[A pragmatic governance framework for highly regulated environments (such as Australian Financial Services and APRA CPS 234) that balances compliance with rapid experimentation.]]></description>
+      <category>Financial Services AI</category>
+    </item>
+  </channel>
+</rss>
