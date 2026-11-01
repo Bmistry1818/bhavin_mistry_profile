@@ -1,4 +1,7 @@
 document.documentElement.classList.add('js');
+requestAnimationFrame(() => {
+  document.documentElement.classList.add('is-loaded');
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Current year in footer
@@ -7,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mobile navigation toggle
   initMobileNav();
+
+  // Header elevation & blur transition on scroll
+  initHeaderScroll();
 
   // Command palette & site search (Cmd+K)
   initCommandPalette();
@@ -22,6 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Table of Contents active spy
   initTocSpy();
+
+  // Interactive SVG architecture diagram nodes
+  initInteractiveDiagrams();
+
+  // Living AI Pipeline Playground Simulator (Zajno-inspired)
+  initPipelineSimulator();
+
+  // Editorial scroll ingress
+  initScrollReveal();
+
+  // Ambient cursor spotlight on cards
+  initCursorSpotlight();
+
+  // Kinetic typography headline reveal
+  initKineticTypography();
+
+  // Living Hero Motion Canvas Stream (Zajno-inspired)
+  initHeroMotionCanvas();
+
+  // Lenis inertia smooth scroll
+  initSmoothScroll();
 });
 
 /* Mobile Nav */
@@ -65,6 +92,10 @@ function initCommandPalette() {
   const closeBtn = modal.querySelector('[data-close-palette]');
 
   const searchIndex = [
+    { title: "Enterprise Model Context Protocol (MCP) Architecture", url: "/architectures/enterprise-mcp-gateway/", category: "Architecture" },
+    { title: "GraphRAG & Knowledge Graph Context Engine", url: "/architectures/graph-rag-knowledge-engine/", category: "Architecture" },
+    { title: "Why 95% of Enterprise AI Pilots Fail at the Perimeter", url: "/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/", category: "Insight" },
+    { title: "The Multi-Model Router: Slashing Inference Spend by 78%", url: "/insights/enterprise-model-routing-and-slm-distillation/", category: "Insight" },
     { title: "Graph Engineering Platform: Obsidian Agent Skills & MCP Servers", url: "/tools/graph-engineering/", category: "Platform" },
     { title: "Enterprise AI Production Readiness Framework", url: "/frameworks/enterprise-ai-production-readiness/", category: "Framework" },
     { title: "Enterprise RAG Architecture Blueprint", url: "/architectures/enterprise-rag/", category: "Architecture" },
@@ -165,6 +196,18 @@ function initCommandPalette() {
   }
 }
 
+/* Output update helper with tactile animation */
+function setAnimatedOutput(id, newValue) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (el.textContent !== newValue) {
+    el.textContent = newValue;
+    el.classList.remove('num-updated');
+    void el.offsetWidth;
+    el.classList.add('num-updated');
+  }
+}
+
 /* Calculators & Decision Tools */
 function initCalculators() {
   // 1. LLM Cost Calculator
@@ -186,10 +229,10 @@ function initCalculators() {
       const monthlyCost = dailyCost * daysPerMonth;
       const annualCost = monthlyCost * 12;
 
-      document.getElementById('out-cost-request').textContent = `$${costPerRequest.toFixed(4)}`;
-      document.getElementById('out-cost-day').textContent = `$${dailyCost.toFixed(2)}`;
-      document.getElementById('out-cost-month').textContent = `$${monthlyCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-      document.getElementById('out-cost-annual').textContent = `$${annualCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      setAnimatedOutput('out-cost-request', `$${costPerRequest.toFixed(4)}`);
+      setAnimatedOutput('out-cost-day', `$${dailyCost.toFixed(2)}`);
+      setAnimatedOutput('out-cost-month', `$${monthlyCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-cost-annual', `$${annualCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
     };
     llmForm.addEventListener('input', calc);
     calc();
@@ -219,10 +262,10 @@ function initCalculators() {
       const costPerQuery = monthlyQueries > 0 ? (monthlyTotal / monthlyQueries) : 0;
       const cachingSavings = (monthlyQueries * totalContextTokens * 0.8 * cacheRate / 1_000_000) * inputPricePerM;
 
-      document.getElementById('out-rag-month').textContent = `$${monthlyTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-      document.getElementById('out-rag-query').textContent = `$${costPerQuery.toFixed(4)}`;
-      document.getElementById('out-rag-llm').textContent = `$${(llmInputCost + llmOutputCost).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-      document.getElementById('out-rag-savings').textContent = `$${cachingSavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      setAnimatedOutput('out-rag-month', `$${monthlyTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-rag-query', `$${costPerQuery.toFixed(4)}`);
+      setAnimatedOutput('out-rag-llm', `$${(llmInputCost + llmOutputCost).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-rag-savings', `$${cachingSavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
     };
     ragForm.addEventListener('input', calcRAG);
     calcRAG();
@@ -466,4 +509,368 @@ function initTocSpy() {
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+}
+
+/* Header Elevation on Scroll */
+function initHeaderScroll() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  let ticking = false;
+  const updateHeader = () => {
+    if (window.scrollY > 15) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateHeader();
+}
+
+/* Interactive SVG Architecture Diagrams */
+function initInteractiveDiagrams() {
+  const diagramWraps = document.querySelectorAll('.arch-diagram-wrap');
+  if (!diagramWraps.length) return;
+
+  diagramWraps.forEach(wrap => {
+    const nodes = wrap.querySelectorAll('.diagram-node');
+    if (!nodes.length) return;
+
+    nodes.forEach(node => {
+      const highlight = () => {
+        nodes.forEach(other => {
+          if (other !== node) {
+            other.style.opacity = '0.4';
+          }
+        });
+      };
+      const reset = () => {
+        nodes.forEach(other => {
+          other.style.opacity = '1';
+        });
+      };
+
+      node.addEventListener('mouseenter', highlight);
+      node.addEventListener('mouseleave', reset);
+      node.addEventListener('focus', highlight);
+      node.addEventListener('blur', reset);
+    });
+  });
+}
+
+/* Editorial Scroll Reveal (IntersectionObserver with graceful degradation) */
+function initScrollReveal() {
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll(
+    '.card, .authority-item, .platform-feature, .arch-diagram-wrap, .tool-layout, .matrix-table-wrap, .speaking-card'
+  );
+
+  if (!targets.length) return;
+
+  // Stagger siblings in card grids
+  document.querySelectorAll('.card-grid-3, .card-grid-2, .card-grid-4, .card-grid-5, .authority-bar').forEach(grid => {
+    grid.classList.add('reveal-stagger');
+  });
+
+  if (isReducedMotion || !('IntersectionObserver' in window)) {
+    targets.forEach(el => el.classList.add('is-revealed'));
+    return;
+  }
+
+  targets.forEach(el => el.classList.add('reveal-on-scroll'));
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.08
+  });
+
+  targets.forEach(el => observer.observe(el));
+}
+
+/* Ambient Cursor Spotlight (Zajno-inspired) */
+function initCursorSpotlight() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+  const cards = document.querySelectorAll(
+    '.card, .platform-feature, .authority-item, .speaking-card, .take-box'
+  );
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--mouse-x', `-999px`);
+      card.style.setProperty('--mouse-y', `-999px`);
+    });
+  });
+}
+
+/* Kinetic Masked Typography (Zajno-inspired) */
+function initKineticTypography() {
+  requestAnimationFrame(() => {
+    document.documentElement.classList.add('is-loaded');
+  });
+}
+
+/* Lenis Inertia Smooth Scroll (Zajno-inspired) */
+function initSmoothScroll() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if ('ontouchstart' in window && window.innerWidth < 768) return;
+
+  const script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js';
+  script.onload = () => {
+    if (window.Lenis) {
+      const lenis = new window.Lenis({
+        duration: 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: false,
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  };
+  document.head.appendChild(script);
+}
+
+/* Living AI Pipeline Playground Simulator (Zajno-inspired) */
+function initPipelineSimulator() {
+  const sim = document.querySelector('.pipeline-simulator');
+  if (!sim) return;
+
+  const terminal = document.getElementById('sim-terminal');
+  const buttons = sim.querySelectorAll('.sim-btn');
+  const diagram = sim.closest('.arch-diagram-wrap');
+  if (!terminal || !diagram) return;
+
+  const nodes = {
+    client: diagram.querySelector('[data-node="client"]'),
+    gateway: diagram.querySelector('[data-node="gateway"]'),
+    inference: diagram.querySelector('[data-node="inference"]'),
+    telemetry: diagram.querySelector('[data-node="telemetry"]')
+  };
+
+  const scenarios = {
+    cache: {
+      steps: [
+        { node: 'client', time: '00.0ms', tag: 'tag-client', tagName: '[CLIENT]', text: 'Incoming query: "Retrieve Q3 capital adequacy ratio formula for APRA review"' },
+        { node: 'gateway', time: '+08.2ms', tag: 'tag-gw', tagName: '[GATEWAY]', text: 'PII check: Clean · Semantic cache hit (0.97 match) · Cost: $0.0000', success: true },
+        { node: 'telemetry', time: '+11.4ms', tag: 'tag-telemetry', tagName: '[TELEMETRY]', text: 'OTEL trace CBA-9142 exported. Zero LLM egress cost · 11.4ms TTL', success: true }
+      ]
+    },
+    rag: {
+      steps: [
+        { node: 'client', time: '00.0ms', tag: 'tag-client', tagName: '[CLIENT]', text: 'Query: "Analyze mortgage stress variance across postcodes 3000-3020"' },
+        { node: 'gateway', time: '+14.5ms', tag: 'tag-gw', tagName: '[GATEWAY]', text: 'PII verified · Cache miss (new scenario) · Token quota 12k approved' },
+        { node: 'inference', time: '+62.0ms', tag: 'tag-rag', tagName: '[HYBRID-RAG]', text: 'BM25 (k=4) + Vector dense (k=6) fused via RRF · 5 grounded chunks retrieved' },
+        { node: 'inference', time: '+112.4ms', tag: 'tag-rag', tagName: '[RERANK]', text: 'Cross-encoder scoring top-5 · Context 1,840 tokens synthesized' },
+        { node: 'telemetry', time: '+138.8ms', tag: 'tag-telemetry', tagName: '[TELEMETRY]', text: 'Span CBA-RAG-204 completed · Cost: $0.0048 · Accuracy check: 98.6%', success: true }
+      ]
+    },
+    pii: {
+      steps: [
+        { node: 'client', time: '00.0ms', tag: 'tag-client', tagName: '[CLIENT]', text: 'Query: "Verify account 4520-XXXX-8910 and Tax File Number 401-291-801"' },
+        { node: 'gateway', time: '+18.2ms', tag: 'tag-gw', tagName: '[GATEWAY]', text: 'ALERT: Regulated PII pattern detected (TFN / PAN) · Cryptographic token replacement initiated', warning: true },
+        { node: 'gateway', time: '+24.0ms', tag: 'tag-gw', tagName: '[GATEWAY]', text: 'PII sanitized to [CUSTOMER_TOKEN_99A] · Security audit log CBA-SEC-AUDIT emitted', success: true },
+        { node: 'inference', time: '+68.5ms', tag: 'tag-rag', tagName: '[INFERENCE]', text: 'Sanitized token context processed safely without PII egress' },
+        { node: 'telemetry', time: '+84.2ms', tag: 'tag-telemetry', tagName: '[TELEMETRY]', text: 'Audit event SEC-PII-CLEAN logged to SIEM · Zero compliance breach', success: true }
+      ]
+    }
+  };
+
+  let activeTimeouts = [];
+
+  function clearActiveNodes() {
+    activeTimeouts.forEach(t => clearTimeout(t));
+    activeTimeouts = [];
+    Object.values(nodes).forEach(n => {
+      if (n) {
+        n.classList.remove('is-sim-active', 'is-sim-warning');
+      }
+    });
+  }
+
+  function runScenario(key) {
+    const scenario = scenarios[key];
+    if (!scenario) return;
+
+    clearActiveNodes();
+    terminal.innerHTML = '';
+
+    buttons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-sim') === key));
+
+    scenario.steps.forEach((step, idx) => {
+      const delay = idx * 380;
+      const t = setTimeout(() => {
+        // Activate node
+        Object.values(nodes).forEach(n => n && n.classList.remove('is-sim-active', 'is-sim-warning'));
+        const targetNode = nodes[step.node];
+        if (targetNode) {
+          targetNode.classList.add(step.warning ? 'is-sim-warning' : 'is-sim-active');
+        }
+
+        // Add log line
+        const line = document.createElement('div');
+        line.className = `sim-log-line ${step.success ? 'is-success' : ''} ${step.warning ? 'is-warning' : ''}`;
+        line.innerHTML = `
+          <span class="log-ts">${step.time}</span>
+          <span class="log-tag ${step.tag}">${step.tagName}</span>
+          <span class="log-msg">${step.text}</span>
+        `;
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+
+        if (idx === scenario.steps.length - 1) {
+          const finalT = setTimeout(() => {
+            if (targetNode) targetNode.classList.remove('is-sim-active', 'is-sim-warning');
+          }, 1400);
+          activeTimeouts.push(finalT);
+        }
+      }, delay);
+      activeTimeouts.push(t);
+    });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const simType = btn.getAttribute('data-sim');
+      runScenario(simType);
+    });
+  });
+}
+
+/* Interactive Living Hero Motion Stream (Zajno-inspired Canvas) */
+function initHeroMotionCanvas() {
+  const canvas = document.getElementById('hero-motion-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = (canvas.width = canvas.parentElement.clientWidth - 40);
+  let height = (canvas.height = 90);
+
+  window.addEventListener('resize', () => {
+    if (!canvas.parentElement) return;
+    width = canvas.width = canvas.parentElement.clientWidth - 40;
+    height = canvas.height = 90;
+  }, { passive: true });
+
+  let mouseX = -999;
+  let mouseY = -999;
+
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    mouseX = -999;
+    mouseY = -999;
+  });
+
+  // Particle tokens traveling along pipeline
+  const particles = Array.from({ length: 16 }, () => ({
+    x: Math.random() * width,
+    waveIndex: Math.floor(Math.random() * 3),
+    speed: 0.8 + Math.random() * 1.5,
+    radius: 2 + Math.random() * 2,
+    alpha: 0.45 + Math.random() * 0.55
+  }));
+
+  const waves = [
+    { freq: 0.007, speed: 0.022, amp: 20, color: 'rgba(157, 64, 43, 0.45)' },
+    { freq: 0.011, speed: 0.032, amp: 14, color: 'rgba(34, 197, 94, 0.4)' },
+    { freq: 0.005, speed: 0.016, amp: 22, color: 'rgba(232, 236, 233, 0.3)' }
+  ];
+
+  let frame = 0;
+
+  function render() {
+    frame++;
+    ctx.clearRect(0, 0, width, height);
+
+    // Render waves
+    waves.forEach((w, idx) => {
+      ctx.beginPath();
+      ctx.strokeStyle = w.color;
+      ctx.lineWidth = 1.6;
+
+      const baseMid = height * 0.5 + (idx - 1) * 5;
+
+      for (let x = 0; x <= width; x += 3) {
+        let y = baseMid + Math.sin(x * w.freq + frame * w.speed) * w.amp;
+
+        // Interactive mouse displacement ripple (Zajno physics feel)
+        if (mouseX > -100) {
+          const dist = Math.abs(x - mouseX);
+          if (dist < 110) {
+            y += (1 - dist / 110) * 16 * Math.cos(frame * 0.1);
+          }
+        }
+
+        if (x === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+
+      ctx.stroke();
+    });
+
+    // Render streaming token particles
+    particles.forEach(p => {
+      p.x += p.speed;
+      if (p.x > width + 10) p.x = -10;
+
+      const w = waves[p.waveIndex];
+      const baseMid = height * 0.5 + (p.waveIndex - 1) * 5;
+      let y = baseMid + Math.sin(p.x * w.freq + frame * w.speed) * w.amp;
+
+      if (mouseX > -100) {
+        const dist = Math.abs(p.x - mouseX);
+        if (dist < 110) {
+          y += (1 - dist / 110) * 16 * Math.cos(frame * 0.1);
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.waveIndex === 0 ? `rgba(244, 234, 231, ${p.alpha})` : (p.waveIndex === 1 ? `rgba(74, 222, 128, ${p.alpha})` : `rgba(211, 212, 201, ${p.alpha})`);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 }

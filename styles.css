@@ -20,6 +20,66 @@
   --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --mono: 'JetBrains Mono', 'SF Mono', Consolas, Menlo, Monaco, monospace;
+
+  /* Editorial Motion System */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 0.18s;
+  --dur-base: 0.28s;
+  --dur-reveal: 0.45s;
+}
+
+/* Cross-Document View Transitions (Seamless editorial navigation) */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation: 160ms var(--ease-editorial) both page-fade-out;
+}
+::view-transition-new(root) {
+  animation: 220ms var(--ease-editorial) both page-fade-in;
+}
+@keyframes page-fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-3px); }
+}
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lenis Inertia Smooth Scroll (Zajno-inspired) */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Kinetic Headline Typography */
+.kinetic-hero-title {
+  animation: hero-fade-up 0.8s var(--ease-editorial) backwards;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .platform-feature { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; padding: 36px; border: 1px solid var(--line); background: var(--wash); margin-bottom: 60px; }
@@ -121,6 +181,11 @@ em { font-style: italic; color: var(--accent); }
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.25s var(--ease-editorial), border-color 0.25s var(--ease-editorial);
+}
+.site-header.is-scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  border-bottom-color: rgba(211, 212, 201, 0.85);
 }
 .nav-wrap {
   display: flex;
@@ -341,6 +406,54 @@ em { font-style: italic; color: var(--accent); }
   line-height: 1.5;
 }
 
+/* Hero Motion Canvas Stream (Zajno-inspired living motion graphic) */
+.hero-canvas-wrap {
+  margin: 48px 0 32px;
+  background: #181f1b;
+  border: 1px solid #313e36;
+  border-radius: 6px;
+  padding: 16px 20px 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+.hero-canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #adb7b1;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.hero-canvas-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.06em;
+}
+.hero-canvas-metrics {
+  display: flex;
+  gap: 12px;
+  color: #7d8b82;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.hero-canvas-metrics span {
+  background: #202924;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid #334038;
+}
+.hero-motion-canvas {
+  display: block;
+  width: 100%;
+  height: 90px;
+  cursor: crosshair;
+}
+
 /* Authority Stats Bar */
 .authority-bar {
   display: grid;
@@ -404,20 +517,41 @@ em { font-style: italic; color: var(--accent); }
 .publication-links { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: auto; padding-top: 16px; }
 #latest-publications { scroll-margin-top: 100px; }
 
-/* Card Component */
+/* Card Component with Ambient Cursor Spotlight */
 .card {
   background: var(--paper-elevated);
+  background-image: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(157, 64, 43, 0.07),
+    transparent 50%
+  );
+  background-repeat: no-repeat;
   border: 1px solid var(--line);
   padding: 32px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.24s var(--ease-editorial), border-color 0.24s ease, box-shadow 0.24s ease;
   position: relative;
 }
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--ink);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.04);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.06);
+}
+.card:hover .text-link span {
+  transform: translateX(4px);
+}
+
+.platform-feature,
+.authority-item,
+.speaking-card,
+.take-box {
+  background-image: radial-gradient(
+    480px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(157, 64, 43, 0.06),
+    transparent 50%
+  );
+  background-repeat: no-repeat;
 }
 .card-meta {
   display: flex;
@@ -530,7 +664,7 @@ em { font-style: italic; color: var(--accent); }
   background: rgba(0,0,0,0.01);
 }
 
-/* Architecture Diagram (SVG responsive) */
+/* Architecture Diagram (SVG responsive & Living Topology) */
 .arch-diagram-wrap {
   background: var(--code-bg);
   color: var(--code-text);
@@ -539,12 +673,191 @@ em { font-style: italic; color: var(--accent); }
   border: 1px solid #333d37;
   margin: 32px 0;
   overflow-x: auto;
+  position: relative;
 }
 .arch-diagram-wrap svg {
   display: block;
   margin: 0 auto;
   max-width: 100%;
   height: auto;
+}
+
+/* Pulsing live status dot */
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  animation: live-dot-pulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  vertical-align: middle;
+}
+@keyframes live-dot-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Animated flow lines in SVG diagrams */
+.flow-line-pulse {
+  stroke-dasharray: 8 16;
+  animation: flow-stream 1.6s linear infinite;
+  pointer-events: none;
+}
+@keyframes flow-stream {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+/* Diagram interactive nodes */
+.diagram-node {
+  transition: transform 0.22s var(--ease-editorial), opacity 0.2s ease;
+  cursor: pointer;
+  outline: none;
+}
+.diagram-node rect {
+  transition: stroke 0.2s ease, fill 0.2s ease, filter 0.2s ease;
+}
+.diagram-node:hover rect,
+.diagram-node:focus rect {
+  stroke: var(--accent);
+  fill: #323e38;
+  filter: drop-shadow(0 4px 12px rgba(157, 64, 43, 0.35));
+}
+.diagram-node text {
+  transition: fill 0.2s ease;
+}
+.diagram-node:hover text:first-of-type,
+.diagram-node:focus text:first-of-type {
+  fill: #ffffff;
+}
+
+/* Number pulse animation for calculators */
+@keyframes num-flash {
+  0% { transform: scale(1.04); color: var(--accent); }
+  100% { transform: scale(1); color: inherit; }
+}
+.num-updated {
+  display: inline-block;
+  animation: num-flash 0.22s var(--ease-editorial);
+}
+
+/* Living Pipeline Playground Simulator (Zajno-inspired interactive engine) */
+.pipeline-simulator {
+  margin-top: 24px;
+  background: #181f1b;
+  border: 1px solid #313e36;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+}
+.sim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: #202924;
+  border-bottom: 1px solid #313e36;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.sim-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #adb7b1;
+}
+.sim-badge {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  padding: 2px 7px;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.sim-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sim-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 6px 12px;
+  background: #252e29;
+  color: #d1d8d3;
+  border: 1px solid #3d4a42;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-editorial);
+}
+.sim-btn:hover {
+  background: #344039;
+  color: #fff;
+  border-color: var(--accent);
+}
+.sim-btn.is-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent-dark);
+}
+.sim-terminal {
+  padding: 16px 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.75;
+  color: #c4cdc7;
+  min-height: 110px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.sim-log-line {
+  margin-bottom: 4px;
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: sim-log-entry 0.2s var(--ease-editorial) forwards;
+}
+@keyframes sim-log-entry {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.sim-log-line .log-ts { color: #697870; min-width: 65px; flex-shrink: 0; }
+.sim-log-line .log-tag { font-weight: 600; min-width: 85px; flex-shrink: 0; }
+.sim-log-line .tag-client { color: #93c5fd; }
+.sim-log-line .tag-gw { color: #fde047; }
+.sim-log-line .tag-rag { color: #c084fc; }
+.sim-log-line .tag-telemetry { color: #4ade80; }
+.sim-log-line.is-success .log-tag { color: #4ade80; }
+.sim-log-line.is-warning .log-tag { color: #f87171; }
+
+/* SVG Node active glow state during simulation */
+.diagram-node.is-sim-active rect {
+  stroke: #4ade80 !important;
+  fill: #2d3b32 !important;
+  filter: drop-shadow(0 0 14px rgba(74, 222, 128, 0.45)) !important;
+}
+.diagram-node.is-sim-active text {
+  fill: #ffffff !important;
+}
+.diagram-node.is-sim-warning rect {
+  stroke: #f87171 !important;
+  fill: #3b2828 !important;
+  filter: drop-shadow(0 0 14px rgba(248, 113, 113, 0.5)) !important;
+}
+.diagram-node.is-sim-warning text {
+  fill: #ffffff !important;
 }
 
 /* Tools / Calculator Styling */
@@ -680,7 +993,7 @@ pre {
   padding-top: 15vh;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.2s ease;
 }
 .modal-overlay.is-active {
   opacity: 1;
@@ -695,6 +1008,11 @@ pre {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transform: scale(0.97) translateY(-8px);
+  transition: transform 0.24s var(--ease-editorial);
+}
+.modal-overlay.is-active .palette-window {
+  transform: scale(1) translateY(0);
 }
 .palette-input-wrap {
   padding: 16px 20px;
@@ -1122,4 +1440,47 @@ pre {
 .toast-notification.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Scroll Reveal & Progressive Ingress */
+html.js .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-reveal) var(--ease-editorial), transform var(--dur-reveal) var(--ease-editorial);
+  will-change: opacity, transform;
+}
+html.js .reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered entrance for grid items */
+html.js .reveal-stagger > *:nth-child(1) { transition-delay: 30ms; }
+html.js .reveal-stagger > *:nth-child(2) { transition-delay: 80ms; }
+html.js .reveal-stagger > *:nth-child(3) { transition-delay: 130ms; }
+html.js .reveal-stagger > *:nth-child(4) { transition-delay: 180ms; }
+html.js .reveal-stagger > *:nth-child(5) { transition-delay: 230ms; }
+html.js .reveal-stagger > *:nth-child(6) { transition-delay: 280ms; }
+
+/* Accessibility - Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .flow-line-pulse,
+  .live-dot {
+    animation: none !important;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }

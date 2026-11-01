@@ -42,8 +42,8 @@
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css" />
-    <script defer src="/script.js"></script>
+    <link rel="stylesheet" href="/styles.css?v=mvxjgslq" />
+    <script defer src="/script.js?v=mvxjgslq"></script>
     
       <script type="application/ld+json">
       {
@@ -116,6 +116,18 @@
           </div>
           
             <div class="radar-item-card">
+              <h4>Automated EvalOps in CI/CD</h4>
+              <p>Automated regression testing of prompt templates, RAG ground truth, and reasoning chains in pull requests using golden SME benchmarks.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Vibe-checking prompts in production is untenable in regulated environments; CI eval gates prevent silent degradation.</div>
+            </div>
+          
+            <div class="radar-item-card">
+              <h4>Model Context Protocol (MCP)</h4>
+              <p>Standardized open protocol connecting AI agents securely to enterprise data sources (SQL, GitHub, Jira, Obsidian) with granular RBAC.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Replaces brittle point-to-point tool integrations with a single composable interface supported across Claude, Cursor, and enterprise agents.</div>
+            </div>
+          
+            <div class="radar-item-card">
               <h4>Enterprise Hybrid RAG</h4>
               <p>Hybrid sparse-dense retrieval with lexical BM25, semantic vector search, and cross-encoder reranking.</p>
               <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Proven to achieve >90% factual retrieval accuracy in enterprise document search while keeping inference latency predictable and explainable.</div>
@@ -139,6 +151,18 @@
             <h4 style="color: #0369a1;">TRIAL</h4>
             <span class="badge badge-trial">Validated</span>
           </div>
+          
+            <div class="radar-item-card">
+              <h4>Intelligent Model Routing & SLMs</h4>
+              <p>Dynamic task complexity classifiers routing 70% of routine intent/extraction to low-cost small models (Llama 3.3 / Mistral) and 30% to frontier LLMs.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Reduces inference spend by 65-80% while cutting P95 time-to-first-token latency to under 250ms for routine enterprise traffic.</div>
+            </div>
+          
+            <div class="radar-item-card">
+              <h4>GraphRAG & Entity Resolution</h4>
+              <p>Augmenting vector embeddings with knowledge graph entity-relation trees (Neo4j / Graphiti) to resolve multi-document corporate relationships.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Semantic vector similarity fails on tabular account numbers, product hierarchies, and cross-document dependency tracing.</div>
+            </div>
           
             <div class="radar-item-card">
               <h4>Agentic Multi-Step RAG</h4>

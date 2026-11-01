@@ -42,8 +42,8 @@
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css" />
-    <script defer src="/script.js"></script>
+    <link rel="stylesheet" href="/styles.css?v=mvxjgslq" />
+    <script defer src="/script.js?v=mvxjgslq"></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"AI-Powered Enterprise SDLC Architecture","description":"End-to-end integration architecture embedding AI assistance, automated code review, testing, and architecture conformance across the software development lifecycle.","datePublished":"2026-08-22","dateModified":"2026-09-25","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bhavinmistry.com/architectures/ai-powered-sdlc/"},"image":"https://bhavinmistry.com/assets/og/ai-powered-sdlc.png"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you govern AI coding assistants without slowing down developers?","acceptedAnswer":{"@type":"Answer","text":"By embedding clear repository architecture rules (`.cursorrules` or ADRs), automated pre-commit secret scrubbing, and high-precision CI review bots that only block regressions on security and architectural contracts."}},{"@type":"Question","name":"How do you avoid PR review fatigue with increased code generation?","acceptedAnswer":{"@type":"Answer","text":"By deploying automated synthetic test suites, mutation testing, and requiring AI review bots to run before human review, allowing senior engineers to focus purely on high-level system design."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bhavinmistry.com/"},{"@type":"ListItem","position":2,"name":"Architectures","item":"https://bhavinmistry.com/architectures/"},{"@type":"ListItem","position":3,"name":"AI-Powered Enterprise SDLC Architecture","item":"https://bhavinmistry.com/architectures/ai-powered-sdlc/"}]}]}</script>
   </head>
   <body id="top" class="">
@@ -126,43 +126,84 @@
           <div class="article-main">
             <!-- SVG ARCHITECTURE DIAGRAM -->
             <div id="topology" class="arch-diagram-wrap">
-              <div style="display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; margin-bottom: 16px; color: var(--muted-light);">
-                <span>SYSTEM TOPOLOGY & DATA FLOW</span>
-                <span>ENTERPRISE SPECIFICATION</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11px; margin-bottom: 16px; color: var(--muted-light); flex-wrap: wrap; gap: 8px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px;">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  SYSTEM TOPOLOGY &amp; LIVE DATA FLOW
+                </span>
+                <span>ENTERPRISE SPECIFICATION · INTERACTIVE NODES</span>
               </div>
-              <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-                <rect x="20" y="80" width="130" height="80" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
-                <text x="85" y="115" fill="#e8ece9" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">Client Application</text>
-                <text x="85" y="135" fill="#8d9991" font-family="monospace" font-size="10" text-anchor="middle">RBAC Context</text>
-
-                <path d="M150 120 L220 120" stroke="#9d402b" stroke-width="2" marker-end="url(#arrow)" />
-
-                <rect x="220" y="60" width="170" height="120" rx="4" fill="#2a332e" stroke="#9d402b" stroke-width="1.5" />
-                <text x="305" y="95" fill="#f5f2eb" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle">Security & Gateway</text>
-                <text x="305" y="118" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">PII Sanitization</text>
-                <text x="305" y="136" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Semantic Cache Check</text>
-                <text x="305" y="154" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Rate & Token Budget</text>
-
-                <path d="M390 120 L460 120" stroke="#9d402b" stroke-width="2" />
-
-                <rect x="460" y="60" width="160" height="120" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
-                <text x="540" y="95" fill="#e8ece9" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle">Inference & Rerank</text>
-                <text x="540" y="118" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">BM25 + Vector Fusion</text>
-                <text x="540" y="136" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Cross-Encoder Top-5</text>
-                <text x="540" y="154" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Grounded Synthesis</text>
-
-                <path d="M620 120 L680 120" stroke="#9d402b" stroke-width="2" />
-
-                <rect x="680" y="80" width="100" height="80" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
-                <text x="730" y="115" fill="#e8ece9" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">Telemetry</text>
-                <text x="730" y="135" fill="#8d9991" font-family="monospace" font-size="10" text-anchor="middle">OpenTelemetry</text>
-
+              <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;" role="img" aria-label="Interactive System Topology and Data Flow Architecture">
                 <defs>
                   <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <path d="M 0 0 L 10 5 L 0 10 z" fill="#9d402b"/>
                   </marker>
                 </defs>
+
+                <!-- Connector 1: Client -> Security Gateway -->
+                <path d="M150 120 L220 120" stroke="#46544c" stroke-width="2" marker-end="url(#arrow)" data-connector="c1" />
+                <path d="M150 120 L212 120" stroke="#f4eae7" stroke-width="2" class="flow-line-pulse" stroke-linecap="round" data-pulse="p1" />
+
+                <!-- Connector 2: Security Gateway -> Inference & Rerank -->
+                <path d="M390 120 L460 120" stroke="#46544c" stroke-width="2" marker-end="url(#arrow)" data-connector="c2" />
+                <path d="M390 120 L452 120" stroke="#f4eae7" stroke-width="2" class="flow-line-pulse" stroke-linecap="round" data-pulse="p2" />
+
+                <!-- Connector 3: Inference & Rerank -> Telemetry -->
+                <path d="M620 120 L680 120" stroke="#46544c" stroke-width="2" marker-end="url(#arrow)" data-connector="c3" />
+                <path d="M620 120 L672 120" stroke="#f4eae7" stroke-width="2" class="flow-line-pulse" stroke-linecap="round" data-pulse="p3" />
+
+                <!-- Node 1: Client Application -->
+                <g class="diagram-node" data-node="client" tabindex="0" role="button" aria-label="Client Application node">
+                  <rect x="20" y="80" width="130" height="80" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
+                  <text x="85" y="115" fill="#e8ece9" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">Client Application</text>
+                  <text x="85" y="135" fill="#8d9991" font-family="monospace" font-size="10" text-anchor="middle">RBAC Context</text>
+                </g>
+
+                <!-- Node 2: Security & Gateway -->
+                <g class="diagram-node" data-node="gateway" tabindex="0" role="button" aria-label="Security and Gateway node">
+                  <rect x="220" y="60" width="170" height="120" rx="4" fill="#2a332e" stroke="#9d402b" stroke-width="1.5" />
+                  <text x="305" y="95" fill="#f5f2eb" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle">Security & Gateway</text>
+                  <text x="305" y="118" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">PII Sanitization</text>
+                  <text x="305" y="136" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Semantic Cache Check</text>
+                  <text x="305" y="154" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Rate & Token Budget</text>
+                </g>
+
+                <!-- Node 3: Inference & Rerank -->
+                <g class="diagram-node" data-node="inference" tabindex="0" role="button" aria-label="Inference and Rerank node">
+                  <rect x="460" y="60" width="160" height="120" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
+                  <text x="540" y="95" fill="#e8ece9" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle">Inference & Rerank</text>
+                  <text x="540" y="118" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">BM25 + Vector Fusion</text>
+                  <text x="540" y="136" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Cross-Encoder Top-5</text>
+                  <text x="540" y="154" fill="#8d9991" font-family="sans-serif" font-size="11" text-anchor="middle">Grounded Synthesis</text>
+                </g>
+
+                <!-- Node 4: Telemetry -->
+                <g class="diagram-node" data-node="telemetry" tabindex="0" role="button" aria-label="Telemetry node">
+                  <rect x="680" y="80" width="100" height="80" rx="4" fill="#252c28" stroke="#46544c" stroke-width="1.5" />
+                  <text x="730" y="115" fill="#e8ece9" font-family="sans-serif" font-size="12" font-weight="600" text-anchor="middle">Telemetry</text>
+                  <text x="730" y="135" fill="#8d9991" font-family="monospace" font-size="10" text-anchor="middle">OpenTelemetry</text>
+                </g>
               </svg>
+
+              <!-- INTERACTIVE PIPELINE PLAYGROUND SIMULATOR (Zajno-inspired) -->
+              <div class="pipeline-simulator">
+                <div class="sim-header">
+                  <div class="sim-title">
+                    <span class="sim-badge">LIVE SIMULATOR</span>
+                    <span>Test an Enterprise Request Path:</span>
+                  </div>
+                  <div class="sim-actions">
+                    <button type="button" class="sim-btn is-active" data-sim="cache">Simulate Cache Hit (12ms)</button>
+                    <button type="button" class="sim-btn" data-sim="rag">Simulate Hybrid RAG (140ms)</button>
+                    <button type="button" class="sim-btn" data-sim="pii">Simulate PII Filter (28ms)</button>
+                  </div>
+                </div>
+                <div class="sim-terminal" id="sim-terminal" aria-live="polite">
+                  <div class="sim-log-line"><span class="log-ts">00.0ms</span> <span class="log-tag tag-client">[CLIENT]</span> Incoming query: &quot;Retrieve Q3 capital adequacy ratio formula for APRA review&quot;</div>
+                  <div class="sim-log-line is-success"><span class="log-ts">+08.2ms</span> <span class="log-tag tag-gw">[GATEWAY]</span> PII check: Clean · Semantic cache hit (0.97 match) · Cost: $0.0000</div>
+                  <div class="sim-log-line"><span class="log-ts">+11.4ms</span> <span class="log-tag tag-telemetry">[TELEMETRY]</span> OTEL trace CBA-9142 exported. Zero LLM egress cost.</div>
+                </div>
+              </div>
             </div>
 
             <!-- SPECIFICATION GRID -->
