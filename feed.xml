@@ -8,6 +8,22 @@
     <atom:link href="https://bhavinmistry.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The Multi-Model Router: Slashing Enterprise Inference Spend by 78% with SLM Distillation</title>
+      <link>https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/</link>
+      <guid>https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Why routing every query to frontier models is architectural negligence: implementing intent-aware routing between on-prem small models and frontier LLMs with automatic circuit-breakers.]]></description>
+      <category>AI FinOps &amp; Optimization</category>
+    </item>
+    <item>
+      <title>Why 95% of Enterprise AI Pilots Fail at the Perimeter (And How to Fix It)</title>
+      <link>https://bhavinmistry.com/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/</link>
+      <guid>https://bhavinmistry.com/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Deconstructing the 5 perimeter failure modes—PII leakage, semantic cache drift, unbudgeted token egress, and permission desync—that kill enterprise GenAI pilots before production.]]></description>
+      <category>AI Systems Engineering</category>
+    </item>
+    <item>
       <title>The Hidden Costs of LLM Inference: A Cost Modeling Guide</title>
       <link>https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/</link>
       <guid>https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/</guid>
