@@ -76,10 +76,25 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
   }
   const commit = git('rev-parse', 'HEAD');
   const pages = await api('/pages');
-  const needsConfiguration = pages.source?.branch !== 'gh-pages' || pages.source?.path !== '/' || pages.build_type !== 'legacy';
+  const isBranchConfigured = pages.source?.branch === 'gh-pages' && pages.source?.path === '/';
+  const needsConfiguration = !isBranchConfigured || pages.build_type === 'workflow';
   if (needsConfiguration) {
-    if (!process.argv.includes('--configure')) throw new Error('Set the GitHub Pages publishing source to gh-pages / (root), then rerun this workflow.');
-    await api('/pages', 'PUT', { build_type: 'legacy', source: { branch: 'gh-pages', path: '/' } });
+    console.log(`GitHub Pages publishing source needs configuration (current: branch=${pages.source?.branch || 'none'}, path=${pages.source?.path || 'none'}, build_type=${pages.build_type || 'none'}). Attempting update to gh-pages / (root)...`);
+    try {
+      await api('/pages', 'PUT', { build_type: 'legacy', source: { branch: 'gh-pages', path: '/' } });
+      console.log('Successfully configured GitHub Pages publishing source to gh-pages / (root).');
+    } catch (err) {
+      throw new Error(
+        `GitHub Pages publishing source is not set to 'gh-pages' / (root).\n` +
+        `Current setting: branch=${pages.source?.branch || 'none'}, path=${pages.source?.path || 'none'}, build_type=${pages.build_type || 'none'}.\n` +
+        `API configuration attempt returned: ${err.message}\n\n` +
+        `To fix this:\n` +
+        `1. Open: https://github.com/${repository}/settings/pages\n` +
+        `2. Under "Build and deployment" -> "Source", select "Deploy from a branch"\n` +
+        `3. Under "Branch", select "gh-pages" and "/ (root)", then click "Save"\n` +
+        `4. Re-run this workflow.`
+      );
+    }
   }
   if (!changed && !needsConfiguration) {
     const latest = await api('/pages/builds/latest', 'GET', undefined, true);
