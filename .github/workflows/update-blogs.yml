@@ -59,7 +59,7 @@ jobs:
       - name: Publish generated site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/publish-pages.js
+        run: node scripts/publish-pages.js --configure
 
       - name: Summarize source status
         if: always()
