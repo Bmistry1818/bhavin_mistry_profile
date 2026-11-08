@@ -1,15 +1,28 @@
-# Bhavin Mistry - Enterprise AI Engineering Authority Platform
-> Building Enterprise AI That Actually Reaches Production
+# Bhavin Mistry - Enterprise AI & Technology Executive
+> Architecting the Engineering Organizations and Production Platforms That Turn Enterprise AI into P&L Impact.
 
-## Author & Entity
+## Executive Profile & Entity
 - Name: Bhavin Mistry
-- Focus: Enterprise AI, AI Engineering, Agentic AI, Enterprise RAG, AI Architecture, AI Governance, Financial Services AI
-- Location: Melbourne, Australia
+- Title: Enterprise AI & Technology Executive (Head of Engineering / VP of Engineering)
+- Current Scope: Senior Engineering Leadership at Commonwealth Bank (Melbourne, Victoria, Australia)
+- Career Pedigree: Commonwealth Bank • Acenda • Accenture • Deloitte
+- Academic Credentials (The Commercial + Technical Triad):
+  - The University of Texas at Austin (Post Graduate Program in Artificial Intelligence & Machine Learning: Business Applications)
+  - Gujarat Technological University (Master of Computer Applications - MCA)
+  - Gujarat University (Bachelor of Commerce - B.Com, Corporate Finance & Accounting)
+- Focus Areas: Enterprise AI Systems Engineering, Compound AI Systems, Model Context Protocol (MCP), Distributed Engineering Squads, Team Topologies, AI FinOps & Unit Economics, APRA CPS 234 Regulated Banking Governance.
+- Location: Melbourne, Victoria, Australia
 - Website: https://bhavinmistry.com
 - LinkedIn: https://www.linkedin.com/in/bhavin-mistry
 - GitHub: https://github.com/Bmistry1818
 - Twitter/X: https://x.com/BhaveenMistrry
 - Medium: https://medium.com/@bhavin_mistry
+- Academy: https://learnaiengineering.dev
+
+## Executive Framework: First 90 Days as Head of Engineering
+- Days 1–30 (Audit, Triage & Baseline): AI portfolio triage via AI Use Case Prioritiser (pausing unscalable POCs, concentrating capital on high-ROI P&L winners), DORA and FinOps metrics baseline, and APRA/security exposure mapping across squads.
+- Days 31–60 (Platform Foundation & Operating Model): Centralized Enterprise AI Gateway deployment (multi-provider routing, semantic caching, PII redaction, token quotas), Team Topologies realignment (Platform vs Stream-Aligned squads), and 50-point Production Readiness Gate institution.
+- Days 61–90 (Velocity, Enablement & Commercial Scale): AI-native SDLC rollout with graph/MCP workflows, executive unit-economics telemetry dashboards tying inference spend directly to commercial P&L outcomes, and internal AI Academy enablement modeled on Learn AI Engineering.
 
 ## Core Canonical Publications
 - The 5-Stage Framework for Taking Enterprise AI to Production: https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/

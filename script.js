@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Social share copy and code copy buttons
   initCopyButtons();
 
+  // Accessible interactive tabs (e.g. First 90 Days Playbook)
+  initTabs();
+
   // Table of Contents active spy
   initTocSpy();
 
@@ -451,6 +454,26 @@ function initCopyButtons() {
     });
   });
 
+  // Dedicated text / bio copy buttons
+  document.querySelectorAll('[data-copy-text]').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const text = btn.getAttribute('data-copy-text');
+      const label = btn.getAttribute('data-copy-label') || 'Text';
+      try {
+        await navigator.clipboard.writeText(text);
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied! ✓';
+        showToast(`${label} copied to clipboard! 📋`);
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      } catch (err) {
+        showToast('Copied to clipboard!');
+      }
+    });
+  });
+
   // Code snippet copy buttons
   document.querySelectorAll('.code-copy-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -469,6 +492,53 @@ function initCopyButtons() {
       } catch (err) {
         showToast('Code copied!');
       }
+    });
+  });
+}
+
+/* Accessible Interactive Tabs (e.g. First 90 Days Playbook) */
+function initTabs() {
+  document.querySelectorAll('[data-tabs]').forEach(container => {
+    const tabBtns = Array.from(container.querySelectorAll('[role="tab"]'));
+    const tabPanels = Array.from(container.querySelectorAll('[role="tabpanel"]'));
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('aria-controls');
+
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        tabPanels.forEach(p => {
+          p.classList.remove('active');
+          p.hidden = true;
+        });
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        const targetPanel = container.querySelector('#' + targetId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+          targetPanel.hidden = false;
+        }
+      });
+
+      // Keyboard navigation (Arrow keys)
+      btn.addEventListener('keydown', (e) => {
+        const index = tabBtns.indexOf(btn);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = tabBtns[(index + 1) % tabBtns.length];
+          next.focus();
+          next.click();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = tabBtns[(index - 1 + tabBtns.length) % tabBtns.length];
+          prev.focus();
+          prev.click();
+        }
+      });
     });
   });
 }

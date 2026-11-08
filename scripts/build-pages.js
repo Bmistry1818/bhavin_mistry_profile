@@ -117,17 +117,17 @@ function renderLeadMagnetCard() {
       <div class="lead-magnet-grid">
         <div>
           <span class="eyebrow" style="color: var(--accent);">Engineering Resource</span>
-          <h3 id="lead-magnet-title" style="font-size: 22px; margin-bottom: 8px;">The Enterprise AI Production Checklist</h3>
+          <h3 id="lead-magnet-title" style="font-size: 22px; margin-bottom: 8px;">The Enterprise AI Production Gate (50-Point Verification Standard)</h3>
           <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 0;">
-            A rigorous 50-point engineering, security, and FinOps verification gate before promoting Generative AI and Agentic systems to live enterprise traffic.
+            Used by engineering leaders and architects to verify security, APRA compliance, FinOps unit economics, and operational resilience prior to promoting GenAI systems to live traffic.
           </p>
         </div>
         <div>
-          <form action="/newsletter/" method="get" onsubmit="event.preventDefault(); alert('Checklist access queued! A confirmation email has been dispatched to your inbox.');" style="display: flex; flex-direction: column; gap: 10px;">
+          <form action="/newsletter/" method="get" onsubmit="event.preventDefault(); alert('50-Point Verification Standard access queued! A confirmation email has been dispatched to your inbox.');" style="display: flex; flex-direction: column; gap: 10px;">
             <input type="email" placeholder="name@enterprise.com" required style="padding: 12px 14px; border: 1px solid var(--line); border-radius: 3px; font-size: 13px; background: var(--paper);" aria-label="Work email address" />
             <button type="submit" class="btn btn-primary" style="padding: 12px; font-size: 13px;">Get Free Production Checklist →</button>
           </form>
-          <span style="font-size: 11px; color: var(--muted); display: block; margin-top: 8px; text-align: center;">Zero spam. Fortnightly dispatches. Unsubscribe anytime.</span>
+          <span style="font-size: 11px; color: var(--muted); display: block; margin-top: 8px; text-align: center;">Confidential peer exchange for technology executives & engineering leaders. Unsubscribe anytime.</span>
         </div>
       </div>
     </section>
@@ -138,16 +138,16 @@ function renderAuthorBioCard() {
   return `
     <div style="margin-top: 48px; padding: 28px; background: var(--paper-elevated); border: 1px solid var(--line); border-radius: 4px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
       <div style="flex: 1; min-width: 240px;">
-        <span class="eyebrow" style="margin-bottom: 4px;">Author & Engineering Leader</span>
+        <span class="eyebrow" style="margin-bottom: 4px;">Author & Engineering Executive</span>
         <h4 style="font-size: 18px; margin-bottom: 6px;">Bhavin Mistry</h4>
         <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.6;">
-          Senior Engineering Manager at Commonwealth Bank based in Melbourne, Australia. Focusing on enterprise AI architecture, hybrid RAG, agentic reliability, and technology economics.
+          Enterprise AI & Technology Executive based in Melbourne, Australia. Senior Engineering Leadership at Commonwealth Bank; ex-Acenda, Accenture & Deloitte. Bridging C-suite strategy with production platform architecture, APRA compliance, and AI FinOps.
         </p>
         <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;">
           <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn Profile <span>↗</span></a>
-          <a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer" class="text-link">Medium <span>↗</span></a>
-          <a href="/about/" class="text-link">Full Leadership Bio <span>→</span></a>
+          <a href="/about/" class="text-link">Executive Dossier <span>→</span></a>
           <a href="/speaking/" class="text-link">Speaking & Keynotes <span>→</span></a>
+          <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="text-link">Learn AI Engineering <span>↗</span></a>
         </div>
       </div>
     </div>
@@ -410,20 +410,23 @@ function buildHomepage() {
     <!-- HERO SECTION -->
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-meta">
-        <span>Bhavin Mistry • Senior Engineering Manager</span>
-        <span>Melbourne, Australia</span>
+        <span class="eyebrow" style="letter-spacing: 0.12em; color: var(--accent); font-weight: 600;">BHAVIN MISTRY • MELBOURNE, AUSTRALIA • ENTERPRISE AI & TECHNOLOGY EXECUTIVE</span>
       </div>
-      <h1 id="hero-title" class="kinetic-hero-title">Architecting the systems that take enterprise AI to <em>production.</em></h1>
+      <h1 id="hero-title" class="kinetic-hero-title">Architecting the Engineering Organizations and Production Platforms That Turn Enterprise AI into <em>P&L Impact.</em></h1>
       <div class="hero-grid">
         <p class="hero-lead">
-          I bridge business imperatives with modern AI engineering, Model Context Protocol (MCP) gateways, and hybrid retrieval platforms. My focus is taking Generative AI and autonomous agents from fragile prototypes to secure, governed production at Tier-1 banking scale.
+          I bridge C-suite commercial strategy with high-velocity systems execution—scaling globally distributed engineering teams, mission-critical AI platforms, and APRA-compliant architectures across Tier-1 banking and enterprise technology.
         </p>
         <div class="hero-actions">
           <div class="btn-group">
-            <a href="/architectures/" class="btn btn-primary">Explore Production Blueprints →</a>
-            <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Start a Conversation ↗</a>
+            <a href="/about/" class="btn btn-primary">Explore Executive Track Record →</a>
+            <a href="/tools/" class="btn btn-secondary">Try Interactive AI FinOps & RAG Tools →</a>
           </div>
-          <span class="hero-note">Senior Engineering Manager at Commonwealth Bank • Melbourne, Australia</span>
+          <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="text-link" style="font-size: 14px; font-weight: 500;">Start a Conversation on LinkedIn <span>↗</span></a>
+          <div class="pedigree-trust-strip">
+            <span class="pedigree-label">Leadership & Architecture Pedigree:</span>
+            <span class="pedigree-items">Commonwealth Bank • Acenda • Accenture • Deloitte • UT Austin (PGP AI/ML)</span>
+          </div>
         </div>
       </div>
 
@@ -443,28 +446,32 @@ function buildHomepage() {
         <canvas id="hero-motion-canvas" class="hero-motion-canvas" width="1180" height="100"></canvas>
       </div>
 
-      <!-- AUTHORITY STATS / PILLARS -->
-      <div class="authority-bar">
-        <div class="authority-item">
-          <div class="authority-label">Discipline</div>
-          <div class="authority-value">AI Systems Engineering</div>
-          <div class="authority-desc">Compound AI systems, agent runtimes, and distributed platform scaling.</div>
-        </div>
-        <div class="authority-item">
-          <div class="authority-label">Regulated Scale</div>
-          <div class="authority-value">Tier-1 Banking</div>
-          <div class="authority-desc">Senior Engineering Manager at Commonwealth Bank; ex-Accenture & Deloitte.</div>
-        </div>
-        <div class="authority-item">
-          <div class="authority-label">Core Architecture</div>
-          <div class="authority-value">Hybrid RAG & MCP</div>
-          <div class="authority-desc">Knowledge graphs, reciprocal rank fusion, and zero-trust agent protocols.</div>
-        </div>
-        <div class="authority-item">
-          <div class="authority-label">Economics & Quality</div>
-          <div class="authority-value">AI FinOps & EvalOps</div>
-          <div class="authority-desc">Token unit economics, SLM distillation, and automated CI/CD evaluation gates.</div>
-        </div>
+      <!-- INTERACTIVE EXECUTIVE VALUE MATRIX -->
+      <div class="executive-value-matrix" aria-label="Executive Value Matrix">
+        <a href="/about/#operating-model" class="value-matrix-card">
+          <div class="matrix-card-eyebrow">Organizational Scale & Velocity</div>
+          <h3 class="matrix-card-title">Distributed Squads & AI-Native SDLC</h3>
+          <p class="matrix-card-body">Leading cross-functional engineering squads, architects, and tech leads with Team Topologies, DORA telemetry, and agentic developer workflows.</p>
+          <div class="matrix-card-link">See Operating Model <span>→</span></div>
+        </a>
+        <a href="/architectures/" class="value-matrix-card">
+          <div class="matrix-card-eyebrow">Production AI Architecture</div>
+          <h3 class="matrix-card-title">Hybrid RAG, Gateways & Agent State Machines</h3>
+          <p class="matrix-card-body">Battle-tested blueprints combining BM25 + dense vector retrieval, cross-encoder reranking, and centralized multi-model routing.</p>
+          <div class="matrix-card-link">Inspect 6 Blueprints <span>→</span></div>
+        </a>
+        <a href="/tools/" class="value-matrix-card">
+          <div class="matrix-card-eyebrow">Commercial & FinOps Rigor</div>
+          <h3 class="matrix-card-title">Unit Economics & Capital Allocation</h3>
+          <p class="matrix-card-body">Shifting executive metrics from raw token spend to cost-per-business-outcome via semantic caching, quotas, and build-vs-buy discipline.</p>
+          <div class="matrix-card-link">Launch Cost Calculators <span>→</span></div>
+        </a>
+        <a href="/frameworks/enterprise-ai-production-readiness/" class="value-matrix-card">
+          <div class="matrix-card-eyebrow">Regulated Banking Governance</div>
+          <h3 class="matrix-card-title">APRA CPS 234 & Zero-Trust Guardrails</h3>
+          <p class="matrix-card-body">Embedding immutable audit logging, PII redaction perimeters, prompt-injection defense, and CI/CD eval harnesses into production gates.</p>
+          <div class="matrix-card-link">View 50-Point Readiness Gate <span>→</span></div>
+        </a>
       </div>
     </section>
 
@@ -480,9 +487,51 @@ function buildHomepage() {
       <div style="margin-top: 32px;"><a href="/insights/#latest-publications" class="text-link">View All Publications →</a></div>
     </section>
 
-    <section class="container platform-feature" aria-labelledby="platform-title">
-      <div><span class="eyebrow">Engineering in Practice</span><h2 id="platform-title">Graph Engineering Platform.</h2><p>Five working AI agent skills connecting source-code graphs, architectural decisions and durable Obsidian memory across Codex, Claude and MCP.</p></div>
-      <div><span class="badge">Typed source · Native integrations · Inspectable tools</span><a href="/tools/graph-engineering/" class="btn btn-primary">Explore the Platform →</a></div>
+    <!-- LIVE PRODUCTION ECOSYSTEMS (Graph Engineering & Learn AI Engineering) -->
+    <section class="section container" aria-labelledby="platform-title" id="engineering-in-practice">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">Engineering in Practice</span>
+          <h2 id="platform-title">Live Production Ecosystems.</h2>
+        </div>
+        <p class="section-header-desc">
+          Two flagship engineering ecosystems demonstrating hands-on architecture tooling and enterprise-wide technical enablement.
+        </p>
+      </div>
+
+      <div class="ecosystem-grid">
+        <div class="ecosystem-card">
+          <div class="ecosystem-badge-wrap">
+            <span class="badge badge-accent">Production Developer Tooling</span>
+          </div>
+          <h3>Graph Engineering Platform</h3>
+          <p>
+            Five working AI agent skills connecting source-code dependency graphs, architectural decision records (ADRs), and durable Obsidian memory across Codex, Claude, and MCP.
+          </p>
+          <div class="ecosystem-meta">
+            <span>Typed Source</span> · <span>Native Integrations</span> · <span>Inspectable Tools</span>
+          </div>
+          <div class="ecosystem-footer">
+            <a href="/tools/graph-engineering/" class="btn btn-primary">Explore the Platform →</a>
+          </div>
+        </div>
+
+        <div class="ecosystem-card">
+          <div class="ecosystem-badge-wrap">
+            <span class="badge badge-accent">Org-Wide Talent Enablement</span>
+          </div>
+          <h3>Learn AI Engineering</h3>
+          <p>
+            An interactive, audio-free 3D & motion engineering academy built from first principles to upskill software engineering organizations into production AI systems engineers.
+          </p>
+          <div class="ecosystem-meta">
+            <span>First-Principles Academy</span> · <span>Interactive 3D</span> · <span>Zero Fluff</span>
+          </div>
+          <div class="ecosystem-footer">
+            <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Learn AI Engineering ↗</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- FEATURED THINKING (INSIGHTS) -->
@@ -673,29 +722,29 @@ function buildHomepage() {
       ${renderLeadMagnetCard()}
     </div>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION PREVIEW -->
     <section class="section section-wash" aria-labelledby="about-title">
       <div class="container" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
         <div>
-          <span class="eyebrow">Engineering Leadership</span>
+          <span class="eyebrow">Executive Leadership</span>
           <h2 id="about-title">Bhavin Mistry.</h2>
           <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-top: 16px;">
-            Senior Engineering Manager at Commonwealth Bank, with a career spanning AI strategy, platform engineering, architecture, and globally distributed delivery.
+            Enterprise AI & Technology Executive bridging C-suite commercial strategy with deep systems execution across Commonwealth Bank, Acenda, Accenture, and Deloitte.
           </p>
           <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="/about/" class="btn btn-primary">View Leadership Profile →</a>
-            <a href="/speaking/" class="btn btn-secondary">Speaking & Keynotes →</a>
+            <a href="/about/" class="btn btn-primary">Explore Executive Dossier →</a>
+            <a href="/speaking/" class="btn btn-secondary">Speaking & Board Briefings →</a>
           </div>
         </div>
-        <div style="background: var(--paper); padding: 36px; border: 1px solid var(--line);">
-          <h4 style="margin-bottom: 12px;">How I Lead</h4>
+        <div style="background: var(--paper); padding: 36px; border: 1px solid var(--line); border-radius: 4px;">
+          <h4 style="margin-bottom: 12px;">Commercial & Technical Fluency</h4>
           <p style="font-size: 14px; color: var(--muted); line-height: 1.7;">
-            I work with senior leaders, product teams, and engineers to turn business priorities into delivery roadmaps and dependable services. My approach brings engineering, architecture, and domain expertise together early, with quality and governance built into the operating model.
+            Operating with equal fluency across the Architecture Review Board and the executive P&L table. Scaling globally distributed engineering squads, implementing APRA CPS 234 zero-trust perimeters, and instituting AI FinOps unit economics that transform experimental pilots into measurable commercial outcomes.
           </p>
           <div style="border-top: 1px solid var(--line-subtle); padding-top: 20px; margin-top: 20px;">
-            <span class="eyebrow" style="margin-bottom: 6px;">Verified Education</span>
-            <div style="font-size: 14px; font-weight: 600;">The University of Texas at Austin</div>
-            <div style="font-size: 13px; color: var(--muted);">Post Graduate Program in Artificial Intelligence and Machine Learning: Business Applications</div>
+            <span class="eyebrow" style="margin-bottom: 6px;">Executive Pedigree</span>
+            <div style="font-size: 14px; font-weight: 600;">The University of Texas at Austin • GTU • Gujarat University</div>
+            <div style="font-size: 13px; color: var(--muted); margin-top: 2px;">PGP Artificial Intelligence & Machine Learning · MCA · B.Com (Corporate Finance)</div>
           </div>
         </div>
       </div>
@@ -707,7 +756,7 @@ function buildHomepage() {
     "@type": "Person",
     "@id": "https://bhavinmistry.com/#person",
     "name": "Bhavin Mistry",
-    "jobTitle": "Senior Engineering Manager",
+    "jobTitle": "Enterprise AI & Technology Executive",
     "worksFor": {
       "@type": "Organization",
       "name": "Commonwealth Bank"
@@ -717,24 +766,35 @@ function buildHomepage() {
       "addressLocality": "Melbourne",
       "addressCountry": "AU"
     },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "The University of Texas at Austin"
-    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "The University of Texas at Austin"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Gujarat Technological University"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Gujarat University"
+      }
+    ],
     "sameAs": [
       "https://www.linkedin.com/in/bhavin-mistry",
       "https://github.com/Bmistry1818",
       "https://x.com/BhaveenMistrry",
-      "https://medium.com/@bhavin_mistry"
+      "https://medium.com/@bhavin_mistry",
+      "https://learnaiengineering.dev/"
     ],
-    "knowsAbout": ["Enterprise AI", "RAG Architecture", "AI Governance", "Platform Engineering", "Machine Learning"],
+    "knowsAbout": ["Enterprise AI", "RAG Architecture", "AI Governance", "Platform Engineering", "Machine Learning", "AI FinOps", "APRA CPS 234"],
     "url": "https://bhavinmistry.com/",
     "image": "https://bhavinmistry.com/assets/og/default.png"
   };
 
   const html = renderHtmlPage({
-    title: "Bhavin Mistry | Enterprise AI Engineering Leader",
-    description: "Bhavin Mistry is a Senior Engineering Manager at Commonwealth Bank in Melbourne, Australia. Architecture blueprints, hybrid RAG frameworks, and AI leadership.",
+    title: "Bhavin Mistry | Enterprise AI & Technology Executive",
+    description: "Enterprise AI & Technology Executive. Turning enterprise AI into P&L impact through scalable architectures, APRA-compliant governance, and high-velocity engineering organizations.",
     canonicalUrl: "https://bhavinmistry.com/",
     currentPath: "/",
     mainContent: main,
@@ -2500,127 +2560,451 @@ function buildAbout() {
 
   const crumbs = [
     { name: "Home", url: "/" },
-    { name: "About", url: "/about/" }
+    { name: "About — Executive Leadership Dossier", url: "/about/" }
   ];
 
   const abMain = `
-    <div class="container" style="max-width: 860px; padding-top: 64px; padding-bottom: 88px;">
+    <div class="container" style="max-width: 920px; padding-top: 64px; padding-bottom: 88px;">
       ${renderBreadcrumbs(crumbs)}
-      <span class="eyebrow">Leadership Profile</span>
-      <h1>Bhavin Mistry</h1>
-      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
-        Senior Engineering Manager at Commonwealth Bank, based in Melbourne, Australia. Connecting technology strategy, architecture, and engineering delivery across enterprise AI and platform initiatives.
-      </p>
 
-      <div style="background: var(--paper-elevated); border: 1px solid var(--line); padding: 32px; margin-bottom: 48px; border-radius: 4px; display: grid; grid-template-columns: 120px 1fr; gap: 32px; align-items: center;">
-        <div style="width: 120px; height: 120px; border-radius: 50%; background: var(--wash); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 36px; color: var(--accent); font-family: var(--serif);">
-          BM
+      <!-- SECTION 1: EXECUTIVE HERO & HIGH-TRUST IDENTITY HEADER -->
+      <header class="about-hero" aria-labelledby="dossier-title">
+        <span class="eyebrow" style="letter-spacing: 0.12em; color: var(--accent); font-weight: 600;">Executive Leadership Dossier</span>
+        <h1 id="dossier-title" style="margin-top: 8px; margin-bottom: 12px;">Bhavin Mistry</h1>
+        <div style="font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">
+          Enterprise AI & Technology Executive
         </div>
-        <div>
-          <h3 style="margin-bottom: 6px;">Bhavin Mistry</h3>
-          <p style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">
-            Senior Engineering Manager • Commonwealth Bank • Melbourne, Victoria, Australia
-          </p>
-          <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px;">
-            <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn Profile ↗</a>
-            <a href="https://github.com/Bmistry1818" target="_blank" rel="noopener noreferrer" class="text-link">GitHub ↗</a>
-            <a href="https://x.com/BhaveenMistrry" target="_blank" rel="noopener noreferrer" class="text-link">Twitter / X ↗</a>
-            <a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer" class="text-link">Medium ↗</a>
+        <p style="font-size: 15px; color: var(--muted); line-height: 1.5; margin-bottom: 24px;">
+          Melbourne, Victoria, Australia • Senior Engineering Leadership at Commonwealth Bank • Ex-Acenda, Accenture & Deloitte
+        </p>
+        <p class="hero-lead" style="font-size: 20px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 32px;">
+          Scaling the engineering organizations, production platforms, and governance models that take enterprise AI from pilot purgatory to measurable P&L impact.
+        </p>
+
+        <!-- Executive Identity Card -->
+        <div class="exec-dossier-hero">
+          <div class="exec-seal" aria-hidden="true">
+            <div class="exec-seal-monogram">BM</div>
+            <div class="exec-seal-sub">EXECUTIVE</div>
+          </div>
+          <div>
+            <div style="font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--ink);">
+              Bhavin Mistry
+            </div>
+            <div style="font-size: 13px; color: var(--muted); margin-top: 2px;">
+              Senior Engineering Manager • Commonwealth Bank • Melbourne, Australia
+            </div>
+            <div class="exec-badge-list">
+              <span class="badge badge-accent">Tier-1 Regulated Banking</span>
+              <span class="badge badge-accent">Enterprise AI Platforms</span>
+              <span class="badge badge-accent">Global Distributed Delivery</span>
+              <span class="badge badge-accent">APRA CPS 234 Governance</span>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+              <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Connect on LinkedIn ↗</a>
+              <a href="/speaking/" class="btn btn-secondary btn-sm">Book for Keynotes & Board Briefings →</a>
+              <a href="#first-90-days" class="btn btn-secondary btn-sm">Jump to First 90 Days Playbook ↓</a>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      <!-- Executive Bio -->
-      <h2 style="margin-bottom: 16px;">Executive Bio</h2>
-      <div style="font-size: 16px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 48px;">
-        <p>
-          Bhavin Mistry is an engineering leader with deep expertise across enterprise AI architecture, platform engineering, and high-stakes digital delivery in financial services. Currently serving as Senior Engineering Manager at Commonwealth Bank in Melbourne, he oversees engineering squads delivering robust, highly scalable, and strictly governed platforms.
-        </p>
-        <p>
-          Prior to Commonwealth Bank, Bhavin held engineering and architecture roles at Acenda, Accenture, and Deloitte, partnering with global enterprises to modernize monolithic architectures, implement cloud-native platforms, and establish agile engineering operating models.
-        </p>
-        <p>
-          His technical focus centers on bridging the gap between frontier AI experimentation and dependable production operations: architecting hybrid sparse-dense RAG systems, bounded multi-agent state machines, centralized LLM routing gateways, and automated CI evaluation pipelines aligned with regulatory standards such as APRA CPS 234.
-        </p>
-      </div>
-
-      <!-- Core Disciplines -->
-      <h2 style="margin-bottom: 20px;">Core Engineering Disciplines</h2>
-      <div class="card-grid-2" style="margin-bottom: 48px;">
-        <div class="card">
-          <h4 style="margin-bottom: 8px;">Engineering Strategy & Leadership</h4>
-          <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">
-            Leading globally distributed squads, aligning technical architectures with P&L targets, and mentoring senior engineering talent.
-          </p>
-        </div>
-        <div class="card">
-          <h4 style="margin-bottom: 8px;">Enterprise AI & Hybrid RAG</h4>
-          <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">
-            Designing dual-index retrieval (BM25 + Dense vector), cross-encoder rerankers, and security-trimmed access control lists.
-          </p>
-        </div>
-        <div class="card">
-          <h4 style="margin-bottom: 8px;">Regulated AI Governance</h4>
-          <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">
-            Implementing immutable trace logging, PII redaction perimeters, canary token traps, and compliance with APRA CPS 234.
-          </p>
-        </div>
-        <div class="card">
-          <h4 style="margin-bottom: 8px;">AI FinOps & Unit Economics</h4>
-          <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">
-            Deploying centralized reverse-proxy gateways, semantic caching in Redis, per-team token quotas, and continuous eval harnesses.
-          </p>
-        </div>
-      </div>
-
-      <!-- Verified Education -->
-      <h2 style="margin-bottom: 16px;">Education & Credentials</h2>
-      <div style="background: var(--paper-elevated); padding: 28px; border: 1px solid var(--line); margin-bottom: 48px; border-radius: 4px;">
-        <span class="eyebrow" style="margin-bottom: 6px;">Executive Education</span>
-        <h3 style="font-size: 20px; margin-bottom: 6px;">The University of Texas at Austin</h3>
-        <p style="font-size: 15px; color: var(--ink-soft); margin-bottom: 4px;">Post Graduate Program in Artificial Intelligence and Machine Learning: Business Applications</p>
-        <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">Focused on deep learning system design, transformer architectures, and strategic enterprise AI deployment.</p>
-        <div style="border-top: 1px solid var(--line-subtle); padding-top: 16px; font-size: 13px; color: var(--muted);">
-          Master of Computer Applications, Gujarat Technological University · Bachelor of Commerce, Gujarat University
-        </div>
-      </div>
-
-      <!-- MEDIA KIT SECTION -->
-      <h2 id="media-kit" style="margin-bottom: 16px;">Media Kit & Event Organizers</h2>
-      <p style="font-size: 14px; color: var(--muted); margin-bottom: 24px;">
-        Approved biographies, headshots, and boilerplate copy for conference programs, podcast hosts, and panel introductions.
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 56px;">
-        <div style="background: var(--wash); border: 1px solid var(--line); padding: 24px; border-radius: 4px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <strong style="font-size: 14px;">Short Bio (50 words)</strong>
-            <button type="button" class="share-btn" data-copy-url="Bhavin Mistry is a Senior Engineering Manager at Commonwealth Bank in Melbourne, Australia. He specializes in enterprise AI architecture, hybrid RAG, and platform engineering, helping organizations take generative AI from experimentation to production.">Copy 📋</button>
+      <!-- SECTION 2: EXECUTIVE IMPACT TELEMETRY BAR (4-COLUMN METRIC GRID) -->
+      <section aria-labelledby="telemetry-title" style="margin-top: 40px;">
+        <h2 id="telemetry-title" class="sr-only">Executive Impact Telemetry</h2>
+        <div class="telemetry-grid">
+          <div class="telemetry-card">
+            <div class="telemetry-num">Global Distributed Delivery</div>
+            <div class="telemetry-label">Multi-Squad Leadership</div>
+            <div class="telemetry-desc">Leading cross-functional engineering squads, principal engineers, and technical leads across onshore and offshore hubs.</div>
           </div>
-          <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0;">
-            "Bhavin Mistry is a Senior Engineering Manager at Commonwealth Bank in Melbourne, Australia. He specializes in enterprise AI architecture, hybrid RAG, and platform engineering, helping organizations take generative AI from experimentation to production."
-          </p>
-        </div>
-
-        <div style="background: var(--wash); border: 1px solid var(--line); padding: 24px; border-radius: 4px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <strong style="font-size: 14px;">Medium Bio (100 words)</strong>
-            <button type="button" class="share-btn" data-copy-url="Bhavin Mistry is a Senior Engineering Manager at Commonwealth Bank based in Melbourne, Australia. His background spans platform engineering, architecture, and technology leadership at Acenda, Accenture, and Deloitte. Bhavin focuses on production enterprise AI: designing hybrid RAG retrieval systems, centralized LLM gateways, and governance frameworks that withstand regulatory scrutiny in financial services. He completed his postgraduate studies in Artificial Intelligence & Machine Learning at The University of Texas at Austin.">Copy 📋</button>
+          <div class="telemetry-card">
+            <div class="telemetry-num">P&L-Aligned Architecture</div>
+            <div class="telemetry-label">Commercial & FinOps Discipline</div>
+            <div class="telemetry-desc">Driving cloud and LLM unit-economics efficiency via centralized gateways, semantic caching, and build-vs-buy governance.</div>
           </div>
-          <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 0;">
-            "Bhavin Mistry is a Senior Engineering Manager at Commonwealth Bank based in Melbourne, Australia. His background spans platform engineering, architecture, and technology leadership at Acenda, Accenture, and Deloitte. Bhavin focuses on production enterprise AI: designing hybrid RAG retrieval systems, centralized LLM gateways, and governance frameworks that withstand regulatory scrutiny in financial services. He completed his postgraduate studies in Artificial Intelligence & Machine Learning at The University of Texas at Austin."
+          <div class="telemetry-card">
+            <div class="telemetry-num">Accelerated Production Delivery</div>
+            <div class="telemetry-label">AI-Native SDLC Velocity</div>
+            <div class="telemetry-desc">Compressing lead time from commit to production using MCP/graph-assisted engineering workflows and automated CI eval gates.</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-num">APRA CPS 234 & Zero-Trust</div>
+            <div class="telemetry-label">Tier-1 Regulated Resilience</div>
+            <div class="telemetry-desc">Architecting mission-critical financial services platforms built for strict regulatory scrutiny and high availability.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: EXECUTIVE THESIS & THE "DUAL FOUNDATION" ADVANTAGE -->
+      <section class="about-section" aria-labelledby="thesis-title">
+        <div class="thesis-callout">
+          <span class="eyebrow" style="color: var(--accent);">Strategic Thesis</span>
+          <h3 id="thesis-title" style="font-size: 21px; margin-top: 8px; margin-bottom: 12px; font-family: var(--serif);">Why Most Enterprise AI Transformations Stall</h3>
+          <blockquote style="font-size: 17px; line-height: 1.6; color: var(--ink); border-left: 3px solid var(--accent); padding-left: 18px; margin: 0 0 16px 0; font-style: italic;">
+            Most enterprise AI and platform transformations fail not because the foundation models are weak, but because the engineering operating model, governance perimeter, and unit economics were never designed for production scale.
+          </blockquote>
+        </div>
+
+        <div style="font-size: 16px; line-height: 1.8; color: var(--ink-soft); margin-top: 28px;">
+          <p style="margin-bottom: 18px;">
+            Bhavin Mistry is an Enterprise AI and Engineering Executive who bridges <strong>C-suite commercial strategy</strong> with <strong>deep systems execution</strong>. Across his leadership tenure at <strong>Commonwealth Bank</strong>, and previously at <strong>Acenda, Accenture, and Deloitte</strong>, he has built and led high-performing engineering teams that modernize legacy cores, deliver cloud-native platforms, and transition Generative and Agentic AI into strictly governed enterprise production.
+          </p>
+          <p style="margin-bottom: 0;">
+            With a rare academic triad spanning <strong>Corporate Finance & Commerce (B.Com)</strong>, <strong>Advanced Computer Applications (MCA)</strong>, and <strong>Artificial Intelligence & Machine Learning (The University of Texas at Austin)</strong>, Bhavin operates fluently across both the <strong>architecture review board</strong> and the <strong>executive P&L table</strong>—ensuring every engineering roadmap compounds both technical velocity and commercial return.
           </p>
         </div>
-      </div>
+      </section>
 
-      <!-- Contact -->
-      <h2 id="contact">Discuss AI Engineering Leadership</h2>
-      <p style="font-size: 15px; color: var(--ink-soft); margin-top: 12px;">I welcome conversations about enterprise AI strategy, engineering leadership, and building production-ready platforms.</p>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px;">
-        <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start a Conversation on LinkedIn ↗</a>
-        <a href="/speaking/" class="btn btn-secondary">Speaking & Keynotes →</a>
-        <a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Read on Medium ↗</a>
-      </div>
+      <!-- SECTION 4: INTERACTIVE 4-PILLAR ENGINEERING OPERATING MODEL -->
+      <section class="about-section" id="operating-model" aria-labelledby="operating-model-title">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Operating Methodology</span>
+            <h2 id="operating-model-title">4-Pillar Engineering Operating Model.</h2>
+          </div>
+          <p class="section-header-desc">
+            A battle-tested framework for building high-talent-density engineering organizations and production AI platforms.
+          </p>
+        </div>
+
+        <div class="operating-model-grid">
+          <div class="operating-pillar-card">
+            <div class="pillar-number">01</div>
+            <h3>Organizational Design & High-Talent-Density Culture</h3>
+            <p>
+              Structuring organizations using <strong>Team Topologies</strong>—separating core Platform Engineering squads (owning shared AI gateways, CI/CD, and observability) from Stream-Aligned product squads to eliminate handoff bottlenecks and cognitive overload.
+            </p>
+            <p>
+              Mentoring Engineering Managers, Staff/Principal Engineers, and Tech Leads to own architectural simplicity, operational resilience, and commercial outcomes.
+            </p>
+            <div class="pillar-proof">
+              <a href="/frameworks/enterprise-ai-production-readiness/" class="text-link">Explore the 5-Stage Production Framework <span>→</span></a>
+            </div>
+          </div>
+
+          <div class="operating-pillar-card">
+            <div class="pillar-number">02</div>
+            <h3>AI-Native SDLC & Org-Wide Engineering Enablement</h3>
+            <p>
+              Moving teams beyond basic autocomplete toward graph-aware, multi-agent developer workflows connecting code dependency graphs, ADRs, and MCP tooling.
+            </p>
+            <p>
+              Upskilling traditional software engineers into production AI builders through interactive, first-principles visual learning systems.
+            </p>
+            <div class="pillar-proof">
+              <a href="/#engineering-in-practice" class="text-link">Inspect Graph Engineering Platform <span>→</span></a> · 
+              <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="text-link">Visit Learn AI Engineering <span>↗</span></a>
+            </div>
+          </div>
+
+          <div class="operating-pillar-card">
+            <div class="pillar-number">03</div>
+            <h3>Production AI & Regulated Platform Architecture</h3>
+            <p>
+              Architecting Hybrid Sparse-Dense RAG (BM25 + dense embeddings + cross-encoder reranking), bounded multi-agent state machines, and centralized LLM routing gateways.
+            </p>
+            <p>
+              Embedding <strong>APRA CPS 234</strong> compliance, PII redaction perimeters, canary token traps, and automated CI evaluation harnesses (Ragas, DeepEval, Promptfoo) directly into the deployment pipeline.
+            </p>
+            <div class="pillar-proof">
+              <a href="/architectures/" class="text-link">Explore all 6 Production Architecture Blueprints <span>→</span></a>
+            </div>
+          </div>
+
+          <div class="operating-pillar-card">
+            <div class="pillar-number">04</div>
+            <h3>Commercial Governance & AI FinOps</h3>
+            <p>
+              Shifting executive telemetry from raw "cost per token" to <strong>"cost per successful business outcome"</strong>.
+            </p>
+            <p>
+              Enforcing disciplined capital allocation via structured Use Case Prioritisation and Build-vs-Buy modeling to eliminate zombie POCs and fund defensible moats.
+            </p>
+            <div class="pillar-proof">
+              <a href="/tools/" class="text-link">Test Interactive RAG & Token Cost Calculators <span>→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: EXECUTIVE TRACK RECORD & DOMAIN CASE STUDIES -->
+      <section class="about-section" aria-labelledby="track-record-title">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Executive Experience</span>
+            <h2 id="track-record-title">Executive Track Record & Domain Leadership.</h2>
+          </div>
+          <p class="section-header-desc">
+            Delivering resilient platforms, modernizing legacy estates, and steering multi-vendor transformations across banking and enterprise technology.
+          </p>
+        </div>
+
+        <div class="track-record-stack">
+          <div class="track-record-card">
+            <div class="track-record-header">
+              <span class="badge badge-accent">01 • Tier-1 Banking & Regulated Platforms</span>
+              <h3 style="margin-top: 10px; font-size: 22px;">Commonwealth Bank</h3>
+              <span class="track-record-role">Senior Engineering Manager • Melbourne, Australia</span>
+            </div>
+            <div class="track-record-grid">
+              <div>
+                <h4 class="track-record-label">Executive Mandate</h4>
+                <p>Leading distributed engineering squads delivering resilient, highly scalable, and strictly governed platforms in Australia's largest financial institution.</p>
+              </div>
+              <div>
+                <h4 class="track-record-label">Key Execution & Impact</h4>
+                <p>Aligning multi-squad engineering roadmaps with business priorities; enforcing zero-trust security, operational resilience (APRA CPS 234), and paved-road delivery standards that accelerate production velocity without compromising risk guardrails.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="track-record-card">
+            <div class="track-record-header">
+              <span class="badge badge-accent">02 • Enterprise Core Modernization</span>
+              <h3 style="margin-top: 10px; font-size: 22px;">Acenda</h3>
+              <span class="track-record-role">Engineering & Architecture Leadership</span>
+            </div>
+            <div class="track-record-grid">
+              <div>
+                <h4 class="track-record-label">Executive Mandate</h4>
+                <p>Transforming monolithic legacy systems into modern, cloud-native platforms with predictable agile delivery cadences.</p>
+              </div>
+              <div>
+                <h4 class="track-record-label">Key Execution & Impact</h4>
+                <p>Re-architecting domain boundaries, reducing operational run-cost overhead, and establishing high-ownership engineering rituals across cross-functional product and platform teams.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="track-record-card">
+            <div class="track-record-header">
+              <span class="badge badge-accent">03 • Global Enterprise Transformation</span>
+              <h3 style="margin-top: 10px; font-size: 22px;">Accenture & Deloitte</h3>
+              <span class="track-record-role">Technology Architecture & Delivery Advisory</span>
+            </div>
+            <div class="track-record-grid">
+              <div>
+                <h4 class="track-record-label">Executive Mandate</h4>
+                <p>Partnering with C-suite and technology leaders across global enterprises to bridge boardroom digital strategy with complex multi-vendor engineering execution.</p>
+              </div>
+              <div>
+                <h4 class="track-record-label">Key Execution & Impact</h4>
+                <p>Designing enterprise reference architectures, cloud migration factories, and governance operating models that turned multi-year transformation programs into measurable production outcomes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: INTERACTIVE COMPONENT - MY FIRST 90 DAYS AS HEAD OF ENGINEERING -->
+      <section class="about-section" id="first-90-days" aria-labelledby="first-90-days-title">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Executive Playbook</span>
+            <h2 id="first-90-days-title">My First 90 Days as Head of Engineering.</h2>
+          </div>
+          <p class="section-header-desc">
+            A pragmatic, high-velocity onboarding blueprint balancing immediate triage, foundational platform decoupling, and commercial acceleration.
+          </p>
+        </div>
+
+        <div class="first-90-days-tabs" data-tabs>
+          <div class="tab-nav" role="tablist" aria-label="First 90 Days Phases">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-days-1-30" id="tab-1">
+              <span class="tab-phase">Phase 01</span>
+              <span class="tab-title">Days 1–30: Audit, Triage & Baseline</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-days-31-60" id="tab-2">
+              <span class="tab-phase">Phase 02</span>
+              <span class="tab-title">Days 31–60: Platform Foundation & Operating Model</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-days-61-90" id="tab-3">
+              <span class="tab-phase">Phase 03</span>
+              <span class="tab-title">Days 61–90: Velocity, Enablement & Commercial Scale</span>
+            </button>
+          </div>
+
+          <div class="tab-panels">
+            <div class="tab-panel active" id="panel-days-1-30" role="tabpanel" aria-labelledby="tab-1">
+              <div class="playbook-item">
+                <h4>Portfolio Triage & Capital Concentration</h4>
+                <p>Audit all active AI and platform initiatives using the <a href="/tools/ai-use-case-prioritiser/" class="text-link">AI Use Case Prioritiser</a>—pausing unscalable POCs and concentrating capital on high-ROI P&L winners.</p>
+              </div>
+              <div class="playbook-item">
+                <h4>DORA & FinOps Baseline</h4>
+                <p>Instrument deployment frequency, PR cycle times, change-failure rates, and cloud/token unit economics across all existing engineering pipelines.</p>
+              </div>
+              <div class="playbook-item">
+                <h4>Risk & Talent Topology Map</h4>
+                <p>Audit APRA/security exposure, single-point-of-failure systems, and leadership bench depth across stream-aligned and platform squads.</p>
+              </div>
+            </div>
+
+            <div class="tab-panel" id="panel-days-31-60" role="tabpanel" aria-labelledby="tab-2" hidden>
+              <div class="playbook-item">
+                <h4>Centralized AI Gateway Deployment</h4>
+                <p>Stand up a unified <a href="/architectures/enterprise-ai-gateway/" class="text-link">Enterprise AI Gateway</a> enforcing multi-provider routing, semantic caching, PII redaction, and per-squad token quotas.</p>
+              </div>
+              <div class="playbook-item">
+                <h4>Team Topologies Realignment</h4>
+                <p>Decouple core Platform & Enablement squads from Stream-Aligned product squads to remove cross-team blockers and cognitive load.</p>
+              </div>
+              <div class="playbook-item">
+                <h4>Production Readiness Gate</h4>
+                <p>Institute the <a href="/frameworks/enterprise-ai-production-readiness/" class="text-link">50-Point AI Production Checklist</a> and automated CI evaluation harnesses before any system reaches live traffic.</p>
+              </div>
+            </div>
+
+            <div class="tab-panel" id="panel-days-61-90" role="tabpanel" aria-labelledby="tab-3" hidden>
+              <div class="playbook-item">
+                <h4>AI-Native SDLC Rollout</h4>
+                <p>Equip engineering squads with MCP/graph-assisted workflows to compress delivery cycles while maintaining strict code quality gates.</p>
+              </div>
+              <div class="playbook-item">
+                <h4>Executive Unit-Economics Telemetry</h4>
+                <p>Launch live FinOps dashboards tying engineering spend and inference consumption directly to commercial P&L outcomes.</p>
+              </div>
+              <div class="playbook-item">
+                <h4>Internal AI Academy</h4>
+                <p>Roll out structured engineering enablement (modeled on <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="text-link">Learn AI Engineering</a>) to upskill existing software engineers into production AI engineers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: EDUCATION & THE "COMMERCIAL + TECHNICAL" CREDENTIAL TRIAD -->
+      <section class="about-section" aria-labelledby="credentials-title">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Academic Pedigree</span>
+            <h2 id="credentials-title">The Commercial + Technical Triad.</h2>
+          </div>
+          <p class="section-header-desc">
+            A rare combination spanning frontier artificial intelligence, distributed computer applications, and corporate finance.
+          </p>
+        </div>
+
+        <div class="credential-triad-grid">
+          <div class="credential-card">
+            <span class="eyebrow">Advanced AI & ML</span>
+            <h3>The University of Texas at Austin</h3>
+            <div class="credential-degree">Post Graduate Program in Artificial Intelligence & Machine Learning: Business Applications</div>
+            <p>Deep learning system design, transformer architectures, computer vision, and strategic enterprise AI deployment.</p>
+          </div>
+
+          <div class="credential-card">
+            <span class="eyebrow">Computer Applications</span>
+            <h3>Gujarat Technological University</h3>
+            <div class="credential-degree">Master of Computer Applications (MCA)</div>
+            <p>Advanced software engineering, distributed systems, algorithms, and enterprise database architecture.</p>
+          </div>
+
+          <div class="credential-card">
+            <span class="eyebrow">Commercial & Finance</span>
+            <h3>Gujarat University</h3>
+            <div class="credential-degree">Bachelor of Commerce (B.Com)</div>
+            <p>Corporate finance, unit economics, accounting, financial governance, and commercial P&L management.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: UPGRADED MEDIA KIT & 1-CLICK COPY EXECUTIVE BIOS -->
+      <section class="about-section" id="media-kit" aria-labelledby="media-kit-title">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Media Kit & Speaker Bureau</span>
+            <h2 id="media-kit-title">Approved Executive Bios & Boilerplates.</h2>
+          </div>
+          <p class="section-header-desc">
+            Standard biographies for keynote speaker introductions, executive briefings, board packets, and panel programs.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="bio-box">
+            <div class="bio-box-header">
+              <div>
+                <strong style="font-size: 15px;">Short Executive Bio</strong>
+                <span style="font-size: 12px; color: var(--muted); margin-left: 8px;">(50 Words • Program Blurbs & Podcasts)</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" data-copy-text="Bhavin Mistry is an Enterprise AI and Engineering Leader at Commonwealth Bank in Melbourne, Australia, with prior leadership and architecture tenure at Acenda, Accenture, and Deloitte. He specializes in scaling high-velocity engineering organizations, regulated AI platforms, hybrid RAG architectures, and AI FinOps that turn frontier technology into measurable P&L impact." data-copy-label="Short Bio">Copy 📋</button>
+            </div>
+            <p class="bio-box-content">
+              "Bhavin Mistry is an Enterprise AI and Engineering Leader at Commonwealth Bank in Melbourne, Australia, with prior leadership and architecture tenure at Acenda, Accenture, and Deloitte. He specializes in scaling high-velocity engineering organizations, regulated AI platforms, hybrid RAG architectures, and AI FinOps that turn frontier technology into measurable P&L impact."
+            </p>
+          </div>
+
+          <div class="bio-box">
+            <div class="bio-box-header">
+              <div>
+                <strong style="font-size: 15px;">Full Executive Bio</strong>
+                <span style="font-size: 12px; color: var(--muted); margin-left: 8px;">(110 Words • Keynotes, Board Packets & Dossiers)</span>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" data-copy-text="Bhavin Mistry is an Enterprise AI and Technology Executive based in Melbourne, Australia, currently serving in senior engineering leadership at Commonwealth Bank following platform and architecture roles at Acenda, Accenture, and Deloitte. Bridging deep systems architecture with commercial P&L governance, Bhavin builds globally distributed engineering organizations and production platforms that take Generative and Agentic AI from experimentation to APRA-compliant enterprise scale. He is the creator of the Enterprise AI Architecture Library, interactive AI FinOps calculators, and Learn AI Engineering. Bhavin holds a Postgraduate qualification in AI & Machine Learning from The University of Texas at Austin, a Master of Computer Applications, and a Bachelor of Commerce." data-copy-label="Full Bio">Copy 📋</button>
+            </div>
+            <p class="bio-box-content">
+              "Bhavin Mistry is an Enterprise AI and Technology Executive based in Melbourne, Australia, currently serving in senior engineering leadership at Commonwealth Bank following platform and architecture roles at Acenda, Accenture, and Deloitte. Bridging deep systems architecture with commercial P&L governance, Bhavin builds globally distributed engineering organizations and production platforms that take Generative and Agentic AI from experimentation to APRA-compliant enterprise scale. He is the creator of the Enterprise AI Architecture Library, interactive AI FinOps calculators, and Learn AI Engineering. Bhavin holds a Postgraduate qualification in AI & Machine Learning from The University of Texas at Austin, a Master of Computer Applications, and a Bachelor of Commerce."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: WHERE TO EXPLORE NEXT DECISION DRAWER -->
+      <section class="about-section" aria-labelledby="decision-drawer-title" style="margin-top: 64px; border-top: 1px solid var(--line); padding-top: 48px;">
+        <div class="section-header">
+          <div class="section-header-content">
+            <span class="eyebrow">Verify Engineering Depth</span>
+            <h2 id="decision-drawer-title">Where to Explore Next.</h2>
+          </div>
+          <p class="section-header-desc">
+            Inspect live architectural blueprints, test client-side financial models, or examine technology radars.
+          </p>
+        </div>
+
+        <div class="card-grid-3">
+          <div class="card">
+            <span class="eyebrow">Production Architectures</span>
+            <h3><a href="/architectures/">Inspect Production Blueprints</a></h3>
+            <p>Review 6 end-to-end blueprints for Hybrid RAG, Agentic RAG, AI Gateways, and Zero-Trust Security.</p>
+            <div class="card-footer">
+              <a href="/architectures/" class="text-link">Explore Blueprints <span>→</span></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="eyebrow">Decision Calculators</span>
+            <h3><a href="/tools/">Run Interactive FinOps Models</a></h3>
+            <p>Test client-side calculators for RAG storage/inference costs, token budgets, and Build-vs-Buy ROI.</p>
+            <div class="card-footer">
+              <a href="/tools/" class="text-link">Launch Calculators <span>→</span></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="eyebrow">Technology Landscape</span>
+            <h3><a href="/ai-radar/">Explore the AI Radar & Benchmarks</a></h3>
+            <p>See what technologies I classify under Adopt, Trial, Assess, and Watch for regulated enterprises.</p>
+            <div class="card-footer">
+              <a href="/ai-radar/" class="text-link">View Technology Radar <span>→</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Box -->
+        <div id="contact" style="margin-top: 48px; background: var(--paper-elevated); padding: 32px; border: 1px solid var(--line); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <span class="eyebrow" style="margin-bottom: 4px;">Executive Inquiries</span>
+            <h3 style="margin-bottom: 6px;">Initiate a Conversation</h3>
+            <p style="font-size: 14px; color: var(--muted); margin-bottom: 0;">Discuss enterprise AI strategy, executive engineering leadership, or advisory.</p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Start a Conversation on LinkedIn ↗</a>
+            <a href="/speaking/" class="btn btn-secondary">Speaking & Keynotes →</a>
+          </div>
+        </div>
+      </section>
     </div>
   `;
 
@@ -2628,7 +3012,7 @@ function buildAbout() {
     "@type": "Person",
     "@id": "https://bhavinmistry.com/#person",
     "name": "Bhavin Mistry",
-    "jobTitle": "Senior Engineering Manager",
+    "jobTitle": "Enterprise AI & Technology Executive",
     "worksFor": {
       "@type": "Organization",
       "name": "Commonwealth Bank"
@@ -2638,23 +3022,34 @@ function buildAbout() {
       "addressLocality": "Melbourne",
       "addressCountry": "AU"
     },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "The University of Texas at Austin"
-    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "The University of Texas at Austin"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Gujarat Technological University"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Gujarat University"
+      }
+    ],
     "sameAs": [
       "https://www.linkedin.com/in/bhavin-mistry",
       "https://github.com/Bmistry1818",
       "https://x.com/BhaveenMistrry",
-      "https://medium.com/@bhavin_mistry"
+      "https://medium.com/@bhavin_mistry",
+      "https://learnaiengineering.dev/"
     ],
-    "knowsAbout": ["Enterprise AI", "RAG Architecture", "AI Governance", "Platform Engineering", "Machine Learning"],
+    "knowsAbout": ["Enterprise AI", "RAG Architecture", "AI Governance", "Platform Engineering", "Machine Learning", "AI FinOps", "APRA CPS 234"],
     "image": ogImage
   };
 
   fs.writeFileSync(path.join(abDir, 'index.html'), renderHtmlPage({
-    title: "About Bhavin Mistry | AI Engineering Leadership",
-    description: "Leadership profile of Bhavin Mistry, Senior Engineering Manager at Commonwealth Bank. Experience across enterprise AI, platform engineering, and global teams.",
+    title: "Bhavin Mistry — Enterprise AI & Technology Executive | Leadership Dossier",
+    description: "Enterprise AI & Technology Executive. Scaling high-velocity engineering organizations, production platforms, and APRA-compliant governance models across Commonwealth Bank, Acenda, Accenture, and Deloitte.",
     canonicalUrl,
     currentPath: "/about/",
     ogImage,
@@ -2894,18 +3289,31 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
   console.log('Generated: feed.xml');
 
   // llms.txt
-  const llmsTxt = `# Bhavin Mistry - Enterprise AI Engineering Authority Platform
-> Building Enterprise AI That Actually Reaches Production
+  const llmsTxt = `# Bhavin Mistry - Enterprise AI & Technology Executive
+> Architecting the Engineering Organizations and Production Platforms That Turn Enterprise AI into P&L Impact.
 
-## Author & Entity
+## Executive Profile & Entity
 - Name: Bhavin Mistry
-- Focus: Enterprise AI, AI Engineering, Agentic AI, Enterprise RAG, AI Architecture, AI Governance, Financial Services AI
-- Location: Melbourne, Australia
+- Title: Enterprise AI & Technology Executive (Head of Engineering / VP of Engineering)
+- Current Scope: Senior Engineering Leadership at Commonwealth Bank (Melbourne, Victoria, Australia)
+- Career Pedigree: Commonwealth Bank • Acenda • Accenture • Deloitte
+- Academic Credentials (The Commercial + Technical Triad):
+  - The University of Texas at Austin (Post Graduate Program in Artificial Intelligence & Machine Learning: Business Applications)
+  - Gujarat Technological University (Master of Computer Applications - MCA)
+  - Gujarat University (Bachelor of Commerce - B.Com, Corporate Finance & Accounting)
+- Focus Areas: Enterprise AI Systems Engineering, Compound AI Systems, Model Context Protocol (MCP), Distributed Engineering Squads, Team Topologies, AI FinOps & Unit Economics, APRA CPS 234 Regulated Banking Governance.
+- Location: Melbourne, Victoria, Australia
 - Website: https://bhavinmistry.com
 - LinkedIn: https://www.linkedin.com/in/bhavin-mistry
 - GitHub: https://github.com/Bmistry1818
 - Twitter/X: https://x.com/BhaveenMistrry
 - Medium: https://medium.com/@bhavin_mistry
+- Academy: https://learnaiengineering.dev
+
+## Executive Framework: First 90 Days as Head of Engineering
+- Days 1–30 (Audit, Triage & Baseline): AI portfolio triage via AI Use Case Prioritiser (pausing unscalable POCs, concentrating capital on high-ROI P&L winners), DORA and FinOps metrics baseline, and APRA/security exposure mapping across squads.
+- Days 31–60 (Platform Foundation & Operating Model): Centralized Enterprise AI Gateway deployment (multi-provider routing, semantic caching, PII redaction, token quotas), Team Topologies realignment (Platform vs Stream-Aligned squads), and 50-point Production Readiness Gate institution.
+- Days 61–90 (Velocity, Enablement & Commercial Scale): AI-native SDLC rollout with graph/MCP workflows, executive unit-economics telemetry dashboards tying inference spend directly to commercial P&L outcomes, and internal AI Academy enablement modeled on Learn AI Engineering.
 
 ## Core Canonical Publications
 - The 5-Stage Framework for Taking Enterprise AI to Production: https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/
