@@ -1,6 +1,24 @@
 {
   "articles": [
     {
+      "title": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand Them",
+      "description": "AI is changing how software is built, how businesses operate, and how decisions are made. Yet many engineering teams are still approaching AI as if it were simply another API to integrate into an application.",
+      "url": "https://www.linkedin.com/pulse/beyond-llms-anatomy-ai-powered-systems-why-every-team-bhavin-mistry-hydcc",
+      "date": "2026-10-21"
+    },
+    {
+      "title": "Build Your Own Personal AI Agent That Works 24/7",
+      "description": "From better prompts to trusted delegation: a practical architecture guide and local prototype design for building autonomous personal AI agents with memory and scheduled tasks.",
+      "url": "https://www.linkedin.com/pulse/build-your-own-personal-ai-agent-works-247-bhavin-mistry-4rruc",
+      "date": "2026-10-12"
+    },
+    {
+      "title": "Your AI Agent Has a Budget. But Who Is Accountable When It Overspends?",
+      "description": "Why autonomous AI agents break traditional cloud governance and how engineering leaders must enforce runtime spend guardrails, hard circuit breakers, and FinOps accountability.",
+      "url": "https://www.linkedin.com/pulse/your-ai-agent-has-budget-who-accountable-when-bhavin-mistry-co0ue",
+      "date": "2026-09-29"
+    },
+    {
       "title": "The AI Unit Economics Problem: Why Cost per Token Is the Wrong Executive Metric",
       "description": "Why enterprise AI leaders need to connect technical consumption with the cost and value of successful business outcomes.",
       "url": "https://www.linkedin.com/pulse/ai-unit-economics-problem-why-cost-per-token-wrong-executive-mistry-obkwe",
@@ -11,6 +29,36 @@
       "description": "A perspective on AI observability, financial controls, and the connection between AI spending and business value.",
       "url": "https://www.linkedin.com/pulse/ai-finops-moving-from-token-tracking-business-value-bhavin-mistry-fzlrc",
       "date": "2026-09-15"
+    },
+    {
+      "title": "Gen AI — Practical Adoption vs Real Value Gap",
+      "description": "Why 88% of companies have deployed AI in some part of their business, yet only 39% see real profits—and how engineering leaders bridge the adoption-to-value divide.",
+      "url": "https://www.linkedin.com/pulse/gen-ai-practical-adoption-vs-real-value-gap-bhavin-mistry-zmhqc",
+      "date": "2026-08-07"
+    },
+    {
+      "title": "Your Engineering Teams Do Not Need Another Expensive AI Platform",
+      "description": "Why mid-market and enterprise organizations should avoid vendor lock-in and bloated AI platform licensing by building modular, open-standard architectures.",
+      "url": "https://www.linkedin.com/pulse/your-engineering-teams-do-need-another-expensive-ai-platform-mistry-rt6fc",
+      "date": "2026-04-28"
+    },
+    {
+      "title": "When AI Can Spend Money: Agentic Payments Have Arrived in Australia and Most BFSI Leaders Aren’t Ready",
+      "description": "From copilots to agents that act: why autonomous financial transactions require new APRA-grade risk boundaries, delegation protocols, and auditability.",
+      "url": "https://www.linkedin.com/pulse/when-ai-can-spend-money-agentic-payments-have-arrived-bhavin-mistry-aw9gc",
+      "date": "2026-02-06"
+    },
+    {
+      "title": "The AI Fraud Defence Which Many BFSI Sector Isn’t Talking About",
+      "description": "Federated learning and privacy-preserving collective intelligence across the banking and financial services sector without exposing customer data.",
+      "url": "https://www.linkedin.com/pulse/ai-fraud-defence-which-many-bfsi-sector-isnt-talking-bhavin-mistry-1agjc",
+      "date": "2026-01-22"
+    },
+    {
+      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AI",
+      "description": "How financial institutions deploy production Retrieval-Augmented Generation to eliminate hallucinations, enforce document-level ACLs, and maintain APRA CPS 234 compliance.",
+      "url": "https://www.linkedin.com/pulse/how-rag-becomes-fastest-safest-most-cost-efficient-way-bhavin-mistry-y9ffc",
+      "date": "2025-11-23"
     }
   ]
 }

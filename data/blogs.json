@@ -1,7 +1,47 @@
 {
-  "lastUpdated": "2026-10-02T01:49:10.445Z",
-  "totalCount": 14,
+  "lastUpdated": "2026-11-08T07:13:12.882Z",
+  "totalCount": 22,
   "blogs": [
+    {
+      "id": "medium-5473d77b0b08da86",
+      "title": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand…",
+      "description": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand Them AI is changing how software is built, how businesses operate, and how decisions are made. Yet …",
+      "url": "https://medium.com/@bhavin_mistry/beyond-llms-the-anatomy-of-ai-powered-systems-and-why-every-engineering-team-needs-to-understand-d07514d24efc",
+      "source": "Medium",
+      "date": "2026-10-21T10:25:15.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-7aab18aed8244fcd",
+      "title": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand Them",
+      "description": "AI is changing how software is built, how businesses operate, and how decisions are made. Yet many engineering teams are still approaching AI as if it were simply another API to integrate into an a…",
+      "url": "https://www.linkedin.com/pulse/beyond-llms-anatomy-ai-powered-systems-why-every-team-bhavin-mistry-hydcc",
+      "source": "LinkedIn",
+      "date": "2026-10-21T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-89beb9917ee9b1d3",
+      "title": "Build Your Own Personal AI Agent That Works 24/7",
+      "description": "From better prompts to trusted delegation: a practical architecture guide and local prototype design for building autonomous personal AI agents with memory and scheduled tasks.",
+      "url": "https://www.linkedin.com/pulse/build-your-own-personal-ai-agent-works-247-bhavin-mistry-4rruc",
+      "source": "LinkedIn",
+      "date": "2026-10-12T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "medium-e53da498894c3a83",
+      "title": "Build Your Own 24/7 AI Personal Agent",
+      "description": "A Practical Guide to Automating Everyday Life Learn how to build, deploy and run your own AI agent for personal tasks, family routines, reminders and daily planning. Start with free local AI models…",
+      "url": "https://medium.com/@bhavin_mistry/build-your-own-24-7-ai-personal-agent-a910e1b8e9e7",
+      "source": "Medium",
+      "date": "2026-10-11T04:33:15.000Z",
+      "image": null,
+      "type": "article"
+    },
     {
       "id": "medium-0b555241022ad6b0",
       "title": "Your AI Agent Has a Budget. But Who Is Accountable When It Overspends?",
@@ -9,6 +49,16 @@
       "url": "https://medium.com/@bhavin_mistry/your-ai-agent-has-a-budget-but-who-is-accountable-when-it-overspends-c841ad75ca59",
       "source": "Medium",
       "date": "2026-09-29T05:15:30.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-cf86dd1b6ef4e78e",
+      "title": "Your AI Agent Has a Budget. But Who Is Accountable When It Overspends?",
+      "description": "Why autonomous AI agents break traditional cloud governance and how engineering leaders must enforce runtime spend guardrails, hard circuit breakers, and FinOps accountability.",
+      "url": "https://www.linkedin.com/pulse/your-ai-agent-has-budget-who-accountable-when-bhavin-mistry-co0ue",
+      "source": "LinkedIn",
+      "date": "2026-09-29T00:00:00.000Z",
       "image": null,
       "type": "article"
     },
@@ -93,6 +143,36 @@
       "type": "article"
     },
     {
+      "id": "linkedin-2f49aa8581a99395",
+      "title": "Gen AI — Practical Adoption vs Real Value Gap",
+      "description": "Why 88% of companies have deployed AI in some part of their business, yet only 39% see real profits—and how engineering leaders bridge the adoption-to-value divide.",
+      "url": "https://www.linkedin.com/pulse/gen-ai-practical-adoption-vs-real-value-gap-bhavin-mistry-zmhqc",
+      "source": "LinkedIn",
+      "date": "2026-08-07T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-86fa84a2e0b5e2fd",
+      "title": "Your Engineering Teams Do Not Need Another Expensive AI Platform",
+      "description": "Why mid-market and enterprise organizations should avoid vendor lock-in and bloated AI platform licensing by building modular, open-standard architectures.",
+      "url": "https://www.linkedin.com/pulse/your-engineering-teams-do-need-another-expensive-ai-platform-mistry-rt6fc",
+      "source": "LinkedIn",
+      "date": "2026-04-28T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
+      "id": "linkedin-72fca7a8a816f180",
+      "title": "When AI Can Spend Money: Agentic Payments Have Arrived in Australia and Most BFSI Leaders Aren’t Ready",
+      "description": "From copilots to agents that act: why autonomous financial transactions require new APRA-grade risk boundaries, delegation protocols, and auditability.",
+      "url": "https://www.linkedin.com/pulse/when-ai-can-spend-money-agentic-payments-have-arrived-bhavin-mistry-aw9gc",
+      "source": "LinkedIn",
+      "date": "2026-02-06T00:00:00.000Z",
+      "image": null,
+      "type": "article"
+    },
+    {
       "id": "medium-d3421ba73d958aec",
       "title": "Why 2026 marks the shift from bigger models to smarter systems",
       "description": "The AI Race Just Changed — And Most People Haven’t Noticed I’ve been watching the AI space closely for years now, and something fundamental shifted in early 2026. It’s subtle enough that you might …",
@@ -123,22 +203,22 @@
       "type": "article"
     },
     {
-      "id": "medium-07b4264a86d4ccdd",
-      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt…",
-      "description": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AIImagine this: You're a Leader who is asked to perform a risk analysis on deploying Genera…",
-      "url": "https://medium.com/@bhavin_mistry/how-rag-becomes-the-fastest-safest-and-most-cost-efficient-way-for-finance-enterprises-to-adopt-7e156277e8c8",
-      "source": "Medium",
-      "date": "2026-01-23T01:31:21.000Z",
+      "id": "linkedin-67dee6e6ed8070eb",
+      "title": "The AI Fraud Defence Which Many BFSI Sector Isn’t Talking About",
+      "description": "Federated learning and privacy-preserving collective intelligence across the banking and financial services sector without exposing customer data.",
+      "url": "https://www.linkedin.com/pulse/ai-fraud-defence-which-many-bfsi-sector-isnt-talking-bhavin-mistry-1agjc",
+      "source": "LinkedIn",
+      "date": "2026-01-22T00:00:00.000Z",
       "image": null,
       "type": "article"
     },
     {
-      "id": "medium-888f288fec3843be",
-      "title": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save…",
-      "description": "How Enterprises Can Adopt Production-Grade Generative AI Using Open-Source Models + RAG — And Save Millions Compared to OpenAI, Google, Microsoft, and Anthropic1. The 2025 Reality: AI Bills Are Out…",
-      "url": "https://medium.com/@bhavin_mistry/enterprise-ai-the-open-source-case-782fe2896b4d",
-      "source": "Medium",
-      "date": "2025-11-23T10:41:14.000Z",
+      "id": "linkedin-fd2fa3b7b77429ef",
+      "title": "How RAG Becomes the Fastest, Safest, and Most Cost-Efficient Way for Finance Enterprises to Adopt Gen AI",
+      "description": "How financial institutions deploy production Retrieval-Augmented Generation to eliminate hallucinations, enforce document-level ACLs, and maintain APRA CPS 234 compliance.",
+      "url": "https://www.linkedin.com/pulse/how-rag-becomes-fastest-safest-most-cost-efficient-way-bhavin-mistry-y9ffc",
+      "source": "LinkedIn",
+      "date": "2025-11-23T00:00:00.000Z",
       "image": null,
       "type": "article"
     }
