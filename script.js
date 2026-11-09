@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Dark / Light Theme Toggle
+  initThemeToggle();
+
+  // Reading progress bar
+  initReadingProgress();
+
   // Mobile navigation toggle
   initMobileNav();
 
@@ -131,7 +137,8 @@ function initCommandPalette() {
     { title: "The Enterprise AI Brief Archive", url: "/brief/", category: "Newsletter" },
     { title: "Enterprise AI Research Hub", url: "/research/", category: "Research" },
     { title: "About Bhavin Mistry", url: "/about/", category: "About" },
-    { title: "Enterprise AI Brief (Newsletter)", url: "/newsletter/", category: "Newsletter" }
+    { title: "Enterprise AI Brief (Newsletter)", url: "/newsletter/", category: "Newsletter" },
+    { title: "Toggle Theme (Dark / Light Mode)", url: "#action-toggle-theme", category: "Action" }
   ];
 
   function openPalette() {
@@ -161,6 +168,23 @@ function initCommandPalette() {
         <span class="badge badge-accent">${item.category}</span>
       </a>
     `).join('');
+  }
+
+  if (resultsContainer) {
+    resultsContainer.addEventListener('click', (e) => {
+      const item = e.target.closest('.palette-item');
+      if (!item) return;
+      const href = item.getAttribute('href');
+      if (href === '#action-toggle-theme') {
+        e.preventDefault();
+        closePalette();
+        const current = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('bm-theme', next); } catch(err) {}
+        showToast(next === 'dark' ? 'Executive Midnight Mode 🌙' : 'Editorial Light Mode ☀️');
+      }
+    });
   }
 
   searchTriggers.forEach(trigger => trigger.addEventListener('click', (e) => {
@@ -494,6 +518,96 @@ function initCopyButtons() {
       }
     });
   });
+
+  // Auto-inject copy buttons for all code blocks, configs, and diagrams
+  document.querySelectorAll('pre').forEach(pre => {
+    if (pre.closest('.code-block') || pre.closest('.code-block-wrapped')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block-wrapped';
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-snippet-btn';
+    btn.setAttribute('aria-label', 'Copy snippet to clipboard');
+    btn.innerHTML = '📋 Copy';
+
+    btn.addEventListener('click', async () => {
+      const text = pre.querySelector('code')?.innerText || pre.innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add('copied');
+        btn.innerHTML = '✓ Copied';
+        showToast('Snippet copied to clipboard! 📋');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '📋 Copy';
+        }, 2000);
+      } catch (e) {
+        showToast('Copied to clipboard!');
+      }
+    });
+
+    wrapper.appendChild(btn);
+  });
+}
+
+/* Executive Dark / Light Mode Theming System */
+function initThemeToggle() {
+  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  
+  function getPreferredTheme() {
+    try {
+      const saved = localStorage.getItem('bm-theme');
+      if (saved) return saved;
+    } catch (e) {}
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('bm-theme', theme);
+    } catch (e) {}
+  }
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+      showToast(next === 'dark' ? 'Executive Midnight Mode 🌙' : 'Editorial Light Mode ☀️');
+    });
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    let hasSaved = false;
+    try { hasSaved = Boolean(localStorage.getItem('bm-theme')); } catch (err) {}
+    if (!hasSaved) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+  });
+}
+
+/* Reading Progress Bar */
+function initReadingProgress() {
+  const bar = document.getElementById('reading-progress');
+  if (!bar) return;
+
+  function update() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (docHeight > 0) {
+      const percent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+      bar.style.width = percent + '%';
+    } else {
+      bar.style.width = '0%';
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 }
 
 /* Accessible Interactive Tabs (e.g. First 90 Days Playbook) */

@@ -228,6 +228,10 @@ function renderHeader(currentPath = '/') {
             <span>Search</span>
             <kbd>⌘K</kbd>
           </button>
+          <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <span class="theme-icon-light" aria-hidden="true">🌙</span>
+            <span class="theme-icon-dark" aria-hidden="true">☀️</span>
+          </button>
           <a href="/about/#contact" class="nav-cta">Connect</a>
         </nav>
       </div>
@@ -403,13 +407,26 @@ function renderHtmlPage({
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
     <link rel="stylesheet" href="/styles.css?v=${BUILD_HASH}" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('bm-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
     <script defer src="/script.js?v=${BUILD_HASH}"></script>
     ${schemaScript}
   </head>
   <body id="top" class="${bodyClass}">
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
     ${renderHeader(currentPath)}
     <main id="main-content">
       ${mainContent}
