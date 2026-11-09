@@ -46,7 +46,7 @@ jobs:
       - name: Refresh publications
         id: feeds
         env:
-          LINKEDIN_RSS_URL: ${{ secrets.LINKEDIN_RSS_URL || vars.LINKEDIN_RSS_URL }}
+          LINKEDIN_RSS_URL: ${{ secrets['LINKEDIN_RSS_URL'] || vars['LINKEDIN_RSS_URL'] || '' }}
           BLOG_DIAGNOSTICS_FILE: ${{ runner.temp }}/blog-sources.json
         run: node scripts/fetch-blogs.js --restore-published
 
