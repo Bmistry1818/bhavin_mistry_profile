@@ -40,13 +40,26 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mw90vguk" />
-    <script defer src="/script.js?v=mw90vguk"></script>
+    <link rel="stylesheet" href="/styles.css?v=mw92qzh5" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('bm-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+    <script defer src="/script.js?v=mw92qzh5"></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"The Multi-Model Router: Slashing Enterprise Inference Spend by 78% with SLM Distillation","description":"Why routing every query to frontier models is architectural negligence: implementing intent-aware routing between on-prem small models and frontier LLMs with automatic circuit-breakers.","datePublished":"2026-09-20","dateModified":"2026-10-05","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/"},"image":"https://bhavinmistry.com/assets/og/enterprise-model-routing-and-slm-distillation.png"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bhavinmistry.com/"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://bhavinmistry.com/insights/"},{"@type":"ListItem","position":3,"name":"The Multi-Model Router: Slashing Enterprise Inference Spend by 78% with SLM Distillation","item":"https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/"}]}]}</script>
   </head>
   <body id="top" class="">
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
     
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
@@ -72,6 +85,10 @@
           <button class="search-trigger" type="button" aria-label="Search site">
             <span>Search</span>
             <kbd>⌘K</kbd>
+          </button>
+          <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <span class="theme-icon-light" aria-hidden="true">🌙</span>
+            <span class="theme-icon-dark" aria-hidden="true">☀️</span>
           </button>
           <a href="/about/#contact" class="nav-cta">Connect</a>
         </nav>

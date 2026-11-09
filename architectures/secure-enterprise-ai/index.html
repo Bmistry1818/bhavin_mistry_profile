@@ -40,13 +40,26 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mw90vguk" />
-    <script defer src="/script.js?v=mw90vguk"></script>
+    <link rel="stylesheet" href="/styles.css?v=mw92qzh5" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('bm-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+    <script defer src="/script.js?v=mw92qzh5"></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Secure Enterprise AI Architecture","description":"Defense-in-depth security framework protecting production AI systems from indirect prompt injection, data exfiltration, jailbreaks, and adversarial poisoning.","datePublished":"2026-08-12","dateModified":"2026-09-22","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bhavinmistry.com/architectures/secure-enterprise-ai/"},"image":"https://bhavinmistry.com/assets/og/secure-enterprise-ai.png"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the Dual-LLM architecture prevent indirect prompt injection?","acceptedAnswer":{"@type":"Answer","text":"An unprivileged quarantine LLM extracts structured facts from untrusted third-party documents/emails without tool capabilities. The privileged executive LLM only receives sanitized, schema-validated payloads, completely breaking injection execution chains."}},{"@type":"Question","name":"What is a canary token trap in GenAI security?","acceptedAnswer":{"@type":"Answer","text":"A unique cryptographic token embedded into system prompts. If a prompt extraction attack occurs and the token appears in output streams or network egress, sessions are immediately severed and security incident alerts trigger."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bhavinmistry.com/"},{"@type":"ListItem","position":2,"name":"Architectures","item":"https://bhavinmistry.com/architectures/"},{"@type":"ListItem","position":3,"name":"Secure Enterprise AI Architecture","item":"https://bhavinmistry.com/architectures/secure-enterprise-ai/"}]}]}</script>
   </head>
   <body id="top" class="">
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
     
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
@@ -72,6 +85,10 @@
           <button class="search-trigger" type="button" aria-label="Search site">
             <span>Search</span>
             <kbd>⌘K</kbd>
+          </button>
+          <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <span class="theme-icon-light" aria-hidden="true">🌙</span>
+            <span class="theme-icon-dark" aria-hidden="true">☀️</span>
           </button>
           <a href="/about/#contact" class="nav-cta">Connect</a>
         </nav>
