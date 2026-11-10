@@ -44,7 +44,7 @@
     <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mw9tvxk9" />
+    <link rel="stylesheet" href="/styles.css?v=mwad3si0" />
     <script>
       (function() {
         try {
@@ -55,7 +55,7 @@
         } catch (e) {}
       })();
     </script>
-    <script defer src="/script.js?v=mw9tvxk9"></script>
+    <script defer src="/script.js?v=mwad3si0"></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Enterprise Hybrid RAG Architecture","description":"A battle-tested production blueprint for enterprise search and knowledge retrieval combining dense semantic embeddings, sparse BM25 indexing, and cross-encoder reranking.","datePublished":"2026-08-01","dateModified":"2026-09-15","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bhavinmistry.com/architectures/enterprise-rag/"},"image":"https://bhavinmistry.com/assets/og/enterprise-rag.png"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does pure vector search fail in enterprise document retrieval?","acceptedAnswer":{"@type":"Answer","text":"Pure vector search relies on semantic embeddings that frequently miss exact part numbers, product SKUs, financial tickers, and regulatory acronyms. It also ignores document-level Access Control Lists (RBAC) and suffers from vector drift across large repositories."}},{"@type":"Question","name":"How does Reciprocal Rank Fusion (RRF) combine sparse BM25 and dense vector search?","acceptedAnswer":{"@type":"Answer","text":"RRF calculates rank scores: score(d) = sum(1 / (k + rank_i(d))) across both sparse BM25 and dense vector rank lists (typically with k=60), balancing exact keyword matching with semantic concept search without requiring score normalization."}},{"@type":"Question","name":"What is the role of a cross-encoder reranker in production RAG?","acceptedAnswer":{"@type":"Answer","text":"A cross-encoder evaluates the query and retrieved passage jointly with full cross-attention, computing true contextual relevance. Placing it after fast candidate retrieval dramatically boosts precision@5 before context is passed to the LLM."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bhavinmistry.com/"},{"@type":"ListItem","position":2,"name":"Architectures","item":"https://bhavinmistry.com/architectures/"},{"@type":"ListItem","position":3,"name":"Enterprise Hybrid RAG Architecture","item":"https://bhavinmistry.com/architectures/enterprise-rag/"}]}]}</script>
   </head>
   <body id="top" class="">
