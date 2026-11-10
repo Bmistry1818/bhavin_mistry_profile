@@ -205,9 +205,9 @@ function renderHeader(currentPath = '/') {
   return `
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
-      <div class="container nav-wrap">
+      <div class="nav-container nav-wrap">
         <a href="/" class="brand" aria-label="Bhavin Mistry Home">
-          Bhavin Mistry<span class="brand-period">.</span>
+          <span class="brand-name">Bhavin Mistry</span><span class="brand-period">.</span>
           <span class="brand-sub">Enterprise AI</span>
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
@@ -215,24 +215,28 @@ function renderHeader(currentPath = '/') {
           <span aria-hidden="true">Menu</span>
         </button>
         <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-          <a href="/insights/" class="${currentPath.startsWith('/insights') ? 'active' : ''}">Insights</a>
-          <a href="/enterprise-ai-engineering/" class="${currentPath.startsWith('/enterprise-ai-engineering') ? 'active' : ''}">Handbook</a>
-          <a href="/architectures/" class="${currentPath.startsWith('/architectures') ? 'active' : ''}">Architectures</a>
-          <a href="/frameworks/enterprise-ai-production-readiness/" class="${currentPath.startsWith('/frameworks') ? 'active' : ''}">Framework</a>
-          <a href="/compare/" class="${currentPath.startsWith('/compare') ? 'active' : ''}">Compare</a>
-          <a href="/ai-radar/" class="${currentPath.startsWith('/ai-radar') ? 'active' : ''}">AI Radar</a>
-          <a href="/tools/" class="${currentPath.startsWith('/tools') ? 'active' : ''}">Tools</a>
-          <a href="/speaking/" class="${currentPath.startsWith('/speaking') ? 'active' : ''}">Speaking</a>
-          <a href="/about/" class="${currentPath.startsWith('/about') ? 'active' : ''}">About</a>
-          <button class="search-trigger" type="button" aria-label="Search site">
-            <span>Search</span>
-            <kbd>⌘K</kbd>
-          </button>
-          <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
-            <span class="theme-icon-light" aria-hidden="true">🌙</span>
-            <span class="theme-icon-dark" aria-hidden="true">☀️</span>
-          </button>
-          <a href="/about/#contact" class="nav-cta">Connect</a>
+          <div class="nav-links">
+            <a href="/insights/" class="${currentPath.startsWith('/insights') ? 'active' : ''}">Insights</a>
+            <a href="/enterprise-ai-engineering/" class="${currentPath.startsWith('/enterprise-ai-engineering') ? 'active' : ''}">Handbook</a>
+            <a href="/architectures/" class="${currentPath.startsWith('/architectures') ? 'active' : ''}">Architectures</a>
+            <a href="/frameworks/enterprise-ai-production-readiness/" class="${currentPath.startsWith('/frameworks') ? 'active' : ''}">Framework</a>
+            <a href="/compare/" class="${currentPath.startsWith('/compare') ? 'active' : ''}">Compare</a>
+            <a href="/ai-radar/" class="${currentPath.startsWith('/ai-radar') ? 'active' : ''}">AI Radar</a>
+            <a href="/tools/" class="${currentPath.startsWith('/tools') ? 'active' : ''}">Tools</a>
+            <a href="/speaking/" class="${currentPath.startsWith('/speaking') ? 'active' : ''}">Speaking</a>
+            <a href="/about/" class="${currentPath.startsWith('/about') ? 'active' : ''}">About</a>
+          </div>
+          <div class="nav-actions">
+            <button class="search-trigger" type="button" aria-label="Search site">
+              <span>Search</span>
+              <kbd>⌘K</kbd>
+            </button>
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+              <span class="theme-icon-light" aria-hidden="true">🌙</span>
+              <span class="theme-icon-dark" aria-hidden="true">☀️</span>
+            </button>
+            <a href="/about/#contact" class="nav-cta">Connect</a>
+          </div>
         </nav>
       </div>
     </header>
