@@ -90,17 +90,22 @@ function initMobileNav() {
   });
 }
 
-/* Command Palette (Cmd+K / Ctrl+K) */
+/* Command Palette (Cmd+K / Ctrl+K) using Native HTML5 Dialog */
 function initCommandPalette() {
   const searchTriggers = document.querySelectorAll('.search-trigger, [data-open-palette]');
-  const modal = document.getElementById('command-palette-modal');
-  if (!modal) return;
+  const dialog = document.getElementById('command-palette-dialog') || document.getElementById('command-palette-modal');
+  if (!dialog) return;
 
-  const input = modal.querySelector('.palette-input');
-  const resultsContainer = modal.querySelector('.palette-results');
-  const closeBtn = modal.querySelector('[data-close-palette]');
+  const isNativeDialog = typeof dialog.showModal === 'function' && dialog.tagName === 'DIALOG';
+  const input = dialog.querySelector('.palette-input');
+  const resultsContainer = dialog.querySelector('.palette-results');
+  const closeBtn = dialog.querySelector('[data-close-palette]');
 
   const searchIndex = [
+    { title: "Model Context Protocol (MCP) in Enterprise Production", url: "/insights/model-context-protocol-enterprise-production-blueprint/", category: "Insight" },
+    { title: "Enterprise AI Across Regulated Industries (Banking, Healthcare, Telecom, Gov, Retail)", url: "/industries/", category: "Industry Matrix" },
+    { title: "Model Router & SLM Distillation ROI Simulator", url: "/tools/model-router-cost-calculator/", category: "Tool" },
+    { title: "AI-Enabled SDLC & DORA Velocity Modeler", url: "/tools/ai-sdlc-dora-roi-calculator/", category: "Tool" },
     { title: "Enterprise Model Context Protocol (MCP) Architecture", url: "/architectures/enterprise-mcp-gateway/", category: "Architecture" },
     { title: "GraphRAG & Knowledge Graph Context Engine", url: "/architectures/graph-rag-knowledge-engine/", category: "Architecture" },
     { title: "Why 95% of Enterprise AI Pilots Fail at the Perimeter", url: "/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/", category: "Insight" },
@@ -142,8 +147,12 @@ function initCommandPalette() {
   ];
 
   function openPalette() {
-    modal.classList.add('is-active');
-    modal.setAttribute('aria-hidden', 'false');
+    if (isNativeDialog) {
+      if (!dialog.open) dialog.showModal();
+    } else {
+      dialog.classList.add('is-active');
+      dialog.setAttribute('aria-hidden', 'false');
+    }
     if (input) {
       input.value = '';
       input.focus();
@@ -152,14 +161,21 @@ function initCommandPalette() {
   }
 
   function closePalette() {
-    modal.classList.remove('is-active');
-    modal.setAttribute('aria-hidden', 'true');
+    if (isNativeDialog) {
+      if (dialog.open) dialog.close();
+    } else {
+      dialog.classList.remove('is-active');
+      dialog.setAttribute('aria-hidden', 'true');
+    }
   }
 
   function renderResults(items) {
     if (!resultsContainer) return;
     if (items.length === 0) {
-      resultsContainer.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--muted); font-size: 13px;">No resources found. Try another query.</div>';
+      const empty = document.createElement('div');
+      empty.style.cssText = 'padding: 24px; text-align: center; color: var(--muted); font-size: 13px;';
+      empty.textContent = 'No resources found. Try another query.';
+      resultsContainer.replaceChildren(empty);
       return;
     }
     resultsContainer.innerHTML = items.map(item => `
@@ -181,6 +197,8 @@ function initCommandPalette() {
         const current = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         const next = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
+        const meta = document.querySelector('meta[name="color-scheme"]');
+        if (meta) meta.content = next;
         try { localStorage.setItem('bm-theme', next); } catch(err) {}
         showToast(next === 'dark' ? 'Executive Midnight Mode 🌙' : 'Editorial Light Mode ☀️');
       }
@@ -193,16 +211,34 @@ function initCommandPalette() {
   }));
 
   if (closeBtn) closeBtn.addEventListener('click', closePalette);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closePalette();
-  });
+
+  // Light dismiss fallback for browsers without closedby="any"
+  if (isNativeDialog) {
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      const outside = (e, el) => {
+        const r = el.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      let pressedOutside = false;
+      dialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, dialog); });
+      dialog.addEventListener('pointerup', (e) => { if (pressedOutside && outside(e, dialog)) closePalette(); });
+    }
+  } else {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) closePalette();
+    });
+  }
 
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
-      modal.classList.contains('is-active') ? closePalette() : openPalette();
+      if (isNativeDialog) {
+        dialog.open ? closePalette() : openPalette();
+      } else {
+        dialog.classList.contains('is-active') ? closePalette() : openPalette();
+      }
     }
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+    if (e.key === 'Escape' && !isNativeDialog && dialog.classList.contains('is-active')) {
       closePalette();
     }
   });
@@ -366,6 +402,124 @@ function initCalculators() {
     };
     bvbForm.addEventListener('input', calcBvB);
     calcBvB();
+  }
+
+  // 5. Model Router & SLM Distillation Calculator
+  const mrForm = document.getElementById('model-router-form');
+  if (mrForm) {
+    const calcMR = () => {
+      const monthlyQueries = parseFloat(document.getElementById('mr-monthly-queries').value) || 0;
+      const promptTokens = parseFloat(document.getElementById('mr-prompt-tokens').value) || 0;
+      const completionTokens = parseFloat(document.getElementById('mr-completion-tokens').value) || 0;
+      const frontierInPrice = parseFloat(document.getElementById('mr-frontier-input').value) || 3.0;
+      const frontierOutPrice = parseFloat(document.getElementById('mr-frontier-output').value) || 15.0;
+      const slmInPrice = parseFloat(document.getElementById('mr-slm-input').value) || 0.15;
+      const slmOutPrice = parseFloat(document.getElementById('mr-slm-output').value) || 0.60;
+      const slmRatio = (parseFloat(document.getElementById('mr-router-ratio').value) || 0) / 100;
+      const cacheHit = (parseFloat(document.getElementById('mr-cache-hit').value) || 0) / 100;
+
+      // Update slider badge labels
+      const valRatioEl = document.getElementById('val-mr-router-ratio');
+      if (valRatioEl) valRatioEl.textContent = `${Math.round(slmRatio * 100)}%`;
+      const valCacheEl = document.getElementById('val-mr-cache-hit');
+      if (valCacheEl) valCacheEl.textContent = `${Math.round(cacheHit * 100)}%`;
+
+      // Cache hits bypass model execution completely
+      const queriesToRoute = monthlyQueries * (1 - cacheHit);
+
+      // Baseline: 100% Frontier Model
+      const baselineCost = ((queriesToRoute * promptTokens / 1_000_000) * frontierInPrice) +
+                           ((queriesToRoute * completionTokens / 1_000_000) * frontierOutPrice);
+
+      // Hybrid Route:
+      const slmQueries = queriesToRoute * slmRatio;
+      const frontierQueries = queriesToRoute * (1 - slmRatio);
+
+      const slmCost = ((slmQueries * promptTokens / 1_000_000) * slmInPrice) +
+                      ((slmQueries * completionTokens / 1_000_000) * slmOutPrice);
+      const frontierCost = ((frontierQueries * promptTokens / 1_000_000) * frontierInPrice) +
+                           ((frontierQueries * completionTokens / 1_000_000) * frontierOutPrice);
+
+      const hybridCost = slmCost + frontierCost;
+      const monthlySavings = Math.max(0, baselineCost - hybridCost);
+      const annualSavings = monthlySavings * 12;
+      const pctSavings = baselineCost > 0 ? ((monthlySavings / baselineCost) * 100).toFixed(1) : '0';
+
+      // P95 Latency estimate (Cache ~30ms, SLM ~180ms, Frontier ~1600ms)
+      const p95Latency = Math.round(
+        (cacheHit * 30) + ((1 - cacheHit) * ((slmRatio * 180) + ((1 - slmRatio) * 1600)))
+      );
+
+      // Data kept inside private perimeter (Cache hits + SLM routed)
+      const privateDataPct = Math.round((cacheHit + ((1 - cacheHit) * slmRatio)) * 100);
+
+      setAnimatedOutput('out-mr-monthly-savings', `$${monthlySavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-mr-annual-savings', `$${annualSavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-mr-baseline-spend', `$${baselineCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-mr-hybrid-spend', `$${hybridCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+      setAnimatedOutput('out-mr-pct-savings', `${pctSavings}%`);
+      setAnimatedOutput('out-mr-p95-latency', `${p95Latency} ms`);
+      setAnimatedOutput('out-mr-private-data', `${privateDataPct}%`);
+    };
+    mrForm.addEventListener('input', calcMR);
+    calcMR();
+  }
+
+  // 6. AI-Enabled SDLC & DORA Velocity Modeler
+  const doraForm = document.getElementById('sdlc-dora-form');
+  if (doraForm) {
+    const calcDora = () => {
+      const engineers = parseFloat(document.getElementById('dora-engineers').value) || 0;
+      const salary = parseFloat(document.getElementById('dora-salary').value) || 0;
+      const baselineCycle = parseFloat(document.getElementById('dora-cycle-time').value) || 3.8;
+      const adoption = (parseFloat(document.getElementById('dora-adoption').value) || 0) / 100;
+      const isAgentActive = document.getElementById('dora-agent-review').value === 'yes';
+      const toolingCostPerDev = parseFloat(document.getElementById('dora-tooling-cost').value) || 480;
+
+      const valAdoptionEl = document.getElementById('val-dora-adoption');
+      if (valAdoptionEl) valAdoptionEl.textContent = `${Math.round(adoption * 100)}%`;
+
+      // Hours saved per week per developer:
+      const devHoursBase = 2.6;
+      const devHoursAgent = isAgentActive ? 2.4 : 0;
+      const totalHoursSavedPerDev = (devHoursBase + devHoursAgent) * adoption;
+
+      // PR Cycle Time Reduction:
+      const cycleReductionRatio = (isAgentActive ? 0.62 : 0.35) * adoption;
+      const newCycleTime = Math.max(0.4, baselineCycle * (1 - cycleReductionRatio));
+      const cycleTimeDropPct = Math.round(cycleReductionRatio * 100);
+
+      // Financial value calculation:
+      const hourlyRate = salary > 0 ? (salary / (46 * 38)) : 0;
+      const totalWeeklyHoursTeam = engineers * totalHoursSavedPerDev;
+      const grossAnnualValue = totalWeeklyHoursTeam * 46 * hourlyRate;
+
+      // Tooling investment cost:
+      const totalToolingCost = engineers * adoption * toolingCostPerDev;
+      const netAnnualValue = Math.max(0, grossAnnualValue - totalToolingCost);
+      const roiMultiple = totalToolingCost > 0 ? (grossAnnualValue / totalToolingCost).toFixed(1) : '0.0';
+
+      // Equivalent FTE engineer capacity unlocked:
+      const fteEquiv = (totalWeeklyHoursTeam / 38).toFixed(1);
+
+      // DORA tier projection based on new cycle time
+      let doraTier = "Elite (Multi-Daily Deployments)";
+      if (newCycleTime > 3.0) {
+        doraTier = "Medium (Bi-Weekly Releases)";
+      } else if (newCycleTime > 1.5) {
+        doraTier = "High (Daily to Weekly Releases)";
+      }
+
+      setAnimatedOutput('out-dora-annual-value', `$${netAnnualValue.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`);
+      setAnimatedOutput('out-dora-tooling-roi', `${roiMultiple}x`);
+      setAnimatedOutput('out-dora-new-cycle', `${newCycleTime.toFixed(1)} days`);
+      setAnimatedOutput('out-dora-cycle-drop', `${cycleTimeDropPct}% faster`);
+      setAnimatedOutput('out-dora-hours-saved', `${totalHoursSavedPerDev.toFixed(1)} hrs / dev / wk`);
+      setAnimatedOutput('out-dora-fte-equiv', `${fteEquiv}`);
+      setAnimatedOutput('out-dora-tier', doraTier);
+    };
+    doraForm.addEventListener('input', calcDora);
+    calcDora();
   }
 }
 
@@ -553,7 +707,7 @@ function initCopyButtons() {
   });
 }
 
-/* Executive Dark / Light Mode Theming System */
+/* Executive Dark / Light Mode Theming System (Modern Web Guidance) */
 function initThemeToggle() {
   const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
   
@@ -567,6 +721,8 @@ function initThemeToggle() {
 
   function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
+    const meta = document.querySelector('meta[name="color-scheme"]');
+    if (meta) meta.content = theme;
     try {
       localStorage.setItem('bm-theme', theme);
     } catch (e) {}
@@ -585,24 +741,41 @@ function initThemeToggle() {
     let hasSaved = false;
     try { hasSaved = Boolean(localStorage.getItem('bm-theme')); } catch (err) {}
     if (!hasSaved) {
-      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      const theme = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      const meta = document.querySelector('meta[name="color-scheme"]');
+      if (meta) meta.content = 'light dark';
+    }
+  });
+
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'bm-theme') {
+      const theme = e.newValue || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      const meta = document.querySelector('meta[name="color-scheme"]');
+      if (meta) meta.content = theme;
     }
   });
 }
 
-/* Reading Progress Bar */
+/* Reading Progress Bar (Compositor Animation with JS Scroll Fallback) */
 function initReadingProgress() {
   const bar = document.getElementById('reading-progress');
   if (!bar) return;
+
+  // Modern Web Guidance: Native CSS Scroll-Driven Animations run on compositor thread
+  if (window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()')) {
+    return;
+  }
 
   function update() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     if (docHeight > 0) {
-      const percent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
-      bar.style.width = percent + '%';
+      const progress = Math.min(1, Math.max(0, scrollTop / docHeight));
+      bar.style.transform = `scaleX(${progress})`;
     } else {
-      bar.style.width = '0%';
+      bar.style.transform = 'scaleX(0)';
     }
   }
 
@@ -657,7 +830,7 @@ function initTabs() {
   });
 }
 
-/* Table of Contents Scroll Spy */
+/* Table of Contents Scroll Spy (Modern Web Guidance) */
 function initTocSpy() {
   const tocLinks = document.querySelectorAll('.toc-list a[href^="#"]');
   if (tocLinks.length === 0) return;
@@ -668,6 +841,40 @@ function initTocSpy() {
   }).filter(Boolean);
 
   if (headings.length === 0) return;
+
+  // Modern CSS scroll-target-group support
+  if (window.CSS && CSS.supports && CSS.supports('scroll-target-group: auto')) {
+    const syncAriaCurrent = () => {
+      const currentLink = document.querySelector('.toc-list a:target-current');
+      tocLinks.forEach(link => {
+        const isCurrent = link === currentLink;
+        link.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+        link.classList.toggle('is-active', isCurrent);
+      });
+    };
+    syncAriaCurrent();
+    document.addEventListener('scrollend', syncAriaCurrent);
+    return;
+  }
+
+  // Modern IntersectionObserver fallback without manual scroll polling
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('is-active', isActive);
+            link.setAttribute('aria-current', isActive ? 'true' : 'false');
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+    headings.forEach(h => observer.observe(h));
+    return;
+  }
 
   function onScroll() {
     const scrollPos = window.scrollY + 140;
@@ -683,11 +890,9 @@ function initTocSpy() {
 
     tocLinks.forEach(link => {
       const targetId = link.getAttribute('href').slice(1);
-      if (targetId === currentId) {
-        link.classList.add('is-active');
-      } else {
-        link.classList.remove('is-active');
-      }
+      const isActive = targetId === currentId;
+      link.classList.toggle('is-active', isActive);
+      link.setAttribute('aria-current', isActive ? 'true' : 'false');
     });
   }
 
@@ -906,7 +1111,7 @@ function initPipelineSimulator() {
     if (!scenario) return;
 
     clearActiveNodes();
-    terminal.innerHTML = '';
+    terminal.replaceChildren();
 
     buttons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-sim') === key));
 

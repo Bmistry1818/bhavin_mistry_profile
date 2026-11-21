@@ -602,6 +602,34 @@
   },
   "insights": [
     {
+      "slug": "model-context-protocol-enterprise-production-blueprint",
+      "title": "Model Context Protocol (MCP) in Enterprise Production: Security, Authorization, and Tool Federation",
+      "category": "Platform Engineering & Security",
+      "readingTime": "11 min read",
+      "publishedAt": "2026-11-20",
+      "updatedAt": "2026-11-21",
+      "summary": "Why MCP is the TCP/IP of the AI era: architecting zero-trust tool federation, OAuth2/RBAC context boundaries, and APRA CPS 234 audit perimeters for autonomous enterprise agents.",
+      "featured": true,
+      "badge": "Architecture Blueprint",
+      "tags": [
+        "Model Context Protocol",
+        "MCP",
+        "Enterprise AI Gateway",
+        "Agentic Security",
+        "APRA CPS 234",
+        "Zero-Trust Tooling"
+      ],
+      "take": {
+        "whatHappened": "Anthropic's open-source Model Context Protocol (MCP) has rapidly unified agent-to-tool communication across IDEs, gateways, and backend services, replacing brittle bespoke REST/GraphQL function-calling integrations.",
+        "whyCare": "Without centralized protocol governance, engineers deploy rogue local MCP servers with over-permissioned database access, creating catastrophic indirect prompt injection and data exfiltration vulnerabilities.",
+        "architecturalImpact": "Enterprises must deploy a reverse-proxy Enterprise MCP Gateway that enforces OAuth2 client-credential authentication, granular RBAC tool-level whitelisting, JSON-schema payload validation, and immutable tamper-evident audit logging before dispatching calls to internal APIs.",
+        "whatDoesntChange": "Agents are untrusted execution environments. The principle of least privilege, zero-trust token scoping, and boundary defense remain invariant regardless of the protocol.",
+        "risks": "Indirect prompt injection via untrusted third-party MCP tool schemas that trick the agent into executing privileged mutations without human-in-the-loop signoff.",
+        "bhavinsTake": "MCP solves the connectivity problem, but enterprise security demands an intermediary control plane. By federating MCP servers behind an APRA CPS 234 compliant gateway, organizations unlock autonomous agent agility without exposing internal data perimeters.",
+        "whatToDoNext": "Explore our working Enterprise MCP Gateway reference architecture and the Graph Engineering Platform with five production-tested MCP skills."
+      }
+    },
+    {
       "slug": "enterprise-model-routing-and-slm-distillation",
       "title": "The Multi-Model Router: Slashing Enterprise Inference Spend by 78% with SLM Distillation",
       "category": "AI FinOps & Optimization",

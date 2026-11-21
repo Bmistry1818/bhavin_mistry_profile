@@ -31,7 +31,9 @@
 4. Enterprise-Grade Retrieval & Agentic Systems: Architects production Hybrid Sparse-Dense RAG systems (BM25 + dense vector embeddings + cross-encoder reranking) and deterministic multi-agent state machines engineered for >90% factual precision.
 
 ## Core Canonical Publications
+- Model Context Protocol (MCP) in Enterprise Production: https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/
 - The 5-Stage Framework for Taking Enterprise AI to Production: https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/
+- The Multi-Model Router (SLM Distillation): https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/
 - Why Hybrid RAG Beats Pure Vector Search in Enterprise Settings: https://bhavinmistry.com/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/
 - The Hidden Costs of LLM Inference: A Cost Modeling Guide: https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/
 - Enterprise AI Engineering Production Playbook: https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/
@@ -39,6 +41,9 @@
 - Enterprise RAG Architecture Production Blueprint: https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/
 - RAG vs Agentic RAG Decision Guide: https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/
 - Enterprise AI Governance Without Killing Innovation: https://bhavinmistry.com/insights/enterprise-ai-governance-without-killing-innovation/
+
+## Cross-Industry Delivery
+- Enterprise AI Across Regulated Industries: https://bhavinmistry.com/industries/
 
 ## Architectural Blueprints
 - Enterprise Hybrid RAG: https://bhavinmistry.com/architectures/enterprise-rag/
@@ -58,6 +63,8 @@
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
 - AI Readiness Assessment Diagnostic: https://bhavinmistry.com/tools/enterprise-ai-readiness/
+- Model Router & SLM Simulator: https://bhavinmistry.com/tools/model-router-cost-calculator/
+- AI SDLC & DORA Velocity Modeler: https://bhavinmistry.com/tools/ai-sdlc-dora-roi-calculator/
 - RAG Cost Calculator: https://bhavinmistry.com/tools/rag-cost-calculator/
 - LLM Token Cost Estimator: https://bhavinmistry.com/tools/llm-cost-calculator/
 - AI Use Case Prioritiser: https://bhavinmistry.com/tools/ai-use-case-prioritiser/

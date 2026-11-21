@@ -306,12 +306,12 @@ function renderFooter() {
       </div>
     </footer>
 
-    <!-- Command Palette Modal -->
-    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+    <!-- Command Palette Dialog (Modern HTML5 Dialog with Top Layer & Focus Trapping) -->
+    <dialog id="command-palette-dialog" class="palette-dialog" aria-labelledby="palette-search-input" closedby="any">
       <div class="palette-window">
         <div class="palette-input-wrap">
-          <span style="color: var(--muted); font-size: 14px;">🔍</span>
-          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <span style="color: var(--muted); font-size: 14px;" aria-hidden="true">🔍</span>
+          <input type="text" id="palette-search-input" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search site" autofocus />
           <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
         </div>
         <div class="palette-results"></div>
@@ -320,7 +320,7 @@ function renderFooter() {
           <span>Press <kbd>ESC</kbd> to close</span>
         </div>
       </div>
-    </div>
+    </dialog>
   `;
 }
 
@@ -422,6 +422,8 @@ function renderHtmlPage({
           var saved = localStorage.getItem('bm-theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var theme = saved || (prefersDark ? 'dark' : 'light');
+          var meta = document.querySelector('meta[name="color-scheme"]');
+          if (meta && (theme === 'dark' || theme === 'light')) meta.content = theme;
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();
@@ -724,34 +726,70 @@ function buildHomepage() {
         </p>
       </div>
 
-      <div class="card-grid-3">
+      <div class="card-grid-2">
         <div class="card">
-          <span class="eyebrow">Financial Modeling</span>
-          <h3><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></h3>
-          <p>Model monthly vector storage, embedding tokens, inference volume, and caching return across enterprise document pools.</p>
+          <div class="card-meta">
+            <span class="badge badge-accent">AI FinOps & Optimization</span>
+            <span style="font-family: var(--mono); font-size: 11px;">Interactive Simulator</span>
+          </div>
+          <h3><a href="/tools/model-router-cost-calculator/">Enterprise Model Router & SLM Simulator</a></h3>
+          <p>Simulate dynamic query routing between Frontier LLMs (GPT-4o/Claude) and distilled private SLMs (Llama-3/Mistral), modeling 70%+ token savings and P95 latency reduction.</p>
+          <div class="card-footer">
+            <a href="/tools/model-router-cost-calculator/" class="text-link">Launch Simulator <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-accent">Engineering Velocity</span>
+            <span style="font-family: var(--mono); font-size: 11px;">DORA Telemetry</span>
+          </div>
+          <h3><a href="/tools/ai-sdlc-dora-roi-calculator/">AI-Enabled SDLC & DORA Modeler</a></h3>
+          <p>Calculate engineering capacity unlocked by AI code reviews and agentic workflows, modeling PR lead-time drops, weekly dev hours saved, and DORA tier upgrades.</p>
+          <div class="card-footer">
+            <a href="/tools/ai-sdlc-dora-roi-calculator/" class="text-link">Model Velocity <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-accent">Financial Modeling</span>
+            <span style="font-family: var(--mono); font-size: 11px;">Production Estimator</span>
+          </div>
+          <h3><a href="/tools/rag-cost-calculator/">Enterprise RAG Cost Calculator</a></h3>
+          <p>Model monthly vector storage, embedding tokens, inference volume, and semantic caching return across enterprise document pools.</p>
           <div class="card-footer">
             <a href="/tools/rag-cost-calculator/" class="text-link">Run Calculations <span>→</span></a>
           </div>
         </div>
+
         <div class="card">
-          <span class="eyebrow">Unit Economics</span>
-          <h3><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></h3>
-          <p>Compute daily, monthly, and annualized inference budgets based on prompt/completion ratios and prompt cache hits.</p>
-          <div class="card-footer">
-            <a href="/tools/llm-cost-calculator/" class="text-link">Estimate Spend <span>→</span></a>
+          <div class="card-meta">
+            <span class="badge badge-accent">Executive Strategy</span>
+            <span style="font-family: var(--mono); font-size: 11px;">TCO Decision Engine</span>
           </div>
-        </div>
-        <div class="card">
-          <span class="eyebrow">Portfolio Governance</span>
-          <h3><a href="/tools/ai-use-case-prioritiser/">AI Use Case Prioritiser</a></h3>
-          <p>Map candidate AI initiatives into Quick Wins, Strategic Bets, Experiments, or Defer based on business value and risk.</p>
+          <h3><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy AI Decision Engine</a></h3>
+          <p>Evaluate 3-year TCO, Capex vs Opex, internal engineering load, and APRA CPS 234 governance overhead for proprietary AI platform builds.</p>
           <div class="card-footer">
-            <a href="/tools/ai-use-case-prioritiser/" class="text-link">Map Use Cases <span>→</span></a>
+            <a href="/tools/build-vs-buy-ai-platform/" class="text-link">Evaluate TCO <span>→</span></a>
           </div>
         </div>
       </div>
-      <div style="margin-top: 36px; display: flex; justify-content: center; gap: 16px;">
-        <a href="/tools/build-vs-buy-ai-platform/" class="btn btn-secondary">Build vs Buy Calculator →</a>
+
+      <div class="industry-matrix-banner" style="margin-top: 36px; padding: 24px 28px; background: var(--wash); border: 1px solid var(--line); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+        <div style="max-width: 720px;">
+          <span class="eyebrow" style="color: var(--accent); font-weight: 600;">Cross-Industry Translation</span>
+          <h3 style="margin: 4px 0 8px; font-size: 18px;">Cross-Industry Enterprise AI Solutions Matrix</h3>
+          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">
+            How Tier-1 banking zero-trust rigor and APRA CPS 234 compliance translate directly to Healthcare & Life Sciences, Telecommunications, Government/Defense, and Retail Supply Chains.
+          </p>
+        </div>
+        <a href="/industries/" class="btn btn-primary" style="white-space: nowrap;">Explore Industry Matrix →</a>
+      </div>
+
+      <div style="margin-top: 32px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="/tools/llm-cost-calculator/" class="btn btn-secondary">LLM Token Estimator →</a>
+        <a href="/tools/ai-use-case-prioritiser/" class="btn btn-secondary">AI Use Case Prioritiser →</a>
         <a href="/tools/" class="btn btn-primary">View All Decision Tools →</a>
       </div>
     </section>
@@ -1646,11 +1684,32 @@ function buildTools() {
     <div class="container" style="padding-top: 64px; padding-bottom: 88px;">
       <span class="eyebrow">Decision Calculators</span>
       <h1>Enterprise AI Engineering Tools</h1>
-      <p class="hero-lead" style="max-width: 820px; margin-top: 16px; margin-bottom: 40px;">
+      <p class="hero-lead" style="max-width: 820px; margin-top: 16px; margin-bottom: 32px;">
         Transparent, client-side engineering and financial calculators with zero tracking and zero server-side parameter dispatch.
       </p>
 
+      <div style="background: var(--paper-elevated); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 24px 32px; margin-bottom: 36px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 4px;">Industry Delivery Matrix</span>
+          <h3 style="font-size: 20px; margin-bottom: 4px;">Enterprise AI Across Regulated Industries</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 0;">How these tools and blueprints translate across Banking (APRA CPS 234), Healthcare, Telecommunications, Government, and Retail.</p>
+        </div>
+        <a href="/industries/" class="btn btn-secondary" style="white-space: nowrap;">Explore Industry Matrix →</a>
+      </div>
+
       <div class="card-grid-2">
+        <div class="card" style="border-top: 2px solid var(--accent);">
+          <span class="eyebrow">FinOps & Model Routing</span>
+          <h3><a href="/tools/model-router-cost-calculator/">Model Router & SLM Simulator</a></h3>
+          <p>Model monthly savings, latency reductions, and private data retention by dynamically routing requests between Small Language Models and Frontier LLMs.</p>
+          <div class="card-footer"><a href="/tools/model-router-cost-calculator/" class="text-link">Simulate Routing ROI →</a></div>
+        </div>
+        <div class="card" style="border-top: 2px solid var(--accent);">
+          <span class="eyebrow">Engineering Productivity</span>
+          <h3><a href="/tools/ai-sdlc-dora-roi-calculator/">AI SDLC & DORA Velocity Modeler</a></h3>
+          <p>Quantify developer cycle time reduction, weekly hours unlocked, DORA metrics uplift, and net financial capacity gained across engineering squads.</p>
+          <div class="card-footer"><a href="/tools/ai-sdlc-dora-roi-calculator/" class="text-link">Model DORA Velocity →</a></div>
+        </div>
         <div class="card">
           <span class="eyebrow">Financial Modeling</span>
           <h3><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></h3>
@@ -2120,6 +2179,442 @@ function buildTools() {
     mainContent: bvbMain
   }));
   console.log('Generated: tools/build-vs-buy-ai-platform/index.html');
+
+  // Tool 6: Model Router & SLM Distillation ROI Simulator
+  const mrDir = path.join(ROOT_DIR, 'tools/model-router-cost-calculator');
+  ensureDir(mrDir);
+  const mrMain = `
+    <div class="container" style="max-width: 960px; padding-top: 64px; padding-bottom: 88px;">
+      <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+        <a href="/">Home</a> / <a href="/tools/">Tools</a> / <span style="color: var(--ink);">Model Router & SLM Simulator</span>
+      </nav>
+
+      <span class="eyebrow">AI FinOps & Optimization</span>
+      <h1>Model Router & SLM Distillation ROI Simulator</h1>
+      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
+        Model the financial and latency impact of routing enterprise requests between fine-tuned Small Language Models (SLMs) and Frontier LLMs.
+      </p>
+
+      <div class="tool-layout">
+        <form id="model-router-form" class="tool-form">
+          <div class="form-group">
+            <label for="mr-monthly-queries">Monthly Inference Volume <span class="form-help">Total requests/month</span></label>
+            <input type="number" id="mr-monthly-queries" class="form-input" value="2500000" step="100000" />
+          </div>
+          <div class="form-group">
+            <label for="mr-prompt-tokens">Avg Prompt Tokens / Query <span class="form-help">System prompt + context</span></label>
+            <input type="number" id="mr-prompt-tokens" class="form-input" value="1200" step="50" />
+          </div>
+          <div class="form-group">
+            <label for="mr-completion-tokens">Avg Completion Tokens / Query <span class="form-help">Generated answer</span></label>
+            <input type="number" id="mr-completion-tokens" class="form-input" value="400" step="25" />
+          </div>
+          <div class="form-group">
+            <label for="mr-frontier-input">Frontier Input Price ($/1M) <span class="form-help">e.g. GPT-4o / Claude 3.5</span></label>
+            <input type="number" id="mr-frontier-input" class="form-input" value="3.00" step="0.25" />
+          </div>
+          <div class="form-group">
+            <label for="mr-frontier-output">Frontier Output Price ($/1M) <span class="form-help">e.g. GPT-4o / Claude 3.5</span></label>
+            <input type="number" id="mr-frontier-output" class="form-input" value="15.00" step="0.50" />
+          </div>
+          <div class="form-group">
+            <label for="mr-slm-input">SLM Input Price ($/1M) <span class="form-help">Private vLLM / 8B-14B model</span></label>
+            <input type="number" id="mr-slm-input" class="form-input" value="0.15" step="0.05" />
+          </div>
+          <div class="form-group">
+            <label for="mr-slm-output">SLM Output Price ($/1M) <span class="form-help">Private vLLM / 8B-14B model</span></label>
+            <input type="number" id="mr-slm-output" class="form-input" value="0.60" step="0.05" />
+          </div>
+          <div class="form-group">
+            <label for="mr-router-ratio">Traffic Routed to SLM (%) <span id="val-mr-router-ratio" style="color: var(--accent); font-weight: 600;">75%</span></label>
+            <input type="range" id="mr-router-ratio" min="0" max="95" value="75" />
+            <span class="form-help">Percentage of routine extraction, classification, and summarization sent to private SLM</span>
+          </div>
+          <div class="form-group">
+            <label for="mr-cache-hit">Semantic Cache Hit Rate (%) <span id="val-mr-cache-hit" style="color: var(--accent); font-weight: 600;">25%</span></label>
+            <input type="range" id="mr-cache-hit" min="0" max="60" value="25" />
+            <span class="form-help">Requests served from Redis semantic cache without model execution</span>
+          </div>
+        </form>
+
+        <div class="tool-output">
+          <div>
+            <div class="output-stat">
+              <div class="output-label">Net Monthly Savings</div>
+              <div id="out-mr-monthly-savings" class="output-num" style="font-size: 36px; color: var(--success);">$0.00</div>
+              <div style="font-size: 13px; color: var(--muted); margin-top: 4px;"><span id="out-mr-pct-savings" style="font-weight: 600; color: var(--success);">0%</span> reduction vs 100% frontier baseline</div>
+            </div>
+            <div class="output-stat">
+              <div class="output-label">Annualized P&L Gain</div>
+              <div id="out-mr-annual-savings" style="font-size: 24px; font-weight: 600; color: var(--ink);">$0.00</div>
+            </div>
+            <div class="output-stat">
+              <div class="output-label">Monthly Spend Comparison</div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 6px;">
+                <span>All-Frontier Baseline:</span>
+                <strong id="out-mr-baseline-spend">$0.00</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 4px;">
+                <span>Hybrid Routed Spend:</span>
+                <strong id="out-mr-hybrid-spend" style="color: var(--accent);">$0.00</strong>
+              </div>
+            </div>
+            <div class="output-stat">
+              <div class="output-label">P95 User Latency</div>
+              <div id="out-mr-p95-latency" class="output-num" style="font-size: 28px;">-- ms</div>
+              <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Down from ~1,600ms on all-cloud routing</div>
+            </div>
+            <div class="output-stat" style="border-bottom: none;">
+              <div class="output-label">Data Kept in Private Perimeter</div>
+              <div id="out-mr-private-data" style="font-size: 22px; font-weight: 600; color: var(--accent);">-- %</div>
+              <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Compliant with APRA CPS 234 & Sovereign Cloud mandates</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engineering Architecture Notes -->
+      <div style="margin-top: 48px; background: var(--wash); border: 1px solid var(--line); padding: 32px;">
+        <h3>Production Engineering Principles for Multi-Model Routing</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; font-size: 14px; line-height: 1.6;">
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">1. 8ms Intent & Complexity Classifier</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">A lightweight embedding router (e.g. fastText or DeBERTa-v3) inspects the prompt syntax, task intent, and token length. Deterministic tasks (JSON extraction, classification, sentiment) route to the local SLM.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">2. Autonomous Circuit-Breakers</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">If the local SLM output confidence score falls below 0.85 or fails JSON schema validation, the gateway seamlessly fails over to the frontier model without user disruption.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">3. Private VPC SLM Hosting</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Hosted on internal Kubernetes clusters using vLLM, TensorRT-LLM, or AWS Inferentia2. Keeps sensitive PII and account records completely within the bank's security perimeter.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">4. Continuous Distillation Pipeline</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">High-confidence frontier model responses from production are anonymized and fed into nightly LoRA/QLoRA fine-tuning pipelines to continually raise SLM domain precision.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  fs.writeFileSync(path.join(mrDir, 'index.html'), renderHtmlPage({
+    title: "Model Router & SLM Distillation ROI Simulator | Bhavin Mistry",
+    description: "Calculate cost and latency reduction by dynamically routing enterprise traffic between private distilled Small Language Models (SLMs) and Frontier LLMs.",
+    canonicalUrl: "https://bhavinmistry.com/tools/model-router-cost-calculator/",
+    currentPath: "/tools/model-router-cost-calculator/",
+    mainContent: mrMain
+  }));
+  console.log('Generated: tools/model-router-cost-calculator/index.html');
+
+  // Tool 7: AI-Enabled SDLC & DORA Velocity Modeler
+  const doraDir = path.join(ROOT_DIR, 'tools/ai-sdlc-dora-roi-calculator');
+  ensureDir(doraDir);
+  const doraMain = `
+    <div class="container" style="max-width: 960px; padding-top: 64px; padding-bottom: 88px;">
+      <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+        <a href="/">Home</a> / <a href="/tools/">Tools</a> / <span style="color: var(--ink);">AI SDLC & DORA Modeler</span>
+      </nav>
+
+      <span class="eyebrow">Engineering Leadership & Scale</span>
+      <h1>AI-Enabled SDLC & DORA Velocity Modeler</h1>
+      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
+        Model developer cycle time reduction, weekly hours unlocked, DORA deployment frequency gains, and net enterprise ROI from AI-enabled engineering squads.
+      </p>
+
+      <div class="tool-layout">
+        <form id="sdlc-dora-form" class="tool-form">
+          <div class="form-group">
+            <label for="dora-engineers">Engineering Headcount <span class="form-help">Active software developers</span></label>
+            <input type="number" id="dora-engineers" class="form-input" value="150" step="10" />
+          </div>
+          <div class="form-group">
+            <label for="dora-salary">Average Fully Loaded Salary ($ AUD/yr) <span class="form-help">Salary + super + on-costs</span></label>
+            <input type="number" id="dora-salary" class="form-input" value="185000" step="5000" />
+          </div>
+          <div class="form-group">
+            <label for="dora-cycle-time">Baseline PR Cycle Time (Days) <span class="form-help">First commit to production merge</span></label>
+            <input type="number" id="dora-cycle-time" class="form-input" value="3.8" step="0.1" />
+          </div>
+          <div class="form-group">
+            <label for="dora-adoption">AI Tooling Adoption Rate (%) <span id="val-dora-adoption" style="color: var(--accent); font-weight: 600;">75%</span></label>
+            <input type="range" id="dora-adoption" min="10" max="100" value="75" />
+            <span class="form-help">Engineers actively using AI coding tools (Copilot, Cursor, Claude Code)</span>
+          </div>
+          <div class="form-group">
+            <label for="dora-agent-review">Autonomous PR Review & Test Agent</label>
+            <select id="dora-agent-review" class="form-input">
+              <option value="yes" selected>Active (AI PR review agent + test generation)</option>
+              <option value="no">Inactive (IDE completion only)</option>
+            </select>
+            <span class="form-help">Automated architectural rule checking & synthetic unit test generation in CI</span>
+          </div>
+          <div class="form-group">
+            <label for="dora-tooling-cost">Annual AI Tooling Cost per Dev ($/yr)</label>
+            <input type="number" id="dora-tooling-cost" class="form-input" value="480" step="20" />
+            <span class="form-help">Seat licenses + LLM review agent API infrastructure</span>
+          </div>
+        </form>
+
+        <div class="tool-output">
+          <div>
+            <div class="output-stat">
+              <div class="output-label">Net Annualized Engineering Value Unlocked</div>
+              <div id="out-dora-annual-value" class="output-num" style="font-size: 34px; color: var(--success);">$0.00</div>
+              <div style="font-size: 13px; color: var(--muted); margin-top: 4px;">Net value gained after subtracting all tooling licenses</div>
+            </div>
+            <div class="output-stat">
+              <div class="output-label">Tooling ROI Multiple</div>
+              <div id="out-dora-tooling-roi" class="output-num" style="font-size: 28px; color: var(--accent);">-- x</div>
+              <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Return on enterprise AI tooling investment</div>
+            </div>
+            <div class="output-stat">
+              <div class="output-label">Projected PR Cycle Time</div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px;">
+                <div id="out-dora-new-cycle" style="font-size: 26px; font-weight: 600; color: var(--ink);">-- days</div>
+                <span id="out-dora-cycle-drop" class="badge badge-adopt" style="font-size: 12px;">--% faster</span>
+              </div>
+              <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Time from developer branch creation to production merge</div>
+            </div>
+            <div class="output-stat">
+              <div class="output-label">Engineering Capacity Gained</div>
+              <div id="out-dora-hours-saved" style="font-size: 20px; font-weight: 600; color: var(--ink);">-- hrs / dev / week</div>
+              <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Equivalent to adding <span id="out-dora-fte-equiv" style="font-weight: 600;">--</span> full-time engineers</div>
+            </div>
+            <div class="output-stat" style="border-bottom: none;">
+              <div class="output-label">Projected DORA Velocity Tier</div>
+              <div id="out-dora-tier" style="font-size: 18px; font-weight: 600; color: var(--accent); margin-top: 4px;">--</div>
+              <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Based on Google DORA State of DevOps benchmarks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engineering Leadership Principles -->
+      <div style="margin-top: 48px; background: var(--wash); border: 1px solid var(--line); padding: 32px;">
+        <h3>Engineering Leadership: Structuring the AI-Native SDLC</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; font-size: 14px; line-height: 1.6;">
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">1. Decoupled Platform Topologies</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Stream-aligned product squads should focus on business value. A dedicated <strong>AI Platform & Tooling Squad</strong> owns MCP server governance, automated eval gates, and internal model context graphs.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">2. Defect Escape Rate Fences</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">AI speedup without automated testing produces code bloat. Pair code generation with autonomous unit-test synthesis and mutation testing in CI to keep defect escape rates flat.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">3. Spec-Driven & Graph-Aware Context</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Developers using generic chat tools hit hallucination limits. Supplying AI tools with AST dependency graphs and Architectural Decision Records (ADRs) cuts architectural rework by 40%.</p>
+          </div>
+          <div>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">4. High-Trust Developer Culture</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Treat unlocked engineering hours as reinvestment capital for technical debt retirement, architectural refactoring, and customer innovation—not workforce reduction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  fs.writeFileSync(path.join(doraDir, 'index.html'), renderHtmlPage({
+    title: "AI-Enabled SDLC & DORA Velocity Modeler | Bhavin Mistry",
+    description: "Model engineering cycle time reduction, weekly hours unlocked, DORA deployment frequency gains, and net enterprise ROI from AI-enabled engineering squads.",
+    canonicalUrl: "https://bhavinmistry.com/tools/ai-sdlc-dora-roi-calculator/",
+    currentPath: "/tools/ai-sdlc-dora-roi-calculator/",
+    mainContent: doraMain
+  }));
+  console.log('Generated: tools/ai-sdlc-dora-roi-calculator/index.html');
+}
+
+// 7b. Build Cross-Industry Enterprise AI Matrix (/industries/)
+function buildIndustries() {
+  const indDir = path.join(ROOT_DIR, 'industries');
+  ensureDir(indDir);
+
+  const crumbs = [
+    { name: "Home", url: "/" },
+    { name: "Industries", url: "/industries/" }
+  ];
+
+  const indMain = `
+    <div class="container" style="max-width: 1140px; padding-top: 64px; padding-bottom: 88px;">
+      ${renderBreadcrumbs(crumbs)}
+
+      <header style="max-width: 880px; margin-bottom: 48px;">
+        <span class="eyebrow">Enterprise Delivery Matrix</span>
+        <h1 style="font-size: clamp(34px, 5vw, 54px); margin-bottom: 20px;">Enterprise AI Across Regulated Industries</h1>
+        <p class="hero-lead" style="font-size: 20px; color: var(--muted); line-height: 1.6;">
+          How Tier-1 engineering principles—zero-trust security, APRA CPS 234 compliance, hybrid retrieval, and AI FinOps—translate into production platforms across high-consequence sectors.
+        </p>
+      </header>
+
+      <!-- 5 Industry Pillars -->
+      <div style="display: flex; flex-direction: column; gap: 40px;">
+
+        <!-- 1. Banking & Financial Services -->
+        <div class="card" style="border-left: 4px solid var(--accent); padding: 36px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="eyebrow" style="margin-bottom: 4px;">Tier-1 Banking & Financial Markets</span>
+              <h2 style="font-size: 28px; margin-top: 4px;">Financial Services & Sovereign Banking</h2>
+            </div>
+            <span class="badge badge-adopt" style="font-size: 12px; padding: 6px 12px;">APRA CPS 234 Compliant</span>
+          </div>
+          <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.65; max-width: 900px;">
+            In Australian banking, Generative and Agentic AI cannot enter production without zero-trust perimeter defense, immutable audit logging, and strict data loss prevention (DLP). Systems must withstand adversarial prompt-injection and enforce document-level entitlements (ACLs).
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Core Regulatory Anchor</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">APRA CPS 234, PCI-DSS Level 1, CDR (Consumer Data Right), Privacy Act 1988.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Production Architecture</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;"><a href="/architectures/enterprise-rag/" class="text-link">Enterprise Hybrid RAG</a> + Centralized Reverse-Proxy <a href="/architectures/enterprise-ai-gateway/" class="text-link">AI Gateway</a> with cryptographic PII redaction.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">P&L & Operational Impact</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">82% faster KYC/AML dispute triage; 78% inference cost reduction via semantic caching; 0 security perimeter breaches.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Healthcare & Life Sciences -->
+        <div class="card" style="border-left: 4px solid #16a34a; padding: 36px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="eyebrow" style="margin-bottom: 4px;">Clinical Precision & Patient Privacy</span>
+              <h2 style="font-size: 28px; margin-top: 4px;">Healthcare, Life Sciences & Clinical Systems</h2>
+            </div>
+            <span class="badge" style="font-size: 12px; padding: 6px 12px; background: #dcfce7; color: #166534;">Zero-Retention HIPAA / My Health Record</span>
+          </div>
+          <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.65; max-width: 900px;">
+            Clinical AI systems cannot tolerate probabilistic hallucinations. In clinical guideline retrieval, physician note drafting, and pharmacovigilance, every generated statement must feature deterministic bidirectional cross-encoder citation lineage back to verified medical literature.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Core Regulatory Anchor</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">Australian Privacy Act 1988, HIPAA, TGA SaMD (Software as a Medical Device), Good Clinical Practice (GCP).</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Production Architecture</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">Biomedical Cross-Encoder Reranked RAG + On-Premises Distilled SLM (Llama 3.3 / Mistral) with zero external internet egress.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">P&L & Operational Impact</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">4.5x faster physician discharge summaries; 99.4% citation faithfulness score; zero patient data leaves hospital VPC.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Telecommunications & Critical Infrastructure -->
+        <div class="card" style="border-left: 4px solid #2563eb; padding: 36px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="eyebrow" style="margin-bottom: 4px;">Ultra-High Throughput & Resilient State</span>
+              <h2 style="font-size: 28px; margin-top: 4px;">Telecommunications, Utilities & Critical Infrastructure</h2>
+            </div>
+            <span class="badge" style="font-size: 12px; padding: 6px 12px; background: #dbeafe; color: #1e40af;">50,000+ Req / Sec Gateway</span>
+          </div>
+          <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.65; max-width: 900px;">
+            Telcos handle massive traffic scale across billing support, dynamic SIM provisioning, and network fault diagnosis. Architectures must prioritize sub-second P95 latencies, multi-provider automated fallback, and semantic deduplication to avoid catastrophic cloud provider billing.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Core Regulatory Anchor</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">Telecommunications Act 1997, SOCI Act (Security of Critical Infrastructure), SLA Availability 99.99%.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Production Architecture</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;"><a href="/tools/model-router-cost-calculator/" class="text-link">Dynamic Multi-Model Router</a> + In-Memory Redis Semantic Cache + Bounded State-Machine <a href="/architectures/agentic-rag/" class="text-link">Agentic Triage</a>.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">P&L & Operational Impact</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">$3.8M annual cloud inference savings; P95 diagnostic latency reduced from 2,400ms to 280ms; zero cascading outage downtime.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Government & Sovereign Public Sector -->
+        <div class="card" style="border-left: 4px solid #7c3aed; padding: 36px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="eyebrow" style="margin-bottom: 4px;">Data Sovereignty & Air-Gapped Precision</span>
+              <h2 style="font-size: 28px; margin-top: 4px;">Government, Defense & Sovereign Public Sector</h2>
+            </div>
+            <span class="badge" style="font-size: 12px; padding: 6px 12px; background: #ede9fe; color: #5b21b6;">PROTECTED Baseline Sovereign</span>
+          </div>
+          <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.65; max-width: 900px;">
+            Sovereign government agencies require AI systems that run strictly within Australian jurisdictional borders, often inside air-gapped private sovereign clouds with zero dependency on foreign API endpoints or unvetted commercial model weights.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Core Regulatory Anchor</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">Australian Information Security Manual (ISM), PSPF (Policy Services Framework), FOI Act, PROTECTED Classification.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Production Architecture</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">Sovereign Kubernetes Cluster (vLLM / Triton) with local embedding vectors + <a href="/architectures/enterprise-mcp-gateway/" class="text-link">Enterprise MCP Gateway</a> enforcing strict RBAC.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">P&L & Operational Impact</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">Complete data sovereignty guarantee; 90% faster tender RFP policy compliance verification; zero cross-border telemetry.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Retail, Logistics & Supply Chain -->
+        <div class="card" style="border-left: 4px solid #ea580c; padding: 36px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+            <div>
+              <span class="eyebrow" style="margin-bottom: 4px;">Dynamic Graphs & Real-Time Operational Flows</span>
+              <h2 style="font-size: 28px; margin-top: 4px;">Retail, Supply Chain & Global Logistics</h2>
+            </div>
+            <span class="badge" style="font-size: 12px; padding: 6px 12px; background: #ffedd5; color: #9a3412;">ERP & Graph Integration</span>
+          </div>
+          <p style="font-size: 16px; color: var(--ink-soft); line-height: 1.65; max-width: 900px;">
+            In omnichannel retail and multi-modal freight logistics, tabular data (SKUs, inventory tables, warehouse tariffs, supplier SLAs) breaks traditional vector search. Systems require hybrid semantic-lexical retrieval and knowledge graph entity resolution to trace complex supplier dependencies.
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Core Regulatory Anchor</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">ACCC Fair Trading, Global Carrier SLA Agreements, Customs Tariff Regulations.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">Production Architecture</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;"><a href="/architectures/graph-rag-knowledge-engine/" class="text-link">GraphRAG Knowledge Engine</a> + ERP / SAP Tool Connectors via Model Context Protocol (MCP).</p>
+            </div>
+            <div>
+              <h4 style="font-size: 13px; font-family: var(--mono); text-transform: uppercase; color: var(--muted);">P&L & Operational Impact</h4>
+              <p style="font-size: 14px; margin-top: 6px; font-weight: 500;">65% reduction in freight demurrage disputes; real-time SKU stock matching across 400+ stores; dynamic carrier routing.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cross-Link to Decision Tools & Executive Advisory -->
+      <div style="margin-top: 64px; background: var(--wash); border: 1px solid var(--line); padding: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+        <div style="max-width: 680px;">
+          <span class="eyebrow">Executive Consultation</span>
+          <h3 style="font-size: 24px; margin-bottom: 8px;">Need an Architecture Review for Your Industry Context?</h3>
+          <p style="color: var(--ink-soft); font-size: 15px; margin-bottom: 0;">
+            Book an executive briefing or architectural review with Bhavin Mistry to benchmark your organization's AI gateway, RAG precision, or APRA CPS 234 compliance posture.
+          </p>
+        </div>
+        <a href="/about/#contact" class="btn btn-primary" style="padding: 14px 24px; font-size: 14px;">Connect with Bhavin →</a>
+      </div>
+
+    </div>
+  `;
+
+  fs.writeFileSync(path.join(indDir, 'index.html'), renderHtmlPage({
+    title: "Enterprise AI Across Regulated Industries | Bhavin Mistry",
+    description: "Production AI systems engineering across Financial Services, Healthcare, Telecommunications, Government, and Retail Supply Chains.",
+    canonicalUrl: "https://bhavinmistry.com/industries/",
+    currentPath: "/industries/",
+    mainContent: indMain
+  }));
+  console.log('Generated: industries/index.html');
 }
 
 // 8. Build Research Hub (/research/)
@@ -3255,6 +3750,9 @@ function buildSeoAssets() {
     { path: 'tools/llm-cost-calculator/', changefreq: 'weekly', priority: '0.8' },
     { path: 'tools/ai-use-case-prioritiser/', changefreq: 'weekly', priority: '0.8' },
     { path: 'tools/build-vs-buy-ai-platform/', changefreq: 'weekly', priority: '0.8' },
+    { path: 'tools/model-router-cost-calculator/', changefreq: 'weekly', priority: '0.8' },
+    { path: 'tools/ai-sdlc-dora-roi-calculator/', changefreq: 'weekly', priority: '0.8' },
+    { path: 'industries/', changefreq: 'weekly', priority: '0.9' },
     { path: 'research/', changefreq: 'weekly', priority: '0.7' },
     { path: 'newsletter/', changefreq: 'weekly', priority: '0.7' },
     { path: 'privacy/', changefreq: 'monthly', priority: '0.5' }
@@ -3361,7 +3859,9 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 4. Enterprise-Grade Retrieval & Agentic Systems: Architects production Hybrid Sparse-Dense RAG systems (BM25 + dense vector embeddings + cross-encoder reranking) and deterministic multi-agent state machines engineered for >90% factual precision.
 
 ## Core Canonical Publications
+- Model Context Protocol (MCP) in Enterprise Production: https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/
 - The 5-Stage Framework for Taking Enterprise AI to Production: https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/
+- The Multi-Model Router (SLM Distillation): https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/
 - Why Hybrid RAG Beats Pure Vector Search in Enterprise Settings: https://bhavinmistry.com/insights/why-hybrid-rag-beats-pure-vector-search-in-enterprise-settings/
 - The Hidden Costs of LLM Inference: A Cost Modeling Guide: https://bhavinmistry.com/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/
 - Enterprise AI Engineering Production Playbook: https://bhavinmistry.com/insights/enterprise-ai-engineering-production-playbook/
@@ -3369,6 +3869,9 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 - Enterprise RAG Architecture Production Blueprint: https://bhavinmistry.com/insights/enterprise-rag-production-blueprint/
 - RAG vs Agentic RAG Decision Guide: https://bhavinmistry.com/insights/rag-vs-agentic-rag-enterprise-decision-guide/
 - Enterprise AI Governance Without Killing Innovation: https://bhavinmistry.com/insights/enterprise-ai-governance-without-killing-innovation/
+
+## Cross-Industry Delivery
+- Enterprise AI Across Regulated Industries: https://bhavinmistry.com/industries/
 
 ## Architectural Blueprints
 - Enterprise Hybrid RAG: https://bhavinmistry.com/architectures/enterprise-rag/
@@ -3388,6 +3891,8 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
 - AI Readiness Assessment Diagnostic: https://bhavinmistry.com/tools/enterprise-ai-readiness/
+- Model Router & SLM Simulator: https://bhavinmistry.com/tools/model-router-cost-calculator/
+- AI SDLC & DORA Velocity Modeler: https://bhavinmistry.com/tools/ai-sdlc-dora-roi-calculator/
 - RAG Cost Calculator: https://bhavinmistry.com/tools/rag-cost-calculator/
 - LLM Token Cost Estimator: https://bhavinmistry.com/tools/llm-cost-calculator/
 - AI Use Case Prioritiser: https://bhavinmistry.com/tools/ai-use-case-prioritiser/
@@ -3410,6 +3915,7 @@ function run() {
   buildRadar();
   buildHandbook();
   buildTools();
+  buildIndustries();
   buildPlatform(renderHtmlPage, ROOT_DIR);
   buildResearch();
   buildAbout();

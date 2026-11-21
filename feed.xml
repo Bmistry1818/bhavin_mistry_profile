@@ -8,6 +8,14 @@
     <atom:link href="https://bhavinmistry.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Model Context Protocol (MCP) in Enterprise Production: Security, Authorization, and Tool Federation</title>
+      <link>https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/</link>
+      <guid>https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Why MCP is the TCP/IP of the AI era: architecting zero-trust tool federation, OAuth2/RBAC context boundaries, and APRA CPS 234 audit perimeters for autonomous enterprise agents.]]></description>
+      <category>Platform Engineering &amp; Security</category>
+    </item>
+    <item>
       <title>The Multi-Model Router: Slashing Enterprise Inference Spend by 78% with SLM Distillation</title>
       <link>https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/</link>
       <guid>https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/</guid>

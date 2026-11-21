@@ -9,7 +9,7 @@ const PUBLIC_FILES = ['index.html', '404.html', 'styles.css', 'script.js', 'favi
   'favicon.svg', 'apple-touch-icon.png', 'CNAME', '.nojekyll', 'feed.xml', 'sitemap.xml', 'robots.txt', 'llms.txt',
   'BingSiteAuth.xml', 'googled5898bc9d7540753.html'];
 const PUBLIC_DIRS = ['about', 'ai-radar', 'architectures', 'enterprise-ai-engineering', 'frameworks',
-  'insights', 'newsletter', 'privacy', 'research', 'tools', 'speaking', 'brief', 'compare', 'assets'];
+  'insights', 'newsletter', 'privacy', 'research', 'tools', 'speaking', 'brief', 'compare', 'assets', 'industries'];
 
 function copyPublicSite(destination, root = ROOT_DIR) {
   fs.mkdirSync(destination, { recursive: true });
@@ -92,7 +92,8 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
         `1. Open: https://github.com/${repository}/settings/pages\n` +
         `2. Under "Build and deployment" -> "Source", select "Deploy from a branch"\n` +
         `3. Under "Branch", select "gh-pages" and "/ (root)", then click "Save"\n` +
-        `4. Re-run this workflow.`
+        `4. Re-run this workflow.`,
+        { cause: err }
       );
     }
   }
