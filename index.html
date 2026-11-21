@@ -44,18 +44,20 @@
     <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mwpfgomu" />
+    <link rel="stylesheet" href="/styles.css?v=mwpx44u4" />
     <script>
       (function() {
         try {
           var saved = localStorage.getItem('bm-theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var theme = saved || (prefersDark ? 'dark' : 'light');
+          var meta = document.querySelector('meta[name="color-scheme"]');
+          if (meta && (theme === 'dark' || theme === 'light')) meta.content = theme;
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();
     </script>
-    <script defer src="/script.js?v=mwpfgomu"></script>
+    <script defer src="/script.js?v=mwpx44u4"></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://bhavinmistry.com/#person","name":"Bhavin Mistry","jobTitle":"Enterprise AI & Technology Executive","worksFor":{"@type":"Organization","name":"Commonwealth Bank"},"address":{"@type":"PostalAddress","addressLocality":"Melbourne","addressCountry":"AU"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"The University of Texas at Austin"},{"@type":"CollegeOrUniversity","name":"Gujarat Technological University"},{"@type":"CollegeOrUniversity","name":"Gujarat University"}],"sameAs":["https://www.linkedin.com/in/bhavin-mistry","https://github.com/Bmistry1818","https://x.com/BhaveenMistrry","https://medium.com/@bhavin_mistry","https://learnaiengineering.dev/"],"knowsAbout":["Enterprise AI","RAG Architecture","AI Governance","Platform Engineering","Machine Learning","AI FinOps","APRA CPS 234"],"url":"https://bhavinmistry.com/","image":"https://bhavinmistry.com/assets/og/default.png"}</script>
   </head>
   <body id="top" class="">
@@ -310,6 +312,18 @@
         
           <article class="card">
             <div class="card-meta">
+              <span class="badge badge-accent">Platform Engineering & Security</span>
+              <span>11 min read</span>
+            </div>
+            <h3><a href="/insights/model-context-protocol-enterprise-production-blueprint/">Model Context Protocol (MCP) in Enterprise Production: Security, Authorization, and Tool Federation</a></h3>
+            <p>Why MCP is the TCP/IP of the AI era: architecting zero-trust tool federation, OAuth2/RBAC context boundaries, and APRA CPS 234 audit perimeters for autonomous enterprise agents.</p>
+            <div class="card-footer">
+              <a href="/insights/model-context-protocol-enterprise-production-blueprint/" class="text-link">Read Blueprint <span>→</span></a>
+            </div>
+          </article>
+        
+          <article class="card">
+            <div class="card-meta">
               <span class="badge badge-accent">AI FinOps & Optimization</span>
               <span>10 min read</span>
             </div>
@@ -329,18 +343,6 @@
             <p>Deconstructing the 5 perimeter failure modes—PII leakage, semantic cache drift, unbudgeted token egress, and permission desync—that kill enterprise GenAI pilots before production.</p>
             <div class="card-footer">
               <a href="/insights/why-95-percent-of-enterprise-ai-pilots-fail-at-the-perimeter/" class="text-link">Read Blueprint <span>→</span></a>
-            </div>
-          </article>
-        
-          <article class="card">
-            <div class="card-meta">
-              <span class="badge badge-accent">AI FinOps</span>
-              <span>9 min read</span>
-            </div>
-            <h3><a href="/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/">The Hidden Costs of LLM Inference: A Cost Modeling Guide</a></h3>
-            <p>Deconstructing prompt token bloat, cache miss penalties, reranker latency, and egress costs: an engineering guide to modeling enterprise LLM unit economics.</p>
-            <div class="card-footer">
-              <a href="/insights/the-hidden-costs-of-llm-inference-a-cost-modeling-guide/" class="text-link">Read Blueprint <span>→</span></a>
             </div>
           </article>
         
@@ -534,34 +536,70 @@
         </p>
       </div>
 
-      <div class="card-grid-3">
+      <div class="card-grid-2">
         <div class="card">
-          <span class="eyebrow">Financial Modeling</span>
-          <h3><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></h3>
-          <p>Model monthly vector storage, embedding tokens, inference volume, and caching return across enterprise document pools.</p>
+          <div class="card-meta">
+            <span class="badge badge-accent">AI FinOps & Optimization</span>
+            <span style="font-family: var(--mono); font-size: 11px;">Interactive Simulator</span>
+          </div>
+          <h3><a href="/tools/model-router-cost-calculator/">Enterprise Model Router & SLM Simulator</a></h3>
+          <p>Simulate dynamic query routing between Frontier LLMs (GPT-4o/Claude) and distilled private SLMs (Llama-3/Mistral), modeling 70%+ token savings and P95 latency reduction.</p>
+          <div class="card-footer">
+            <a href="/tools/model-router-cost-calculator/" class="text-link">Launch Simulator <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-accent">Engineering Velocity</span>
+            <span style="font-family: var(--mono); font-size: 11px;">DORA Telemetry</span>
+          </div>
+          <h3><a href="/tools/ai-sdlc-dora-roi-calculator/">AI-Enabled SDLC & DORA Modeler</a></h3>
+          <p>Calculate engineering capacity unlocked by AI code reviews and agentic workflows, modeling PR lead-time drops, weekly dev hours saved, and DORA tier upgrades.</p>
+          <div class="card-footer">
+            <a href="/tools/ai-sdlc-dora-roi-calculator/" class="text-link">Model Velocity <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-meta">
+            <span class="badge badge-accent">Financial Modeling</span>
+            <span style="font-family: var(--mono); font-size: 11px;">Production Estimator</span>
+          </div>
+          <h3><a href="/tools/rag-cost-calculator/">Enterprise RAG Cost Calculator</a></h3>
+          <p>Model monthly vector storage, embedding tokens, inference volume, and semantic caching return across enterprise document pools.</p>
           <div class="card-footer">
             <a href="/tools/rag-cost-calculator/" class="text-link">Run Calculations <span>→</span></a>
           </div>
         </div>
+
         <div class="card">
-          <span class="eyebrow">Unit Economics</span>
-          <h3><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></h3>
-          <p>Compute daily, monthly, and annualized inference budgets based on prompt/completion ratios and prompt cache hits.</p>
-          <div class="card-footer">
-            <a href="/tools/llm-cost-calculator/" class="text-link">Estimate Spend <span>→</span></a>
+          <div class="card-meta">
+            <span class="badge badge-accent">Executive Strategy</span>
+            <span style="font-family: var(--mono); font-size: 11px;">TCO Decision Engine</span>
           </div>
-        </div>
-        <div class="card">
-          <span class="eyebrow">Portfolio Governance</span>
-          <h3><a href="/tools/ai-use-case-prioritiser/">AI Use Case Prioritiser</a></h3>
-          <p>Map candidate AI initiatives into Quick Wins, Strategic Bets, Experiments, or Defer based on business value and risk.</p>
+          <h3><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy AI Decision Engine</a></h3>
+          <p>Evaluate 3-year TCO, Capex vs Opex, internal engineering load, and APRA CPS 234 governance overhead for proprietary AI platform builds.</p>
           <div class="card-footer">
-            <a href="/tools/ai-use-case-prioritiser/" class="text-link">Map Use Cases <span>→</span></a>
+            <a href="/tools/build-vs-buy-ai-platform/" class="text-link">Evaluate TCO <span>→</span></a>
           </div>
         </div>
       </div>
-      <div style="margin-top: 36px; display: flex; justify-content: center; gap: 16px;">
-        <a href="/tools/build-vs-buy-ai-platform/" class="btn btn-secondary">Build vs Buy Calculator →</a>
+
+      <div class="industry-matrix-banner" style="margin-top: 36px; padding: 24px 28px; background: var(--wash); border: 1px solid var(--line); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+        <div style="max-width: 720px;">
+          <span class="eyebrow" style="color: var(--accent); font-weight: 600;">Cross-Industry Translation</span>
+          <h3 style="margin: 4px 0 8px; font-size: 18px;">Cross-Industry Enterprise AI Solutions Matrix</h3>
+          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">
+            How Tier-1 banking zero-trust rigor and APRA CPS 234 compliance translate directly to Healthcare & Life Sciences, Telecommunications, Government/Defense, and Retail Supply Chains.
+          </p>
+        </div>
+        <a href="/industries/" class="btn btn-primary" style="white-space: nowrap;">Explore Industry Matrix →</a>
+      </div>
+
+      <div style="margin-top: 32px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="/tools/llm-cost-calculator/" class="btn btn-secondary">LLM Token Estimator →</a>
+        <a href="/tools/ai-use-case-prioritiser/" class="btn btn-secondary">AI Use Case Prioritiser →</a>
         <a href="/tools/" class="btn btn-primary">View All Decision Tools →</a>
       </div>
     </section>
@@ -681,12 +719,12 @@
       </div>
     </footer>
 
-    <!-- Command Palette Modal -->
-    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+    <!-- Command Palette Dialog (Modern HTML5 Dialog with Top Layer & Focus Trapping) -->
+    <dialog id="command-palette-dialog" class="palette-dialog" aria-labelledby="palette-search-input" closedby="any">
       <div class="palette-window">
         <div class="palette-input-wrap">
-          <span style="color: var(--muted); font-size: 14px;">🔍</span>
-          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <span style="color: var(--muted); font-size: 14px;" aria-hidden="true">🔍</span>
+          <input type="text" id="palette-search-input" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search site" autofocus />
           <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
         </div>
         <div class="palette-results"></div>
@@ -695,7 +733,7 @@
           <span>Press <kbd>ESC</kbd> to close</span>
         </div>
       </div>
-    </div>
+    </dialog>
   
   </body>
 </html>

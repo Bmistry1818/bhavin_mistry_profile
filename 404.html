@@ -44,18 +44,20 @@
     <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mwpfgomu" />
+    <link rel="stylesheet" href="/styles.css?v=mwpx44u4" />
     <script>
       (function() {
         try {
           var saved = localStorage.getItem('bm-theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var theme = saved || (prefersDark ? 'dark' : 'light');
+          var meta = document.querySelector('meta[name="color-scheme"]');
+          if (meta && (theme === 'dark' || theme === 'light')) meta.content = theme;
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
       })();
     </script>
-    <script defer src="/script.js?v=mwpfgomu"></script>
+    <script defer src="/script.js?v=mwpx44u4"></script>
     
       <script type="application/ld+json">
       {
@@ -205,12 +207,12 @@
       </div>
     </footer>
 
-    <!-- Command Palette Modal -->
-    <div id="command-palette-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Search and Command Palette">
+    <!-- Command Palette Dialog (Modern HTML5 Dialog with Top Layer & Focus Trapping) -->
+    <dialog id="command-palette-dialog" class="palette-dialog" aria-labelledby="palette-search-input" closedby="any">
       <div class="palette-window">
         <div class="palette-input-wrap">
-          <span style="color: var(--muted); font-size: 14px;">🔍</span>
-          <input type="text" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search queries" autofocus />
+          <span style="color: var(--muted); font-size: 14px;" aria-hidden="true">🔍</span>
+          <input type="text" id="palette-search-input" class="palette-input" placeholder="Search architectures, frameworks, tools, insights..." aria-label="Search site" autofocus />
           <button type="button" data-close-palette style="font-size: 16px; color: var(--muted);" aria-label="Close search">✕</button>
         </div>
         <div class="palette-results"></div>
@@ -219,7 +221,7 @@
           <span>Press <kbd>ESC</kbd> to close</span>
         </div>
       </div>
-    </div>
+    </dialog>
   
   </body>
 </html>
