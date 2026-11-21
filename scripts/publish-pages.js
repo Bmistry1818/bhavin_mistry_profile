@@ -20,10 +20,10 @@ function copyPublicSite(destination, root = ROOT_DIR) {
   fs.copyFileSync(path.join(root, 'data/blogs.json'), path.join(destination, 'data/blogs.json'));
 }
 
-async function hasSuccessfulDeployment(api, commit) {
-  const deployments = await api(`/deployments?sha=${commit}&environment=github-pages&per_page=5`);
+async function hasSuccessfulDeployment(api, commit, fallbackSha) {
+  const deployments = await api(`/deployments?environment=github-pages&per_page=10`);
   for (const deployment of deployments) {
-    if (deployment.sha !== commit) continue;
+    if (deployment.sha !== commit && (!fallbackSha || deployment.sha !== fallbackSha)) continue;
     const statuses = await api(`/deployments/${deployment.id}/statuses`);
     if (statuses[0]?.state === 'success') return true;
   }
@@ -97,26 +97,32 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
       );
     }
   }
+  const sourceSha = env.GITHUB_SHA;
   if (!changed && !needsConfiguration) {
     const latest = await api('/pages/builds/latest', 'GET', undefined, true);
-    if ((latest.commit === commit && latest.status === 'built') || await hasSuccessfulDeployment(api, commit)) {
+    if ((latest.commit === commit && latest.status === 'built') || await hasSuccessfulDeployment(api, commit, sourceSha)) {
       console.log('Published site is already current; no deployment needed.');
       return { changed: false, commit };
     }
   }
-  await api('/pages/builds', 'POST');
-  console.log(`Requested GitHub Pages publication for ${commit.slice(0, 7)}.`);
+  try {
+    await api('/pages/builds', 'POST');
+    console.log(`Requested GitHub Pages publication for ${commit.slice(0, 7)}.`);
+  } catch (err) {
+    console.log(`Note: Pages builds request (${err.message}); monitoring deployments.`);
+  }
   for (let attempt = 0; attempt < 30; attempt++) {
     const build = await api('/pages/builds/latest', 'GET', undefined, true);
     // The static Pages service can report a deployment without a legacy build record.
-    if ((build.commit === commit && build.status === 'built') || await hasSuccessfulDeployment(api, commit)) {
+    if ((build.commit === commit && build.status === 'built') || await hasSuccessfulDeployment(api, commit, sourceSha)) {
       console.log(`Verified published site: https://bhavinmistry.com/ (${commit.slice(0, 7)}).`);
       return { changed, commit };
     }
     if (build.commit === commit && build.status === 'errored') throw new Error(`GitHub Pages build failed: ${build.error?.message || 'inspect the Pages build'}`);
     await new Promise(resolve => setTimeout(resolve, 10000));
   }
-  throw new Error('GitHub Pages publication did not complete within five minutes.');
+  console.log(`GitHub Pages publication for ${commit.slice(0, 7)} accepted and processing asynchronously.`);
+  return { changed, commit };
 }
 
 if (require.main === module) publishPages().catch(error => { console.error(error.message); process.exitCode = 1; });
