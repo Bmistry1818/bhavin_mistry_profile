@@ -41,10 +41,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f5f2eb" />
+    <meta name="theme-color" content="#060911" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7fa" />
 
-    <link rel="stylesheet" href="/styles.css?v=mwxac5ms" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="/styles.css?v=mwxcowmb" />
     <script>
       (function() {
         try {
@@ -57,7 +60,7 @@
         } catch (e) {}
       })();
     </script>
-    <script defer src="/script.js?v=mwxac5ms"></script>
+    <script defer src="/script.js?v=mwxcowmb"></script>
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Agentic RAG Architecture","description":"Multi-hop query decomposition, dynamic query reformulation, and autonomous citation critique for high-complexity enterprise research.","datePublished":"2026-08-05","dateModified":"2026-09-18","author":{"@type":"Person","name":"Bhavin Mistry","url":"https://bhavinmistry.com/"},"publisher":{"@type":"Person","name":"Bhavin Mistry"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bhavinmistry.com/architectures/agentic-rag/"},"image":"https://bhavinmistry.com/assets/og/agentic-rag.png"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When should an enterprise use Agentic RAG instead of one-shot RAG?","acceptedAnswer":{"@type":"Answer","text":"Use Agentic RAG when queries require multi-hop research across disparate data stores, dynamic query reformulation, cross-system reconciliation, or self-critique of generated citations. For simple factual lookup, one-shot RAG is 5x faster and 10x cheaper."}},{"@type":"Question","name":"How do you avoid infinite reasoning loops in multi-hop agent workflows?","acceptedAnswer":{"@type":"Answer","text":"By enforcing deterministic cycle limits (max 3-4 iterations), timeout fences, state checkpointing with StateGraph, and automated fallbacks to one-shot hybrid search if groundedness evaluation does not converge."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://bhavinmistry.com/"},{"@type":"ListItem","position":2,"name":"Architectures","item":"https://bhavinmistry.com/architectures/"},{"@type":"ListItem","position":3,"name":"Agentic RAG Architecture","item":"https://bhavinmistry.com/architectures/agentic-rag/"}]}]}</script>
   </head>
   <body id="top" class="">
@@ -74,14 +77,12 @@
           <span class="sr-only">Open navigation</span>
           <span aria-hidden="true">Menu</span>
         </button>
-        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <nav id="main-nav" class="main-nav" aria-label="Primary">
           <div class="nav-links">
             <a href="/insights/" class="">Insights</a>
-            <a href="/enterprise-ai-engineering/" class="">Handbook</a>
             <a href="/architectures/" class="active">Architectures</a>
-            <a href="/frameworks/enterprise-ai-production-readiness/" class="">Framework</a>
-            <a href="/compare/" class="">Compare</a>
             <a href="/ai-radar/" class="">AI Radar</a>
+            <a href="/industries/" class="">Industries</a>
             <a href="/tools/" class="">Tools</a>
             <a href="/speaking/" class="">Speaking</a>
             <a href="/about/" class="">About</a>
@@ -91,7 +92,7 @@
               <span>Search</span>
               <kbd>⌘K</kbd>
             </button>
-            <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle dark or light color theme" title="Toggle theme">
               <span class="theme-icon-light" aria-hidden="true">🌙</span>
               <span class="theme-icon-dark" aria-hidden="true">☀️</span>
             </button>
@@ -426,57 +427,59 @@ workflow.add_conditional_edges(&quot;retrieve&quot;, evaluate_gate, {&quot;refin
         <div class="footer-grid">
           <div class="footer-brand">
             <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
-            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+            <p>Enterprise AI architecture, sovereign inference governance, and engineering leadership from Melbourne, Australia.</p>
+            <div style="margin-top: 18px;">
+              <a href="/newsletter/" class="btn btn-primary btn-sm">Subscribe to Enterprise AI Brief</a>
+            </div>
           </div>
           <div class="footer-col">
-            <h4>Knowledge Hub</h4>
+            <h4>Knowledge &amp; Systems</h4>
             <ul>
               <li><a href="/insights/">Enterprise Insights</a></li>
               <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
               <li><a href="/architectures/">Architecture Library</a></li>
-              <li><a href="/compare/">Architectural Comparisons</a></li>
               <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/industries/">Regulated Industry Matrix</a></li>
+              <li><a href="/compare/">Architectural Comparisons</a></li>
               <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
-              <li><a href="/research/">Research & Benchmarks</a></li>
+              <li><a href="/research/">Research &amp; Benchmarks</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>Interactive Tools</h4>
+            <h4>Decision Simulators</h4>
             <ul>
-              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/enterprise-ai-skills/">Top 5 Enterprise AI Skills</a></li>
+              <li><a href="/tools/model-router-cost-calculator/">Model Router &amp; SLM Simulator</a></li>
+              <li><a href="/tools/ai-sdlc-dora-roi-calculator/">AI SDLC &amp; DORA Modeler</a></li>
               <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
               <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
               <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
               <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Diagnostic</a></li>
+              <li><a href="/tools/graph-engineering/">Graph Engineering Platform</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>Ecosystem</h4>
+            <h4>Dispatches &amp; Connect</h4>
             <ul>
-              <li><a href="/speaking/">Speaking & Keynotes</a></li>
+              <li><a href="/about/">Executive Leadership Dossier</a></li>
+              <li><a href="/speaking/">Speaking &amp; Board Briefings</a></li>
               <li><a href="/brief/">Newsletter Archive</a></li>
               <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
               <li><a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
               <li><a href="https://github.com/Bmistry1818" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a></li>
-              <li><a href="https://x.com/BhaveenMistrry" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></li>
               <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
-              <li><a href="/feed.xml">RSS Feed</a></li>
-              <li><a href="/llms.txt">llms.txt</a></li>
+              <li><a href="/feed.xml">RSS Feed</a> · <a href="/llms.txt">llms.txt</a></li>
             </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Newsletter</h4>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
-            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
-          <div style="display: flex; gap: 20px;">
-            <a href="/about/">About Bhavin</a>
+          <p>© <span id="year">2026</span> Bhavin Mistry. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <a href="/about/">About</a>
             <a href="/privacy/">Privacy Policy</a>
             <a href="/sitemap.xml">Sitemap</a>
-            <a href="#top">Back to top ↑</a>
+            <a href="#top">Back to top</a>
           </div>
         </div>
       </div>

@@ -63,6 +63,7 @@
 - LangChain vs LlamaIndex vs Haystack: https://bhavinmistry.com/compare/llm-orchestration/
 
 ## Frameworks & Tools
+- Top 5 Enterprise AI Engineering Skills (+50% Team Velocity): https://bhavinmistry.com/tools/enterprise-ai-skills/
 - Graph Engineering Platform (AI skills and MCP servers): https://bhavinmistry.com/tools/graph-engineering/
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/
