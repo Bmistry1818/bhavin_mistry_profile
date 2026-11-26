@@ -21,10 +21,50 @@
       "name": "Intelligent Model Routing & SLMs",
       "quadrant": "TRIAL",
       "category": "AI FinOps & Optimization",
-      "summary": "Dynamic task complexity classifiers routing 70% of routine intent/extraction to low-cost small models (Llama 3.3 / Mistral) and 30% to frontier LLMs.",
-      "rationale": "Reduces inference spend by 65-80% while cutting P95 time-to-first-token latency to under 250ms for routine enterprise traffic.",
+      "summary": "Planner-Executor hierarchies routing 70-80% of high-volume extraction, classification, and routine coding to ultra-fast tiers (Gemini 4 Hydrogen, DeepSeek-V4.1-Flash, distilled Qwen4 FP8) while reserving Frontier planners (Claude Fable 5.2, GPT-6.2, Gemini 4 Carbon) for architectural reasoning.",
+      "rationale": "Captures the late-2026 80% flash inference cost collapse while cutting P95 time-to-first-token under 200ms and reducing single-provider vendor lock-in.",
       "implications": "Requires latency-aware reverse proxies and automated quality monitoring to catch small model underperformance.",
       "risks": "Classification misrouting sending ambiguous reasoning tasks to undersized models."
+    },
+    {
+      "id": "sovereign-open-weight-serving",
+      "name": "Sovereign Open-Weight Serving (vLLM & SGLang)",
+      "quadrant": "TRIAL",
+      "category": "AI Infrastructure & Sovereignty",
+      "summary": "Self-hosting high-efficiency open weights (Qwen4, DeepSeek-V4, GLM-5.4 Loop Transformers, Kimi K3.1) inside private VPCs with vLLM/SGLang, FP8 quantization, and NVMe KV-cache offloading.",
+      "rationale": "Neutralizes cross-border data residency risk and frontier API price shock while achieving high-throughput serving across NVIDIA, AMD, and TPU silicon.",
+      "implications": "Requires dedicated GPU capacity planning, InferenceOps telemetry, and strict legal vetting of MIT/Apache 2.0 vs custom commercial MaaS licenses.",
+      "risks": "Deploying weights with restrictive custom community licenses into commercial SaaS products without legal review."
+    },
+    {
+      "id": "a2a-protocol",
+      "name": "Agent2Agent Protocol (A2A) & Agentic Mesh",
+      "quadrant": "TRIAL",
+      "category": "Platform Engineering",
+      "summary": "Horizontal peer-to-peer protocol allowing cross-vendor agents to discover capabilities via /.well-known/agent.json Agent Cards, negotiate tasks, and stream artifacts.",
+      "rationale": "Complements vertical MCP tool connectivity by preventing framework lock-in across specialized risk, coding, and operations agents.",
+      "implications": "Demands federated OAuth/mTLS trust boundaries and distributed OpenTelemetry correlation across asynchronous multi-agent hops.",
+      "risks": "Cascading state drift or circular agent delegations without bounded hop budgets and circuit breakers."
+    },
+    {
+      "id": "agents-md-skills-contracts",
+      "name": "Repo Agent Contracts (AGENTS.md & SKILL.md)",
+      "quadrant": "ADOPT",
+      "category": "AI-enabled SDLC",
+      "summary": "Version-controlled AGENTS.md build/architecture contracts and AAIF-standardized SKILL.md procedural bundles co-located inside enterprise repositories.",
+      "rationale": "Stops coding agents (Claude Code, Codex, Cursor) from guessing team conventions, enforcing deterministic test verification loops before PR creation.",
+      "implications": "Treats agent instructions as code-reviewed engineering assets maintained alongside CI pipelines.",
+      "risks": "Stale repository instructions causing automated coding loops to enforce deprecated architectural patterns."
+    },
+    {
+      "id": "formal-verification-ci-gates",
+      "name": "Formal Verification & Deterministic CI Gates",
+      "quadrant": "ASSESS",
+      "category": "LLMOps & Quality",
+      "summary": "Pairing probabilistic LLM code synthesis with interactive theorem provers (e.g. Lean 4) and invariant property checks for memory-critical or Tier-1 regulated core modules.",
+      "rationale": "As autonomous coding agents raise PR volume exponentially, mathematical proof checks and deterministic fuzzing eliminate entire classes of security vulnerabilities before human review.",
+      "implications": "High initial engineering specialization required; best reserved initially for cryptography, ledger invariants, and C/C++/Rust edge perimeters.",
+      "risks": "Toolchain friction slowing delivery squads if applied indiscriminately to low-risk CRUD services."
     },
     {
       "id": "graph-rag",
@@ -461,6 +501,43 @@
         "language": "python",
         "code": "from typing import List, Dict, Any\nimport numpy as np\n\nclass GraphHybridRetriever:\n    \"\"\"Production GraphRAG retriever combining Neo4j graph traversal with vector similarity.\"\"\"\n    \n    def __init__(self, graph_client, vector_store, reranker):\n        self.graph = graph_client\n        self.vectors = vector_store\n        self.reranker = reranker\n\n    async def retrieve(self, query: str, user_roles: List[str], top_k: int = 5) -> List[Dict[str, Any]]:\n        # 1. Extract entities and traverse 2-hop relation graph\n        entities = await self.graph.extract_entities(query)\n        graph_triplets = await self.graph.query_subgraph(\n            entities=entities, \n            max_depth=2, \n            allowed_roles=user_roles\n        )\n        \n        # 2. Parallel Dense Vector Search\n        vector_candidates = await self.vectors.search(query, limit=top_k * 3)\n        \n        # 3. Reciprocal Rank Fusion (RRF) combining Graph Entities + Text Passages\n        combined_pool = self._fuse_candidates(graph_triplets, vector_candidates)\n        \n        # 4. Cross-Encoder Top-K Grounding\n        return self.reranker.rank(query, combined_pool, top_k=top_k)"
       }
+    },
+    {
+      "slug": "enterprise-mcp-a2a-agentic-mesh",
+      "title": "Enterprise Multi-Protocol Agentic Mesh (MCP + A2A)",
+      "category": "Agentic Infrastructure",
+      "summary": "A late-2026 reference topology unifying vertical Model Context Protocol (MCP Tasks, Elicitation, SKILL.md) with horizontal Agent2Agent (A2A) discovery for zero-trust cross-vendor multi-agent execution.",
+      "problem": "Enterprises now operate heterogeneous agents (coding CLI agents, risk analysts, customer operations workflows) that must both query internal systems of record securely and delegate long-running work to peer agents built on different stacks—without context-window bloat or blind trust.",
+      "whenToUse": "Deploy across multi-team enterprise platforms where specialized domain agents collaborate asynchronously and invoke sensitive corporate tools requiring auditability and human-in-the-loop signoff.",
+      "whenNotToUse": "Overkill for single-agent Q&A chatbots calling one or two read-only endpoints.",
+      "components": [
+        "Vertical Plane: Enterprise MCP Gateway with GA Tasks (async webhooks) & on-demand SKILL.md discovery",
+        "Human-in-the-Loop Elicitation Broker pausing high-impact mutations for signed engineer/operator approval",
+        "Horizontal Plane: A2A Discovery Registry serving signed /.well-known/agent.json capability cards",
+        "Distributed OpenTelemetry Trace Propagator & Hop-Budget Circuit Breaker"
+      ],
+      "dataFlow": "Orchestrator reads target peer capabilities via A2A Agent Card -> Delegates sub-task with bounded hop budget & OAuth2 scoped token -> Peer agent lazy-loads procedural SKILL.md guides via MCP -> Invokes asynchronous MCP Task for heavy build/data job -> Triggers MCP Elicitation pause for human signoff if risk threshold exceeded -> Returns signed artifact over A2A.",
+      "security": "Strict separation between tool credentials (isolated inside MCP backend proxies) and peer-to-peer delegation tokens (mTLS + short-lived A2A JWT assertions).",
+      "governance": "Every cross-agent delegation and MCP Task mutation carries a unified W3C traceparent ID logged to immutable SIEM storage, satisfying APRA CPS 234 non-repudiation requirements.",
+      "failureModes": "Circular agent delegation or runaway reasoning cost loops; prevented by mandatory A2A hop counters (max depth 3), per-task token ceilings, and deterministic fallback states.",
+      "publishedAt": "2026-11-26",
+      "updatedAt": "2026-11-26",
+      "readingTime": "12 min read",
+      "faqs": [
+        {
+          "q": "Why combine MCP and A2A instead of choosing one protocol?",
+          "a": "MCP excels vertically—connecting an agent cleanly to deterministic tools, databases, and procedural SKILL.md guides. A2A excels horizontally—enabling autonomous agents owned by different teams or vendors to negotiate asynchronous peer tasks and share artifacts without exposing internal tool schemas."
+        },
+        {
+          "q": "How does Skills over MCP prevent context-window degradation?",
+          "a": "Instead of injecting 100+ tool JSON schemas into every prompt, the gateway exposes a lightweight index. The agent pulls specific SKILL.md runbooks and tool schemas strictly on demand when entering a matching workflow step."
+        }
+      ],
+      "codeSnippet": {
+        "filename": "agent-mesh-card-and-mcp-task.json",
+        "language": "json",
+        "code": "{\n  \"a2aAgentCard\": {\n    \"name\": \"risk-verification-agent\",\n    \"version\": \"2026.11\",\n    \"endpoint\": \"https://mesh.internal.bank/a2a/risk-verifier\",\n    \"authentication\": { \"schemes\": [\"mtls\", \"oauth2_client_credentials\"] },\n    \"capabilities\": { \"streaming\": true, \"asyncTasks\": true, \"maxHopBudget\": 2 },\n    \"skills\": [\n      { \"id\": \"apra-cps234-diff-audit\", \"description\": \"Validates PR architecture diffs against CPS 234 controls\" }\n    ]\n  },\n  \"mcpPolicy\": {\n    \"progressiveSkillLoading\": true,\n    \"elicitationRequiredFor\": [\"deploy_production\", \"alter_ledger_schema\", \"rotate_kms_key\"],\n    \"asyncTaskTimeoutSeconds\": 300\n  }\n}"
+      }
     }
   ],
   "frameworks": {
@@ -601,6 +678,35 @@
     }
   },
   "insights": [
+    {
+      "slug": "sovereign-ai-open-weight-governance-playbook",
+      "title": "Sovereign AI & The Open-Weight Governance Playbook: Navigating Qwen4, DeepSeek-V4, GLM-5.4, and Kimi K3.1",
+      "category": "AI FinOps & Governance",
+      "readingTime": "12 min read",
+      "publishedAt": "2026-11-26",
+      "updatedAt": "2026-11-26",
+      "summary": "How Heads of AI capture the 80% flash inference cost collapse and eliminate vendor lock-in using vLLM/SGLang VPC clusters—without walking into open-weight licensing or APRA CPS 234 sovereignty traps.",
+      "featured": true,
+      "badge": "Executive Playbook",
+      "tags": [
+        "Sovereign AI",
+        "Open-Weight Models",
+        "vLLM",
+        "SGLang",
+        "AI FinOps",
+        "APRA CPS 234",
+        "Model Routing"
+      ],
+      "take": {
+        "whatHappened": "Mid-to-late November 2026 reshaped enterprise model economics: Alibaba's Qwen4-Max (2.4T MoE), Zhipu AI's GLM-5.4 (Loop Transformer sharing 28 iterative layers), Moonshot's Kimi K3.1 Pro weight drop, and DeepSeek-V4.1-Flash collapsed flash inference pricing by 80% while matching top Western reasoning on coding and long-context tasks.",
+        "whyCare": "CTOs and Boards now ask why the enterprise is paying $15+/1M output tokens to closed single-vendor APIs when open-weight checkpoints can run in private onshore VPCs at a fraction of the cost. Yet naive adoption creates two board-level exposures: custom commercial license clauses (where 'open weight' does not equal permissive MIT/Apache 2.0) and unvetted cross-border API calls.",
+        "architecturalImpact": "Deploy a dual-plane Planner-Executor architecture behind your Centralized AI Gateway. Keep architectural planning on Frontier reasoning endpoints (Claude Fable 5.2, GPT-6.2, Gemini 4 Carbon) while routing 75%+ of classification, extraction, and codebase indexing through sovereign vLLM/SGLang clusters running FP8 quantized weights with NVMe KV-cache offloading.",
+        "whatDoesntChange": "Model weights are commodities; organizational governance and data sovereignty are moats. Every self-hosted checkpoint still requires APRA CPS 234 security scanning, RBAC token isolation, supply-chain checksum verification, and automated golden eval harnesses before receiving production traffic.",
+        "risks": "Legal and regulatory breach from developers routing sensitive customer PII to unapproved offshore endpoints, or embedding custom-licensed weights (e.g., restrictive commercial MaaS clauses) into core revenue-generating products.",
+        "bhavinsTake": "A Head of AI Engineering does not pick a religion between Western proprietary labs and Chinese or open-weight checkpoints—you engineer zero-lock-in optionality. Build an abstraction gateway where Planner and Executor tiers swap cleanly based on unit economics, latency SLAs, and regulatory jurisdiction.",
+        "whatToDoNext": "Simulate your exact Planner-Executor unit economics with our updated Model Router & SLM Simulator, or inspect the Sovereign Serving entries in our 2026 Enterprise AI Radar."
+      }
+    },
     {
       "slug": "model-context-protocol-enterprise-production-blueprint",
       "title": "Model Context Protocol (MCP) in Enterprise Production: Security, Authorization, and Tool Federation",

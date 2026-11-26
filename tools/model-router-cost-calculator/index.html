@@ -44,7 +44,7 @@
     <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mwpx3a62" />
+    <link rel="stylesheet" href="/styles.css?v=mwwsyubw" />
     <script>
       (function() {
         try {
@@ -57,7 +57,7 @@
         } catch (e) {}
       })();
     </script>
-    <script defer src="/script.js?v=mwpx3a62"></script>
+    <script defer src="/script.js?v=mwwsyubw"></script>
     
       <script type="application/ld+json">
       {
@@ -131,9 +131,15 @@
 
       <span class="eyebrow">AI FinOps & Optimization</span>
       <h1>Model Router & SLM Distillation ROI Simulator</h1>
-      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
-        Model the financial and latency impact of routing enterprise requests between fine-tuned Small Language Models (SLMs) and Frontier LLMs.
+      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 24px;">
+        Simulate Planner-Executor economics: routing routine execution to distilled private open weights or flash tiers (Qwen4, DeepSeek-V4.1-Flash, Gemini 4 Hydrogen) while reserving Frontier models for deep reasoning.
       </p>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px;" role="group" aria-label="2026 Routing Presets">
+        <button type="button" class="btn btn-secondary btn-sm" data-mr-preset="flash-planner" data-fi="3.00" data-fo="15.00" data-si="0.14" data-so="0.28" data-ratio="80" data-cache="30" data-gov="MIT / Apache 2.0 + Multi-Cloud APIs">Preset: Nov 2026 Planner + Flash (80% Cut)</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-mr-preset="sovereign-vpc" data-fi="5.00" data-fo="25.00" data-si="0.18" data-so="0.45" data-ratio="75" data-cache="25" data-gov="APRA CPS 234 Sovereign Onshore vLLM (FP8)">Preset: Sovereign Banking VPC (vLLM/SGLang)</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-mr-preset="high-reasoning" data-fi="5.00" data-fo="25.00" data-si="0.25" data-so="0.80" data-ratio="60" data-cache="20" data-gov="Custom License Review Required for Commercial MaaS">Preset: Architectural Reasoning Mix (60% Router)</button>
+      </div>
 
       <div class="tool-layout">
         <form id="model-router-form" class="tool-form">
@@ -150,25 +156,25 @@
             <input type="number" id="mr-completion-tokens" class="form-input" value="400" step="25" />
           </div>
           <div class="form-group">
-            <label for="mr-frontier-input">Frontier Input Price ($/1M) <span class="form-help">e.g. GPT-4o / Claude 3.5</span></label>
+            <label for="mr-frontier-input">Frontier Planner Input ($/1M) <span class="form-help">e.g. Claude Fable 5.2 / GPT-6.2 / Gemini 4 Carbon</span></label>
             <input type="number" id="mr-frontier-input" class="form-input" value="3.00" step="0.25" />
           </div>
           <div class="form-group">
-            <label for="mr-frontier-output">Frontier Output Price ($/1M) <span class="form-help">e.g. GPT-4o / Claude 3.5</span></label>
+            <label for="mr-frontier-output">Frontier Planner Output ($/1M) <span class="form-help">Complex architectural & multi-file reasoning</span></label>
             <input type="number" id="mr-frontier-output" class="form-input" value="15.00" step="0.50" />
           </div>
           <div class="form-group">
-            <label for="mr-slm-input">SLM Input Price ($/1M) <span class="form-help">Private vLLM / 8B-14B model</span></label>
-            <input type="number" id="mr-slm-input" class="form-input" value="0.15" step="0.05" />
+            <label for="mr-slm-input">Executor / Open-Weight Input ($/1M) <span class="form-help">vLLM/SGLang FP8 (Qwen4 / DeepSeek-Flash / Hydrogen)</span></label>
+            <input type="number" id="mr-slm-input" class="form-input" value="0.14" step="0.02" />
           </div>
           <div class="form-group">
-            <label for="mr-slm-output">SLM Output Price ($/1M) <span class="form-help">Private vLLM / 8B-14B model</span></label>
-            <input type="number" id="mr-slm-output" class="form-input" value="0.60" step="0.05" />
+            <label for="mr-slm-output">Executor / Open-Weight Output ($/1M) <span class="form-help">Self-hosted GPU cluster or ultra-lean flash tier</span></label>
+            <input type="number" id="mr-slm-output" class="form-input" value="0.28" step="0.05" />
           </div>
           <div class="form-group">
-            <label for="mr-router-ratio">Traffic Routed to SLM (%) <span id="val-mr-router-ratio" style="color: var(--accent); font-weight: 600;">75%</span></label>
+            <label for="mr-router-ratio">Traffic Routed to SLM / Flash (%) <span id="val-mr-router-ratio" style="color: var(--accent); font-weight: 600;">75%</span></label>
             <input type="range" id="mr-router-ratio" min="0" max="95" value="75" />
-            <span class="form-help">Percentage of routine extraction, classification, and summarization sent to private SLM</span>
+            <span class="form-help">Routine extraction, classification, RAG verification, and indexing routed to lean tier</span>
           </div>
           <div class="form-group">
             <label for="mr-cache-hit">Semantic Cache Hit Rate (%) <span id="val-mr-cache-hit" style="color: var(--accent); font-weight: 600;">25%</span></label>
@@ -204,10 +210,14 @@
               <div id="out-mr-p95-latency" class="output-num" style="font-size: 28px;">-- ms</div>
               <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Down from ~1,600ms on all-cloud routing</div>
             </div>
-            <div class="output-stat" style="border-bottom: none;">
+            <div class="output-stat">
               <div class="output-label">Data Kept in Private Perimeter</div>
               <div id="out-mr-private-data" style="font-size: 22px; font-weight: 600; color: var(--accent);">-- %</div>
               <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Compliant with APRA CPS 234 & Sovereign Cloud mandates</div>
+            </div>
+            <div class="output-stat" style="border-bottom: none;">
+              <div class="output-label">Governance & Licensing Posture</div>
+              <div id="out-mr-gov-posture" style="font-size: 13px; font-weight: 600; color: var(--ink-soft);">APRA CPS 234 Sovereign Onshore vLLM (FP8)</div>
             </div>
           </div>
         </div>
@@ -215,23 +225,23 @@
 
       <!-- Engineering Architecture Notes -->
       <div style="margin-top: 48px; background: var(--wash); border: 1px solid var(--line); padding: 32px;">
-        <h3>Production Engineering Principles for Multi-Model Routing</h3>
+        <h3>Production Engineering Principles for Sovereign Multi-Model Routing</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; font-size: 14px; line-height: 1.6;">
           <div>
-            <h4 style="font-size: 14px; margin-bottom: 6px;">1. 8ms Intent & Complexity Classifier</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">A lightweight embedding router (e.g. fastText or DeBERTa-v3) inspects the prompt syntax, task intent, and token length. Deterministic tasks (JSON extraction, classification, sentiment) route to the local SLM.</p>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">1. 8ms Planner-Executor Classifier</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">A lightweight router inspects prompt intent, schema constraints, and sensitivity labels—dispatching routine synthesis and classification to open weights/flash tiers while escalating multi-step reasoning to Frontier planners.</p>
           </div>
           <div>
             <h4 style="font-size: 14px; margin-bottom: 6px;">2. Autonomous Circuit-Breakers</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">If the local SLM output confidence score falls below 0.85 or fails JSON schema validation, the gateway seamlessly fails over to the frontier model without user disruption.</p>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">If the executor model fails deterministic JSON schema validation or confidence thresholds (< 0.85), the gateway fails over cleanly to the frontier model with full OpenTelemetry span tracing.</p>
           </div>
           <div>
-            <h4 style="font-size: 14px; margin-bottom: 6px;">3. Private VPC SLM Hosting</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">Hosted on internal Kubernetes clusters using vLLM, TensorRT-LLM, or AWS Inferentia2. Keeps sensitive PII and account records completely within the bank's security perimeter.</p>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">3. Sovereign vLLM & SGLang Clusters</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Open-weight MoE and Loop Transformer checkpoints (Qwen4, DeepSeek-V4, GLM-5.4) served internally via vLLM/SGLang with FP8 quantization and NVMe KV-cache offloading across NVIDIA/AMD/TPU silicon.</p>
           </div>
           <div>
-            <h4 style="font-size: 14px; margin-bottom: 6px;">4. Continuous Distillation Pipeline</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">High-confidence frontier model responses from production are anonymized and fed into nightly LoRA/QLoRA fine-tuning pipelines to continually raise SLM domain precision.</p>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">4. Open-Weight License Governance</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Every self-hosted model undergoes legal supply-chain vetting to separate permissive MIT/Apache 2.0 checkpoints from custom commercial MaaS clauses before production promotion.</p>
           </div>
         </div>
       </div>

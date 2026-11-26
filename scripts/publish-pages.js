@@ -35,11 +35,15 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
   const repository = env.GITHUB_REPOSITORY;
   if (!token || repository !== 'Bmistry1818/bhavin_mistry_profile') throw new Error('An authenticated profile repository context is required.');
   const apiBase = `https://api.github.com/repos/${repository}`;
-  const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json' };
+  const headers = {
+    Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json'
+  };
   async function api(endpoint, method = 'GET', body, allowMissing = false) {
-    const response = await request(`${apiBase}${endpoint}`, { method, headers,
-      ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(30000) });
+    const response = await request(`${apiBase}${endpoint}`, {
+      method, headers,
+      ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(30000)
+    });
     const bodyText = await response.text();
     const data = bodyText ? JSON.parse(bodyText) : {};
     if (allowMissing && response.status === 404) return {};
@@ -49,8 +53,10 @@ async function publishPages({ env = process.env, request = fetch } = {}) {
 
   const destination = fs.mkdtempSync(path.join(os.tmpdir(), 'bhavin-pages-'));
   // The token only goes to GitHub, through child-process environment configuration.
-  const gitEnv = { ...env, GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'http.https://github.com/.extraheader',
-    GIT_CONFIG_VALUE_0: `AUTHORIZATION: basic ${Buffer.from(`x-access-token:${token}`).toString('base64')}` };
+  const gitEnv = {
+    ...env, GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'http.https://github.com/.extraheader',
+    GIT_CONFIG_VALUE_0: `AUTHORIZATION: basic ${Buffer.from(`x-access-token:${token}`).toString('base64')}`
+  };
   function git(...args) {
     return execFileSync('git', args, { cwd: destination, env: gitEnv, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
   }

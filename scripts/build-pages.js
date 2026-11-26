@@ -497,9 +497,9 @@ function buildHomepage() {
         </a>
         <a href="/architectures/" class="value-matrix-card">
           <div class="matrix-card-eyebrow">Production AI Architecture</div>
-          <h3 class="matrix-card-title">Hybrid RAG, Gateways & Agent State Machines</h3>
-          <p class="matrix-card-body">Battle-tested blueprints combining BM25 + dense vector retrieval, cross-encoder reranking, and centralized multi-model routing.</p>
-          <div class="matrix-card-link">Inspect 6 Blueprints <span>→</span></div>
+          <h3 class="matrix-card-title">Hybrid RAG, Gateways & Agentic Mesh</h3>
+          <p class="matrix-card-body">Battle-tested blueprints combining BM25 + dense vector retrieval, MCP + A2A agent meshes, and sovereign multi-model routing.</p>
+          <div class="matrix-card-link">Inspect ${content.architectures.length} Blueprints <span>→</span></div>
         </a>
         <a href="/tools/" class="value-matrix-card">
           <div class="matrix-card-eyebrow">Commercial & FinOps Rigor</div>
@@ -640,7 +640,7 @@ function buildHomepage() {
       </div>
 
       <div style="margin-top: 36px; text-align: center;">
-        <a href="/architectures/" class="btn btn-secondary">Explore Complete Architecture Library (6 Blueprints) →</a>
+        <a href="/architectures/" class="btn btn-secondary">Explore Complete Architecture Library (${content.architectures.length} Blueprints) →</a>
       </div>
     </section>
 
@@ -2191,9 +2191,15 @@ function buildTools() {
 
       <span class="eyebrow">AI FinOps & Optimization</span>
       <h1>Model Router & SLM Distillation ROI Simulator</h1>
-      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 32px;">
-        Model the financial and latency impact of routing enterprise requests between fine-tuned Small Language Models (SLMs) and Frontier LLMs.
+      <p class="hero-lead" style="margin-top: 16px; margin-bottom: 24px;">
+        Simulate Planner-Executor economics: routing routine execution to distilled private open weights or flash tiers (Qwen4, DeepSeek-V4.1-Flash, Gemini 4 Hydrogen) while reserving Frontier models for deep reasoning.
       </p>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px;" role="group" aria-label="2026 Routing Presets">
+        <button type="button" class="btn btn-secondary btn-sm" data-mr-preset="flash-planner" data-fi="3.00" data-fo="15.00" data-si="0.14" data-so="0.28" data-ratio="80" data-cache="30" data-gov="MIT / Apache 2.0 + Multi-Cloud APIs">Preset: Nov 2026 Planner + Flash (80% Cut)</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-mr-preset="sovereign-vpc" data-fi="5.00" data-fo="25.00" data-si="0.18" data-so="0.45" data-ratio="75" data-cache="25" data-gov="APRA CPS 234 Sovereign Onshore vLLM (FP8)">Preset: Sovereign Banking VPC (vLLM/SGLang)</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-mr-preset="high-reasoning" data-fi="5.00" data-fo="25.00" data-si="0.25" data-so="0.80" data-ratio="60" data-cache="20" data-gov="Custom License Review Required for Commercial MaaS">Preset: Architectural Reasoning Mix (60% Router)</button>
+      </div>
 
       <div class="tool-layout">
         <form id="model-router-form" class="tool-form">
@@ -2210,25 +2216,25 @@ function buildTools() {
             <input type="number" id="mr-completion-tokens" class="form-input" value="400" step="25" />
           </div>
           <div class="form-group">
-            <label for="mr-frontier-input">Frontier Input Price ($/1M) <span class="form-help">e.g. GPT-4o / Claude 3.5</span></label>
+            <label for="mr-frontier-input">Frontier Planner Input ($/1M) <span class="form-help">e.g. Claude Fable 5.2 / GPT-6.2 / Gemini 4 Carbon</span></label>
             <input type="number" id="mr-frontier-input" class="form-input" value="3.00" step="0.25" />
           </div>
           <div class="form-group">
-            <label for="mr-frontier-output">Frontier Output Price ($/1M) <span class="form-help">e.g. GPT-4o / Claude 3.5</span></label>
+            <label for="mr-frontier-output">Frontier Planner Output ($/1M) <span class="form-help">Complex architectural & multi-file reasoning</span></label>
             <input type="number" id="mr-frontier-output" class="form-input" value="15.00" step="0.50" />
           </div>
           <div class="form-group">
-            <label for="mr-slm-input">SLM Input Price ($/1M) <span class="form-help">Private vLLM / 8B-14B model</span></label>
-            <input type="number" id="mr-slm-input" class="form-input" value="0.15" step="0.05" />
+            <label for="mr-slm-input">Executor / Open-Weight Input ($/1M) <span class="form-help">vLLM/SGLang FP8 (Qwen4 / DeepSeek-Flash / Hydrogen)</span></label>
+            <input type="number" id="mr-slm-input" class="form-input" value="0.14" step="0.02" />
           </div>
           <div class="form-group">
-            <label for="mr-slm-output">SLM Output Price ($/1M) <span class="form-help">Private vLLM / 8B-14B model</span></label>
-            <input type="number" id="mr-slm-output" class="form-input" value="0.60" step="0.05" />
+            <label for="mr-slm-output">Executor / Open-Weight Output ($/1M) <span class="form-help">Self-hosted GPU cluster or ultra-lean flash tier</span></label>
+            <input type="number" id="mr-slm-output" class="form-input" value="0.28" step="0.05" />
           </div>
           <div class="form-group">
-            <label for="mr-router-ratio">Traffic Routed to SLM (%) <span id="val-mr-router-ratio" style="color: var(--accent); font-weight: 600;">75%</span></label>
+            <label for="mr-router-ratio">Traffic Routed to SLM / Flash (%) <span id="val-mr-router-ratio" style="color: var(--accent); font-weight: 600;">75%</span></label>
             <input type="range" id="mr-router-ratio" min="0" max="95" value="75" />
-            <span class="form-help">Percentage of routine extraction, classification, and summarization sent to private SLM</span>
+            <span class="form-help">Routine extraction, classification, RAG verification, and indexing routed to lean tier</span>
           </div>
           <div class="form-group">
             <label for="mr-cache-hit">Semantic Cache Hit Rate (%) <span id="val-mr-cache-hit" style="color: var(--accent); font-weight: 600;">25%</span></label>
@@ -2264,10 +2270,14 @@ function buildTools() {
               <div id="out-mr-p95-latency" class="output-num" style="font-size: 28px;">-- ms</div>
               <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Down from ~1,600ms on all-cloud routing</div>
             </div>
-            <div class="output-stat" style="border-bottom: none;">
+            <div class="output-stat">
               <div class="output-label">Data Kept in Private Perimeter</div>
               <div id="out-mr-private-data" style="font-size: 22px; font-weight: 600; color: var(--accent);">-- %</div>
               <div style="font-size: 11px; color: var(--muted); margin-top: 4px;">Compliant with APRA CPS 234 & Sovereign Cloud mandates</div>
+            </div>
+            <div class="output-stat" style="border-bottom: none;">
+              <div class="output-label">Governance & Licensing Posture</div>
+              <div id="out-mr-gov-posture" style="font-size: 13px; font-weight: 600; color: var(--ink-soft);">APRA CPS 234 Sovereign Onshore vLLM (FP8)</div>
             </div>
           </div>
         </div>
@@ -2275,23 +2285,23 @@ function buildTools() {
 
       <!-- Engineering Architecture Notes -->
       <div style="margin-top: 48px; background: var(--wash); border: 1px solid var(--line); padding: 32px;">
-        <h3>Production Engineering Principles for Multi-Model Routing</h3>
+        <h3>Production Engineering Principles for Sovereign Multi-Model Routing</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; font-size: 14px; line-height: 1.6;">
           <div>
-            <h4 style="font-size: 14px; margin-bottom: 6px;">1. 8ms Intent & Complexity Classifier</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">A lightweight embedding router (e.g. fastText or DeBERTa-v3) inspects the prompt syntax, task intent, and token length. Deterministic tasks (JSON extraction, classification, sentiment) route to the local SLM.</p>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">1. 8ms Planner-Executor Classifier</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">A lightweight router inspects prompt intent, schema constraints, and sensitivity labels—dispatching routine synthesis and classification to open weights/flash tiers while escalating multi-step reasoning to Frontier planners.</p>
           </div>
           <div>
             <h4 style="font-size: 14px; margin-bottom: 6px;">2. Autonomous Circuit-Breakers</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">If the local SLM output confidence score falls below 0.85 or fails JSON schema validation, the gateway seamlessly fails over to the frontier model without user disruption.</p>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">If the executor model fails deterministic JSON schema validation or confidence thresholds (< 0.85), the gateway fails over cleanly to the frontier model with full OpenTelemetry span tracing.</p>
           </div>
           <div>
-            <h4 style="font-size: 14px; margin-bottom: 6px;">3. Private VPC SLM Hosting</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">Hosted on internal Kubernetes clusters using vLLM, TensorRT-LLM, or AWS Inferentia2. Keeps sensitive PII and account records completely within the bank's security perimeter.</p>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">3. Sovereign vLLM & SGLang Clusters</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Open-weight MoE and Loop Transformer checkpoints (Qwen4, DeepSeek-V4, GLM-5.4) served internally via vLLM/SGLang with FP8 quantization and NVMe KV-cache offloading across NVIDIA/AMD/TPU silicon.</p>
           </div>
           <div>
-            <h4 style="font-size: 14px; margin-bottom: 6px;">4. Continuous Distillation Pipeline</h4>
-            <p style="color: var(--ink-soft); margin-bottom: 0;">High-confidence frontier model responses from production are anonymized and fed into nightly LoRA/QLoRA fine-tuning pipelines to continually raise SLM domain precision.</p>
+            <h4 style="font-size: 14px; margin-bottom: 6px;">4. Open-Weight License Governance</h4>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Every self-hosted model undergoes legal supply-chain vetting to separate permissive MIT/Apache 2.0 checkpoints from custom commercial MaaS clauses before production promotion.</p>
           </div>
         </div>
       </div>
@@ -3106,13 +3116,13 @@ function buildAbout() {
         <span class="eyebrow" style="letter-spacing: 0.12em; color: var(--accent); font-weight: 600;">Executive Leadership Dossier</span>
         <h1 id="dossier-title" style="margin-top: 8px; margin-bottom: 12px;">Bhavin Mistry</h1>
         <div style="font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 8px;">
-          Enterprise AI & Technology Executive
+          Enterprise AI & Technology Executive · Future Head of AI Engineering
         </div>
         <p style="font-size: 15px; color: var(--muted); line-height: 1.5; margin-bottom: 24px;">
           Melbourne, Victoria, Australia • Senior Engineering Leadership at Commonwealth Bank • Ex-Acenda, Accenture & Deloitte
         </p>
         <p class="hero-lead" style="font-size: 20px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 32px;">
-          Scaling the engineering organizations, production platforms, and governance models that take enterprise AI from pilot purgatory to measurable P&L impact.
+          Scaling the engineering organizations, sovereign AI platforms, and AgenticOps governance models that take enterprise AI from pilot purgatory to measurable P&L impact.
         </p>
 
         <!-- Executive Identity Card -->
@@ -3130,7 +3140,8 @@ function buildAbout() {
             </div>
             <div class="exec-badge-list">
               <span class="badge badge-accent">Tier-1 Regulated Banking</span>
-              <span class="badge badge-accent">Enterprise AI Platforms</span>
+              <span class="badge badge-accent">Sovereign AI & Open-Weight Strategy</span>
+              <span class="badge badge-accent">AgenticOps & MCP/A2A Mesh</span>
               <span class="badge badge-accent">Global Distributed Delivery</span>
               <span class="badge badge-accent">APRA CPS 234 Governance</span>
             </div>
@@ -3188,6 +3199,24 @@ function buildAbout() {
             With a rare academic triad spanning <strong>Corporate Finance & Commerce (B.Com)</strong>, <strong>Advanced Computer Applications (MCA)</strong>, and <strong>Artificial Intelligence & Machine Learning (The University of Texas at Austin)</strong>, Bhavin operates fluently across both the <strong>architecture review board</strong> and the <strong>executive P&L table</strong>—ensuring every engineering roadmap compounds both technical velocity and commercial return.
           </p>
         </div>
+
+        <div class="card-grid-3" style="margin-top: 32px;">
+          <div class="card" style="border-top: 2px solid var(--accent);">
+            <span class="eyebrow">Target Mandates</span>
+            <h4 style="margin-bottom: 8px;">Head of AI / VP Engineering</h4>
+            <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 0;">Stepping into enterprise mandates to consolidate fragmented AI pilots into governed, revenue-producing platforms and scale high-leverage distributed squads.</p>
+          </div>
+          <div class="card" style="border-top: 2px solid var(--accent);">
+            <span class="eyebrow">Sovereign Multi-Model Edge</span>
+            <h4 style="margin-bottom: 8px;">Zero Lock-In Open Weights</h4>
+            <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 0;">Pairing Frontier reasoning with private vLLM/SGLang clusters (Qwen4, DeepSeek-V4, GLM-5.4)—cutting inference cost 75%+ while auditing commercial licenses &amp; APRA residency.</p>
+          </div>
+          <div class="card" style="border-top: 2px solid var(--accent);">
+            <span class="eyebrow">AgenticOps Scale</span>
+            <h4 style="margin-bottom: 8px;">Leverage-Per-Engineer</h4>
+            <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 0;">Replacing brute-force headcount with standardized <code>AGENTS.md</code> / <code>SKILL.md</code> repo contracts, MCP + A2A meshes, and deterministic PR verification gates.</p>
+          </div>
+        </div>
       </section>
 
       <!-- SECTION 4: INTERACTIVE 4-PILLAR ENGINEERING OPERATING MODEL -->
@@ -3242,7 +3271,7 @@ function buildAbout() {
               Embedding <strong>APRA CPS 234</strong> compliance, PII redaction perimeters, canary token traps, and automated CI evaluation harnesses (Ragas, DeepEval, Promptfoo) directly into the deployment pipeline.
             </p>
             <div class="pillar-proof">
-              <a href="/architectures/" class="text-link">Explore all 6 Production Architecture Blueprints <span>→</span></a>
+              <a href="/architectures/" class="text-link">Explore all ${content.architectures.length} Production Architecture Blueprints <span>→</span></a>
             </div>
           </div>
 
@@ -3377,31 +3406,31 @@ function buildAbout() {
 
             <div class="tab-panel" id="panel-days-31-60" role="tabpanel" aria-labelledby="tab-2" hidden>
               <div class="playbook-item">
-                <h4>Centralized AI Gateway Deployment</h4>
-                <p>Stand up a unified <a href="/architectures/enterprise-ai-gateway/" class="text-link">Enterprise AI Gateway</a> enforcing multi-provider routing, semantic caching, PII redaction, and per-squad token quotas.</p>
+                <h4>Sovereign Gateway & Multi-Model Router Deployment</h4>
+                <p>Stand up a unified <a href="/architectures/enterprise-ai-gateway/" class="text-link">Enterprise AI Gateway</a> & <a href="/architectures/enterprise-mcp-a2a-agentic-mesh/" class="text-link">MCP + A2A Agentic Mesh</a>—pairing Frontier planners with sovereign vLLM/SGLang open-weight executors (Qwen4 / DeepSeek-V4 / distilled SLMs) to eliminate vendor lock-in and capture 70%+ unit-cost reductions.</p>
               </div>
               <div class="playbook-item">
                 <h4>Team Topologies Realignment</h4>
                 <p>Decouple core Platform & Enablement squads from Stream-Aligned product squads to remove cross-team blockers and cognitive load.</p>
               </div>
               <div class="playbook-item">
-                <h4>Production Readiness Gate</h4>
-                <p>Institute the <a href="/frameworks/enterprise-ai-production-readiness/" class="text-link">50-Point AI Production Checklist</a> and automated CI evaluation harnesses before any system reaches live traffic.</p>
+                <h4>Production Readiness & Licensing Gate</h4>
+                <p>Institute the <a href="/frameworks/enterprise-ai-production-readiness/" class="text-link">50-Point AI Production Checklist</a>, MIT/Apache vs custom MaaS license audits, and automated CI evaluation harnesses before any system reaches live traffic.</p>
               </div>
             </div>
 
             <div class="tab-panel" id="panel-days-61-90" role="tabpanel" aria-labelledby="tab-3" hidden>
               <div class="playbook-item">
-                <h4>AI-Native SDLC Rollout</h4>
-                <p>Equip engineering squads with MCP/graph-assisted workflows to compress delivery cycles while maintaining strict code quality gates.</p>
+                <h4>Policy-Bound AI-Native SDLC (AgenticOps)</h4>
+                <p>Standardize repo-level <code>AGENTS.md</code> and Linux Foundation <code>SKILL.md</code> contracts with automated verification loops and MCP Elicitation gates—multiplying leverage-per-engineer while preventing AI-generated tech debt.</p>
               </div>
               <div class="playbook-item">
                 <h4>Executive Unit-Economics Telemetry</h4>
-                <p>Launch live FinOps dashboards tying engineering spend and inference consumption directly to commercial P&L outcomes.</p>
+                <p>Launch live FinOps and DORA velocity dashboards tying inference spend and PR lead-time compression directly to commercial P&L outcomes.</p>
               </div>
               <div class="playbook-item">
                 <h4>Internal AI Academy</h4>
-                <p>Roll out structured engineering enablement (modeled on <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="text-link">Learn AI Engineering</a>) to upskill existing software engineers into production AI engineers.</p>
+                <p>Roll out structured engineering enablement (modeled on <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="text-link">Learn AI Engineering</a>) to upskill existing software engineers into production AI systems engineers.</p>
               </div>
             </div>
           </div>
@@ -3500,28 +3529,28 @@ function buildAbout() {
         <div class="card-grid-3">
           <div class="card">
             <span class="eyebrow">Production Architectures</span>
-            <h3><a href="/architectures/">Inspect Production Blueprints</a></h3>
-            <p>Review 6 end-to-end blueprints for Hybrid RAG, Agentic RAG, AI Gateways, and Zero-Trust Security.</p>
+            <h3><a href="/architectures/">Inspect ${content.architectures.length} Production Blueprints</a></h3>
+            <p>Review end-to-end topologies for Hybrid RAG, MCP + A2A Agentic Mesh, AI Gateways, GraphRAG, and Zero-Trust Security.</p>
             <div class="card-footer">
               <a href="/architectures/" class="text-link">Explore Blueprints <span>→</span></a>
             </div>
           </div>
 
           <div class="card">
-            <span class="eyebrow">Decision Calculators</span>
-            <h3><a href="/tools/">Run Interactive FinOps Models</a></h3>
-            <p>Test client-side calculators for RAG storage/inference costs, token budgets, and Build-vs-Buy ROI.</p>
+            <span class="eyebrow">Executive Calculators</span>
+            <h3><a href="/tools/">Run Model Router & DORA Simulators</a></h3>
+            <p>Simulate Planner-Executor FinOps savings (Frontier vs Open Weights), AI-SDLC DORA velocity uplift, and Build-vs-Buy ROI.</p>
             <div class="card-footer">
               <a href="/tools/" class="text-link">Launch Calculators <span>→</span></a>
             </div>
           </div>
 
           <div class="card">
-            <span class="eyebrow">Technology Landscape</span>
-            <h3><a href="/ai-radar/">Explore the AI Radar & Benchmarks</a></h3>
-            <p>See what technologies I classify under Adopt, Trial, Assess, and Watch for regulated enterprises.</p>
+            <span class="eyebrow">Cross-Industry & Radar</span>
+            <h3><a href="/industries/">Industry Matrix & 2026 AI Radar</a></h3>
+            <p>See how Tier-1 banking rigor translates across Healthcare, Telecom, Defense, and Retail alongside Qwen4/DeepSeek/MCP Radar ratings.</p>
             <div class="card-footer">
-              <a href="/ai-radar/" class="text-link">View Technology Radar <span>→</span></a>
+              <a href="/ai-radar/" class="text-link">View AI Radar <span>→</span></a> · <a href="/industries/" class="text-link">Industries <span>→</span></a>
             </div>
           </div>
         </div>
@@ -3838,7 +3867,7 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
   - The University of Texas at Austin (Post Graduate Program in Artificial Intelligence & Machine Learning: Business Applications)
   - Gujarat Technological University (Master of Computer Applications - MCA)
   - Gujarat University (Bachelor of Commerce - B.Com, Corporate Finance & Accounting)
-- Focus Areas: Enterprise AI Systems Engineering, Compound AI Systems, Model Context Protocol (MCP), Distributed Engineering Squads, Team Topologies, AI FinOps & Unit Economics, APRA CPS 234 Regulated Banking Governance.
+- Focus Areas: Enterprise AI Systems Engineering, Sovereign Open-Weight Serving (vLLM/SGLang, Qwen4, DeepSeek-V4, GLM-5.4), Compound AI Systems, MCP + A2A Agentic Mesh, Distributed Engineering Squads, Team Topologies, AgenticOps (AGENTS.md / SKILL.md), AI FinOps & Unit Economics, APRA CPS 234 Regulated Banking Governance.
 - Location: Melbourne, Victoria, Australia
 - Website: https://bhavinmistry.com
 - LinkedIn: https://www.linkedin.com/in/bhavin-mistry
@@ -3849,16 +3878,17 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 
 ## Executive Framework: First 90 Days as Head of Engineering
 - Days 1–30 (Audit, Triage & Baseline): AI portfolio triage via AI Use Case Prioritiser (pausing unscalable POCs, concentrating capital on high-ROI P&L winners), DORA and FinOps metrics baseline, and APRA/security exposure mapping across squads.
-- Days 31–60 (Platform Foundation & Operating Model): Centralized Enterprise AI Gateway deployment (multi-provider routing, semantic caching, PII redaction, token quotas), Team Topologies realignment (Platform vs Stream-Aligned squads), and 50-point Production Readiness Gate institution.
-- Days 61–90 (Velocity, Enablement & Commercial Scale): AI-native SDLC rollout with graph/MCP workflows, executive unit-economics telemetry dashboards tying inference spend directly to commercial P&L outcomes, and internal AI Academy enablement modeled on Learn AI Engineering.
+- Days 31–60 (Platform Foundation & Operating Model): Centralized Enterprise AI Gateway & MCP + A2A Agentic Mesh deployment (Planner-Executor multi-model routing, sovereign vLLM/SGLang open-weight clusters, semantic caching, PII redaction, token quotas), Team Topologies realignment (Platform vs Stream-Aligned squads), and 50-point Production Readiness & Open-Weight License Governance Gate.
+- Days 61–90 (Velocity, Enablement & Commercial Scale): Policy-bound AI-native SDLC (AgenticOps) rollout using AGENTS.md / SKILL.md contracts and deterministic verification loops, executive unit-economics & DORA telemetry dashboards tying inference spend directly to commercial P&L outcomes, and internal AI Academy enablement modeled on Learn AI Engineering.
 
 ## Why Organizations Hire Bhavin Mistry as Head of Engineering (AI & Technology)
-1. Organizational Scale & AI-Native SDLC: Structures high-talent-density engineering organizations using Team Topologies (decoupling core AI Platform squads from Stream-Aligned product squads). Accelerates DORA metrics and developer velocity using MCP (Model Context Protocol), source-code dependency graphs, and automated evaluation gates.
-2. Production AI in Regulated Environments: Takes Generative and Agentic AI out of pilot purgatory into zero-trust production compliant with Australian banking standards (APRA CPS 234), featuring PII redaction perimeters, immutable audit telemetry, and indirect prompt-injection defense.
-3. Commercial & FinOps Governance: Bridges C-suite P&L accountability with systems engineering—replacing vanity metrics (cost per token) with unit economics (cost per successful business outcome) via semantic caching, multi-provider gateway routing, and disciplined Build-vs-Buy capital allocation.
-4. Enterprise-Grade Retrieval & Agentic Systems: Architects production Hybrid Sparse-Dense RAG systems (BM25 + dense vector embeddings + cross-encoder reranking) and deterministic multi-agent state machines engineered for >90% factual precision.
+1. Organizational Scale & AgenticOps SDLC: Structures high-talent-density engineering organizations using Team Topologies (decoupling core AI Platform squads from Stream-Aligned product squads). Multiplies leverage-per-engineer using AGENTS.md/SKILL.md contracts, MCP + A2A meshes, source-code dependency graphs, and automated verification gates.
+2. Production AI & Sovereignty in Regulated Environments: Takes Generative and Agentic AI out of pilot purgatory into zero-trust production compliant with Australian banking standards (APRA CPS 234), deploying onshore vLLM/SGLang open-weight clusters, PII redaction perimeters, and immutable audit telemetry.
+3. Commercial & FinOps Governance: Bridges C-suite P&L accountability with systems engineering—capturing the 80% flash inference cost collapse via Planner-Executor routing, semantic caching, open-weight license vetting, and disciplined Build-vs-Buy capital allocation.
+4. Enterprise-Grade Retrieval & Agentic Systems: Architects production Hybrid Sparse-Dense RAG systems (BM25 + dense vector embeddings + cross-encoder reranking) and multi-protocol MCP + A2A agent meshes engineered for deterministic reliability.
 
 ## Core Canonical Publications
+- Sovereign AI & Open-Weight Governance Playbook (Qwen4, DeepSeek-V4, GLM-5.4, Kimi K3.1): https://bhavinmistry.com/insights/sovereign-ai-open-weight-governance-playbook/
 - Model Context Protocol (MCP) in Enterprise Production: https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/
 - The 5-Stage Framework for Taking Enterprise AI to Production: https://bhavinmistry.com/insights/the-5-stage-framework-for-taking-enterprise-ai-to-production/
 - The Multi-Model Router (SLM Distillation): https://bhavinmistry.com/insights/enterprise-model-routing-and-slm-distillation/
@@ -3874,6 +3904,9 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 - Enterprise AI Across Regulated Industries: https://bhavinmistry.com/industries/
 
 ## Architectural Blueprints
+- Enterprise Multi-Protocol Agentic Mesh (MCP + A2A): https://bhavinmistry.com/architectures/enterprise-mcp-a2a-agentic-mesh/
+- Enterprise Model Context Protocol (MCP) Gateway: https://bhavinmistry.com/architectures/enterprise-mcp-gateway/
+- GraphRAG & Knowledge Graph Context Engine: https://bhavinmistry.com/architectures/graph-rag-knowledge-engine/
 - Enterprise Hybrid RAG: https://bhavinmistry.com/architectures/enterprise-rag/
 - Agentic RAG Architecture: https://bhavinmistry.com/architectures/agentic-rag/
 - Enterprise AI Gateway: https://bhavinmistry.com/architectures/enterprise-ai-gateway/
