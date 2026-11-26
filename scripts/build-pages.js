@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { normalizeArticle } = require('./fetch-blogs');
 const { buildPlatform } = require('./build-graph-platform');
+const { ENTERPRISE_SKILLS } = require('./enterprise-skills-data');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const CONTENT_FILE = path.join(ROOT_DIR, 'data/content.json');
@@ -55,6 +56,21 @@ function renderPublicationCards(blogs, limit) {
       <h3><a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></h3>
       <p>${escapeHtml(article.description)}</p>
       <div class="publication-links">
+        ${article.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="text-link">Read on ${escapeHtml(link.source)} ↗</a>`).join('')}
+      </div>
+    </article>`).join('');
+}
+
+function renderPublicationLedger(blogs, limit) {
+  return publicationGroups(blogs).slice(0, limit).map(article => `
+    <article class="pub-ledger-item">
+      <div class="card-meta" style="margin-bottom: 4px;">
+        <span class="badge">${article.links.map(link => escapeHtml(link.source)).join(' · ')}</span>
+        <time datetime="${article.date.slice(0, 10)}">${new Date(article.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}</time>
+      </div>
+      <h3><a href="${escapeHtml(article.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(article.title)}</a></h3>
+      <p>${escapeHtml(article.description)}</p>
+      <div class="publication-links" style="padding-top: 4px;">
         ${article.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="text-link">Read on ${escapeHtml(link.source)} ↗</a>`).join('')}
       </div>
     </article>`).join('');
@@ -214,14 +230,12 @@ function renderHeader(currentPath = '/') {
           <span class="sr-only">Open navigation</span>
           <span aria-hidden="true">Menu</span>
         </button>
-        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <nav id="main-nav" class="main-nav" aria-label="Primary">
           <div class="nav-links">
-            <a href="/insights/" class="${currentPath.startsWith('/insights') ? 'active' : ''}">Insights</a>
-            <a href="/enterprise-ai-engineering/" class="${currentPath.startsWith('/enterprise-ai-engineering') ? 'active' : ''}">Handbook</a>
-            <a href="/architectures/" class="${currentPath.startsWith('/architectures') ? 'active' : ''}">Architectures</a>
-            <a href="/frameworks/enterprise-ai-production-readiness/" class="${currentPath.startsWith('/frameworks') ? 'active' : ''}">Framework</a>
-            <a href="/compare/" class="${currentPath.startsWith('/compare') ? 'active' : ''}">Compare</a>
+            <a href="/insights/" class="${currentPath.startsWith('/insights') || currentPath.startsWith('/enterprise-ai-engineering') ? 'active' : ''}">Insights</a>
+            <a href="/architectures/" class="${currentPath.startsWith('/architectures') || currentPath.startsWith('/frameworks') || currentPath.startsWith('/compare') ? 'active' : ''}">Architectures</a>
             <a href="/ai-radar/" class="${currentPath.startsWith('/ai-radar') ? 'active' : ''}">AI Radar</a>
+            <a href="/industries/" class="${currentPath.startsWith('/industries') ? 'active' : ''}">Industries</a>
             <a href="/tools/" class="${currentPath.startsWith('/tools') ? 'active' : ''}">Tools</a>
             <a href="/speaking/" class="${currentPath.startsWith('/speaking') ? 'active' : ''}">Speaking</a>
             <a href="/about/" class="${currentPath.startsWith('/about') ? 'active' : ''}">About</a>
@@ -231,7 +245,7 @@ function renderHeader(currentPath = '/') {
               <span>Search</span>
               <kbd>⌘K</kbd>
             </button>
-            <button class="theme-toggle-btn" type="button" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <button class="theme-toggle-btn" type="button" aria-label="Toggle dark or light color theme" title="Toggle theme">
               <span class="theme-icon-light" aria-hidden="true">🌙</span>
               <span class="theme-icon-dark" aria-hidden="true">☀️</span>
             </button>
@@ -250,57 +264,59 @@ function renderFooter() {
         <div class="footer-grid">
           <div class="footer-brand">
             <h3>Bhavin Mistry<span class="brand-period">.</span></h3>
-            <p>Building Enterprise AI That Actually Reaches Production. Practical frameworks, architectures, and engineering leadership from Melbourne, Australia.</p>
+            <p>Enterprise AI architecture, sovereign inference governance, and engineering leadership from Melbourne, Australia.</p>
+            <div style="margin-top: 18px;">
+              <a href="/newsletter/" class="btn btn-primary btn-sm">Subscribe to Enterprise AI Brief</a>
+            </div>
           </div>
           <div class="footer-col">
-            <h4>Knowledge Hub</h4>
+            <h4>Knowledge &amp; Systems</h4>
             <ul>
               <li><a href="/insights/">Enterprise Insights</a></li>
               <li><a href="/enterprise-ai-engineering/">AI Engineering Handbook</a></li>
               <li><a href="/architectures/">Architecture Library</a></li>
-              <li><a href="/compare/">Architectural Comparisons</a></li>
               <li><a href="/frameworks/enterprise-ai-production-readiness/">Production Readiness</a></li>
+              <li><a href="/industries/">Regulated Industry Matrix</a></li>
+              <li><a href="/compare/">Architectural Comparisons</a></li>
               <li><a href="/ai-radar/">Enterprise AI Radar</a></li>
-              <li><a href="/research/">Research & Benchmarks</a></li>
+              <li><a href="/research/">Research &amp; Benchmarks</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>Interactive Tools</h4>
+            <h4>Decision Simulators</h4>
             <ul>
-              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Assessment</a></li>
+              <li><a href="/tools/enterprise-ai-skills/">Top 5 Enterprise AI Skills</a></li>
+              <li><a href="/tools/model-router-cost-calculator/">Model Router &amp; SLM Simulator</a></li>
+              <li><a href="/tools/ai-sdlc-dora-roi-calculator/">AI SDLC &amp; DORA Modeler</a></li>
               <li><a href="/tools/rag-cost-calculator/">RAG Cost Calculator</a></li>
               <li><a href="/tools/llm-cost-calculator/">LLM Token Cost Estimator</a></li>
               <li><a href="/tools/ai-use-case-prioritiser/">Use Case Prioritiser</a></li>
               <li><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy Calculator</a></li>
+              <li><a href="/tools/enterprise-ai-readiness/">AI Readiness Diagnostic</a></li>
+              <li><a href="/tools/graph-engineering/">Graph Engineering Platform</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>Ecosystem</h4>
+            <h4>Dispatches &amp; Connect</h4>
             <ul>
-              <li><a href="/speaking/">Speaking & Keynotes</a></li>
+              <li><a href="/about/">Executive Leadership Dossier</a></li>
+              <li><a href="/speaking/">Speaking &amp; Board Briefings</a></li>
               <li><a href="/brief/">Newsletter Archive</a></li>
               <li><a href="https://learnaiengineering.dev/" target="_blank" rel="noopener noreferrer">Learn AI Engineering ↗</a></li>
               <li><a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
               <li><a href="https://github.com/Bmistry1818" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a></li>
-              <li><a href="https://x.com/BhaveenMistrry" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></li>
               <li><a href="https://medium.com/@bhavin_mistry" target="_blank" rel="noopener noreferrer">Medium Articles ↗</a></li>
-              <li><a href="/feed.xml">RSS Feed</a></li>
-              <li><a href="/llms.txt">llms.txt</a></li>
+              <li><a href="/feed.xml">RSS Feed</a> · <a href="/llms.txt">llms.txt</a></li>
             </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Newsletter</h4>
-            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Get the <em>Enterprise AI Brief</em> delivered to your inbox.</p>
-            <a href="/newsletter/" class="btn btn-primary" style="padding: 10px 16px; font-size: 12px; width: 100%;">Subscribe Free</a>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>© <span id="year">2026</span> Bhavin Mistry. All rights reserved. Melbourne, Australia.</p>
-          <div style="display: flex; gap: 20px;">
-            <a href="/about/">About Bhavin</a>
+          <p>© <span id="year">2026</span> Bhavin Mistry. Melbourne, Australia.</p>
+          <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <a href="/about/">About</a>
             <a href="/privacy/">Privacy Policy</a>
             <a href="/sitemap.xml">Sitemap</a>
-            <a href="#top">Back to top ↑</a>
+            <a href="#top">Back to top</a>
           </div>
         </div>
       </div>
@@ -412,9 +428,12 @@ function renderHtmlPage({
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="alternate" type="application/rss+xml" title="Bhavin Mistry Enterprise AI Insights RSS" href="/feed.xml" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f5f2eb" />
+    <meta name="theme-color" content="#060911" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f7fa" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="/styles.css?v=${BUILD_HASH}" />
     <script>
       (function() {
@@ -444,171 +463,201 @@ function renderHtmlPage({
 
 // 1. Build Homepage (index.html)
 function buildHomepage() {
-  const featuredInsights = content.insights.slice(0, 3);
-  const featuredArchs = content.architectures.slice(0, 4);
+  const leadInsight = content.insights[0];
+  const indexInsights = content.insights.slice(1, 5);
+  const flagshipArch = content.architectures[content.architectures.length - 1];
+  const gridArchs = content.architectures.slice(0, 4);
 
   const main = `
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (Above-the-Fold 3D Spatial AI Topology + Editorial Folio) -->
     <section class="hero container" aria-labelledby="hero-title">
-      <div class="hero-meta">
-        <span class="eyebrow" style="letter-spacing: 0.12em; color: var(--accent); font-weight: 600;">BHAVIN MISTRY • MELBOURNE, AUSTRALIA • ENTERPRISE AI & TECHNOLOGY EXECUTIVE</span>
+      <div class="hero-dateline">
+        <span>Melbourne, Australia · Engineering Leadership at Commonwealth Bank</span>
+        <span>Enterprise AI Monograph &amp; Systems Architecture · Nov 2026</span>
       </div>
-      <h1 id="hero-title" class="kinetic-hero-title">Architecting the Engineering Organizations and Production Platforms That Turn Enterprise AI into <em>P&L Impact.</em></h1>
-      <div class="hero-grid">
-        <p class="hero-lead">
-          I bridge C-suite commercial strategy with high-velocity systems execution—scaling globally distributed engineering teams, mission-critical AI platforms, and APRA-compliant architectures across Tier-1 banking and enterprise technology.
-        </p>
-        <div class="hero-actions">
-          <div class="btn-group">
-            <a href="/about/" class="btn btn-primary">Explore Executive Track Record →</a>
-            <a href="/tools/" class="btn btn-secondary">Try Interactive AI FinOps & RAG Tools →</a>
+
+      <div class="hero-stage-split">
+        <div>
+          <h1 id="hero-title" class="kinetic-hero-title">Architecting the Engineering Organizations and Production Platforms That Turn Enterprise AI into <em>P&amp;L Impact.</em></h1>
+          <p class="hero-lead" style="margin-top: 20px; margin-bottom: 24px;">
+            I bridge C-suite commercial strategy with systems execution: scaling distributed engineering squads, sovereign open-weight platforms, and APRA-compliant architectures across Tier-1 banking and enterprise technology.
+          </p>
+          <div class="hero-actions">
+            <div class="btn-group">
+              <a href="/about/" class="btn btn-primary">Explore Executive Dossier →</a>
+              <a href="/tools/" class="btn btn-secondary">Launch Decision Lab</a>
+            </div>
+            <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="text-link" style="font-size: 0.875rem; font-weight: 500;">Connect on LinkedIn ↗</a>
           </div>
-          <a href="https://www.linkedin.com/in/bhavin-mistry" target="_blank" rel="noopener noreferrer" class="text-link" style="font-size: 14px; font-weight: 500;">Start a Conversation on LinkedIn <span>↗</span></a>
-          <div class="pedigree-trust-strip">
-            <span class="pedigree-label">Leadership & Architecture Pedigree:</span>
-            <span class="pedigree-items">Commonwealth Bank • Acenda • Accenture • Deloitte • UT Austin (PGP AI/ML)</span>
+        </div>
+
+        <!-- INTERACTIVE 3D SPATIAL TOPOLOGY STAGE (Drag to Orbit · Hover Nodes · Switch Topologies) -->
+        <div class="hero-3d-stage" aria-label="Interactive 3D Enterprise AI Topology Viewport">
+          <div class="hero-3d-toolbar">
+            <div class="hero-3d-modes" role="group" aria-label="3D Topology Modes">
+              <button type="button" class="hero-3d-mode-btn is-active" data-3d-mode="router">01 Router Mesh</button>
+              <button type="button" class="hero-3d-mode-btn" data-3d-mode="mesh">02 MCP + A2A</button>
+              <button type="button" class="hero-3d-mode-btn" data-3d-mode="vpc">03 Sovereign VPC</button>
+            </div>
+            <button type="button" id="canvas-motion-toggle" class="hero-canvas-toggle" aria-label="Pause 3D pipeline animation">Pause 3D</button>
+          </div>
+          <div class="hero-3d-viewport">
+            <canvas id="hero-motion-canvas" class="hero-3d-canvas" width="540" height="360"></canvas>
+            <div id="hero-3d-tooltip" class="hero-3d-tooltip">
+              <span><strong>3D Planner-Executor Sphere</strong> · Drag to orbit · Hover node</span>
+              <span>Interactive Canvas</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- LIVING AI MOTION PIPELINE STREAM (Zajno-inspired) -->
-      <div class="hero-canvas-wrap" aria-label="Interactive Enterprise AI Token Stream Simulation">
-        <div class="hero-canvas-header">
-          <div class="hero-canvas-status">
-            <span class="live-dot" aria-hidden="true"></span>
-            <span>ENTERPRISE AI STREAM · INTERACTIVE TOKEN FLOW</span>
-          </div>
-          <div class="hero-canvas-metrics">
-            <span>99.4% CACHE HIT</span>
-            <span>12.4ms P95</span>
-            <span>HYBRID RAG ACTIVE</span>
-          </div>
+      <!-- AUTHORITY FOLIO STRIP (Ruled editorial anchors, zero fabricated telemetry) -->
+      <div class="folio-strip" aria-label="Executive Credentials Summary">
+        <div class="folio-item">
+          <div class="folio-kicker">Current Scope</div>
+          <div class="folio-title">Commonwealth Bank</div>
+          <div class="folio-note">Senior Engineering Leadership across Tier-1 regulated platforms</div>
         </div>
-        <canvas id="hero-motion-canvas" class="hero-motion-canvas" width="1180" height="100"></canvas>
+        <div class="folio-item">
+          <div class="folio-kicker">Enterprise Pedigree</div>
+          <div class="folio-title">Acenda · Accenture · Deloitte</div>
+          <div class="folio-note">Legacy core modernization and multi-vendor cloud delivery</div>
+        </div>
+        <div class="folio-item">
+          <div class="folio-kicker">Academic Triad</div>
+          <div class="folio-title">UT Austin AI/ML · MCA · B.Com</div>
+          <div class="folio-note">Frontier ML paired with computer science and corporate finance</div>
+        </div>
+        <div class="folio-item">
+          <div class="folio-kicker">Control Perimeter</div>
+          <div class="folio-title">APRA CPS 234 &amp; Zero-Trust</div>
+          <div class="folio-note">Sovereign VPC inference, immutable audit trails, eval gates</div>
+        </div>
       </div>
 
-      <!-- INTERACTIVE EXECUTIVE VALUE MATRIX -->
-      <div class="executive-value-matrix" aria-label="Executive Value Matrix">
-        <a href="/about/#operating-model" class="value-matrix-card">
-          <div class="matrix-card-eyebrow">Organizational Scale & Velocity</div>
-          <h3 class="matrix-card-title">Distributed Squads & AI-Native SDLC</h3>
-          <p class="matrix-card-body">Leading cross-functional engineering squads, architects, and tech leads with Team Topologies, DORA telemetry, and agentic developer workflows.</p>
-          <div class="matrix-card-link">See Operating Model <span>→</span></div>
+      <!-- 4-DISCIPLINE HAIRLINE PILLARS LEDGER -->
+      <div class="pillars-ledger" aria-label="Core Leadership Capabilities">
+        <a href="/about/#operating-model" class="pillar-ledger-link">
+          <span class="pillar-ledger-num">01 / OPERATING MODEL</span>
+          <h3 class="pillar-ledger-title">Distributed Squads &amp; Agentic SDLC</h3>
+          <p class="pillar-ledger-desc">Team Topologies, DORA velocity telemetry, repo-level AGENTS.md contracts, and verification gates.</p>
+          <span class="pillar-ledger-cta">Inspect Model</span>
         </a>
-        <a href="/architectures/" class="value-matrix-card">
-          <div class="matrix-card-eyebrow">Production AI Architecture</div>
-          <h3 class="matrix-card-title">Hybrid RAG, Gateways & Agentic Mesh</h3>
-          <p class="matrix-card-body">Battle-tested blueprints combining BM25 + dense vector retrieval, MCP + A2A agent meshes, and sovereign multi-model routing.</p>
-          <div class="matrix-card-link">Inspect ${content.architectures.length} Blueprints <span>→</span></div>
+        <a href="/architectures/" class="pillar-ledger-link">
+          <span class="pillar-ledger-num">02 / ARCHITECTURE</span>
+          <h3 class="pillar-ledger-title">Hybrid RAG, Gateways &amp; MCP Mesh</h3>
+          <p class="pillar-ledger-desc">BM25 + dense retrieval, MCP + A2A cross-vendor agent federation, and sovereign inference gateways.</p>
+          <span class="pillar-ledger-cta">Inspect ${content.architectures.length} Blueprints</span>
         </a>
-        <a href="/tools/" class="value-matrix-card">
-          <div class="matrix-card-eyebrow">Commercial & FinOps Rigor</div>
-          <h3 class="matrix-card-title">Unit Economics & Capital Allocation</h3>
-          <p class="matrix-card-body">Shifting executive metrics from raw token spend to cost-per-business-outcome via semantic caching, quotas, and build-vs-buy discipline.</p>
-          <div class="matrix-card-link">Launch Cost Calculators <span>→</span></div>
+        <a href="/tools/" class="pillar-ledger-link">
+          <span class="pillar-ledger-num">03 / FINOPS RIGOR</span>
+          <h3 class="pillar-ledger-title">Planner-Executor Unit Economics</h3>
+          <p class="pillar-ledger-desc">Routing routine load to distilled open weights while measuring cost per business outcome.</p>
+          <span class="pillar-ledger-cta">Open Decision Lab</span>
         </a>
-        <a href="/frameworks/enterprise-ai-production-readiness/" class="value-matrix-card">
-          <div class="matrix-card-eyebrow">Regulated Banking Governance</div>
-          <h3 class="matrix-card-title">APRA CPS 234 & Zero-Trust Guardrails</h3>
-          <p class="matrix-card-body">Embedding immutable audit logging, PII redaction perimeters, prompt-injection defense, and CI/CD eval harnesses into production gates.</p>
-          <div class="matrix-card-link">View 50-Point Readiness Gate <span>→</span></div>
+        <a href="/frameworks/enterprise-ai-production-readiness/" class="pillar-ledger-link">
+          <span class="pillar-ledger-num">04 / GOVERNANCE</span>
+          <h3 class="pillar-ledger-title">APRA CPS 234 Readiness Gate</h3>
+          <p class="pillar-ledger-desc">PII tokenization, open-weight license audits, and automated CI evaluation harnesses before production.</p>
+          <span class="pillar-ledger-cta">View 50-Point Gate</span>
         </a>
       </div>
     </section>
 
-    <section class="section container" aria-labelledby="publications-title" id="latest-publications">
+    <!-- FEATURED THINKING (RHYTHM 3: 1 Lead Monograph + 4 Ruled Stories) -->
+    <section class="section container" aria-labelledby="insights-title">
       <div class="section-header">
         <div class="section-header-content">
-          <span class="eyebrow">Latest Writing</span>
-          <h2 id="publications-title">Latest Publications.</h2>
+          <span class="eyebrow">Original Research &amp; Blueprints</span>
+          <h2 id="insights-title">Featured Thinking.</h2>
         </div>
-        <p class="section-header-desc">Recent articles on enterprise AI, engineering leadership, and technology economics, published on Medium and LinkedIn.</p>
+        <p class="section-header-desc">
+          Engineering field notes on sovereign open weights, multi-protocol gateways, hybrid RAG, and unit economics.
+        </p>
       </div>
-      <div class="card-grid-3">${renderPublicationCards(blogsData.blogs, 6)}</div>
-      <div style="margin-top: 32px;"><a href="/insights/#latest-publications" class="text-link">View All Publications →</a></div>
+
+      <div class="editorial-split">
+        <article class="lead-monograph" data-tilt-3d>
+          <div class="card-meta" style="margin-bottom: 0;">
+            <span class="badge badge-accent">Lead Monograph · ${leadInsight.category}</span>
+            <span>${leadInsight.readingTime}</span>
+          </div>
+          <h3><a href="/insights/${leadInsight.slug}/">${leadInsight.title}</a></h3>
+          <p style="font-size: 0.96875rem; color: var(--ink-soft); line-height: 1.65;">${leadInsight.summary}</p>
+          ${leadInsight.take && leadInsight.take.bhavinsTake ? `
+            <blockquote class="lead-monograph-take">
+              "${leadInsight.take.bhavinsTake}"
+            </blockquote>
+          ` : ''}
+          <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; padding-top: 8px;">
+            <a href="/insights/${leadInsight.slug}/" class="btn btn-primary btn-sm">Read Full Playbook →</a>
+            <a href="/insights/" class="text-link">All ${content.insights.length} Insights</a>
+          </div>
+        </article>
+
+        <div class="broadsheet-index" aria-label="Additional Insights Index">
+          ${indexInsights.map(post => `
+            <a href="/insights/${post.slug}/" class="broadsheet-row">
+              <div class="broadsheet-row-meta">
+                <span>${post.category}</span>
+                <span>${post.readingTime}</span>
+              </div>
+              <h4>${post.title}</h4>
+              <p>${post.summary}</p>
+            </a>
+          `).join('')}
+        </div>
+      </div>
     </section>
 
-    <!-- LIVE PRODUCTION ECOSYSTEMS (Graph Engineering & Learn AI Engineering) -->
+    <!-- LIVE PRODUCTION ECOSYSTEMS (Contrast Pair: Dark Slate vs Editorial Paper) -->
     <section class="section container" aria-labelledby="platform-title" id="engineering-in-practice">
       <div class="section-header">
         <div class="section-header-content">
           <span class="eyebrow">Engineering in Practice</span>
-          <h2 id="platform-title">Live Production Ecosystems.</h2>
+          <h2 id="platform-title">Production Tooling &amp; Talent Enablement.</h2>
         </div>
         <p class="section-header-desc">
-          Two flagship engineering ecosystems demonstrating hands-on architecture tooling and enterprise-wide technical enablement.
+          Working open tooling and interactive visual education engineered to turn theory into organizational muscle.
         </p>
       </div>
 
-      <div class="ecosystem-grid">
-        <div class="ecosystem-card">
+      <div class="ecosystem-editorial">
+        <div class="ecosystem-panel-dark" data-tilt-3d>
           <div class="ecosystem-badge-wrap">
-            <span class="badge badge-accent">Production Developer Tooling</span>
+            <span class="badge badge-accent">Working Agent Tooling</span>
           </div>
           <h3>Graph Engineering Platform</h3>
           <p>
             Five working AI agent skills connecting source-code dependency graphs, architectural decision records (ADRs), and durable Obsidian memory across Codex, Claude, and MCP.
           </p>
           <div class="ecosystem-meta">
-            <span>Typed Source</span> · <span>Native Integrations</span> · <span>Inspectable Tools</span>
+            <span>Typed Source</span> · <span>Native MCP Integrations</span> · <span>Inspectable Code</span>
           </div>
           <div class="ecosystem-footer">
-            <a href="/tools/graph-engineering/" class="btn btn-primary">Explore the Platform →</a>
+            <a href="/tools/graph-engineering/" class="btn btn-primary">Explore Graph Platform →</a>
           </div>
         </div>
 
-        <div class="ecosystem-card">
+        <div class="ecosystem-panel-light" data-tilt-3d>
           <div class="ecosystem-badge-wrap">
-            <span class="badge badge-accent">Org-Wide Talent Enablement</span>
+            <span class="badge">Org-Wide Talent Enablement</span>
           </div>
           <h3>Learn AI Engineering</h3>
           <p>
-            An interactive, audio-free 3D & motion engineering academy built from first principles to upskill software engineering organizations into production AI systems engineers.
+            An interactive, audio-free 3D and motion engineering academy built from first principles to upskill software engineering organizations into production AI systems engineers.
           </p>
           <div class="ecosystem-meta">
-            <span>First-Principles Academy</span> · <span>Interactive 3D</span> · <span>Zero Fluff</span>
+            <span>First-Principles Academy</span> · <span>Interactive Visuals</span> · <span>Zero Hype</span>
           </div>
           <div class="ecosystem-footer">
-            <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Learn AI Engineering ↗</a>
+            <a href="https://learnaiengineering.dev" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit Learn AI Engineering ↗</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED THINKING (INSIGHTS) -->
-    <section class="section container" aria-labelledby="insights-title">
-      <div class="section-header">
-        <div class="section-header-content">
-          <span class="eyebrow">Original Research & Perspectives</span>
-          <h2 id="insights-title">Featured Thinking.</h2>
-        </div>
-        <p class="section-header-desc">
-          Long-form perspectives on enterprise AI engineering, hybrid RAG, agentic reliability, and technology economics.
-        </p>
-      </div>
-
-      <div class="card-grid-3">
-        ${featuredInsights.map(post => `
-          <article class="card">
-            <div class="card-meta">
-              <span class="badge badge-accent">${post.category}</span>
-              <span>${post.readingTime}</span>
-            </div>
-            <h3><a href="/insights/${post.slug}/">${post.title}</a></h3>
-            <p>${post.summary}</p>
-            <div class="card-footer">
-              <a href="/insights/${post.slug}/" class="text-link">Read Blueprint <span>→</span></a>
-            </div>
-          </article>
-        `).join('')}
-      </div>
-
-      <div style="margin-top: 36px; text-align: center;">
-        <a href="/insights/" class="btn btn-secondary">Explore All Insights & Engineering Guides →</a>
-      </div>
-    </section>
-
-    <!-- PRODUCTION ARCHITECTURES PREVIEW -->
+    <!-- PRODUCTION ARCHITECTURES PREVIEW (Featured Banner + Ruled Spec Grid) -->
     <section class="section container" aria-labelledby="arch-title">
       <div class="section-header">
         <div class="section-header-content">
@@ -616,35 +665,71 @@ function buildHomepage() {
           <h2 id="arch-title">Enterprise Architecture Blueprints.</h2>
         </div>
         <p class="section-header-desc">
-          Reference architectures and security topologies developed to bridge the gap between AI proofs-of-concept and scalable enterprise production.
+          Reference topologies and security controls designed to take AI systems cleanly into governed production.
         </p>
       </div>
 
-      <div class="card-grid-2">
-        ${featuredArchs.map(arch => `
-          <div class="card">
-            <div class="card-meta">
-              <span class="badge badge-accent">${arch.category}</span>
-              <span style="font-family: var(--mono); font-size: 11px;">Production Blueprint</span>
-            </div>
+      <div class="arch-feature-banner">
+        <div>
+          <span class="badge badge-accent" style="margin-bottom: 10px;">Latest Specification · ${flagshipArch.category}</span>
+          <h3 style="margin-bottom: 10px;"><a href="/architectures/${flagshipArch.slug}/">${flagshipArch.title}</a></h3>
+          <p style="font-size: 0.90625rem; color: var(--ink-soft); margin-bottom: 18px;">${flagshipArch.summary}</p>
+          <a href="/architectures/${flagshipArch.slug}/" class="btn btn-primary btn-sm">Inspect Mesh Topology →</a>
+        </div>
+        <div class="home-arch-flow" data-home-arch-sim>
+          <svg viewBox="0 0 500 132" role="img" aria-label="Interactive MCP and A2A Request Packet Flow Diagram">
+            <line x1="85" y1="60" x2="210" y2="60" stroke="#334155" stroke-width="2" />
+            <line x1="85" y1="60" x2="210" y2="60" stroke="#60a5fa" stroke-width="2" class="flow-line-pulse" />
+            <line x1="295" y1="60" x2="415" y2="60" stroke="#334155" stroke-width="2" />
+            <line x1="295" y1="60" x2="415" y2="60" stroke="#34d399" stroke-width="2" class="flow-line-pulse" />
+            <g class="diagram-node" data-arch-node="agent">
+              <rect x="10" y="34" width="105" height="52" rx="4" fill="#131c2e" stroke="#475569" stroke-width="1.5" />
+              <text x="62" y="56" fill="#f1f5f9" font-family="monospace" font-size="10" text-anchor="middle" font-weight="600">AGENT CARD</text>
+              <text x="62" y="72" fill="#94a3b8" font-family="monospace" font-size="9" text-anchor="middle">A2A Discovery</text>
+            </g>
+            <g class="diagram-node" data-arch-node="gateway">
+              <rect x="188" y="28" width="124" height="64" rx="4" fill="#131c2e" stroke="#60a5fa" stroke-width="1.5" />
+              <text x="250" y="52" fill="#f1f5f9" font-family="monospace" font-size="10" text-anchor="middle" font-weight="600">MCP GATEWAY</text>
+              <text x="250" y="68" fill="#60a5fa" font-family="monospace" font-size="9" text-anchor="middle">Tasks · Elicitation</text>
+              <text x="250" y="81" fill="#94a3b8" font-family="monospace" font-size="8" text-anchor="middle">RBAC + PII Redact</text>
+            </g>
+            <g class="diagram-node" data-arch-node="target">
+              <rect x="385" y="34" width="105" height="52" rx="4" fill="#131c2e" stroke="#475569" stroke-width="1.5" />
+              <text x="437" y="56" fill="#f1f5f9" font-family="monospace" font-size="10" text-anchor="middle" font-weight="600">SOVEREIGN VPC</text>
+              <text x="437" y="72" fill="#94a3b8" font-family="monospace" font-size="9" text-anchor="middle">vLLM + Frontier</text>
+            </g>
+          </svg>
+          <div id="home-arch-status" style="font-family: var(--mono); font-size: 0.71875rem; color: #cbd5e1; margin-top: 8px; min-block-size: 20px;">Select a protocol path below to trace live packet flow:</div>
+          <div class="home-arch-controls">
+            <button type="button" class="sim-btn" data-home-sim="mcp">MCP Task</button>
+            <button type="button" class="sim-btn" data-home-sim="a2a">A2A Handoff</button>
+            <button type="button" class="sim-btn" data-home-sim="elicitation">Elicitation Gate</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-spec-grid">
+        ${gridArchs.map(arch => `
+          <div class="arch-spec-row">
+            <span class="eyebrow" style="margin-bottom: 4px;">${arch.category}</span>
             <h3><a href="/architectures/${arch.slug}/">${arch.title}</a></h3>
             <p>${arch.summary}</p>
-            <div style="margin-bottom: 20px; font-size: 13px; color: var(--ink-soft); background: var(--wash); padding: 12px 16px; border-left: 2px solid var(--ink);">
-              <strong>Core Problem:</strong> ${arch.problem}
-            </div>
-            <div class="card-footer">
-              <a href="/architectures/${arch.slug}/" class="text-link">Inspect Architecture & Data Flow <span>→</span></a>
+            <div style="margin-top: auto;">
+              <a href="/architectures/${arch.slug}/" class="text-link">Inspect Blueprint</a>
             </div>
           </div>
         `).join('')}
       </div>
 
-      <div style="margin-top: 36px; text-align: center;">
-        <a href="/architectures/" class="btn btn-secondary">Explore Complete Architecture Library (${content.architectures.length} Blueprints) →</a>
+      <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+        <div style="font-size: 0.875rem; color: var(--muted);">
+          Also available: <a href="/frameworks/enterprise-ai-production-readiness/" class="text-link">Production Readiness Framework</a> · <a href="/compare/" class="text-link">Stack Comparisons</a> · <a href="/enterprise-ai-engineering/" class="text-link">AI Engineering Handbook</a>
+        </div>
+        <a href="/architectures/" class="btn btn-secondary">Explore Complete Architecture Library (${content.architectures.length} Blueprints)</a>
       </div>
     </section>
 
-    <!-- ENTERPRISE AI RADAR PREVIEW -->
+    <!-- ENTERPRISE AI RADAR PREVIEW (Unified 4-Column Quadrant Ledger) -->
     <section class="section section-wash" aria-labelledby="radar-title">
       <div class="container">
         <div class="section-header">
@@ -653,54 +738,54 @@ function buildHomepage() {
             <h2 id="radar-title">Enterprise AI Radar.</h2>
           </div>
           <p class="section-header-desc">
-            Bhavin's curated technology tracking across Adopt, Trial, Assess, and Watch categories based on real-world enterprise viability.
+            Opinionated assessment across Adopt, Trial, Assess, and Watch categories grounded in regulated enterprise viability.
           </p>
         </div>
 
-        <div class="radar-grid">
-          <div class="radar-column">
+        <div class="radar-ledger">
+          <div class="radar-ledger-col">
             <div class="radar-column-header">
-              <h4 style="color: #166534;">ADOPT</h4>
+              <h4 style="color: var(--success);">ADOPT</h4>
               <span class="badge badge-adopt">Proven</span>
             </div>
             ${content.radar.filter(r => r.quadrant === 'ADOPT').slice(0, 2).map(item => `
-              <div class="radar-item-card">
+              <div class="radar-ledger-item">
                 <h4>${item.name}</h4>
                 <p>${item.summary}</p>
               </div>
             `).join('')}
           </div>
-          <div class="radar-column">
+          <div class="radar-ledger-col">
             <div class="radar-column-header">
-              <h4 style="color: #0369a1;">TRIAL</h4>
+              <h4 style="color: var(--accent);">TRIAL</h4>
               <span class="badge badge-trial">Validated</span>
             </div>
             ${content.radar.filter(r => r.quadrant === 'TRIAL').slice(0, 2).map(item => `
-              <div class="radar-item-card">
+              <div class="radar-ledger-item">
                 <h4>${item.name}</h4>
                 <p>${item.summary}</p>
               </div>
             `).join('')}
           </div>
-          <div class="radar-column">
+          <div class="radar-ledger-col">
             <div class="radar-column-header">
-              <h4 style="color: #92400e;">ASSESS</h4>
+              <h4 style="color: var(--warning);">ASSESS</h4>
               <span class="badge badge-assess">Spike</span>
             </div>
             ${content.radar.filter(r => r.quadrant === 'ASSESS').slice(0, 2).map(item => `
-              <div class="radar-item-card">
+              <div class="radar-ledger-item">
                 <h4>${item.name}</h4>
                 <p>${item.summary}</p>
               </div>
             `).join('')}
           </div>
-          <div class="radar-column">
+          <div class="radar-ledger-col">
             <div class="radar-column-header">
               <h4 style="color: #6b21a8;">WATCH</h4>
               <span class="badge badge-watch">Early</span>
             </div>
             ${content.radar.filter(r => r.quadrant === 'WATCH').slice(0, 2).map(item => `
-              <div class="radar-item-card">
+              <div class="radar-ledger-item">
                 <h4>${item.name}</h4>
                 <p>${item.summary}</p>
               </div>
@@ -709,89 +794,95 @@ function buildHomepage() {
         </div>
 
         <div style="text-align: center;">
-          <a href="/ai-radar/" class="btn btn-secondary">Explore Interactive Enterprise AI Radar →</a>
+          <a href="/ai-radar/" class="btn btn-secondary">Inspect Full ${content.radar.length}-Technology Radar</a>
         </div>
       </div>
     </section>
 
-    <!-- INTERACTIVE TOOLS HUB -->
+    <!-- INTERACTIVE DECISION LAB & INDUSTRY MATRIX (2-Tier Asymmetric Lab) -->
     <section class="section container" aria-labelledby="tools-title">
       <div class="section-header">
         <div class="section-header-content">
-          <span class="eyebrow">Decision Calculators</span>
-          <h2 id="tools-title">Interactive Enterprise AI Tools.</h2>
+          <span class="eyebrow">Decision Simulators</span>
+          <h2 id="tools-title">Interactive Engineering &amp; FinOps Lab.</h2>
         </div>
         <p class="section-header-desc">
-          Transparent, client-side engineering and financial calculators with zero black-box assumptions.
+          Client-side financial and velocity calculators with transparent formulas and zero telemetry tracking.
         </p>
       </div>
 
-      <div class="card-grid-2">
-        <div class="card">
-          <div class="card-meta">
-            <span class="badge badge-accent">AI FinOps & Optimization</span>
-            <span style="font-family: var(--mono); font-size: 11px;">Interactive Simulator</span>
-          </div>
-          <h3><a href="/tools/model-router-cost-calculator/">Enterprise Model Router & SLM Simulator</a></h3>
-          <p>Simulate dynamic query routing between Frontier LLMs (GPT-4o/Claude) and distilled private SLMs (Llama-3/Mistral), modeling 70%+ token savings and P95 latency reduction.</p>
-          <div class="card-footer">
-            <a href="/tools/model-router-cost-calculator/" class="text-link">Launch Simulator <span>→</span></a>
-          </div>
+      <div class="tools-lab-split">
+        <div class="tools-sim-stack">
+          <article class="card" style="border-top: 3px solid var(--accent);" data-tilt-3d>
+            <div class="card-meta">
+              <span class="badge badge-accent">FinOps &amp; Sovereignty</span>
+              <span>Planner-Executor Presets</span>
+            </div>
+            <h3><a href="/tools/model-router-cost-calculator/" class="card-link">Model Router &amp; Open-Weight Simulator</a></h3>
+            <p>Model monthly spend, P95 latency reduction, and sovereign VPC containment by routing execution between private vLLM/SGLang open weights (Qwen4, DeepSeek-V4) and Frontier planners.</p>
+          </article>
+
+          <article class="card" style="border-top: 3px solid var(--accent);" data-tilt-3d>
+            <div class="card-meta">
+              <span class="badge badge-accent">Engineering Velocity</span>
+              <span>DORA Telemetry</span>
+            </div>
+            <h3><a href="/tools/ai-sdlc-dora-roi-calculator/" class="card-link">AI-Enabled SDLC &amp; DORA Velocity Modeler</a></h3>
+            <p>Calculate developer capacity unlocked, PR cycle-time reduction, and DORA deployment frequency upgrades across multi-squad organizations.</p>
+          </article>
         </div>
 
-        <div class="card">
-          <div class="card-meta">
-            <span class="badge badge-accent">Engineering Velocity</span>
-            <span style="font-family: var(--mono); font-size: 11px;">DORA Telemetry</span>
-          </div>
-          <h3><a href="/tools/ai-sdlc-dora-roi-calculator/">AI-Enabled SDLC & DORA Modeler</a></h3>
-          <p>Calculate engineering capacity unlocked by AI code reviews and agentic workflows, modeling PR lead-time drops, weekly dev hours saved, and DORA tier upgrades.</p>
-          <div class="card-footer">
-            <a href="/tools/ai-sdlc-dora-roi-calculator/" class="text-link">Model Velocity <span>→</span></a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-meta">
-            <span class="badge badge-accent">Financial Modeling</span>
-            <span style="font-family: var(--mono); font-size: 11px;">Production Estimator</span>
-          </div>
-          <h3><a href="/tools/rag-cost-calculator/">Enterprise RAG Cost Calculator</a></h3>
-          <p>Model monthly vector storage, embedding tokens, inference volume, and semantic caching return across enterprise document pools.</p>
-          <div class="card-footer">
-            <a href="/tools/rag-cost-calculator/" class="text-link">Run Calculations <span>→</span></a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-meta">
-            <span class="badge badge-accent">Executive Strategy</span>
-            <span style="font-family: var(--mono); font-size: 11px;">TCO Decision Engine</span>
-          </div>
-          <h3><a href="/tools/build-vs-buy-ai-platform/">Build vs Buy AI Decision Engine</a></h3>
-          <p>Evaluate 3-year TCO, Capex vs Opex, internal engineering load, and APRA CPS 234 governance overhead for proprietary AI platform builds.</p>
-          <div class="card-footer">
-            <a href="/tools/build-vs-buy-ai-platform/" class="text-link">Evaluate TCO <span>→</span></a>
+        <div class="tools-index-rail">
+          <span class="eyebrow" style="margin-bottom: 4px;">Existing-Stack Force Multipliers</span>
+          <a href="/tools/enterprise-ai-skills/" class="tools-rail-item" style="border-left: 3px solid var(--accent); padding-left: 12px;">
+            <h4>Top 5 Enterprise AI Engineering Skills <span class="badge badge-accent" style="margin-left: 6px;">+50% Velocity</span></h4>
+            <p>Drop-in <code>SKILL.md</code> playbooks for Git, Jira, OpenTelemetry, CI &amp; Postgres with zero new SaaS tools.</p>
+          </a>
+          <a href="/tools/rag-cost-calculator/" class="tools-rail-item">
+            <h4>Enterprise RAG Cost Calculator</h4>
+            <p>Vector storage, top-k retrieval chunks, embeddings, and semantic cache savings.</p>
+          </a>
+          <a href="/tools/build-vs-buy-ai-platform/" class="tools-rail-item">
+            <h4>Build vs Buy AI Decision Engine</h4>
+            <p>3-year TCO projection weighing SaaS licensing against internal platform squads.</p>
+          </a>
+          <a href="/tools/ai-use-case-prioritiser/" class="tools-rail-item">
+            <h4>AI Use Case Prioritiser Matrix</h4>
+            <p>Score initiatives across commercial ROI, data readiness, and regulatory friction.</p>
+          </a>
+          <a href="/tools/enterprise-ai-readiness/" class="tools-rail-item">
+            <h4>50-Point AI Readiness Diagnostic</h4>
+            <p>Benchmark organizational maturity across strategy, data, engineering, and ops.</p>
+          </a>
+          <div style="margin-top: auto; padding-top: 16px;">
+            <a href="/tools/" class="btn btn-primary" style="width: 100%;">Open All 9 Interactive Tools &amp; Skills →</a>
           </div>
         </div>
       </div>
 
-      <div class="industry-matrix-banner" style="margin-top: 36px; padding: 24px 28px; background: var(--wash); border: 1px solid var(--line); border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div class="industry-matrix-banner" style="margin-top: 32px; padding: 24px 28px; background: var(--wash); border: 1px solid var(--line); border-radius: 2px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
         <div style="max-width: 720px;">
-          <span class="eyebrow" style="color: var(--accent); font-weight: 600;">Cross-Industry Translation</span>
-          <h3 style="margin: 4px 0 8px; font-size: 18px;">Cross-Industry Enterprise AI Solutions Matrix</h3>
-          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">
-            How Tier-1 banking zero-trust rigor and APRA CPS 234 compliance translate directly to Healthcare & Life Sciences, Telecommunications, Government/Defense, and Retail Supply Chains.
+          <span class="eyebrow" style="margin-bottom: 4px;">Cross-Industry Translation</span>
+          <h3 style="margin: 0 0 6px; font-size: 1.25rem;">Cross-Industry Enterprise AI Solutions Matrix</h3>
+          <p style="margin: 0; font-size: 0.875rem; color: var(--ink-soft);">
+            How Tier-1 banking zero-trust rigor and APRA CPS 234 compliance translate directly to Healthcare &amp; Life Sciences, Telecommunications, Government/Defense, and Retail Supply Chains.
           </p>
         </div>
-        <a href="/industries/" class="btn btn-primary" style="white-space: nowrap;">Explore Industry Matrix →</a>
+        <a href="/industries/" class="btn btn-secondary" style="white-space: nowrap;">Explore Industry Matrix</a>
       </div>
+    </section>
 
-      <div style="margin-top: 32px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="/tools/llm-cost-calculator/" class="btn btn-secondary">LLM Token Estimator →</a>
-        <a href="/tools/ai-use-case-prioritiser/" class="btn btn-secondary">AI Use Case Prioritiser →</a>
-        <a href="/tools/" class="btn btn-primary">View All Decision Tools →</a>
+    <!-- LATEST PUBLICATIONS (Broadsheet Press Index) -->
+    <section class="section container" aria-labelledby="publications-title" id="latest-publications">
+      <div class="section-header">
+        <div class="section-header-content">
+          <span class="eyebrow">External Dispatches</span>
+          <h2 id="publications-title">Latest Publications.</h2>
+        </div>
+        <p class="section-header-desc">Recent essays on enterprise AI systems, engineering leadership, and technology economics on Medium and LinkedIn.</p>
       </div>
+      <div class="pub-ledger">${renderPublicationLedger(blogsData.blogs, 6)}</div>
+      <div style="margin-top: 28px;"><a href="/insights/#latest-publications" class="text-link">View Full Publication Archive</a></div>
     </section>
 
     <!-- NEWSLETTER & LEAD MAGNET -->
@@ -801,27 +892,27 @@ function buildHomepage() {
 
     <!-- ABOUT SECTION PREVIEW -->
     <section class="section section-wash" aria-labelledby="about-title">
-      <div class="container" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
+      <div class="container editorial-split">
         <div>
           <span class="eyebrow">Executive Leadership</span>
           <h2 id="about-title">Bhavin Mistry.</h2>
-          <p style="font-size: 18px; color: var(--ink-soft); line-height: 1.6; margin-top: 16px;">
-            Enterprise AI & Technology Executive bridging C-suite commercial strategy with deep systems execution across Commonwealth Bank, Acenda, Accenture, and Deloitte.
+          <p style="font-size: 1.0625rem; color: var(--ink-soft); line-height: 1.65; margin-top: 16px;">
+            Enterprise AI &amp; Technology Executive bridging C-suite commercial strategy with systems execution across Commonwealth Bank, Acenda, Accenture, and Deloitte.
           </p>
           <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
             <a href="/about/" class="btn btn-primary">Explore Executive Dossier →</a>
-            <a href="/speaking/" class="btn btn-secondary">Speaking & Board Briefings →</a>
+            <a href="/speaking/" class="btn btn-secondary">Speaking &amp; Briefings</a>
           </div>
         </div>
-        <div style="background: var(--paper); padding: 36px; border: 1px solid var(--line); border-radius: 4px;">
-          <h4 style="margin-bottom: 12px;">Commercial & Technical Fluency</h4>
-          <p style="font-size: 14px; color: var(--muted); line-height: 1.7;">
-            Operating with equal fluency across the Architecture Review Board and the executive P&L table. Scaling globally distributed engineering squads, implementing APRA CPS 234 zero-trust perimeters, and instituting AI FinOps unit economics that transform experimental pilots into measurable commercial outcomes.
+        <div style="background: var(--paper-elevated); padding: 32px; border: 1px solid var(--line); border-radius: 2px;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Commercial &amp; Technical Fluency</h3>
+          <p style="font-size: 0.90625rem; color: var(--muted); line-height: 1.65;">
+            Operating fluently across the Architecture Review Board and the executive P&amp;L table: scaling distributed engineering squads, instituting APRA CPS 234 zero-trust perimeters, and building sovereign open-weight FinOps discipline.
           </p>
-          <div style="border-top: 1px solid var(--line-subtle); padding-top: 20px; margin-top: 20px;">
-            <span class="eyebrow" style="margin-bottom: 6px;">Executive Pedigree</span>
-            <div style="font-size: 14px; font-weight: 600;">The University of Texas at Austin • GTU • Gujarat University</div>
-            <div style="font-size: 13px; color: var(--muted); margin-top: 2px;">PGP Artificial Intelligence & Machine Learning · MCA · B.Com (Corporate Finance)</div>
+          <div style="border-top: 1px solid var(--line-subtle); padding-top: 18px; margin-top: 18px;">
+            <span class="eyebrow" style="margin-bottom: 6px;">Academic Triad</span>
+            <div style="font-size: 0.875rem; font-weight: 600;">The University of Texas at Austin · GTU · Gujarat University</div>
+            <div style="font-size: 0.8125rem; color: var(--muted); margin-top: 4px;">PGP Artificial Intelligence &amp; Machine Learning · MCA · B.Com (Corporate Finance)</div>
           </div>
         </div>
       </div>
@@ -1562,14 +1653,38 @@ function buildRadar() {
     <div class="container" style="padding-top: 64px; padding-bottom: 88px;">
       <span class="eyebrow">Technology Landscape</span>
       <h1>Enterprise AI Radar 2026</h1>
-      <p class="hero-lead" style="max-width: 820px; margin-top: 16px; margin-bottom: 40px;">
+      <p class="hero-lead" style="max-width: 820px; margin-top: 16px; margin-bottom: 32px;">
         Curated technology tracking across Adopt, Trial, Assess, and Watch categories based on real-world enterprise viability and governance readiness.
       </p>
 
-      <div class="radar-grid" style="margin-bottom: 48px;">
-        <div class="radar-column">
+      <div class="radar-visual-wrap" aria-label="Interactive AI Technology Radar">
+        <div class="radar-canvas-box">
+          <canvas id="radar-sweeper-canvas" width="400" height="400"></canvas>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span class="eyebrow" style="margin-bottom: 0;">Orbital Telemetry · ${content.radar.length} Evaluated Systems</span>
+            <button type="button" id="radar-motion-toggle" class="btn btn-secondary btn-sm">Pause Sweep</button>
+          </div>
+          <h2 style="font-size: 1.55rem; margin: 12px 0 10px;">Filter by Governance Ring</h2>
+          <p style="font-size: 0.875rem; color: var(--muted); margin-bottom: 16px;">Hover over radar blips or select a quadrant below to filter technologies by enterprise production readiness.</p>
+          <div id="radar-sweeper-info" style="font-family: var(--mono); font-size: 0.78125rem; background: var(--wash); border: 1px solid var(--line); padding: 12px 14px; border-radius: 3px; color: var(--ink);">Hover any blip on the orbital radar to inspect its classification and rationale.</div>
+          <div class="radar-filter-bar" role="group" aria-label="Filter Radar Quadrants">
+            <button type="button" class="radar-filter-btn is-active" data-radar-filter="ALL">All (${content.radar.length})</button>
+            <button type="button" class="radar-filter-btn" data-radar-filter="ADOPT">Adopt</button>
+            <button type="button" class="radar-filter-btn" data-radar-filter="TRIAL">Trial</button>
+            <button type="button" class="radar-filter-btn" data-radar-filter="ASSESS">Assess</button>
+            <button type="button" class="radar-filter-btn" data-radar-filter="WATCH">Watch</button>
+          </div>
+        </div>
+      </div>
+
+      <script id="radar-json-data" type="application/json">${JSON.stringify(content.radar.map(r => ({ id: r.id, name: r.name, quadrant: r.quadrant, rationale: r.rationale })))}</script>
+
+      <div id="radar-columns" class="radar-grid" style="margin-bottom: 48px;">
+        <div class="radar-column" data-quadrant="ADOPT">
           <div class="radar-column-header">
-            <h4 style="color: #166534;">ADOPT</h4>
+            <h4 style="color: var(--success);">ADOPT</h4>
             <span class="badge badge-adopt">Proven</span>
           </div>
           ${content.radar.filter(r => r.quadrant === 'ADOPT').map(item => `
@@ -1580,9 +1695,9 @@ function buildRadar() {
             </div>
           `).join('')}
         </div>
-        <div class="radar-column">
+        <div class="radar-column" data-quadrant="TRIAL">
           <div class="radar-column-header">
-            <h4 style="color: #0369a1;">TRIAL</h4>
+            <h4 style="color: var(--accent);">TRIAL</h4>
             <span class="badge badge-trial">Validated</span>
           </div>
           ${content.radar.filter(r => r.quadrant === 'TRIAL').map(item => `
@@ -1593,9 +1708,9 @@ function buildRadar() {
             </div>
           `).join('')}
         </div>
-        <div class="radar-column">
+        <div class="radar-column" data-quadrant="ASSESS">
           <div class="radar-column-header">
-            <h4 style="color: #92400e;">ASSESS</h4>
+            <h4 style="color: var(--warning);">ASSESS</h4>
             <span class="badge badge-assess">Spike</span>
           </div>
           ${content.radar.filter(r => r.quadrant === 'ASSESS').map(item => `
@@ -1606,7 +1721,7 @@ function buildRadar() {
             </div>
           `).join('')}
         </div>
-        <div class="radar-column">
+        <div class="radar-column" data-quadrant="WATCH">
           <div class="radar-column-header">
             <h4 style="color: #6b21a8;">WATCH</h4>
             <span class="badge badge-watch">Early</span>
@@ -1698,6 +1813,15 @@ function buildTools() {
       </div>
 
       <div class="card-grid-2">
+        <div class="card" style="border-top: 3px solid var(--accent); grid-column: 1 / -1;">
+          <div class="card-meta">
+            <span class="badge badge-accent">Enterprise Productivity Suite · Existing Stack</span>
+            <span>Works with Claude Code · Cursor · Copilot · Codex · Antigravity</span>
+          </div>
+          <h3><a href="/tools/enterprise-ai-skills/" class="card-link">Top 5 Enterprise AI Engineering Skills (+50% Team Velocity)</a></h3>
+          <p>Five battle-tested, non-generic <code>SKILL.md</code> engineering workflows (Cross-Service Contract Diff, Trace-to-Commit Triage, Compliance Evidence Gate, Strangler-Fig Extraction, and Pre-Merge Cost Guard) built for medium-to-large teams to unlock 11+ hrs/wk per engineer using existing Git, Jira, OpenTelemetry, CI, and SQL tooling.</p>
+          <div class="card-footer"><a href="/tools/enterprise-ai-skills/" class="text-link">Inspect 5 Skills &amp; Model Team ROI →</a></div>
+        </div>
         <div class="card" style="border-top: 2px solid var(--accent);">
           <span class="eyebrow">FinOps & Model Routing</span>
           <h3><a href="/tools/model-router-cost-calculator/">Model Router & SLM Simulator</a></h3>
@@ -2433,6 +2557,190 @@ function buildTools() {
     mainContent: doraMain
   }));
   console.log('Generated: tools/ai-sdlc-dora-roi-calculator/index.html');
+
+  // Tool 8: Top 5 Enterprise AI Engineering Skills (/tools/enterprise-ai-skills/)
+  const skillsDir = path.join(ROOT_DIR, 'tools/enterprise-ai-skills');
+  ensureDir(skillsDir);
+  const escHtml = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  const skillsCheckboxesHtml = ENTERPRISE_SKILLS.map((sk) => `
+    <label class="skill-choice-card card">
+      <input type="checkbox" class="skill-toggle-input" data-skill-id="${sk.id}" data-skill-hours="${sk.reclaimedHours}" checked>
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+          <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--accent); font-weight: 700;">${sk.index} · ${escHtml(sk.category)}</span>
+          <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--ink); font-weight: 600;">+${sk.reclaimedHours.toFixed(1)} hrs/wk</span>
+        </div>
+        <div style="font-weight: 600; color: var(--ink); margin-top: 4px; font-size: 0.9375rem;">${escHtml(sk.name)}</div>
+        <div style="font-size: 0.78125rem; color: var(--muted); margin-top: 2px;">Uses: ${escHtml(sk.existingTools)}</div>
+      </div>
+    </label>
+  `).join('\n');
+
+  const skillsTabsHtml = ENTERPRISE_SKILLS.map((sk, idx) => `
+    <button type="button"
+      role="tab"
+      id="tab-skill-${sk.id}"
+      aria-controls="panel-skill-${sk.id}"
+      aria-selected="${idx === 0 ? 'true' : 'false'}"
+      class="skill-spec-tab${idx === 0 ? ' active' : ''}">
+      <span style="font-family: var(--mono); opacity: 0.75;">${sk.index}</span> ${escHtml(sk.id)}
+    </button>
+  `).join('\n');
+
+  const skillsPanelsHtml = ENTERPRISE_SKILLS.map((sk, idx) => `
+    <div id="panel-skill-${sk.id}"
+      role="tabpanel"
+      aria-labelledby="tab-skill-${sk.id}"
+      class="skill-spec-panel${idx === 0 ? ' active' : ''}"
+      ${idx === 0 ? '' : 'hidden'}>
+      <div class="skill-panel-header">
+        <div>
+          <span class="eyebrow">${sk.index} · ${escHtml(sk.category)}</span>
+          <h3 style="margin: 6px 0 8px;">${escHtml(sk.name)}</h3>
+          <p style="font-size: 0.84375rem; font-family: var(--mono); color: var(--accent); margin: 0;">Existing Stack: ${escHtml(sk.existingTools)}</p>
+        </div>
+        <div class="skill-panel-actions">
+          <button type="button" class="btn btn-secondary skill-download-btn" data-skill-filename="${sk.id}.SKILL.md" data-skill-source="skill-code-${sk.id}">Download SKILL.md ↓</button>
+        </div>
+      </div>
+
+      <div class="skill-detail-grid">
+        <div class="skill-detail-box">
+          <h4>Enterprise Bottleneck Eliminated</h4>
+          <p>${escHtml(sk.bottleneck)}</p>
+        </div>
+        <div class="skill-detail-box">
+          <h4>Why Generic Prompt Skills Fail Here</h4>
+          <p>${escHtml(sk.nonGenericWhy)}</p>
+        </div>
+      </div>
+
+      <div class="skill-guardrails-box">
+        <h4>Non-Negotiable Execution Guardrails</h4>
+        <ul>
+          ${sk.guardrails.map(g => `<li>${escHtml(g)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--muted);">Drop-in Path: <code>${escHtml(sk.installPath)}</code></span>
+        </div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span>SKILL.md · Enterprise Specification</span>
+            <button type="button" class="code-copy-btn">Copy Spec</button>
+          </div>
+          <pre id="skill-code-${sk.id}"><code>${escHtml(sk.skillMarkdown)}</code></pre>
+        </div>
+      </div>
+    </div>
+  `).join('\n');
+
+  const skillsMain = `
+    <div class="container" style="max-width: 1120px; padding-top: 64px; padding-bottom: 88px;">
+      <nav aria-label="Breadcrumbs" style="font-family: var(--mono); font-size: 11px; margin-bottom: 24px; color: var(--muted);">
+        <a href="/">Home</a> / <a href="/tools/">Tools</a> / <span style="color: var(--ink);">Top 5 Enterprise AI Engineering Skills</span>
+      </nav>
+
+      <span class="eyebrow">Production Agent Skills · Existing Tooling Compatible</span>
+      <h1>Top 5 Enterprise AI Engineering Skills (+50% Productivity)</h1>
+      <p class="hero-lead" style="max-width: 860px; margin-top: 16px; margin-bottom: 28px;">
+        Built for 50–1,000+ engineer organizations rather than social-media boilerplate. Drop these five open <code>SKILL.md</code> workflows into your existing Git, Jira, OpenTelemetry, CI/CD, and Postgres workflows to eliminate cross-squad coordination drag without buying a single new SaaS platform.
+      </p>
+
+      <section class="skills-roi-workbench" aria-labelledby="skills-roi-title" data-enterprise-skills-calc>
+        <div class="skills-roi-inputs">
+          <div>
+            <span class="eyebrow">01 · Existing-Stack Velocity Calculator</span>
+            <h2 id="skills-roi-title" style="font-size: 1.5rem; margin: 6px 0 12px;">Model +50% Net Build Capacity Across Your Squads</h2>
+            <p style="font-size: 0.875rem; color: var(--muted); margin-bottom: 20px;">
+              A standard 40-hour enterprise week typically loses ~18 hours to PR breaking-change rework, incident trace hopping, CAB compliance prep, legacy regression fear, and cloud/SQL firefighting, leaving ~22 net build hours. Toggle skills below to model recovery.
+            </p>
+          </div>
+
+          <div class="skills-sliders-row">
+            <div class="calc-group" style="margin-bottom: 0;">
+              <div class="calc-label-row">
+                <label for="skills-team-size">Engineering Organization Size</label>
+                <span class="calc-val-display" id="skills-team-size-val">120 Engineers</span>
+              </div>
+              <input id="skills-team-size" type="range" min="15" max="500" step="5" value="120" class="calc-slider">
+            </div>
+            <div class="calc-group" style="margin-bottom: 0;">
+              <div class="calc-label-row">
+                <label for="skills-base-hours">Baseline Net Feature Coding / Week</label>
+                <span class="calc-val-display" id="skills-base-hours-val">22 hrs/wk</span>
+              </div>
+              <input id="skills-base-hours" type="range" min="15" max="30" step="1" value="22" class="calc-slider">
+            </div>
+          </div>
+
+          <div class="skills-toggle-grid" role="group" aria-label="Select Enterprise Skills to Adopt">
+            ${skillsCheckboxesHtml}
+          </div>
+        </div>
+
+        <aside class="skills-roi-output" aria-live="polite">
+          <span class="eyebrow" style="color: var(--accent);">Projected Squad Lift (Zero New Tools)</span>
+          <div class="skills-metric-hero" id="skills-pct-uplift">+50.0%</div>
+          <div style="font-size: 0.875rem; color: var(--muted); margin-bottom: 20px;">Effective delivery capacity multiplier on existing tools</div>
+
+          <div class="skills-kpi-list">
+            <div class="skills-kpi-row">
+              <span>Net Build Hours / Eng / Wk</span>
+              <strong id="skills-new-hours">22.0 → 33.0 hrs</strong>
+            </div>
+            <div class="skills-kpi-row">
+              <span>Toil Reclaimed / Eng / Wk</span>
+              <strong id="skills-reclaimed-hours">+11.0 hrs/wk</strong>
+            </div>
+            <div class="skills-kpi-row">
+              <span>Effective FTE Capacity Unlocked</span>
+              <strong id="skills-fte-unlocked">+60.0 FTEs</strong>
+            </div>
+            <div class="skills-kpi-row">
+              <span>Annual Engineering Hours Returned</span>
+              <strong id="skills-annual-hours">63,360 hrs/yr</strong>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.78125rem; color: var(--muted); line-height: 1.55;">
+            Compatible natively with existing <code>.agents/skills/</code> and <code>.claude/skills/</code> repositories across Claude Code, Cursor, Codex CLI, GitHub Copilot, and CI automation runners.
+          </div>
+        </aside>
+      </section>
+
+      <section style="margin-top: 56px;" aria-labelledby="skills-specs-title">
+        <div class="section-header" style="margin-bottom: 24px;">
+          <div class="section-header-content">
+            <span class="eyebrow">02 · Drop-In Production Specifications</span>
+            <h2 id="skills-specs-title">Inspect &amp; Copy the 5 Enterprise <code>SKILL.md</code> Playbooks.</h2>
+          </div>
+          <p class="section-header-desc">Select a skill below to inspect its failure fences, non-generic guardrails, and copy or download the complete specification.</p>
+        </div>
+
+        <div class="skills-spec-container" data-tabs>
+          <div class="skills-tablist" role="tablist" aria-label="Enterprise AI Engineering Skills">
+            ${skillsTabsHtml}
+          </div>
+          <div class="skills-panels">
+            ${skillsPanelsHtml}
+          </div>
+        </div>
+      </section>
+    </div>
+  `;
+
+  fs.writeFileSync(path.join(skillsDir, 'index.html'), renderHtmlPage({
+    title: "Top 5 Enterprise AI Engineering Skills (+50% Velocity) | Bhavin Mistry",
+    description: "Five non-generic enterprise AI engineering SKILL.md playbooks for distributed teams using existing Git, Jira, OpenTelemetry, CI, and SQL tooling.",
+    canonicalUrl: "https://bhavinmistry.com/tools/enterprise-ai-skills/",
+    currentPath: "/tools/enterprise-ai-skills/",
+    mainContent: skillsMain
+  }));
+  console.log('Generated: tools/enterprise-ai-skills/index.html');
 }
 
 // 7b. Build Cross-Industry Enterprise AI Matrix (/industries/)
@@ -3104,7 +3412,7 @@ function buildAbout() {
 
   const crumbs = [
     { name: "Home", url: "/" },
-    { name: "About — Executive Leadership Dossier", url: "/about/" }
+    { name: "About: Executive Leadership Dossier", url: "/about/" }
   ];
 
   const abMain = `
@@ -3196,7 +3504,7 @@ function buildAbout() {
             Bhavin Mistry is an Enterprise AI and Engineering Executive who bridges <strong>C-suite commercial strategy</strong> with <strong>deep systems execution</strong>. Across his leadership tenure at <strong>Commonwealth Bank</strong>, and previously at <strong>Acenda, Accenture, and Deloitte</strong>, he has built and led high-performing engineering teams that modernize legacy cores, deliver cloud-native platforms, and transition Generative and Agentic AI into strictly governed enterprise production.
           </p>
           <p style="margin-bottom: 0;">
-            With a rare academic triad spanning <strong>Corporate Finance & Commerce (B.Com)</strong>, <strong>Advanced Computer Applications (MCA)</strong>, and <strong>Artificial Intelligence & Machine Learning (The University of Texas at Austin)</strong>, Bhavin operates fluently across both the <strong>architecture review board</strong> and the <strong>executive P&L table</strong>—ensuring every engineering roadmap compounds both technical velocity and commercial return.
+            With a rare academic triad spanning <strong>Corporate Finance & Commerce (B.Com)</strong>, <strong>Advanced Computer Applications (MCA)</strong>, and <strong>Artificial Intelligence & Machine Learning (The University of Texas at Austin)</strong>, Bhavin operates fluently across both the <strong>architecture review board</strong> and the <strong>executive P&L table</strong>, ensuring every engineering roadmap compounds both technical velocity and commercial return.
           </p>
         </div>
 
@@ -3209,7 +3517,7 @@ function buildAbout() {
           <div class="card" style="border-top: 2px solid var(--accent);">
             <span class="eyebrow">Sovereign Multi-Model Edge</span>
             <h4 style="margin-bottom: 8px;">Zero Lock-In Open Weights</h4>
-            <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 0;">Pairing Frontier reasoning with private vLLM/SGLang clusters (Qwen4, DeepSeek-V4, GLM-5.4)—cutting inference cost 75%+ while auditing commercial licenses &amp; APRA residency.</p>
+            <p style="font-size: 13px; color: var(--ink-soft); margin-bottom: 0;">Pairing Frontier reasoning with private vLLM/SGLang clusters (Qwen4, DeepSeek-V4, GLM-5.4) to cut inference spend while auditing commercial licenses &amp; APRA residency.</p>
           </div>
           <div class="card" style="border-top: 2px solid var(--accent);">
             <span class="eyebrow">AgenticOps Scale</span>
@@ -3236,7 +3544,7 @@ function buildAbout() {
             <div class="pillar-number">01</div>
             <h3>Organizational Design & High-Talent-Density Culture</h3>
             <p>
-              Structuring organizations using <strong>Team Topologies</strong>—separating core Platform Engineering squads (owning shared AI gateways, CI/CD, and observability) from Stream-Aligned product squads to eliminate handoff bottlenecks and cognitive overload.
+              Structuring organizations using <strong>Team Topologies</strong>: separating core Platform Engineering squads (owning shared AI gateways, CI/CD, and observability) from Stream-Aligned product squads to eliminate handoff bottlenecks and cognitive overload.
             </p>
             <p>
               Mentoring Engineering Managers, Staff/Principal Engineers, and Tech Leads to own architectural simplicity, operational resilience, and commercial outcomes.
@@ -3392,29 +3700,29 @@ function buildAbout() {
             <div class="tab-panel active" id="panel-days-1-30" role="tabpanel" aria-labelledby="tab-1">
               <div class="playbook-item">
                 <h4>Portfolio Triage & Capital Concentration</h4>
-                <p>Audit all active AI and platform initiatives using the <a href="/tools/ai-use-case-prioritiser/" class="text-link">AI Use Case Prioritiser</a>—pausing unscalable POCs and concentrating capital on high-ROI P&L winners.</p>
+                <p>Audit all active AI and platform initiatives using the <a href="/tools/ai-use-case-prioritiser/" class="text-link">AI Use Case Prioritiser</a>: pausing unscalable POCs and concentrating capital on high-ROI P&L winners.</p>
               </div>
               <div class="playbook-item">
-                <h4>DORA & FinOps Baseline</h4>
+                <h4>DORA &amp; FinOps Baseline</h4>
                 <p>Instrument deployment frequency, PR cycle times, change-failure rates, and cloud/token unit economics across all existing engineering pipelines.</p>
               </div>
               <div class="playbook-item">
-                <h4>Risk & Talent Topology Map</h4>
+                <h4>Risk &amp; Talent Topology Map</h4>
                 <p>Audit APRA/security exposure, single-point-of-failure systems, and leadership bench depth across stream-aligned and platform squads.</p>
               </div>
             </div>
 
             <div class="tab-panel" id="panel-days-31-60" role="tabpanel" aria-labelledby="tab-2" hidden>
               <div class="playbook-item">
-                <h4>Sovereign Gateway & Multi-Model Router Deployment</h4>
-                <p>Stand up a unified <a href="/architectures/enterprise-ai-gateway/" class="text-link">Enterprise AI Gateway</a> & <a href="/architectures/enterprise-mcp-a2a-agentic-mesh/" class="text-link">MCP + A2A Agentic Mesh</a>—pairing Frontier planners with sovereign vLLM/SGLang open-weight executors (Qwen4 / DeepSeek-V4 / distilled SLMs) to eliminate vendor lock-in and capture 70%+ unit-cost reductions.</p>
+                <h4>Sovereign Gateway &amp; Multi-Model Router Deployment</h4>
+                <p>Stand up a unified <a href="/architectures/enterprise-ai-gateway/" class="text-link">Enterprise AI Gateway</a> &amp; <a href="/architectures/enterprise-mcp-a2a-agentic-mesh/" class="text-link">MCP + A2A Agentic Mesh</a>, pairing Frontier planners with sovereign vLLM/SGLang open-weight executors (Qwen4 / DeepSeek-V4 / distilled SLMs) to eliminate vendor lock-in.</p>
               </div>
               <div class="playbook-item">
                 <h4>Team Topologies Realignment</h4>
-                <p>Decouple core Platform & Enablement squads from Stream-Aligned product squads to remove cross-team blockers and cognitive load.</p>
+                <p>Decouple core Platform &amp; Enablement squads from Stream-Aligned product squads to remove cross-team blockers and cognitive load.</p>
               </div>
               <div class="playbook-item">
-                <h4>Production Readiness & Licensing Gate</h4>
+                <h4>Production Readiness &amp; Licensing Gate</h4>
                 <p>Institute the <a href="/frameworks/enterprise-ai-production-readiness/" class="text-link">50-Point AI Production Checklist</a>, MIT/Apache vs custom MaaS license audits, and automated CI evaluation harnesses before any system reaches live traffic.</p>
               </div>
             </div>
@@ -3422,7 +3730,7 @@ function buildAbout() {
             <div class="tab-panel" id="panel-days-61-90" role="tabpanel" aria-labelledby="tab-3" hidden>
               <div class="playbook-item">
                 <h4>Policy-Bound AI-Native SDLC (AgenticOps)</h4>
-                <p>Standardize repo-level <code>AGENTS.md</code> and Linux Foundation <code>SKILL.md</code> contracts with automated verification loops and MCP Elicitation gates—multiplying leverage-per-engineer while preventing AI-generated tech debt.</p>
+                <p>Standardize repo-level <code>AGENTS.md</code> and Linux Foundation <code>SKILL.md</code> contracts with automated verification loops and MCP Elicitation gates, multiplying leverage-per-engineer while preventing AI-generated tech debt.</p>
               </div>
               <div class="playbook-item">
                 <h4>Executive Unit-Economics Telemetry</h4>
@@ -3773,6 +4081,7 @@ function buildSeoAssets() {
     { path: 'brief/', changefreq: 'weekly', priority: '0.8' },
     { path: 'ai-radar/', changefreq: 'weekly', priority: '0.8' },
     { path: 'tools/', changefreq: 'weekly', priority: '0.8' },
+    { path: 'tools/enterprise-ai-skills/', changefreq: 'weekly', priority: '0.9' },
     { path: 'tools/graph-engineering/', changefreq: 'weekly', priority: '0.8' },
     { path: 'tools/enterprise-ai-readiness/', changefreq: 'weekly', priority: '0.8' },
     { path: 'tools/rag-cost-calculator/', changefreq: 'weekly', priority: '0.8' },
@@ -3920,6 +4229,7 @@ Sitemap: https://bhavinmistry.com/sitemap.xml
 - LangChain vs LlamaIndex vs Haystack: https://bhavinmistry.com/compare/llm-orchestration/
 
 ## Frameworks & Tools
+- Top 5 Enterprise AI Engineering Skills (+50% Team Velocity): https://bhavinmistry.com/tools/enterprise-ai-skills/
 - Graph Engineering Platform (AI skills and MCP servers): https://bhavinmistry.com/tools/graph-engineering/
 - Enterprise AI Production Readiness Framework: https://bhavinmistry.com/frameworks/enterprise-ai-production-readiness/
 - Enterprise AI Radar: https://bhavinmistry.com/ai-radar/

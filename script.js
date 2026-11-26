@@ -53,8 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Kinetic typography headline reveal
   initKineticTypography();
 
-  // Living Hero Motion Canvas Stream (Zajno-inspired)
+  // Living 3D Spatial AI Topology Engine (Interactive Drag-to-Orbit + Modes)
   initHeroMotionCanvas();
+
+  // Interactive 3D Perspective Tilt on Feature Cards
+  initTilt3D();
+
+  // Interactive Homepage Architecture Packet Simulator
+  initHomeArchFlow();
+
+  // Interactive Orbital AI Radar Sweeper & Filter
+  initRadarSweeper();
+
+  // Enterprise Top 5 Skills Velocity Calculator & Spec Downloader
+  initEnterpriseSkillsWorkbench();
 
   // Lenis inertia smooth scroll
   initSmoothScroll();
@@ -106,6 +118,7 @@ function initCommandPalette() {
     { title: "Enterprise Multi-Protocol Agentic Mesh (MCP + A2A)", url: "/architectures/enterprise-mcp-a2a-agentic-mesh/", category: "Architecture" },
     { title: "Model Context Protocol (MCP) in Enterprise Production", url: "/insights/model-context-protocol-enterprise-production-blueprint/", category: "Insight" },
     { title: "Enterprise AI Across Regulated Industries (Banking, Healthcare, Telecom, Gov, Retail)", url: "/industries/", category: "Industry Matrix" },
+    { title: "Top 5 Enterprise AI Engineering Skills (+50% Velocity on Existing Tools)", url: "/tools/enterprise-ai-skills/", category: "Tool" },
     { title: "Model Router & SLM Distillation ROI Simulator", url: "/tools/model-router-cost-calculator/", category: "Tool" },
     { title: "AI-Enabled SDLC & DORA Velocity Modeler", url: "/tools/ai-sdlc-dora-roi-calculator/", category: "Tool" },
     { title: "Enterprise Model Context Protocol (MCP) Architecture", url: "/architectures/enterprise-mcp-gateway/", category: "Architecture" },
@@ -1170,7 +1183,7 @@ function initPipelineSimulator() {
   });
 }
 
-/* Interactive Living Hero Motion Stream (Zajno-inspired Canvas) */
+/* Interactive 3D Spatial AI Topology Engine (Drag-to-Orbit, Node Raycasting & Topology Modes) */
 function initHeroMotionCanvas() {
   const canvas = document.getElementById('hero-motion-canvas');
   if (!canvas) return;
@@ -1178,103 +1191,550 @@ function initHeroMotionCanvas() {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  let width = (canvas.width = canvas.parentElement.clientWidth - 40);
-  let height = (canvas.height = 90);
+  const toggleBtn = document.getElementById('canvas-motion-toggle');
+  const tooltipEl = document.getElementById('hero-3d-tooltip');
+  const modeBtns = document.querySelectorAll('[data-3d-mode]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let isPaused = prefersReduced;
+  let rafId = null;
+  let activeMode = 'router';
 
-  window.addEventListener('resize', () => {
+  const updateToggleUI = () => {
+    if (!toggleBtn) return;
+    toggleBtn.setAttribute('aria-label', isPaused ? 'Play 3D pipeline animation' : 'Pause 3D pipeline animation');
+    toggleBtn.textContent = isPaused ? 'Play 3D' : 'Pause 3D';
+  };
+
+  let width = 540;
+  let height = 360;
+  function sizeCanvas() {
     if (!canvas.parentElement) return;
-    width = canvas.width = canvas.parentElement.clientWidth - 40;
-    height = canvas.height = 90;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = canvas.parentElement.clientWidth || 540;
+    height = canvas.parentElement.clientHeight || 360;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  sizeCanvas();
+  window.addEventListener('resize', () => {
+    sizeCanvas();
+    drawFrame();
   }, { passive: true });
 
+  // 3D Geometry Topologies
+  const topologies = {
+    router: {
+      title: '3D Planner-Executor Sphere',
+      hint: 'Drag to orbit · Hover node',
+      nodes: [
+        { label: 'Frontier Planner', role: 'Claude / GPT-6.2 / Gemini 4 Carbon architectural reasoning', x: 0, y: -0.95, z: 0, color: '#60a5fa', r: 9 },
+        { label: 'Gateway Classifier', role: '8ms intent & schema Complexity Router', x: 0, y: 0, z: 0, color: '#f8fafc', r: 10 },
+        { label: 'vLLM Qwen4 FP8', role: 'Onshore private cluster handling routine synthesis', x: 0.95, y: 0.45, z: 0.4, color: '#34d399', r: 8 },
+        { label: 'DeepSeek Flash', role: 'High-throughput 180+ tok/s extraction path', x: -0.95, y: 0.45, z: -0.4, color: '#34d399', r: 8 },
+        { label: 'Redis Cache', role: 'Semantic embedding vector cache layer', x: 0.45, y: 0.35, z: -0.95, color: '#fbbf24', r: 7 },
+        { label: 'APRA Audit', role: 'Immutable OTEL & PII redaction boundary', x: -0.45, y: 0.35, z: 0.95, color: '#38bdf8', r: 7 }
+      ],
+      edges: [[0,1],[1,2],[1,3],[1,4],[1,5],[2,4],[3,5],[0,2],[0,3]]
+    },
+    mesh: {
+      title: 'MCP + A2A Dual-Protocol Mesh',
+      hint: 'Vertical Tools · Horizontal Peer Agents',
+      nodes: [
+        { label: 'Orchestrator', role: 'Reads A2A /.well-known/agent.json cards', x: 0, y: -0.85, z: 0, color: '#60a5fa', r: 9 },
+        { label: 'Risk Agent A2A', role: 'APRA CPS 234 policy compliance peer agent', x: 1.0, y: -0.1, z: 0.3, color: '#38bdf8', r: 8 },
+        { label: 'Coding Agent A2A', role: 'AGENTS.md & verification loop peer', x: -1.0, y: -0.1, z: -0.3, color: '#38bdf8', r: 8 },
+        { label: 'MCP Tasks Broker', role: 'Async long-running builds & webhooks', x: 0, y: 0.15, z: 0.85, color: '#f8fafc', r: 9 },
+        { label: 'SKILL.md Loader', role: 'On-demand tool schemas cutting context bloat 85%', x: 0.6, y: 0.85, z: -0.4, color: '#34d399', r: 7 },
+        { label: 'Elicitation Gate', role: 'Human-in-the-loop mutation approval pause', x: -0.6, y: 0.85, z: 0.4, color: '#fbbf24', r: 8 }
+      ],
+      edges: [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3],[3,4],[3,5],[4,5]]
+    },
+    vpc: {
+      title: 'Sovereign Zero-Trust Enclave',
+      hint: 'Onshore KMS · Zero Public Egress',
+      nodes: [
+        { label: 'mTLS Edge', role: 'Mutual TLS + short-lived OAuth2 STS tokens', x: 0, y: -0.9, z: 0.2, color: '#60a5fa', r: 9 },
+        { label: 'PII Vault', role: 'TFN / PAN cryptographic tokenization proxy', x: 0, y: 0, z: 0, color: '#fbbf24', r: 10 },
+        { label: 'SGLang TPU/GPU', role: 'KV-cache NVMe offloading in private enclave', x: 0.9, y: 0.25, z: -0.5, color: '#34d399', r: 8 },
+        { label: 'GraphRAG DB', role: 'Neo4j + HNSW row-level access perimeter', x: -0.9, y: 0.25, z: 0.5, color: '#38bdf8', r: 8 },
+        { label: 'License Guard', role: 'MIT / Apache 2.0 vs custom checkpoint audit', x: 0, y: 0.9, z: -0.2, color: '#f8fafc', r: 7 }
+      ],
+      edges: [[0,1],[1,2],[1,3],[1,4],[2,4],[3,4],[0,2],[0,3]]
+    }
+  };
+
+  // Outer ambient wireframe geodesic vertices (12 vertices of icosahedron)
+  const phi = (1 + Math.sqrt(5)) / 2;
+  const rawShell = [
+    [-1, phi, 0], [1, phi, 0], [-1, -phi, 0], [1, -phi, 0],
+    [0, -1, phi], [0, 1, phi], [0, -1, -phi], [0, 1, -phi],
+    [phi, 0, -1], [phi, 0, 1], [-phi, 0, -1], [-phi, 0, 1]
+  ].map(([x, y, z]) => {
+    const len = Math.hypot(x, y, z);
+    return { x: (x / len) * 1.35, y: (y / len) * 1.35, z: (z / len) * 1.35 };
+  });
+  const shellEdges = [];
+  for (let i = 0; i < rawShell.length; i++) {
+    for (let j = i + 1; j < rawShell.length; j++) {
+      const d = Math.hypot(rawShell[i].x - rawShell[j].x, rawShell[i].y - rawShell[j].y, rawShell[i].z - rawShell[j].z);
+      if (d < 1.48) shellEdges.push([i, j]);
+    }
+  }
+
+  let rotX = 0.28;
+  let rotY = 0.45;
+  let targetTiltX = 0;
+  let targetTiltY = 0;
+  let isDragging = false;
+  let lastX = 0;
+  let lastY = 0;
   let mouseX = -999;
   let mouseY = -999;
+  let hoveredIdx = -1;
+  let pulsePhase = 0;
 
-  canvas.addEventListener('mousemove', (e) => {
+  const project = (pt, scale) => {
+    const cx = Math.cos(rotY + targetTiltY), sx = Math.sin(rotY + targetTiltY);
+    const cy = Math.cos(rotX + targetTiltX), sy = Math.sin(rotX + targetTiltX);
+    // Rotate Y then X
+    const x1 = pt.x * cx - pt.z * sx;
+    const z1 = pt.x * sx + pt.z * cx;
+    const y2 = pt.y * cy - z1 * sy;
+    const z2 = pt.y * sy + z1 * cy;
+    const fov = 4.2;
+    const depth = fov / (fov + z2 + 1.6);
+    return {
+      px: width * 0.5 + x1 * scale * depth,
+      py: height * 0.40 + y2 * scale * depth,
+      z: z2,
+      scale: depth
+    };
+  };
+
+  canvas.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', (e) => {
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
+    if (isDragging) {
+      rotY += (e.clientX - lastX) * 0.008;
+      rotX += (e.clientY - lastY) * 0.008;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      if (isPaused) drawFrame();
+    } else {
+      targetTiltY = ((mouseX / width) - 0.5) * 0.35;
+      targetTiltX = ((mouseY / height) - 0.5) * -0.25;
+      if (isPaused) drawFrame();
+    }
   });
-
-  canvas.addEventListener('mouseleave', () => {
+  canvas.addEventListener('pointerup', () => { isDragging = false; });
+  canvas.addEventListener('pointerleave', () => {
+    isDragging = false;
     mouseX = -999;
     mouseY = -999;
+    targetTiltX = 0;
+    targetTiltY = 0;
+    hoveredIdx = -1;
+    updateTooltip(null);
   });
 
-  // Particle tokens traveling along pipeline
-  const particles = Array.from({ length: 16 }, () => ({
-    x: Math.random() * width,
-    waveIndex: Math.floor(Math.random() * 3),
-    speed: 0.8 + Math.random() * 1.5,
-    radius: 2 + Math.random() * 2,
-    alpha: 0.45 + Math.random() * 0.55
-  }));
+  function updateTooltip(node) {
+    if (!tooltipEl) return;
+    const topo = topologies[activeMode];
+    if (node) {
+      tooltipEl.innerHTML = `<span><strong>${node.label}</strong> · ${node.role}</span><span>Depth Layer</span>`;
+    } else {
+      tooltipEl.innerHTML = `<span><strong>${topo.title}</strong> · ${topo.hint}</span><span>Interactive 3D Canvas</span>`;
+    }
+  }
 
-  const waves = [
-    { freq: 0.007, speed: 0.022, amp: 20, color: 'rgba(157, 64, 43, 0.45)' },
-    { freq: 0.011, speed: 0.032, amp: 14, color: 'rgba(34, 197, 94, 0.4)' },
-    { freq: 0.005, speed: 0.016, amp: 22, color: 'rgba(232, 236, 233, 0.3)' }
-  ];
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const m = btn.getAttribute('data-3d-mode');
+      if (!topologies[m]) return;
+      activeMode = m;
+      modeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+      hoveredIdx = -1;
+      updateTooltip(null);
+      drawFrame();
+    });
+  });
 
-  let frame = 0;
-
-  function render() {
-    frame++;
+  function drawFrame() {
     ctx.clearRect(0, 0, width, height);
+    const scale = Math.min(width, height) * 0.45;
+    const topo = topologies[activeMode];
 
-    // Render waves
-    waves.forEach((w, idx) => {
+    // Subtle radial backdrop glow strictly anchored behind 3D mesh focal center
+    const grad = ctx.createRadialGradient(width * 0.5, height * 0.40, 12, width * 0.5, height * 0.40, scale * 1.45);
+    grad.addColorStop(0, 'rgba(37, 99, 235, 0.22)');
+    grad.addColorStop(1, 'rgba(7, 11, 20, 0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, width, height);
+
+    // 1. Render subtle geodesic containment shell
+    const pShell = rawShell.map(p => project(p, scale));
+    ctx.lineWidth = 0.85;
+    shellEdges.forEach(([i, j]) => {
+      const a = pShell[i], b = pShell[j];
+      ctx.strokeStyle = 'rgba(148, 163, 184, 0.14)';
       ctx.beginPath();
-      ctx.strokeStyle = w.color;
-      ctx.lineWidth = 1.6;
-
-      const baseMid = height * 0.5 + (idx - 1) * 5;
-
-      for (let x = 0; x <= width; x += 3) {
-        let y = baseMid + Math.sin(x * w.freq + frame * w.speed) * w.amp;
-
-        // Interactive mouse displacement ripple (Zajno physics feel)
-        if (mouseX > -100) {
-          const dist = Math.abs(x - mouseX);
-          if (dist < 110) {
-            y += (1 - dist / 110) * 16 * Math.cos(frame * 0.1);
-          }
-        }
-
-        if (x === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      }
-
+      ctx.moveTo(a.px, a.py);
+      ctx.lineTo(b.px, b.py);
       ctx.stroke();
     });
 
-    // Render streaming token particles
-    particles.forEach(p => {
-      p.x += p.speed;
-      if (p.x > width + 10) p.x = -10;
-
-      const w = waves[p.waveIndex];
-      const baseMid = height * 0.5 + (p.waveIndex - 1) * 5;
-      let y = baseMid + Math.sin(p.x * w.freq + frame * w.speed) * w.amp;
-
-      if (mouseX > -100) {
-        const dist = Math.abs(p.x - mouseX);
-        if (dist < 110) {
-          y += (1 - dist / 110) * 16 * Math.cos(frame * 0.1);
+    // 2. Project active topology nodes & detect hover
+    const pNodes = topo.nodes.map((n, idx) => ({ ...n, idx, ...project(n, scale) }));
+    hoveredIdx = -1;
+    let bestDist = 26;
+    if (mouseX > -100) {
+      pNodes.forEach(pn => {
+        const d = Math.hypot(pn.px - mouseX, pn.py - mouseY);
+        if (d < bestDist) {
+          bestDist = d;
+          hoveredIdx = pn.idx;
         }
-      }
+      });
+    }
+    if (!isDragging && hoveredIdx !== -1) {
+      updateTooltip(topo.nodes[hoveredIdx]);
+    } else if (!isDragging && mouseX < -50) {
+      updateTooltip(null);
+    }
 
+    // 3. Draw 3D edges + animated signal packets
+    topo.edges.forEach(([i, j], eIdx) => {
+      const a = pNodes[i], b = pNodes[j];
+      const highlight = hoveredIdx === i || hoveredIdx === j;
+      ctx.strokeStyle = highlight ? 'rgba(96, 165, 250, 0.85)' : 'rgba(96, 165, 250, 0.34)';
+      ctx.lineWidth = highlight ? 1.8 : 1.15;
       ctx.beginPath();
-      ctx.arc(p.x, y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = p.waveIndex === 0 ? `rgba(244, 234, 231, ${p.alpha})` : (p.waveIndex === 1 ? `rgba(74, 222, 128, ${p.alpha})` : `rgba(211, 212, 201, ${p.alpha})`);
+      ctx.moveTo(a.px, a.py);
+      ctx.lineTo(b.px, b.py);
+      ctx.stroke();
+
+      // Signal pulse dot along 3D edge
+      const t = (pulsePhase + eIdx * 0.27) % 1;
+      const sx = a.px + (b.px - a.px) * t;
+      const sy = a.py + (b.py - a.py) * t;
+      ctx.fillStyle = '#93c5fd';
+      ctx.beginPath();
+      ctx.arc(sx, sy, 2.2, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    requestAnimationFrame(render);
+    // 4. Depth-sort (painter's algorithm) and draw 3D nodes + labels
+    pNodes.slice().sort((a, b) => b.z - a.z).forEach(pn => {
+      const radius = pn.r * pn.scale * (hoveredIdx === pn.idx ? 1.35 : 1);
+      const alpha = Math.max(0.45, Math.min(1, 0.55 + pn.scale * 0.45));
+
+      ctx.beginPath();
+      ctx.arc(pn.px, pn.py, radius * 1.9, 0, Math.PI * 2);
+      ctx.fillStyle = hoveredIdx === pn.idx ? 'rgba(96, 165, 250, 0.32)' : 'rgba(96, 165, 250, 0.10)';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(pn.px, pn.py, radius, 0, Math.PI * 2);
+      ctx.fillStyle = pn.color;
+      ctx.globalAlpha = alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      ctx.font = `600 ${Math.round(10 * Math.max(0.85, pn.scale))}px "JetBrains Mono", monospace`;
+      ctx.fillStyle = hoveredIdx === pn.idx ? '#ffffff' : 'rgba(226, 232, 240, 0.88)';
+      ctx.textAlign = 'center';
+      ctx.fillText(pn.label, pn.px, pn.py - radius - 7);
+    });
   }
 
-  requestAnimationFrame(render);
+  function tick() {
+    if (isPaused) {
+      rafId = null;
+      return;
+    }
+    if (!isDragging) {
+      rotY += 0.0045;
+    }
+    pulsePhase = (pulsePhase + 0.008) % 1;
+    drawFrame();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      updateToggleUI();
+      if (!isPaused && !rafId) tick();
+    });
+  }
+
+  updateToggleUI();
+  updateTooltip(null);
+  drawFrame();
+  if (!isPaused) tick();
+}
+
+/* Interactive 3D Perspective Card Tilt */
+function initTilt3D() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  document.querySelectorAll('[data-tilt-3d]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty('--rx', `${(-y * 5.5).toFixed(2)}deg`);
+      card.style.setProperty('--ry', `${(x * 6.5).toFixed(2)}deg`);
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+}
+
+/* Interactive Homepage Agentic Mesh Packet Flow */
+function initHomeArchFlow() {
+  const wrap = document.querySelector('[data-home-arch-sim]');
+  if (!wrap) return;
+
+  const statusEl = document.getElementById('home-arch-status');
+  const btns = wrap.querySelectorAll('[data-home-sim]');
+  const nodes = {
+    agent: wrap.querySelector('[data-arch-node="agent"]'),
+    gateway: wrap.querySelector('[data-arch-node="gateway"]'),
+    target: wrap.querySelector('[data-arch-node="target"]')
+  };
+
+  const paths = {
+    mcp: { node: 'gateway', msg: 'MCP Task Dispatched: Lazy-loaded SKILL.md guide -> Async webhook queued' },
+    a2a: { node: 'agent', msg: 'A2A Delegation: Signed /.well-known/agent.json card verified · Hop depth 1/3' },
+    elicitation: { node: 'target', msg: 'Elicitation Gate: Production mutation paused awaiting human signoff' }
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.getAttribute('data-home-sim');
+      const spec = paths[key];
+      if (!spec) return;
+      btns.forEach(b => b.classList.toggle('is-active', b === btn));
+      Object.values(nodes).forEach(n => n && n.classList.remove('is-sim-active', 'is-sim-warning'));
+      const targetNode = nodes[spec.node];
+      if (targetNode) targetNode.classList.add(key === 'elicitation' ? 'is-sim-warning' : 'is-sim-active');
+      if (statusEl) statusEl.textContent = spec.msg;
+    });
+  });
+}
+
+/* Interactive Orbital AI Radar Sweeper & Quadrant Filter (/ai-radar/) */
+function initRadarSweeper() {
+  const canvas = document.getElementById('radar-sweeper-canvas');
+  const dataEl = document.getElementById('radar-json-data');
+  if (!canvas || !dataEl) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let items = [];
+  try { items = JSON.parse(dataEl.textContent); } catch { return; }
+
+  const infoEl = document.getElementById('radar-sweeper-info');
+  const toggleBtn = document.getElementById('radar-motion-toggle');
+  const filterBtns = document.querySelectorAll('[data-radar-filter]');
+  const cols = document.querySelectorAll('#radar-columns [data-quadrant]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let isPaused = prefersReduced;
+  let angle = 0.6;
+  let activeFilter = 'ALL';
+  let rafId = null;
+
+  const ringRadius = { ADOPT: 0.28, TRIAL: 0.50, ASSESS: 0.72, WATCH: 0.90 };
+  const ringColors = { ADOPT: '#16a34a', TRIAL: '#2563eb', ASSESS: '#d97706', WATCH: '#7c3aed' };
+  const quadAngleBase = { ADOPT: 0.25, TRIAL: 1.85, ASSESS: 3.45, WATCH: 5.05 };
+  const counts = { ADOPT: 0, TRIAL: 0, ASSESS: 0, WATCH: 0 };
+
+  const blips = items.map(it => {
+    const idx = counts[it.quadrant] || 0;
+    counts[it.quadrant] = idx + 1;
+    const theta = (quadAngleBase[it.quadrant] || 0) + idx * 0.24;
+    const rad = (ringRadius[it.quadrant] || 0.5) + ((idx % 2) * 0.05 - 0.025);
+    return { ...it, theta, rad };
+  });
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = 400 * dpr;
+  canvas.height = 400 * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  let mx = -999, my = -999;
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mx = (e.clientX - r.left) * (400 / r.width);
+    my = (e.clientY - r.top) * (400 / r.height);
+    if (isPaused) render();
+  });
+  canvas.addEventListener('mouseleave', () => { mx = -999; my = -999; });
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.getAttribute('data-radar-filter');
+      filterBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+      cols.forEach(col => {
+        const q = col.getAttribute('data-quadrant');
+        col.style.display = (activeFilter === 'ALL' || activeFilter === q) ? '' : 'none';
+      });
+      render();
+    });
+  });
+
+  const updateToggle = () => {
+    if (!toggleBtn) return;
+    toggleBtn.textContent = isPaused ? 'Play Sweep' : 'Pause Sweep';
+  };
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      updateToggle();
+      if (!isPaused && !rafId) loop();
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, 400, 400);
+    const cx = 200, cy = 200, R = 185;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const ringLine = isDark ? 'rgba(148, 163, 184, 0.22)' : 'rgba(15, 23, 42, 0.14)';
+
+    // Rings
+    [0.32, 0.54, 0.76, 0.96].forEach(ratio => {
+      ctx.beginPath();
+      ctx.arc(cx, cy, R * ratio, 0, Math.PI * 2);
+      ctx.strokeStyle = ringLine;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Crosshairs
+    ctx.beginPath();
+    ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy);
+    ctx.moveTo(cx, cy - R); ctx.lineTo(cx, cy + R);
+    ctx.strokeStyle = ringLine;
+    ctx.stroke();
+
+    // Sweeper beam
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, R, angle, angle + 0.45);
+    ctx.closePath();
+    ctx.fillStyle = isDark ? 'rgba(96, 165, 250, 0.16)' : 'rgba(29, 78, 216, 0.12)';
+    ctx.fill();
+
+    // Blips
+    let hovered = null;
+    blips.forEach(b => {
+      const visible = activeFilter === 'ALL' || activeFilter === b.quadrant;
+      const bx = cx + Math.cos(b.theta) * (R * b.rad);
+      const by = cy + Math.sin(b.theta) * (R * b.rad);
+      const dist = Math.hypot(bx - mx, by - my);
+      if (visible && dist < 14) hovered = b;
+
+      ctx.beginPath();
+      ctx.arc(bx, by, hovered === b ? 7 : 5, 0, Math.PI * 2);
+      ctx.fillStyle = ringColors[b.quadrant] || '#2563eb';
+      ctx.globalAlpha = visible ? 1 : 0.18;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    if (hovered && infoEl) {
+      infoEl.innerHTML = `<strong>[${hovered.quadrant}] ${hovered.name}</strong> — ${hovered.rationale}`;
+    }
+  }
+
+  function loop() {
+    if (isPaused) { rafId = null; return; }
+    angle = (angle + 0.018) % (Math.PI * 2);
+    render();
+    rafId = requestAnimationFrame(loop);
+  }
+
+  updateToggle();
+  render();
+  if (!isPaused) loop();
+}
+
+/* Enterprise Top 5 Skills Productivity Simulator & Single-File SKILL.md Download */
+function initEnterpriseSkillsWorkbench() {
+  const calc = document.querySelector('[data-enterprise-skills-calc]');
+  if (calc) {
+    const teamSlider = document.getElementById('skills-team-size');
+    const baseSlider = document.getElementById('skills-base-hours');
+    const teamValEl = document.getElementById('skills-team-size-val');
+    const baseValEl = document.getElementById('skills-base-hours-val');
+    const toggles = Array.from(calc.querySelectorAll('.skill-toggle-input'));
+
+    const upliftEl = document.getElementById('skills-pct-uplift');
+    const newHoursEl = document.getElementById('skills-new-hours');
+    const reclaimedEl = document.getElementById('skills-reclaimed-hours');
+    const fteEl = document.getElementById('skills-fte-unlocked');
+    const annualEl = document.getElementById('skills-annual-hours');
+
+    const update = () => {
+      const teamSize = parseInt(teamSlider?.value || '120', 10);
+      const baseHours = parseInt(baseSlider?.value || '22', 10);
+      if (teamValEl) teamValEl.textContent = `${teamSize} Engineers`;
+      if (baseValEl) baseValEl.textContent = `${baseHours} hrs/wk`;
+
+      const reclaimedPerEng = toggles.reduce((sum, input) => {
+        return input.checked ? sum + parseFloat(input.getAttribute('data-skill-hours') || '0') : sum;
+      }, 0);
+
+      // Cap total weekly hours realistically at 38h net build out of a 40h week
+      const cappedReclaimed = Math.min(reclaimedPerEng, Math.max(0, 38 - baseHours));
+      const newHours = baseHours + cappedReclaimed;
+      const pct = baseHours > 0 ? (cappedReclaimed / baseHours) * 100 : 0;
+      const fteUnlocked = baseHours > 0 ? (teamSize * (cappedReclaimed / baseHours)) : 0;
+      const annualHours = Math.round(teamSize * cappedReclaimed * 48);
+
+      if (upliftEl) upliftEl.textContent = `+${pct.toFixed(1)}%`;
+      if (newHoursEl) newHoursEl.textContent = `${baseHours.toFixed(1)} → ${newHours.toFixed(1)} hrs`;
+      if (reclaimedEl) reclaimedEl.textContent = `+${cappedReclaimed.toFixed(1)} hrs/wk`;
+      if (fteEl) fteEl.textContent = `+${fteUnlocked.toFixed(1)} FTEs`;
+      if (annualEl) annualEl.textContent = `${annualHours.toLocaleString()} hrs/yr`;
+    };
+
+    teamSlider?.addEventListener('input', update);
+    baseSlider?.addEventListener('input', update);
+    toggles.forEach(t => t.addEventListener('change', update));
+    update();
+  }
+
+  document.querySelectorAll('.skill-download-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-skill-source');
+      const filename = btn.getAttribute('data-skill-filename') || 'SKILL.md';
+      const sourceEl = targetId ? document.getElementById(targetId) : null;
+      if (!sourceEl) return;
+      const blob = new Blob([sourceEl.textContent], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast(`Downloaded ${filename}`);
+    });
+  });
 }
