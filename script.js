@@ -102,6 +102,8 @@ function initCommandPalette() {
   const closeBtn = dialog.querySelector('[data-close-palette]');
 
   const searchIndex = [
+    { title: "Sovereign AI & Open-Weight Governance (Qwen4, DeepSeek-V4, GLM-5.4, Kimi K3.1)", url: "/insights/sovereign-ai-open-weight-governance-playbook/", category: "Insight" },
+    { title: "Enterprise Multi-Protocol Agentic Mesh (MCP + A2A)", url: "/architectures/enterprise-mcp-a2a-agentic-mesh/", category: "Architecture" },
     { title: "Model Context Protocol (MCP) in Enterprise Production", url: "/insights/model-context-protocol-enterprise-production-blueprint/", category: "Insight" },
     { title: "Enterprise AI Across Regulated Industries (Banking, Healthcare, Telecom, Gov, Retail)", url: "/industries/", category: "Industry Matrix" },
     { title: "Model Router & SLM Distillation ROI Simulator", url: "/tools/model-router-cost-calculator/", category: "Tool" },
@@ -462,6 +464,19 @@ function initCalculators() {
       setAnimatedOutput('out-mr-private-data', `${privateDataPct}%`);
     };
     mrForm.addEventListener('input', calcMR);
+    document.querySelectorAll('[data-mr-preset]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('mr-frontier-input').value = btn.dataset.fi;
+        document.getElementById('mr-frontier-output').value = btn.dataset.fo;
+        document.getElementById('mr-slm-input').value = btn.dataset.si;
+        document.getElementById('mr-slm-output').value = btn.dataset.so;
+        document.getElementById('mr-router-ratio').value = btn.dataset.ratio;
+        document.getElementById('mr-cache-hit').value = btn.dataset.cache;
+        const govEl = document.getElementById('out-mr-gov-posture');
+        if (govEl && btn.dataset.gov) govEl.textContent = btn.dataset.gov;
+        calcMR();
+      });
+    });
     calcMR();
   }
 

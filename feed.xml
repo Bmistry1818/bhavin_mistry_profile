@@ -8,6 +8,14 @@
     <atom:link href="https://bhavinmistry.com/feed.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Sovereign AI &amp; The Open-Weight Governance Playbook: Navigating Qwen4, DeepSeek-V4, GLM-5.4, and Kimi K3.1</title>
+      <link>https://bhavinmistry.com/insights/sovereign-ai-open-weight-governance-playbook/</link>
+      <guid>https://bhavinmistry.com/insights/sovereign-ai-open-weight-governance-playbook/</guid>
+      <pubDate>Thu, 26 Nov 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[How Heads of AI capture the 80% flash inference cost collapse and eliminate vendor lock-in using vLLM/SGLang VPC clusters—without walking into open-weight licensing or APRA CPS 234 sovereignty traps.]]></description>
+      <category>AI FinOps &amp; Governance</category>
+    </item>
+    <item>
       <title>Model Context Protocol (MCP) in Enterprise Production: Security, Authorization, and Tool Federation</title>
       <link>https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/</link>
       <guid>https://bhavinmistry.com/insights/model-context-protocol-enterprise-production-blueprint/</guid>

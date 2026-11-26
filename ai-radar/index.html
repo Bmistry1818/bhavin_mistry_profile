@@ -44,7 +44,7 @@
     <meta name="theme-color" content="#0b0f0d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f2eb" />
 
-    <link rel="stylesheet" href="/styles.css?v=mwwni2d8" />
+    <link rel="stylesheet" href="/styles.css?v=mwwtdtia" />
     <script>
       (function() {
         try {
@@ -57,7 +57,7 @@
         } catch (e) {}
       })();
     </script>
-    <script defer src="/script.js?v=mwwni2d8"></script>
+    <script defer src="/script.js?v=mwwtdtia"></script>
     
       <script type="application/ld+json">
       {
@@ -139,6 +139,12 @@
           </div>
           
             <div class="radar-item-card">
+              <h4>Repo Agent Contracts (AGENTS.md & SKILL.md)</h4>
+              <p>Version-controlled AGENTS.md build/architecture contracts and AAIF-standardized SKILL.md procedural bundles co-located inside enterprise repositories.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Stops coding agents (Claude Code, Codex, Cursor) from guessing team conventions, enforcing deterministic test verification loops before PR creation.</div>
+            </div>
+          
+            <div class="radar-item-card">
               <h4>Automated EvalOps in CI/CD</h4>
               <p>Automated regression testing of prompt templates, RAG ground truth, and reasoning chains in pull requests using golden SME benchmarks.</p>
               <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Vibe-checking prompts in production is untenable in regulated environments; CI eval gates prevent silent degradation.</div>
@@ -177,8 +183,20 @@
           
             <div class="radar-item-card">
               <h4>Intelligent Model Routing & SLMs</h4>
-              <p>Dynamic task complexity classifiers routing 70% of routine intent/extraction to low-cost small models (Llama 3.3 / Mistral) and 30% to frontier LLMs.</p>
-              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Reduces inference spend by 65-80% while cutting P95 time-to-first-token latency to under 250ms for routine enterprise traffic.</div>
+              <p>Planner-Executor hierarchies routing 70-80% of high-volume extraction, classification, and routine coding to ultra-fast tiers (Gemini 4 Hydrogen, DeepSeek-V4.1-Flash, distilled Qwen4 FP8) while reserving Frontier planners (Claude Fable 5.2, GPT-6.2, Gemini 4 Carbon) for architectural reasoning.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Captures the late-2026 80% flash inference cost collapse while cutting P95 time-to-first-token under 200ms and reducing single-provider vendor lock-in.</div>
+            </div>
+          
+            <div class="radar-item-card">
+              <h4>Sovereign Open-Weight Serving (vLLM & SGLang)</h4>
+              <p>Self-hosting high-efficiency open weights (Qwen4, DeepSeek-V4, GLM-5.4 Loop Transformers, Kimi K3.1) inside private VPCs with vLLM/SGLang, FP8 quantization, and NVMe KV-cache offloading.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Neutralizes cross-border data residency risk and frontier API price shock while achieving high-throughput serving across NVIDIA, AMD, and TPU silicon.</div>
+            </div>
+          
+            <div class="radar-item-card">
+              <h4>Agent2Agent Protocol (A2A) & Agentic Mesh</h4>
+              <p>Horizontal peer-to-peer protocol allowing cross-vendor agents to discover capabilities via /.well-known/agent.json Agent Cards, negotiate tasks, and stream artifacts.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> Complements vertical MCP tool connectivity by preventing framework lock-in across specialized risk, coding, and operations agents.</div>
             </div>
           
             <div class="radar-item-card">
@@ -211,6 +229,12 @@
             <h4 style="color: #92400e;">ASSESS</h4>
             <span class="badge badge-assess">Spike</span>
           </div>
+          
+            <div class="radar-item-card">
+              <h4>Formal Verification & Deterministic CI Gates</h4>
+              <p>Pairing probabilistic LLM code synthesis with interactive theorem provers (e.g. Lean 4) and invariant property checks for memory-critical or Tier-1 regulated core modules.</p>
+              <div style="font-size: 12px; color: var(--muted); margin-top: 8px;"><strong>Rationale:</strong> As autonomous coding agents raise PR volume exponentially, mathematical proof checks and deterministic fuzzing eliminate entire classes of security vulnerabilities before human review.</div>
+            </div>
           
             <div class="radar-item-card">
               <h4>Computer-Use & GUI Agents</h4>
