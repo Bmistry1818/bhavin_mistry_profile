@@ -1,7 +1,17 @@
 {
-  "lastUpdated": "2026-11-08T07:13:12.882Z",
+  "lastUpdated": "2026-11-27T08:37:45.713Z",
   "totalCount": 22,
   "blogs": [
+    {
+      "id": "medium-be243c027a624727",
+      "title": "The Agentic Shift: How Frontier AI Is Quietly Rewiring Enterprise Growth",
+      "description": "Six months ago, most enterprise AI strategies amounted to a chatbot in the help desk and a copilot in the IDE. That era is over. What replaced it is the most consequential enterprise technology shi…",
+      "url": "https://medium.com/@bhavin_mistry/the-agentic-shift-how-frontier-ai-is-quietly-rewiring-enterprise-growth-79e0e419539a",
+      "source": "Medium",
+      "date": "2026-11-27T03:49:56.000Z",
+      "image": null,
+      "type": "article"
+    },
     {
       "id": "medium-5473d77b0b08da86",
       "title": "Beyond LLMs: The Anatomy of AI-Powered Systems and Why Every Engineering Team Needs to Understand…",
@@ -189,16 +199,6 @@
       "url": "https://medium.com/@bhavin_mistry/accelerating-engineering-excellence-a-strategic-framework-for-enhanced-software-development-fc3f5cbfd591",
       "source": "Medium",
       "date": "2026-02-03T03:44:19.000Z",
-      "image": null,
-      "type": "article"
-    },
-    {
-      "id": "medium-efe1e857b1502773",
-      "title": "Building a Local AI-Powered Code Review Agent: Integrate with DevOps & VS Code",
-      "description": "While developing code is critical in today’s fast-paced software development environment, automated code review can save hours of manual effort while ensuring code quality and consistency. Imagine …",
-      "url": "https://medium.com/@bhavin_mistry/building-a-local-ai-powered-code-review-agent-integrate-with-devops-vs-code-f3c4430bd6ba",
-      "source": "Medium",
-      "date": "2026-01-23T01:33:50.000Z",
       "image": null,
       "type": "article"
     },
